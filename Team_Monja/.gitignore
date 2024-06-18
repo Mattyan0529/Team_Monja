@@ -73,7 +73,7 @@ crashlytics-build.properties
 
 
 #Ignore File
-Assets/Stage_MT
+Assets/Stage_SM
 Assets/DropDownArrow
 Assets/Prefabs_MT
 Assets/Audio_KH
