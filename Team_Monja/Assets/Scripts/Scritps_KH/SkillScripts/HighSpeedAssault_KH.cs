@@ -65,6 +65,11 @@ public class HighSpeedAssault_KH : MonoBehaviour
         }
         else if (gameObject.CompareTag("Player"))
         {
+            if (_playerMove == null)
+            {
+                _playerMove = GetComponentInChildren<PlayerMove_MT>();
+            }
+
             _playerMove.enabled = false;        // •ûŒü“]Š·‚ðƒIƒt
             _rigidbody.AddForce(transform.forward * _addForce, ForceMode.Impulse);
 
@@ -73,7 +78,7 @@ public class HighSpeedAssault_KH : MonoBehaviour
                 _audioSource = GetComponentInChildren<AudioSource>();
             }
 
-            _soundEffectManagement.PlayWindSound(_audioSource);
+            _soundEffectManagement.PlaySlashAttackSound(_audioSource);
         }
 
         _isSpeedUp = true;
@@ -93,6 +98,7 @@ public class HighSpeedAssault_KH : MonoBehaviour
             _playerMove.enabled = true;        // •ûŒü“]Š·‚ðƒIƒ“
         }
 
+        _soundEffectManagement.StopSound(_audioSource);
         _isSpeedUp = false;
     }
 

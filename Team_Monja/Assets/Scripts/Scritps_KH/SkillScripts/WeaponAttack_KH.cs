@@ -43,7 +43,7 @@ public class WeaponAttack_KH : MonoBehaviour
             _audioSource = GetComponentInChildren<AudioSource>();
         }
 
-        _soundEffectManagement.PlaySlashAttackSound(_audioSource);
+        _soundEffectManagement.PlayStrongPunchSound(_audioSource);
     }
 
     /// <summary>

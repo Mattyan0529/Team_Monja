@@ -2,10 +2,15 @@ using UnityEngine;
 
 public class Petrification_KH : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject _residentScript = default;
+
     private PlayerMove_MT _playerMove = default;
     private MonsterRandomWalk_KH _monsterRandomWalk = default;
     private PlayerRangeInJudge_KH _playerRangeInJudge = default;
     private Rigidbody _rigidbody = default;
+    private AudioSource _audioSource = default;
+    private SoundEffectManagement_KH _soundEffectManagement = default;
 
     private GameObject _petrificationArea;
 
@@ -19,6 +24,7 @@ public class Petrification_KH : MonoBehaviour
     {
         // 子オブジェクトの中からPetrificationAreaを取得
         _petrificationArea = transform.Find("PetrificationArea").gameObject;
+        _soundEffectManagement = _residentScript.GetComponent<SoundEffectManagement_KH>();
     }
 
     void Update()
@@ -33,6 +39,13 @@ public class Petrification_KH : MonoBehaviour
     {
         _isSphereExists = true;
         _petrificationArea.SetActive(true);
+
+        if (_audioSource == null)
+        {
+            _audioSource = GetComponentInChildren<AudioSource>();
+        }
+
+        _soundEffectManagement.PlayMagicSound(_audioSource);
     }
 
     /// <summary>
