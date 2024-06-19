@@ -44,6 +44,7 @@ public class WeaponAttack_KH : MonoBehaviour
     public void HitDecision(GameObject hitObj)
     {
         _soundEffectManagement.PlaySlashAttackSound();
+        Debug.Log("–Â‚ç‚µ‚½I");
 
         // ‘Šè‚Æ©•ª‚ÌStatusManager‚ª—¼•û•K—v
         StatusManager_MT targetStatusManager = hitObj.gameObject.GetComponent<StatusManager_MT>();

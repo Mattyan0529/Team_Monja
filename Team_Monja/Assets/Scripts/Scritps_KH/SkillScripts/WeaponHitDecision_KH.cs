@@ -20,8 +20,8 @@ public class WeaponHitDecision_KH : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.gameObject.GetComponent<PlayerGuard_KH>()) return;
-        if (!other.gameObject.GetComponent<PlayerGuard_KH>().IsGuard) return;       // ƒK[ƒh’†‚Å‚ ‚ê‚ÎUŒ‚–³Œø
+        // ƒK[ƒh’†‚Å‚ ‚ê‚ÎUŒ‚–³Œø
+        if (other.gameObject.GetComponent<PlayerGuard_KH>() && other.gameObject.GetComponent<PlayerGuard_KH>().IsGuard) return;
 
         if (gameObject.transform.parent.CompareTag("Enemy") && other.gameObject.CompareTag("Player"))
         {

@@ -45,6 +45,9 @@ public class ChangeCharacter_MT : MonoBehaviour
                 // プレイヤーに変更した敵オブジェクトをリストから削除
                 objectsInTrigger.Remove(closestObject);
 
+                // 死んだときに切ったスクリプトを復活　追記：北
+                closestObject.GetComponent<MonsterSkill_KH>().enabled = true;
+
                 // タグを変更
                 closestObject.gameObject.tag = "Player";
                 this.gameObject.tag = "Enemy";
