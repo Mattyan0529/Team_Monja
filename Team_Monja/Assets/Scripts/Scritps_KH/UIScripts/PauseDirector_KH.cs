@@ -17,7 +17,7 @@ public class PauseDirector_KH : MonoBehaviour
             {
                 Pause();
             }
-            if (_isPause)
+            else if (_isPause)
             {
                 CancellationPause();
             }
@@ -26,15 +26,15 @@ public class PauseDirector_KH : MonoBehaviour
 
     private void Pause()
     {
-        _button.SetActive(true);
         Time.timeScale = 0f;
         _isPause = true;
+        _button.SetActive(true);
     }
 
     private void CancellationPause()
     {
-        _button.SetActive(false);
         Time.timeScale = 1f;
         _isPause = false;
+        _button.SetActive(false);
     }
 }
