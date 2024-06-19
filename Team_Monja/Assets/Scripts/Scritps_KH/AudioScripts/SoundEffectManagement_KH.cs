@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class SoundEffectManagement_KH : MonoBehaviour
 {
-    private AudioSource _audioSource = default;
-
     [SerializeField]
     private AudioClip[] _soundEffects;
 
@@ -23,12 +21,13 @@ public class SoundEffectManagement_KH : MonoBehaviour
         BoneSound,
         SlowPunchSound,
         StrongPunchSound,
-        MagicSound
+        MagicSound,
+        Wind
     }
 
     void Start()
     {
-        _audioSource = GetComponent<AudioSource>();
+
     }
 
     #region SoundEffectStart
@@ -36,105 +35,125 @@ public class SoundEffectManagement_KH : MonoBehaviour
     /// <summary>
     /// 小さめの選択音を再生
     /// </summary>
-    public void PlaySmallSelectionSound()
+    public void PlaySmallSelectionSound(AudioSource audioSource)
     {
-        _audioSource.PlayOneShot(_soundEffects[(int)SoundEffectSubscript.SmallSelectionSound]);
+        audioSource.PlayOneShot(_soundEffects[(int)SoundEffectSubscript.SmallSelectionSound]);
     }
 
     /// <summary>
     /// 大きめの選択音を再生
     /// </summary>
-    public void PlayBigSelectionSound()
+    public void PlayBigSelectionSound(AudioSource audioSource)
     {
-        _audioSource.PlayOneShot(_soundEffects[(int)SoundEffectSubscript.BigSelectionSound]);
+        audioSource.PlayOneShot(_soundEffects[(int)SoundEffectSubscript.BigSelectionSound]);
     }
 
     /// <summary>
     /// 爆発の攻撃音を再生
     /// </summary>
-    public void PlayExplosionAttackSound()
+    public void PlayExplosionAttackSound(AudioSource audioSource)
     {
-        _audioSource.PlayOneShot(_soundEffects[(int)SoundEffectSubscript.ExplosionAttackSound]);
+        audioSource.PlayOneShot(_soundEffects[(int)SoundEffectSubscript.ExplosionAttackSound]);
     }
 
     /// <summary>
     /// 斬撃の攻撃音を再生
     /// </summary>
-    public void PlaySlashAttackSound()
+    public void PlaySlashAttackSound(AudioSource audioSource)
     {
-        _audioSource.PlayOneShot(_soundEffects[(int)SoundEffectSubscript.SlashAttackSound]);
+        audioSource.PlayOneShot(_soundEffects[(int)SoundEffectSubscript.SlashAttackSound]);
     }
 
     /// <summary>
     /// 遠距離の攻撃音を再生
     /// </summary>
-    public void PlayLongDistanceAttackSound()
+    public void PlayLongDistanceAttackSound(AudioSource audioSource)
     {
-        _audioSource.PlayOneShot(_soundEffects[(int)SoundEffectSubscript.LongDistanceAttackSound]);
+        audioSource.PlayOneShot(_soundEffects[(int)SoundEffectSubscript.LongDistanceAttackSound]);
     }
 
     /// <summary>
     /// 食べる音を再生
     /// </summary>
-    public void PlayEatSound()
+    public void PlayEatSound(AudioSource audioSource)
     {
-        _audioSource.PlayOneShot(_soundEffects[(int)SoundEffectSubscript.EatSound]);
+        audioSource.PlayOneShot(_soundEffects[(int)SoundEffectSubscript.EatSound]);
     }
 
     /// <summary>
     /// 乗り移る音を再生
     /// </summary>
-    public void PlayPossessionSound()
+    public void PlayPossessionSound(AudioSource audioSource)
     {
-        _audioSource.PlayOneShot(_soundEffects[(int)SoundEffectSubscript.PossessionSound]);
+        audioSource.PlayOneShot(_soundEffects[(int)SoundEffectSubscript.PossessionSound]);
     }
 
     /// <summary>
     /// ダメージ音を再生
     /// </summary>
-    public void PlayDamageSound()
+    public void PlayDamageSound(AudioSource audioSource)
     {
-        _audioSource.PlayOneShot(_soundEffects[(int)SoundEffectSubscript.DamageSound]);
+        audioSource.PlayOneShot(_soundEffects[(int)SoundEffectSubscript.DamageSound]);
     }
 
     /// <summary>
     /// スライムの音を再生
     /// </summary>
-    public void PlaySlimeSound()
+    public void PlaySlimeSound(AudioSource audioSource)
     {
-        _audioSource.PlayOneShot(_soundEffects[(int)SoundEffectSubscript.SlimeSound]);
+        audioSource.PlayOneShot(_soundEffects[(int)SoundEffectSubscript.SlimeSound]);
     }
 
     /// <summary>
     /// ほねほね君の音を再生
     /// </summary>
-    public void PlayBoneSound()
+    public void PlayBoneSound(AudioSource audioSource)
     {
-        _audioSource.PlayOneShot(_soundEffects[(int)SoundEffectSubscript.BoneSound]);
+        audioSource.PlayOneShot(_soundEffects[(int)SoundEffectSubscript.BoneSound]);
     }
 
     /// <summary>
     /// 重めの打撃音を再生
     /// </summary>
-    public void PlaySlowPunchSound()
+    public void PlaySlowPunchSound(AudioSource audioSource)
     {
-        _audioSource.PlayOneShot(_soundEffects[(int)SoundEffectSubscript.SlowPunchSound]);
+        audioSource.PlayOneShot(_soundEffects[(int)SoundEffectSubscript.SlowPunchSound]);
     }
 
     /// <summary>
     /// 強めの打撃音を再生
     /// </summary>
-    public void PlayStrongPunchSound()
+    public void PlayStrongPunchSound(AudioSource audioSource)
     {
-        _audioSource.PlayOneShot(_soundEffects[(int)SoundEffectSubscript.StrongPunchSound]);
+        audioSource.PlayOneShot(_soundEffects[(int)SoundEffectSubscript.StrongPunchSound]);
     }
 
     /// <summary>
     /// 小さめの選択音を再生
     /// </summary>
-    public void PlayMagicSound()
+    public void PlayMagicSound(AudioSource audioSource)
     {
-        _audioSource.PlayOneShot(_soundEffects[(int)SoundEffectSubscript.MagicSound]);
+        audioSource.PlayOneShot(_soundEffects[(int)SoundEffectSubscript.MagicSound]);
+    }
+
+    /// <summary>
+    /// 風の音を再生
+    /// </summary>
+    public void PlayWindSound(AudioSource audioSource)
+    {
+        audioSource.PlayOneShot(_soundEffects[(int)SoundEffectSubscript.Wind]);
+    }
+
+    #endregion
+
+    #region SoundEffectsStop
+
+    /// <summary>
+    /// SEをすべて停止
+    /// </summary>
+    public void StopSound(AudioSource audioSource)
+    {
+        audioSource.Stop();
     }
 
     #endregion

@@ -9,6 +9,8 @@ public class HighSpeedAssault_KH : MonoBehaviour
     private MonsterRandomWalk_KH _monsterRandomWalk = default;
     private PlayerMove_MT _playerMove = default;
     private Rigidbody _rigidbody = default;
+    private SoundEffectManagement_KH _soundEffectManagement = default;
+    private AudioSource _audioSource = default;
 
     private StatusManager_MT _myStatusManager = default;        // 自分のステータス
     private StatusManager_MT _targetStatusManager = default;    // 攻撃相手のステータス
@@ -23,6 +25,7 @@ public class HighSpeedAssault_KH : MonoBehaviour
     void Start()
     {
         _writeHitPoint = _residentScript.GetComponent<WriteHitPoint_KH>();
+        _soundEffectManagement = _residentScript.GetComponent<SoundEffectManagement_KH>();
         _rigidbody = GetComponent<Rigidbody>();
 
         if (gameObject.tag == "Enemy")
@@ -52,11 +55,25 @@ public class HighSpeedAssault_KH : MonoBehaviour
         {
             _monsterRandomWalk.enabled = false;     // 方向転換をオフ
             _rigidbody.AddForce(transform.forward * _addForce, ForceMode.Impulse);
+
+            if (_audioSource == null)
+            {
+                _audioSource = GetComponentInChildren<AudioSource>();
+            }
+
+            _soundEffectManagement.PlaySlashAttackSound(_audioSource);
         }
         else if (gameObject.CompareTag("Player"))
         {
             _playerMove.enabled = false;        // 方向転換をオフ
             _rigidbody.AddForce(transform.forward * _addForce, ForceMode.Impulse);
+
+            if (_audioSource == null)
+            {
+                _audioSource = GetComponentInChildren<AudioSource>();
+            }
+
+            _soundEffectManagement.PlayWindSound(_audioSource);
         }
 
         _isSpeedUp = true;
@@ -125,12 +142,18 @@ public class HighSpeedAssault_KH : MonoBehaviour
 
         if (gameObject.CompareTag("Enemy") && collision.gameObject.CompareTag("Player"))       // 自分がモンスターで相手がプレイヤーだった場合
         {
+            _soundEffectManagement.StopSound(_audioSource);
+            _soundEffectManagement.PlaySlowPunchSound(_audioSource);
+
             _myStatusManager = GetComponent<StatusManager_MT>();
             _targetStatusManager = collision.gameObject.GetComponent<StatusManager_MT>();
             HitPointCalculation(_myStatusManager, _targetStatusManager);
         }
         else if (gameObject.CompareTag("Player") && collision.gameObject.CompareTag("Enemy"))       // 自分がプレイヤーで相手がモンスターだった場合
         {
+            _soundEffectManagement.StopSound(_audioSource);
+            _soundEffectManagement.PlaySlowPunchSound(_audioSource);
+
             _myStatusManager = GetComponent<StatusManager_MT>();
             _targetStatusManager = collision.gameObject.GetComponent<StatusManager_MT>();
             HitPointCalculation(_myStatusManager, _targetStatusManager);

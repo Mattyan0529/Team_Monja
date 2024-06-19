@@ -5,13 +5,15 @@ public class LongDistanceAttack_KH : MonoBehaviour
     [SerializeField]
     private GameObject _residentScript;
 
-    private float _bulletSpeed = 20f;
+    private float _bulletSpeed = 50f;
 
     private float _addSpownPos;     // 弾を生成するときにyに足す値
 
     private GameObject _bullet = default;
     private WriteHitPoint_KH _writeHitPoint = default;
     private BulletHitDecision_KH _bulletHitDecision = default;
+    private SoundEffectManagement_KH _soundEffectManagement = default;
+    private AudioSource _audioSource = default;
 
     private float _deleteTime = 3f;
     private float _elapsedTime = 0f;
@@ -21,6 +23,7 @@ public class LongDistanceAttack_KH : MonoBehaviour
     void Start()
     {
         _writeHitPoint = _residentScript.GetComponent<WriteHitPoint_KH>();
+        _soundEffectManagement = _residentScript.GetComponent<SoundEffectManagement_KH>();
 
         // 子オブジェクトからBulletを取得
         _bullet = transform.Find("Bullet").gameObject;
@@ -45,6 +48,13 @@ public class LongDistanceAttack_KH : MonoBehaviour
         Rigidbody rigidbody = _bullet.GetComponent<Rigidbody>();
         rigidbody.velocity = transform.forward * _bulletSpeed;
         _bulletHitDecision.ActivateBullet();
+
+        if (_audioSource == null)
+        {
+            _audioSource = GetComponentInChildren<AudioSource>();
+        }
+
+        _soundEffectManagement.PlayLongDistanceAttackSound(_audioSource);
 
         _isShot = true;
     }

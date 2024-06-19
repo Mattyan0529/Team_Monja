@@ -13,8 +13,11 @@ public class MonsterSkill_KH : MonoBehaviour
     [SerializeField]
     private GameObject _followArea;
 
-    private float _updateTime = 2f;     // 何秒おきにスキルを呼び出すか
-    private float _elapsedTime = 0f;
+    private float _updateTime = 0f;    // 何秒おきにスキルを呼び出すか
+    private float _elapsedTime = default;
+
+    private float _maxTimeSpacing = 4f;
+    private float _minTimeSpacing = 2f;
 
     private PlayerSkill_KH _playerSkill = default;
     private PlayerManager_KH _playerManager = default;
@@ -67,6 +70,7 @@ public class MonsterSkill_KH : MonoBehaviour
     void Start()
     {
         GameobjectTagJudge();
+        _updateTime = Random.Range(_minTimeSpacing, _maxTimeSpacing);
     }
 
     void Update()

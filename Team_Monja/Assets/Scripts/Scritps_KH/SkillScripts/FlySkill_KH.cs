@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class FlySkill_KH : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject _residentScript = default;
+
     private Rigidbody _rigidbody = default;
+    private AudioSource _audioSource = default;
+    private SoundEffectManagement_KH _soundEffectManagement = default;
 
     private float _upSpeed = 3000f;
     private float _maxUpHeight = 15f;
@@ -21,6 +26,7 @@ public class FlySkill_KH : MonoBehaviour
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        _soundEffectManagement = _residentScript.GetComponent<SoundEffectManagement_KH>();
     }
 
     void Update()
@@ -41,6 +47,13 @@ public class FlySkill_KH : MonoBehaviour
 
         if (_isFlying)
         {
+            if (_audioSource == null)
+            {
+                _audioSource = GetComponentInChildren<AudioSource>();
+            }
+
+            _soundEffectManagement.PlayWindSound(_audioSource);
+
             // 飛び始めの最高到達点を決める
             RaycastHit hit;
             if (Physics.Raycast(transform.position, Vector3.down, out hit, _rayLength, groundLayer))
@@ -57,6 +70,12 @@ public class FlySkill_KH : MonoBehaviour
     public void MonsterStartFly()
     {
         _isFlying = true;
+
+        if (_audioSource == null)
+        {
+            _audioSource = GetComponentInChildren<AudioSource>();
+        }
+        _soundEffectManagement.PlayWindSound(_audioSource);
 
         // 飛び始めの最高到達点を決める
         RaycastHit hit;
@@ -81,6 +100,8 @@ public class FlySkill_KH : MonoBehaviour
             // 最大高度に達したら、その高さを維持する
             gameObject.transform.position = new Vector3(transform.position.x, _currentMaxHeight, transform.position.z);
             _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, 0, _rigidbody.velocity.z); // 上昇を停止する
+
+            _soundEffectManagement.StopSound(_audioSource);
         }
     }
 

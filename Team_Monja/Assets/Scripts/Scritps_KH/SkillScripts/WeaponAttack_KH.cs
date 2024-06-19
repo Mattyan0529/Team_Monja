@@ -11,7 +11,8 @@ public class WeaponAttack_KH : MonoBehaviour
     private GameObject _attackArea;
 
     private WriteHitPoint_KH _writeHitPoint = default;
-    private SoundEffectManagement_KH _soundEffectManagement;
+    private SoundEffectManagement_KH _soundEffectManagement = default;
+    private AudioSource _audioSource = default;
 
     private bool _isAttack = false;
 
@@ -36,6 +37,13 @@ public class WeaponAttack_KH : MonoBehaviour
     {
         _isAttack = true;
         _attackArea.SetActive(true);
+
+        if (_audioSource == null)
+        {
+            _audioSource = GetComponentInChildren<AudioSource>();
+        }
+
+        _soundEffectManagement.PlaySlashAttackSound(_audioSource);
     }
 
     /// <summary>
@@ -43,9 +51,6 @@ public class WeaponAttack_KH : MonoBehaviour
     /// </summary>
     public void HitDecision(GameObject hitObj)
     {
-        _soundEffectManagement.PlaySlashAttackSound();
-        Debug.Log("–Â‚ç‚µ‚½I");
-
         // ‘Šè‚Æ©•ª‚ÌStatusManager‚ª—¼•û•K—v
         StatusManager_MT targetStatusManager = hitObj.gameObject.GetComponent<StatusManager_MT>();
         StatusManager_MT myStatusManager = GetComponent<StatusManager_MT>();
