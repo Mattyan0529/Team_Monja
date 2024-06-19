@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PauseDirector_KH : MonoBehaviour
 {
-    [SerializeField]
-    GameObject _button = default;
+    //[SerializeField]
+    //GameObject _button = default;
 
     private bool _isPause = false;
 
@@ -28,13 +28,13 @@ public class PauseDirector_KH : MonoBehaviour
     {
         Time.timeScale = 0f;
         _isPause = true;
-        _button.SetActive(true);
+        //_button.SetActive(true);
     }
 
     private void CancellationPause()
     {
         Time.timeScale = 1f;
         _isPause = false;
-        _button.SetActive(false);
+        //_button.SetActive(false);
     }
 }

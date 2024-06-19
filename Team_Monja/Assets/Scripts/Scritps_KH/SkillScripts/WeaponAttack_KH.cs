@@ -11,19 +11,19 @@ public class WeaponAttack_KH : MonoBehaviour
     private GameObject _attackArea;
 
     private WriteHitPoint_KH _writeHitPoint = default;
+    private SoundEffectManagement_KH _soundEffectManagement;
 
     private bool _isAttack = false;
 
-    // Start is called before the first frame update
     void Start()
     {
         _writeHitPoint = _residentScript.GetComponent<WriteHitPoint_KH>();
+        _soundEffectManagement = _residentScript.GetComponent<SoundEffectManagement_KH>();
 
         // 子オブジェクトの中からAttackAreaを取得
         _attackArea = transform.Find("AttackArea").gameObject;
     }
 
-    // Update is called once per frame
     void Update()
     {
         UpdateTime();
@@ -43,6 +43,8 @@ public class WeaponAttack_KH : MonoBehaviour
     /// </summary>
     public void HitDecision(GameObject hitObj)
     {
+        _soundEffectManagement.PlaySlashAttackSound();
+
         // 相手と自分のStatusManagerが両方必要
         StatusManager_MT targetStatusManager = hitObj.gameObject.GetComponent<StatusManager_MT>();
         StatusManager_MT myStatusManager = GetComponent<StatusManager_MT>();
