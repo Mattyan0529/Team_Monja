@@ -17,11 +17,6 @@ public class BossSkill_KH : MonoBehaviour
         _weaponAttack = GetComponent<WeaponAttack_KH>();
     }
 
-    void Update()
-    {
-        
-    }
-
     public void RandomSkillCall()
     {
         // 1‚©‚ç10‚Ü‚Å‚Ì—”

@@ -6,25 +6,28 @@ public class LongDistanceAttack_KH : MonoBehaviour
     private GameObject _residentScript;
 
     private float _bulletSpeed = 20f;
-    private float _radius = 0.5f;
 
     private float _addSpownPos;     // 弾を生成するときにyに足す値
 
-    private GameObject _bullet;
-    private WriteHitPoint_KH _writeHitPoint;
+    private GameObject _bullet = default;
+    private WriteHitPoint_KH _writeHitPoint = default;
+    private BulletHitDecision_KH _bulletHitDecision = default;
 
     private float _deleteTime = 3f;
     private float _elapsedTime = 0f;
 
     private bool _isShot = false;
 
-    // Start is called before the first frame update
     void Start()
     {
         _writeHitPoint = _residentScript.GetComponent<WriteHitPoint_KH>();
+
+        // 子オブジェクトからBulletを取得
+        _bullet = transform.Find("Bullet").gameObject;
+        _bulletHitDecision = _bullet.GetComponent<BulletHitDecision_KH>();
+        _bulletHitDecision.DisableBullet();
     }
 
-    // Update is called once per frame
     void Update()
     {
         UpdateTime();
@@ -37,29 +40,13 @@ public class LongDistanceAttack_KH : MonoBehaviour
     {
         if (_isShot) return;      // 重複で攻撃はしない
 
-        _bullet = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-
-        // SphereのTransformを設定
-        _bullet.transform.position = new Vector3(transform.position.x, transform.position.y + _addSpownPos, transform.position.z);
-        _bullet.transform.localScale = new Vector3(_radius, _radius, _radius);
-
-        _bullet.GetComponent<SphereCollider>().isTrigger = true;
-
-        // Sphereのマテリアルを設定（透明に）
-        Renderer renderer = _bullet.GetComponent<Renderer>();
-        //renderer.enabled = false;
-
         // 速度を付ける
-        _bullet.AddComponent<Rigidbody>();
+        _bullet.transform.position = new Vector3(transform.position.x, transform.position.y + _addSpownPos, transform.position.z);
         Rigidbody rigidbody = _bullet.GetComponent<Rigidbody>();
-        rigidbody.useGravity = false;
         rigidbody.velocity = transform.forward * _bulletSpeed;
-
-        _bullet.AddComponent<BulletHitDecision_KH>();
+        _bulletHitDecision.ActivateBullet();
 
         _isShot = true;
-
-        _bullet.GetComponent<BulletHitDecision_KH>().GetParent(gameObject);
     }
 
     /// <summary>
@@ -105,7 +92,7 @@ public class LongDistanceAttack_KH : MonoBehaviour
         // 規定時間に達していた場合
         if (_elapsedTime > _deleteTime)
         {
-            Destroy(_bullet);
+            _bulletHitDecision.DisableBullet();
             _elapsedTime = 0f;
             _isShot = false;
         }

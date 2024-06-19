@@ -6,46 +6,60 @@ using UnityEngine;
 public class BulletHitDecision_KH : MonoBehaviour
 {
     private LongDistanceAttack_KH _longDistanceAttack = default;
+    private Renderer _bulletRenderer = default;
+    private SphereCollider _bulletCollider = default;
+    private Rigidbody _bulletRigidbody = default;
+
     private GameObject _parent = default;
 
-    // Start is called before the first frame update
     void Start()
     {
+        _parent = transform.parent.gameObject;
         _longDistanceAttack = _parent.GetComponent<LongDistanceAttack_KH>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    public void GetParent(GameObject parent)
-    {
-        _parent = parent;
+        _bulletRenderer = GetComponent<Renderer>();
+        _bulletCollider = GetComponent<SphereCollider>();
+        _bulletRigidbody = GetComponent<Rigidbody>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject == _parent) return;
-        if (!other.gameObject.GetComponent<PlayerGuard_KH>()) return;
-        if (!other.gameObject.GetComponent<PlayerGuard_KH>().IsGuard) return;       // ƒK[ƒh’†‚Å‚ ‚ê‚ÎUŒ‚–³Œø
+
+        // ƒK[ƒh’†‚Å‚ ‚ê‚ÎUŒ‚–³Œø
+        if (other.gameObject.GetComponent<PlayerGuard_KH>() && other.gameObject.GetComponent<PlayerGuard_KH>().IsGuard) return;
 
         if (_parent.CompareTag("Enemy") && other.gameObject.CompareTag("Player"))
         {
             _longDistanceAttack.HitDecision(other.gameObject);
 
             // ƒvƒŒƒCƒ„[‚É‚ ‚½‚Á‚½’e‚ğíœ
-            Destroy(gameObject);
+            DisableBullet();
         }
         else if (_parent.CompareTag("Player") && other.gameObject.CompareTag("Enemy"))
         {
             _longDistanceAttack.HitDecision(other.gameObject);
 
             // “G‚É‚ ‚½‚Á‚½’e‚ğíœ
-            Destroy(gameObject);
+            DisableBullet();
         }
+    }
 
-        // áŠQ•¨‚È‚Ç‚Éƒ^ƒO‚ğ‚Â‚¯‚Ä’e‚ğíœ‚·‚é•K—v‚ ‚è
+    /// <summary>
+    /// ’e‚ÌCollider‚ÆRenderer‚ğ—LŒø‰»‚·‚é
+    /// </summary>
+    public void ActivateBullet()
+    {
+        _bulletRenderer.enabled = true;
+        _bulletCollider.enabled = true;
+    }
+
+    /// <summary>
+    /// ’e‚ğ–³Œø‰»‚·‚é
+    /// </summary>
+    public void DisableBullet()
+    {
+        _bulletRenderer.enabled = false;
+        _bulletCollider.enabled = false;
+        _bulletRigidbody.velocity = Vector3.zero;
     }
 }
