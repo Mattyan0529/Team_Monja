@@ -4,21 +4,18 @@ using UnityEngine;
 
 public class PauseDirector_KH : MonoBehaviour
 {
-    [SerializeField]
-    GameObject _button = default;
-
-    private bool _isPause = false;
+    void Start()
+    {
+        
+    }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
 <<<<<<< HEAD
-
             Pause();
-
 =======
->>>>>>> origin/main
             if (!_isPause)
             {
                 Pause();
@@ -27,9 +24,6 @@ public class PauseDirector_KH : MonoBehaviour
             {
                 CancellationPause();
             }
-<<<<<<< HEAD
-
-=======
 >>>>>>> origin/main
         }
     }
@@ -38,11 +32,6 @@ public class PauseDirector_KH : MonoBehaviour
     {
         Time.timeScale = 0f;
 <<<<<<< HEAD
-
-
-        _isPause = true;
-        _button.SetActive(true);
-
 =======
         _isPause = true;
         _button.SetActive(true);
@@ -53,11 +42,6 @@ public class PauseDirector_KH : MonoBehaviour
     {
         Time.timeScale = 1f;
 <<<<<<< HEAD
-
-
-        _isPause = false;
-        _button.SetActive(false);
-
 =======
         _isPause = false;
         _button.SetActive(false);
