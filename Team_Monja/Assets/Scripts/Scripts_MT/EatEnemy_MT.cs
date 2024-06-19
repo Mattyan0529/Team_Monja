@@ -40,7 +40,7 @@ public class EatEnemy_MT : MonoBehaviour
         if (closestObject != null && closestObject.gameObject.activeSelf && closestObject.CompareTag("Enemy"))
         {
             statusManagerEnemy = closestObject.GetComponent<StatusManager_MT>();
-            if (statusManagerEnemy != null)
+            if (statusManagerEnemy != null && statusManagerEnemy.HP <= 0 )
             {
                 // 現在のステータスの倍率をリセット
                 statusManagerPlayer.ResetMultipliers();
@@ -59,7 +59,7 @@ public class EatEnemy_MT : MonoBehaviour
             }
             else
             {
-                Debug.LogError("一番近い敵がStatusManager_MTを持っていません");
+                Debug.LogError("一番近い敵が死んでいないか、StatusManager_MTを持っていない。");
             }
         }
     }

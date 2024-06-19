@@ -10,8 +10,7 @@ public class CharacterDeadDecision_MT : MonoBehaviour
     MonsterRandomWalk_KH _monsterRandomWalk = default;
     MonsterSkill_KH _monsterSkill = default;
     PlayerRangeInJudge_KH _playerRangeInJudge = default;
-    private bool _isFirst = true;
-
+    private bool _isAlive = true;
 
     void Start()
     {
@@ -25,11 +24,9 @@ public class CharacterDeadDecision_MT : MonoBehaviour
 
     void Update()
     {
-        if(IsDeadDecision())
+        if (IsDeadDecision())
         {
-            I_Can_Eat();
-
-            if (_isFirst)
+            if (_isAlive)
             {
                 EnemyStop();
             }
@@ -38,19 +35,15 @@ public class CharacterDeadDecision_MT : MonoBehaviour
 
     public bool IsDeadDecision()
     {
-        if(statusManager.HP <= 0)
+        if (statusManager.HP <= 0)
         {
             return true;
         }
         else
         {
+            _isAlive = true;
             return false;
         }
-    }
-
-    private void I_Can_Eat()
-    {
-
     }
 
     /// <summary>
@@ -64,6 +57,6 @@ public class CharacterDeadDecision_MT : MonoBehaviour
         _monsterRandomWalk.enabled = false;
         _monsterSkill.enabled = false;
 
-        _isFirst = false;
+        _isAlive = false; 
     }
 }

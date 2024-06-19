@@ -5,6 +5,7 @@ using UnityEngine;
 public class ChangeCharacter_MT : MonoBehaviour
 {
     StatusManager_MT statusManagerPlayer;
+    StatusManager_MT statusManagerEnemy;
     ClosestEnemyFinder_MT closestEnemyFinder;
 
     void Start()
@@ -38,16 +39,20 @@ public class ChangeCharacter_MT : MonoBehaviour
 
         if (closestObject != null && closestObject.gameObject.activeSelf && closestObject.CompareTag("Enemy"))
         {
-            // プレイヤーに変更した敵オブジェクトをリストから削除
-            objectsInTrigger.Remove(closestObject);
+            statusManagerEnemy = closestObject.GetComponent<StatusManager_MT>();
+            if (statusManagerEnemy != null && statusManagerEnemy.HP <= 0)
+            {
+                // プレイヤーに変更した敵オブジェクトをリストから削除
+                objectsInTrigger.Remove(closestObject);
 
-            // タグを変更
-            closestObject.gameObject.tag = "Player";
-            this.gameObject.tag = "Enemy";
-        }
-        else
-        {
-            Debug.Log("No closest object found.");
+                // タグを変更
+                closestObject.gameObject.tag = "Player";
+                this.gameObject.tag = "Enemy";
+            }
+            else
+            {
+                Debug.LogError("一番近い敵が死んでいないか、StatusManager_MTを持っていない。");
+            }
         }
     }
 

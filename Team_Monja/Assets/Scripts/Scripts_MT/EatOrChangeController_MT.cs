@@ -7,7 +7,6 @@ public class EatOrChangeController_MT : MonoBehaviour
     EatEnemy_MT eatEnemy;
     ChangeCharacter_MT changeCharacter;
     EnemyTriggerManager_MT enemyTriggerManager;
-    StatusManager_MT statusManager;
 
     void Start()
     {
