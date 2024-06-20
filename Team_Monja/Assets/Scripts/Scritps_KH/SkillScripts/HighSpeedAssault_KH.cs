@@ -5,7 +5,7 @@ public class HighSpeedAssault_KH : MonoBehaviour
     [SerializeField]
     private GameObject _residentScript;
 
-    private StatusManager_MT statusManager = default;
+    private WriteHitPoint_KH _writeHitPoint = default;
     private MonsterRandomWalk_KH _monsterRandomWalk = default;
     private PlayerMove_MT _playerMove = default;
     private Rigidbody _rigidbody = default;
@@ -24,7 +24,7 @@ public class HighSpeedAssault_KH : MonoBehaviour
 
     void Start()
     {
-        statusManager = _residentScript.GetComponent<StatusManager_MT>();
+        _writeHitPoint = _residentScript.GetComponent<WriteHitPoint_KH>();
         _soundEffectManagement = _residentScript.GetComponent<SoundEffectManagement_KH>();
         _rigidbody = GetComponent<Rigidbody>();
 
@@ -138,7 +138,7 @@ public class HighSpeedAssault_KH : MonoBehaviour
         if (myAttackPower < targetDefensePower) return;        // 防御力のほうが高かったら0ダメージ
 
         int damage = targetHitPoint - (myAttackPower - targetDefensePower);
-        statusManager.UpdateHitPoint(targetStatus, damage);      // targetStatusesのHPを更新
+        _writeHitPoint.UpdateHitPoint(targetStatus, damage);      // targetStatusesのHPを更新
         SpeedDown();
     }
 

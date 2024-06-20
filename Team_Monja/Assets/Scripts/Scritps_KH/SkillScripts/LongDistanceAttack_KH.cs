@@ -10,7 +10,7 @@ public class LongDistanceAttack_KH : MonoBehaviour
     private float _addSpownPos;     // 弾を生成するときにyに足す値
 
     private GameObject _bullet = default;
-    private StatusManager_MT statusManager = default;
+    private WriteHitPoint_KH _writeHitPoint = default;
     private BulletHitDecision_KH _bulletHitDecision = default;
     private SoundEffectManagement_KH _soundEffectManagement = default;
     private AudioSource _audioSource = default;
@@ -22,7 +22,7 @@ public class LongDistanceAttack_KH : MonoBehaviour
 
     void Start()
     {
-        statusManager = _residentScript.GetComponent<StatusManager_MT>();
+        _writeHitPoint = _residentScript.GetComponent<WriteHitPoint_KH>();
         _soundEffectManagement = _residentScript.GetComponent<SoundEffectManagement_KH>();
 
         // 子オブジェクトからBulletを取得
@@ -86,7 +86,7 @@ public class LongDistanceAttack_KH : MonoBehaviour
 
         int damage = targetHitPoint - (myAttackPower - targetDefensePower);
 
-        statusManager.UpdateHitPoint(targetStatus, damage);      // targetStatusのHPを更新
+        _writeHitPoint.UpdateHitPoint(targetStatus, damage);      // targetStatusのHPを更新
     }
 
     /// <summary>

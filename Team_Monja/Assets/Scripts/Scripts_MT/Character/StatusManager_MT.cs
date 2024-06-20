@@ -84,14 +84,6 @@ public class StatusManager_MT : MonoBehaviour
         Defense = Mathf.FloorToInt(Defense / defenseMultiplier);
     }
 
-  
-    //キャラクターのHPを更新する（減らす）
-    public void UpdateHitPoint(StatusManager_MT attackdStatus, int afterAttackedHitPoint)
-    {
-        attackdStatus.HP = afterAttackedHitPoint;
-
-    }
-
     // 回復
     public void HealHP(int healAmount)
     {
