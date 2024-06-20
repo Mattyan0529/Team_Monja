@@ -10,7 +10,7 @@ public class WeaponAttack_KH : MonoBehaviour
 
     private GameObject _attackArea;
 
-    private WriteHitPoint_KH _writeHitPoint = default;
+    private StatusManager_MT statusManager = default;
     private SoundEffectManagement_KH _soundEffectManagement = default;
     private AudioSource _audioSource = default;
 
@@ -18,7 +18,7 @@ public class WeaponAttack_KH : MonoBehaviour
 
     void Start()
     {
-        _writeHitPoint = _residentScript.GetComponent<WriteHitPoint_KH>();
+        statusManager = _residentScript.GetComponent<StatusManager_MT>();
         _soundEffectManagement = _residentScript.GetComponent<SoundEffectManagement_KH>();
 
         // 子オブジェクトの中からAttackAreaを取得
@@ -70,7 +70,7 @@ public class WeaponAttack_KH : MonoBehaviour
         if (myAttackPower < targetDefensePower) return;        // 防御力のほうが高かったら0ダメージ
 
         int damage = targetHitPoint - (myAttackPower - targetDefensePower);
-        _writeHitPoint.UpdateHitPoint(targetStatus, damage);      // targetStatusのHPを更新
+        statusManager.UpdateHitPoint(targetStatus, damage);      // targetStatusのHPを更新
     }
 
     /// <summary>

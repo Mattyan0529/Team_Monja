@@ -14,11 +14,11 @@ public class NormalAttack_KH : MonoBehaviour
     private GameObject _attackArea;
     private bool _isAttack = false;
 
-    private WriteHitPoint_KH _writeHitPoint = default;
+    private StatusManager_MT statusManager = default;
 
     void Start()
     {
-        _writeHitPoint = _residentScript.GetComponent<WriteHitPoint_KH>();
+        statusManager = _residentScript.GetComponent<StatusManager_MT>();
     }
 
     void Update()
@@ -90,7 +90,7 @@ public class NormalAttack_KH : MonoBehaviour
         if (myAttackPower < targetDefensePower) return;        // 防御力のほうが高かったら0ダメージ
 
         int damage = targetHitPoint - (myAttackPower - targetDefensePower);
-        _writeHitPoint.UpdateHitPoint(targetStatus, damage);      // targetStatusのHPを更新
+        statusManager.UpdateHitPoint(targetStatus, damage);      // targetStatusのHPを更新
     }
 
     /// <summary>
