@@ -22,20 +22,29 @@ public class CharacterAnim_MT : MonoBehaviour
     {
         switch (NowAnim)
         {
+            case "Idle":
+                animator.SetBool("Idle",true);
+                animator.SetBool("Move", false);
+                animator.SetBool("Die", false);
+                break;
             case "Move":
-                //trigger
+                animator.SetBool("Move",true);
+                animator.SetBool("Idle", false);
+                animator.SetBool("Die", false);
                 break;
             case "Attack":
-                //trigger
+                animator.SetTrigger("Attack");
                 break;
             case "Skill":
-                //trigger
+                animator.SetTrigger("Skill");
                 break;
             case "GotDamage":
-                //trigger
+                animator.SetTrigger("GotDamage");
                 break;
             case "Die":
-                //bool
+                animator.SetBool("Die", true);
+                animator.SetBool("Idle", false);
+                animator.SetBool("Move", false);
                 break;
         }
     }

@@ -8,11 +8,13 @@ public class PlayerMove_MT : MonoBehaviour
     private float groundCheckDistance = 0.1f; // 地面チェック距離
 
     private Rigidbody rb;
+    private CharacterAnim_MT characterAnim;
     private bool isGrounded;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        characterAnim = GetComponent<CharacterAnim_MT>();
     }
 
     void FixedUpdate()
@@ -24,6 +26,17 @@ public class PlayerMove_MT : MonoBehaviour
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
+
+        //アニメーション
+        if ((moveHorizontal + moveVertical) != 0)
+        {
+            characterAnim.NowAnim = "Move";
+        }
+        else
+        {
+            characterAnim.NowAnim = "Idle";
+        }
+
 
         Vector3 movement = new Vector3(moveHorizontal, 0f, moveVertical).normalized * moveSpeed * Time.deltaTime;
 
