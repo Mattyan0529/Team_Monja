@@ -27,6 +27,10 @@ public class DropDownArrow_MT : MonoBehaviour
             meshRenderer.enabled = true;
             MoveArrow();
         }
+        else
+        {
+            meshRenderer.enabled = false;
+        }
     }
 
 

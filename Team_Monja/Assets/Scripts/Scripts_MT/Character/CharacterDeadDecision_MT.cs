@@ -26,6 +26,7 @@ public class CharacterDeadDecision_MT : MonoBehaviour
     {
         if (IsDeadDecision())
         {
+            Debug.Log("‚µ‚ñ‚À‚á‚Á‚½");
             if (_isAlive)
             {
                 EnemyStop();
