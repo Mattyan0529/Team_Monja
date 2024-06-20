@@ -83,14 +83,6 @@ public class ManagementPushButton_KH : MonoBehaviour
     }
 
     /// <summary>
-    /// ポーズ（中断）画面を表示する
-    /// </summary>
-    public void OutPutPause()
-    {
-
-    }
-
-    /// <summary>
     /// SEがなり終わるまでの待ち時間
     /// </summary>
     /// <returns></returns>

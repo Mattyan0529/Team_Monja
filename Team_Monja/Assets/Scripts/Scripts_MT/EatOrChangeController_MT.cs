@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class EatOrChangeController_MT : MonoBehaviour
 {
+    // í«ãLÅFñk
+    [SerializeField]
+    private GameObject _residentScript = default;
+    private AudioSource _audioSource = default;
+    private SoundEffectManagement_KH _soundEffectManagement = default;
+
     EatEnemy_MT eatEnemy;
     ChangeCharacter_MT changeCharacter;
     EnemyTriggerManager_MT enemyTriggerManager;
@@ -13,6 +19,9 @@ public class EatOrChangeController_MT : MonoBehaviour
         eatEnemy = GetComponent<EatEnemy_MT>();
         changeCharacter = GetComponent<ChangeCharacter_MT>();
         enemyTriggerManager = GetComponent<EnemyTriggerManager_MT>();
+
+        // í«ãLÅFñk
+        _soundEffectManagement = _residentScript.GetComponent<SoundEffectManagement_KH>();
 
         if (eatEnemy == null)
         {
@@ -47,6 +56,13 @@ public class EatOrChangeController_MT : MonoBehaviour
         if (eatEnemy != null)
         {
             eatEnemy.RemoveClosestObject(enemyTriggerManager.objectsInTrigger, transform);
+
+            // í«ãLÅFñk
+            if (_audioSource == null)
+            {
+                _audioSource = GetComponentInChildren<AudioSource>();
+            }
+            _soundEffectManagement.PlayEatSound(_audioSource);
         }
         else
         {
@@ -60,6 +76,13 @@ public class EatOrChangeController_MT : MonoBehaviour
         if (changeCharacter != null)
         {
             changeCharacter.ChangeTagClosestObject(enemyTriggerManager.objectsInTrigger, transform);
+
+            // í«ãLÅFñk
+            if (_audioSource == null)
+            {
+                _audioSource = GetComponentInChildren<AudioSource>();
+            }
+            _soundEffectManagement.PlayPossessionSound(_audioSource);
         }
         else
         {
