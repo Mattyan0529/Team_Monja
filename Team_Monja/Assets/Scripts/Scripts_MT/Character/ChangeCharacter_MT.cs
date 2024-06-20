@@ -10,6 +10,10 @@ public class ChangeCharacter_MT : MonoBehaviour
     private AudioSource _audioSource = default;
     private SoundEffectManagement_KH _soundEffectManagement = default;
 
+    [SerializeField,Header("このキャラクターの番号をいれてねてね")]
+    private int _IconNum = default;
+
+    ChangeIcon_MT changeIcon;
     StatusManager_MT statusManagerPlayer;
     StatusManager_MT statusManagerEnemy;
     ClosestEnemyFinder_MT closestEnemyFinder;
@@ -19,6 +23,13 @@ public class ChangeCharacter_MT : MonoBehaviour
         // 追記：北
         _soundEffectManagement = _residentScript.GetComponent<SoundEffectManagement_KH>();
 
+        // プレイヤーのChangeIcon_MTコンポーネントを取得
+        changeIcon = GetComponent<ChangeIcon_MT>();
+        if (changeIcon == null)
+        {
+            Debug.LogError("プレイヤーのChangeIcon_MTが見つかりません");
+        } 
+        
         // プレイヤーのStatusManager_MTコンポーネントを取得
         statusManagerPlayer = GetComponent<StatusManager_MT>();
         if (statusManagerPlayer == null)
@@ -37,6 +48,8 @@ public class ChangeCharacter_MT : MonoBehaviour
     // objectsInTriggerリストから最も近い敵のタグPlayerにする
     public void ChangeTagClosestObject(List<Collider> objectsInTrigger, Transform referencePoint)
     {
+        changeIcon.IconChange(_IconNum);
+
         if (closestEnemyFinder == null)
         {
             Debug.LogError("ClosestEnemyFinder_MT is not assigned.");

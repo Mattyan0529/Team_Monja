@@ -44,20 +44,6 @@ public class StatusManager_MT : MonoBehaviour
         HP = MaxHP;
     }
 
-    private void Update()
-    {
-        if (this.gameObject.CompareTag("Player"))
-        {
-            Debug.Log("FullHP = " + MaxHP);
-            Debug.Log("NowHP = " + HP);
-            Debug.Log("STR = " + Strength);
-            Debug.Log("DEF = " + Defense);
-            Debug.Log("PlusHP = " + PlusHP);
-            Debug.Log("PlusSTR = " + PlusStrength);
-            Debug.Log("PlusDEF = " + PlusDefense);
-        }
-    }
-
     // ステータスの初期化
     private void InitializeStatus()
     {
