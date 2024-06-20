@@ -46,8 +46,8 @@ public class StatusManager_MT : MonoBehaviour
 
     private void Start()
     {
-        //GetComponent
-        moveSlider = canvasObj.GetComponent<MoveSlider_MT>();
+        ////GetComponent
+        //moveSlider = canvasObj.GetComponent<MoveSlider_MT>();
 
         // Œ»İ‚ÌHP‚ğÅ‘åHP‚Éİ’è
         HP = MaxHP;

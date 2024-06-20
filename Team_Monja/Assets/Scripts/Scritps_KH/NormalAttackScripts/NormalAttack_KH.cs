@@ -15,10 +15,13 @@ public class NormalAttack_KH : MonoBehaviour
     private bool _isAttack = false;
 
     private WriteHitPoint_KH _writeHitPoint = default;
+    //èºñ{
+    private CharacterAnim_MT _characterAnim = default;
 
     void Start()
     {
         _writeHitPoint = _residentScript.GetComponent<WriteHitPoint_KH>();
+        _characterAnim = GetComponent<CharacterAnim_MT>();
     }
 
     void Update()
@@ -40,6 +43,10 @@ public class NormalAttack_KH : MonoBehaviour
     /// </summary>
     private void Attack()
     {
+        //èºñ{
+        _characterAnim.NowAnim = "Attack";
+
+
         _isAttack = true;
 
         if (_attackArea != null)        // SphereÇ™Ç∑Ç≈Ç…Ç†ÇÈÇ∆Ç´ÇÕçÏê¨ÇµÇ»Ç¢

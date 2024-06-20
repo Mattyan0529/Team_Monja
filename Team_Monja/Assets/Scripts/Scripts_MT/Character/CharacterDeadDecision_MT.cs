@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class CharacterDeadDecision_MT : MonoBehaviour
 {
-    StatusManager_MT statusManager;
+    StatusManager_MT _statusManager;
+    private CharacterAnim_MT _characterAnim;
 
     // í«ãLÅFñk
     MonsterRandomWalk_KH _monsterRandomWalk = default;
@@ -14,8 +15,8 @@ public class CharacterDeadDecision_MT : MonoBehaviour
 
     void Start()
     {
-        statusManager = GetComponent<StatusManager_MT>();
-
+        _statusManager = GetComponent<StatusManager_MT>();
+        _characterAnim = GetComponent<CharacterAnim_MT>();
         // í«ãLÅFñk
         _monsterRandomWalk = GetComponent<MonsterRandomWalk_KH>();
         _monsterSkill = GetComponent<MonsterSkill_KH>();
@@ -27,6 +28,8 @@ public class CharacterDeadDecision_MT : MonoBehaviour
         if (IsDeadDecision())
         {
             Debug.Log("ÇµÇÒÇ¿Ç·Ç¡ÇΩ");
+            _characterAnim.NowAnim = "Die";
+
             if (_isAlive)
             {
                 EnemyStop();
@@ -36,7 +39,7 @@ public class CharacterDeadDecision_MT : MonoBehaviour
 
     public bool IsDeadDecision()
     {
-        if (statusManager.HP <= 0)
+        if (_statusManager.HP <= 0)
         {
             return true;
         }
@@ -52,7 +55,6 @@ public class CharacterDeadDecision_MT : MonoBehaviour
     /// </summary>
     private void EnemyStop()
     {
-        Debug.Log("Stop");
 
         _playerRangeInJudge.enabled = false;
         _monsterRandomWalk.enabled = false;

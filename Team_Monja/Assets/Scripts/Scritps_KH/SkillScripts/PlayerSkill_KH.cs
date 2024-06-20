@@ -14,12 +14,17 @@ public class PlayerSkill_KH : MonoBehaviour
     private NormalAttack_KH _normalAttack = default;
     private PlayerGuard_KH _playerGuard = default;
 
+    //松本
+    private CharacterAnim_MT _characterAnim = default;
+
+
     private int _skillNum;
 
     private void Awake()
     {
         _myMonsterSkill = GetComponent<MonsterSkill_KH>();
         _playerMove = GetComponent<PlayerMove_MT>();
+        _characterAnim = GetComponent<CharacterAnim_MT>();
     }
 
     void Start()
@@ -113,22 +118,27 @@ public class PlayerSkill_KH : MonoBehaviour
             {
                 case (int)MonsterSkill_KH.SkillType.HighSpeedAssault:      // 高速突撃の場合
                     _highSpeedAssault.SpeedUp();
+                    _characterAnim.NowAnim = "Move";
                     return;
 
                 case (int)MonsterSkill_KH.SkillType.WeaponAttack:          // 武器を使った攻撃などの場合
                     _weaponAttack.Attack();
+                    _characterAnim.NowAnim = "Move";
                     return;
 
                 case (int)MonsterSkill_KH.SkillType.LongDistanceAttack:        // 遠距離攻撃の場合
                     _longDistanceAttack.GenerateBullet();
+                    _characterAnim.NowAnim = "Move";
                     return;
 
                 case (int)MonsterSkill_KH.SkillType.Fly:                   // 飛ぶスキルの場合
                     _flySkill.PlayerFlyManager();
+                    _characterAnim.NowAnim = "Move";
                     return;
 
                 case (int)MonsterSkill_KH.SkillType.Petrification:         // 石化の場合
                     _petrification.CreatePetrificationArea();
+                    _characterAnim.NowAnim = "Move";
                     return;
             }
         }

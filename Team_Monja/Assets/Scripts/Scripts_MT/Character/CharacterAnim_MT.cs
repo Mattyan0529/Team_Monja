@@ -13,9 +13,14 @@ public class CharacterAnim_MT : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         animator = GetComponent<Animator>();
+    }
+
+    private void Update()
+    {
+        AnimSwitch();
     }
 
     private void AnimSwitch()

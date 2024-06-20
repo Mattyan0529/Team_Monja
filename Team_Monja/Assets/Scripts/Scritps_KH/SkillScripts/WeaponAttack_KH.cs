@@ -16,10 +16,15 @@ public class WeaponAttack_KH : MonoBehaviour
 
     private bool _isAttack = false;
 
+    //松本
+    private CharacterAnim_MT _characterAnim = default;
+
+
     void Start()
     {
         _writeHitPoint = _residentScript.GetComponent<WriteHitPoint_KH>();
         _soundEffectManagement = _residentScript.GetComponent<SoundEffectManagement_KH>();
+        _characterAnim = GetComponent<CharacterAnim_MT>();
 
         // 子オブジェクトの中からAttackAreaを取得
         _attackArea = transform.Find("AttackArea").gameObject;
@@ -35,6 +40,7 @@ public class WeaponAttack_KH : MonoBehaviour
     /// </summary>
     public void Attack()
     {
+        
         _isAttack = true;
         _attackArea.SetActive(true);
 
