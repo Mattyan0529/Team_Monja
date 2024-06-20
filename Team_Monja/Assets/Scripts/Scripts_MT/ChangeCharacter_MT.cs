@@ -4,12 +4,21 @@ using UnityEngine;
 
 public class ChangeCharacter_MT : MonoBehaviour
 {
+    // 追記：北
+    [SerializeField]
+    private GameObject _residentScript = default;
+    private AudioSource _audioSource = default;
+    private SoundEffectManagement_KH _soundEffectManagement = default;
+
     StatusManager_MT statusManagerPlayer;
     StatusManager_MT statusManagerEnemy;
     ClosestEnemyFinder_MT closestEnemyFinder;
 
     void Start()
     {
+        // 追記：北
+        _soundEffectManagement = _residentScript.GetComponent<SoundEffectManagement_KH>();
+
         // プレイヤーのStatusManager_MTコンポーネントを取得
         statusManagerPlayer = GetComponent<StatusManager_MT>();
         if (statusManagerPlayer == null)
@@ -47,6 +56,11 @@ public class ChangeCharacter_MT : MonoBehaviour
 
                 // 死んだときに切ったスクリプトを復活　追記：北
                 closestObject.GetComponent<MonsterSkill_KH>().enabled = true;
+                if (_audioSource == null)
+                {
+                    _audioSource = GetComponentInChildren<AudioSource>();
+                }
+                _soundEffectManagement.PlayPossessionSound(_audioSource);
 
                 // タグを変更
                 closestObject.gameObject.tag = "Player";

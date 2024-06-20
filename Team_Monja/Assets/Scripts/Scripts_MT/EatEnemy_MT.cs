@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class EatEnemy_MT : MonoBehaviour
 {
+    // 追記：北
+    [SerializeField]
+    private GameObject _residentScript = default;
+    private AudioSource _audioSource = default;
+    private SoundEffectManagement_KH _soundEffectManagement = default;
+
     StatusManager_MT statusManagerEnemy;
     StatusManager_MT statusManagerPlayer;
     ClosestEnemyFinder_MT closestEnemyFinder;
@@ -14,6 +20,8 @@ public class EatEnemy_MT : MonoBehaviour
         statusManagerPlayer = GetComponent<StatusManager_MT>();
         closestEnemyFinder = GetComponent<ClosestEnemyFinder_MT>();
 
+        // 追記：北
+        _soundEffectManagement = _residentScript.GetComponent<SoundEffectManagement_KH>();
 
         if (closestEnemyFinder == null)
         {
@@ -56,6 +64,14 @@ public class EatEnemy_MT : MonoBehaviour
 
                 // ステータスの倍率を再適用
                 statusManagerPlayer.ApplyMultipliers();
+
+
+                // 追記：北
+                if (_audioSource == null)
+                {
+                    _audioSource = GetComponentInChildren<AudioSource>();
+                }
+                _soundEffectManagement.PlayEatSound(_audioSource);
             }
             else
             {
