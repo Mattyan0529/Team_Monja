@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BossSkill_KH : MonoBehaviour
@@ -7,9 +5,10 @@ public class BossSkill_KH : MonoBehaviour
     private LongDistanceAttack_KH _longDistanceAttack = default;
     private WeaponAttack_KH _weaponAttack = default;
 
-    private int _fireSphereAttackPower = 10;
-    private int _hitAttackPower = 10;
-    private int _biteAttackPower = 10;
+    // ‚»‚ê‚¼‚ê‚ÌUŒ‚‚ğÀs‚·‚éŠ„‡
+    private const int _fireSphereProbability = 1;
+    private const int _hitProbability = 4;
+    private const int _biteProbability = 5;
 
     void Start()
     {
@@ -20,17 +19,17 @@ public class BossSkill_KH : MonoBehaviour
     public void RandomSkillCall()
     {
         // 1‚©‚ç10‚Ü‚Å‚Ì—”
-        int skillNum = Random.Range(1,11);
+        int skillNum = Random.Range(0, _fireSphereProbability + _hitProbability + _biteProbability);
 
         switch (skillNum)
         {
-            case <2:        // ‰Î‹…
+            case < _fireSphereProbability:        // ‰Î‹…
                 _longDistanceAttack.GenerateBullet();
                 break;
-            case <6:        // ‰£‚é
+            case < _fireSphereProbability + _hitProbability:        // ‰£‚é
                 _weaponAttack.Attack();
                 break;
-            case <11:       // Šš‚Ş
+            case < _fireSphereProbability + _hitProbability + _biteProbability:       // Šš‚Ş
                 _weaponAttack.Attack();
                 break;
         }

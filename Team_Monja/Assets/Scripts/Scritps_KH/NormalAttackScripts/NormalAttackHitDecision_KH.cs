@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class NormalAttackHitDecision_KH : MonoBehaviour
@@ -11,10 +9,6 @@ public class NormalAttackHitDecision_KH : MonoBehaviour
         _normalAttack = GetComponentInParent<NormalAttack_KH>();
     }
 
-    void Update()
-    {
-        
-    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag != "Enemy") return;

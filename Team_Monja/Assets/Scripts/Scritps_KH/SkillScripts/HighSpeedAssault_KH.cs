@@ -48,6 +48,7 @@ public class HighSpeedAssault_KH : MonoBehaviour
     /// </summary>
     public void SpeedUp()
     {
+        // すでに加速中のときと、ランダム移動中は加速しない
         if (_isSpeedUp) return;
         if (gameObject.CompareTag("Enemy") && _monsterRandomWalk.enabled) return;
 
@@ -61,6 +62,7 @@ public class HighSpeedAssault_KH : MonoBehaviour
                 _audioSource = GetComponentInChildren<AudioSource>();
             }
 
+            // SEが鳴る
             _soundEffectManagement.PlaySlashAttackSound(_audioSource);
         }
         else if (gameObject.CompareTag("Player"))
@@ -77,7 +79,7 @@ public class HighSpeedAssault_KH : MonoBehaviour
             {
                 _audioSource = GetComponentInChildren<AudioSource>();
             }
-
+            // SEを鳴らす
             _soundEffectManagement.PlaySlashAttackSound(_audioSource);
         }
 
@@ -125,7 +127,7 @@ public class HighSpeedAssault_KH : MonoBehaviour
     }
 
     /// <summary>
-    /// HPの計算
+    /// 減らすHPの計算
     /// </summary>
     public void HitPointCalculation(StatusManager_MT myStatus, StatusManager_MT targetStatus)
     {

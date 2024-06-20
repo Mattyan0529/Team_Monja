@@ -33,7 +33,7 @@ public class Petrification_KH : MonoBehaviour
     }
 
     /// <summary>
-    /// 石化範囲のSphereを作成
+    /// 石化範囲のSphereを有効化
     /// </summary>
     public void CreatePetrificationArea()
     {
@@ -44,7 +44,7 @@ public class Petrification_KH : MonoBehaviour
         {
             _audioSource = GetComponentInChildren<AudioSource>();
         }
-
+        // SEを鳴らす
         _soundEffectManagement.PlayMagicSound(_audioSource);
     }
 
@@ -60,6 +60,7 @@ public class Petrification_KH : MonoBehaviour
             _playerRangeInJudge = petrificationTarget.GetComponent<PlayerRangeInJudge_KH>();
             _rigidbody = petrificationTarget.GetComponent<Rigidbody>();
 
+            // 移動系のスクリプトを無効化
             _monsterRandomWalk.enabled = false;
             _playerRangeInJudge.enabled = false;
             _rigidbody.velocity = Vector3.zero;
@@ -70,6 +71,8 @@ public class Petrification_KH : MonoBehaviour
         {
             _playerMove = petrificationTarget.GetComponent<PlayerMove_MT>();
             _rigidbody = petrificationTarget.GetComponent<Rigidbody>();
+
+            // 移動系のスクリプトを無効化
             _playerMove.enabled = false;
             _rigidbody.velocity = Vector3.zero;
 

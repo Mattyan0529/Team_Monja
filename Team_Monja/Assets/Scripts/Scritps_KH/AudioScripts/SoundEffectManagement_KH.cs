@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundEffectManagement_KH : MonoBehaviour
@@ -23,11 +21,6 @@ public class SoundEffectManagement_KH : MonoBehaviour
         StrongPunchSound,
         MagicSound,
         Wind
-    }
-
-    void Start()
-    {
-
     }
 
     #region SoundEffectStart

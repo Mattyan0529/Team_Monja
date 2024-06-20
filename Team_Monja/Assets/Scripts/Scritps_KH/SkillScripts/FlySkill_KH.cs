@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FlySkill_KH : MonoBehaviour
@@ -47,6 +45,7 @@ public class FlySkill_KH : MonoBehaviour
 
         if (_isFlying)
         {
+            // SE‚ğ–Â‚ç‚·
             if (_audioSource == null)
             {
                 _audioSource = GetComponentInChildren<AudioSource>();
@@ -75,6 +74,7 @@ public class FlySkill_KH : MonoBehaviour
         {
             _audioSource = GetComponentInChildren<AudioSource>();
         }
+        // SE‚ğ–Â‚ç‚·
         _soundEffectManagement.PlayWindSound(_audioSource);
 
         // ”ò‚Ñn‚ß‚ÌÅ‚“’B“_‚ğŒˆ‚ß‚é

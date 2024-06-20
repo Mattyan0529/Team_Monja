@@ -1,10 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using UnityEditor;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class MonsterSkill_KH : MonoBehaviour
 {

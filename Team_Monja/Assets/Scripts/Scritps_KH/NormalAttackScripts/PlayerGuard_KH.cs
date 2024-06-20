@@ -12,11 +12,6 @@ public class PlayerGuard_KH : MonoBehaviour
         get { return _isGuard; }
     }
 
-    void Start()
-    {
-        
-    }
-
     void Update()
     {
         GuardManagement();

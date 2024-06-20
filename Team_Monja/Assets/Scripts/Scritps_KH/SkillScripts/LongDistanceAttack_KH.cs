@@ -53,7 +53,7 @@ public class LongDistanceAttack_KH : MonoBehaviour
         {
             _audioSource = GetComponentInChildren<AudioSource>();
         }
-
+        // SE‚ð–Â‚ç‚·
         _soundEffectManagement.PlayLongDistanceAttackSound(_audioSource);
 
         _isShot = true;
