@@ -173,25 +173,33 @@ public class MonsterSkill_KH : MonoBehaviour
         switch (SkillTypeNum)
         {
             case (int)SkillType.HighSpeedAssault:      // 高速突撃の場合
+
                 _highSpeedAssault.SpeedUp();
                 return;
 
             case (int)SkillType.WeaponAttack:          // 武器を使った攻撃などの場合
-                _weaponAttack.Attack();
+                                                       // ランダム移動中（プレイヤーが攻撃範囲外）は処理しないが、その判断はAttack内でしてる
+                 _weaponAttack.Attack();
                 return;
 
             case (int)SkillType.LongDistanceAttack:        // 遠距離攻撃の場合
+
                 _longDistanceAttack.GenerateBullet();
                 return;
 
             case (int)SkillType.Fly:                   // 飛ぶスキルの場合
+
                 _flySkill.MonsterStartFly();
                 return;
 
             case (int)SkillType.Petrification:         // 石化の場合
+
+                if (_monsterRandomWalk.enabled) return;     // ランダム移動中（プレイヤーが攻撃範囲外）は処理しない
                 _petrification.CreatePetrificationArea();
                 return;
+
             case (int)SkillType.Boss:       // ボスのスキルの場合
+
                 _bossSkill.RandomSkillCall();
                 break;
         }

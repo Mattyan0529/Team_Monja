@@ -27,6 +27,7 @@ public class HighSpeedAssault_KH : MonoBehaviour
         _writeHitPoint = _residentScript.GetComponent<WriteHitPoint_KH>();
         _soundEffectManagement = _residentScript.GetComponent<SoundEffectManagement_KH>();
         _rigidbody = GetComponent<Rigidbody>();
+        _audioSource = GetComponent<AudioSource>();
 
         if (gameObject.tag == "Enemy")
         {
@@ -57,11 +58,6 @@ public class HighSpeedAssault_KH : MonoBehaviour
             _monsterRandomWalk.enabled = false;     // •ûŒü“]Š·‚ðƒIƒt
             _rigidbody.AddForce(transform.forward * _addForce, ForceMode.Impulse);
 
-            if (_audioSource == null)
-            {
-                _audioSource = GetComponentInChildren<AudioSource>();
-            }
-
             // SE‚ª–Â‚é
             _soundEffectManagement.PlaySlashAttackSound(_audioSource);
         }
@@ -75,10 +71,6 @@ public class HighSpeedAssault_KH : MonoBehaviour
             _playerMove.enabled = false;        // •ûŒü“]Š·‚ðƒIƒt
             _rigidbody.AddForce(transform.forward * _addForce, ForceMode.Impulse);
 
-            if (_audioSource == null)
-            {
-                _audioSource = GetComponentInChildren<AudioSource>();
-            }
             // SE‚ð–Â‚ç‚·
             _soundEffectManagement.PlaySlashAttackSound(_audioSource);
         }

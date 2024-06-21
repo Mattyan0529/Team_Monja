@@ -13,18 +13,24 @@ public class WeaponAttack_KH : MonoBehaviour
     private WriteHitPoint_KH _writeHitPoint = default;
     private SoundEffectManagement_KH _soundEffectManagement = default;
     private AudioSource _audioSource = default;
+    private MonsterRandomWalk_KH _monsterRandomWalk = default;
 
     private bool _isAttack = false;
 
     //松本
     private CharacterAnim_MT _characterAnim = default;
 
+    private void Awake()
+    {
+        _monsterRandomWalk = GetComponent<MonsterRandomWalk_KH>();
+    }
 
     void Start()
     {
         _writeHitPoint = _residentScript.GetComponent<WriteHitPoint_KH>();
         _soundEffectManagement = _residentScript.GetComponent<SoundEffectManagement_KH>();
         _characterAnim = GetComponent<CharacterAnim_MT>();
+        _audioSource = GetComponent<AudioSource>();
 
         // 子オブジェクトの中からAttackAreaを取得
         _attackArea = transform.Find("AttackArea").gameObject;
@@ -40,16 +46,13 @@ public class WeaponAttack_KH : MonoBehaviour
     /// </summary>
     public void Attack()
     {
+        if (_monsterRandomWalk.enabled) return;     // ランダム移動中（プレイヤーが攻撃範囲外）は処理しない
+
         //松本
         _characterAnim.NowAnim = "Skill";
 
         _isAttack = true;
         _attackArea.SetActive(true);
-
-        if (_audioSource == null)
-        {
-            _audioSource = GetComponentInChildren<AudioSource>();
-        }
 
         _soundEffectManagement.PlayStrongPunchSound(_audioSource);
     }

@@ -61,8 +61,6 @@ public class PlayerSkill_KH : MonoBehaviour
         {
             UpdateTime();
         }
-
-        Debug.Log(_canUseSkill);
     }
 
     /// <summary>

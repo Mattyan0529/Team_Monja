@@ -24,6 +24,7 @@ public class ChangeCharacter_MT : MonoBehaviour
     {
         // 追記：北
         _soundEffectManagement = _residentScript.GetComponent<SoundEffectManagement_KH>();
+        _audioSource = GetComponent<AudioSource>();
 
         // プレイヤーのChangeIcon_MTコンポーネントを取得
         changeIcon = _canvas.GetComponentInChildren<ChangeIcon_MT>();
@@ -71,10 +72,6 @@ public class ChangeCharacter_MT : MonoBehaviour
 
                 // 死んだときに切ったスクリプトを復活　追記：北
                 closestObject.GetComponent<MonsterSkill_KH>().enabled = true;
-                if (_audioSource == null)
-                {
-                    _audioSource = GetComponentInChildren<AudioSource>();
-                }
                 _soundEffectManagement.PlayPossessionSound(_audioSource);
 
                 // タグを変更
