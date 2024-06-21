@@ -201,7 +201,7 @@ public class MonsterSkill_KH : MonoBehaviour
             case (int)SkillType.Boss:       // ボスのスキルの場合
 
                 _bossSkill.RandomSkillCall();
-                break;
+                return;
         }
 
     }
