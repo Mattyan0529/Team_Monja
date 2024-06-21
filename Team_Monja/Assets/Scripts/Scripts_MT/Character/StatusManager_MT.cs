@@ -3,9 +3,9 @@ using UnityEngine;
 public class StatusManager_MT : MonoBehaviour
 {
     // 基礎値
-    [SerializeField] private int _baseHP = 0; // インスペクターで設定可能
-    [SerializeField] private int _baseStrength = 0; // インスペクターで設定可能
-    [SerializeField] private int _baseDefense = 0; // インスペクターで設定可能
+    [SerializeField] private int _baseHP = 10; // インスペクターで設定可能
+    [SerializeField] private int _baseStrength = 5; // インスペクターで設定可能
+    [SerializeField] private int _baseDefense = 3; // インスペクターで設定可能
 
     // 倍率
     [SerializeField] private float healthMultiplier = 1.0f;  // インスペクターで設定可能
@@ -23,7 +23,7 @@ public class StatusManager_MT : MonoBehaviour
     private int _def = 0;
 
     //コンポーネント
-    //MoveSlider_MT moveSlider;
+    MoveSlider_MT moveSlider;
 
     //canvas
     [SerializeField] private GameObject canvasObj;
@@ -39,21 +39,31 @@ public class StatusManager_MT : MonoBehaviour
 
     private void Awake()
     {
-        // プレイヤーの初期ステータスを設定し、倍率を適用
+        // プレイヤーの初期ステータスを設定
         InitializeStatus();
-        ApplyMultipliers();
     }
 
     private void Start()
     {
-        ////GetComponent
-        //moveSlider = canvasObj.GetComponent<MoveSlider_MT>();
+
+            // スライダーコンポーネントの取得
+            moveSlider = canvasObj.GetComponentInChildren<MoveSlider_MT>();
+
+        Debug.Log("スライダー" + moveSlider);
+
+        // 倍率を適用
+        ApplyMultipliers();
 
         // 現在のHPを最大HPに設定
         HP = MaxHP;
+
         //HPバー更新
-        //moveSlider.NewValue(MaxHP);
-        //moveSlider.NowValue(HP);
+        if (CompareTag("Player"))
+        {
+            moveSlider.SetMaxHP(MaxHP);
+            moveSlider.SetCurrentHP(HP);
+        }
+
     }
 
     // ステータスの初期化
@@ -71,9 +81,20 @@ public class StatusManager_MT : MonoBehaviour
         MaxHP = Mathf.FloorToInt((_baseHP + PlusHP) * healthMultiplier);
         Strength = Mathf.FloorToInt((_baseStrength + PlusStrength) * strengthMultiplier);
         Defense = Mathf.FloorToInt((_baseDefense + PlusDefense) * defenseMultiplier);
+
+        // 現在のHPを更新（必要に応じて調整）
+        HP = Mathf.Clamp(HP, 0, MaxHP);
+
         //HPバー更新
-        //moveSlider.NowValue(HP);
-        Debug.Log("kakaka");
+        if (moveSlider != null)
+        {
+            if (CompareTag("Player"))
+            {
+                moveSlider.SetMaxHP(MaxHP);
+                moveSlider.SetCurrentHP(HP);
+            }
+        }
+        Debug.Log($"倍率適用後: MaxHP = {MaxHP}, Strength = {Strength}, Defense = {Defense}, HP = {HP}");
     }
 
     // ステータスの更新をリセットするメソッド
@@ -83,6 +104,17 @@ public class StatusManager_MT : MonoBehaviour
         MaxHP = Mathf.FloorToInt(MaxHP / healthMultiplier);
         Strength = Mathf.FloorToInt(Strength / strengthMultiplier);
         Defense = Mathf.FloorToInt(Defense / defenseMultiplier);
+
+        //HPバー更新
+        if (moveSlider != null)
+        {
+            if (CompareTag("Player"))
+            {
+                moveSlider.SetMaxHP(MaxHP);
+                moveSlider.SetCurrentHP(HP);
+            }
+        }
+        Debug.Log($"倍率リセット後: MaxHP = {MaxHP}, Strength = {Strength}, Defense = {Defense}, HP = {HP}");
     }
 
     // 回復
@@ -94,6 +126,13 @@ public class StatusManager_MT : MonoBehaviour
             HP = MaxHP;
         }
         //HPバー更新
-        //moveSlider.NowValue(HP);
+        if (moveSlider != null)
+        {
+            if (CompareTag("Player"))
+            {
+                moveSlider.SetCurrentHP(HP);
+            }
+        }
+        Debug.Log($"回復後: HP = {HP}");
     }
 }

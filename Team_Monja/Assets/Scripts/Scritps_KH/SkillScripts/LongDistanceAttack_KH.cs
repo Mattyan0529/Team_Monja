@@ -28,7 +28,6 @@ public class LongDistanceAttack_KH : MonoBehaviour
         // 子オブジェクトからBulletを取得
         _bullet = transform.Find("Bullet").gameObject;
         _bulletHitDecision = _bullet.GetComponent<BulletHitDecision_KH>();
-        _bulletHitDecision.DisableBullet();
     }
 
     void Update()

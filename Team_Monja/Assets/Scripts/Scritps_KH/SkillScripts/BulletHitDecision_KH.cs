@@ -3,7 +3,7 @@ using UnityEngine;
 public class BulletHitDecision_KH : MonoBehaviour
 {
     private LongDistanceAttack_KH _longDistanceAttack = default;
-    private Renderer _bulletRenderer = default;
+    private MeshRenderer _bulletRenderer = default;
     private SphereCollider _bulletCollider = default;
     private Rigidbody _bulletRigidbody = default;
 
@@ -12,11 +12,37 @@ public class BulletHitDecision_KH : MonoBehaviour
     void Start()
     {
         _parent = transform.parent.gameObject;
-        _longDistanceAttack = _parent.GetComponent<LongDistanceAttack_KH>();
-        _bulletRenderer = GetComponent<Renderer>();
+
+        // MeshRendererの取得
+        _bulletRenderer = GetComponent<MeshRenderer>();
+        if (_bulletRenderer == null)
+        {
+            Debug.LogError("MeshRendererが見つかりませんでした。", this);
+        }
+
+        // SphereColliderの取得
         _bulletCollider = GetComponent<SphereCollider>();
+        if (_bulletCollider == null)
+        {
+            Debug.LogError("SphereColliderが見つかりませんでした。", this);
+        }
+
+        // Rigidbodyの取得
         _bulletRigidbody = GetComponent<Rigidbody>();
+        if (_bulletRigidbody == null)
+        {
+            Debug.LogError("Rigidbodyが見つかりませんでした。", this);
+        }
+
+        // LongDistanceAttack_KHの取得
+        _longDistanceAttack = _parent.GetComponent<LongDistanceAttack_KH>();
+        if (_longDistanceAttack == null)
+        {
+            Debug.LogError("LongDistanceAttack_KHが見つかりませんでした。", this);
+        }
     }
+
+
 
     private void OnTriggerEnter(Collider other)
     {
