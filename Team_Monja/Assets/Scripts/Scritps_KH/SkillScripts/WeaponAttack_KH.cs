@@ -40,7 +40,9 @@ public class WeaponAttack_KH : MonoBehaviour
     /// </summary>
     public void Attack()
     {
-        
+        //èºñ{
+        _characterAnim.NowAnim = "Skill";
+
         _isAttack = true;
         _attackArea.SetActive(true);
 

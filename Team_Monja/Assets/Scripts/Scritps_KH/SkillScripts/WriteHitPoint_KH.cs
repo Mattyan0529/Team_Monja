@@ -5,11 +5,6 @@ public class WriteHitPoint_KH : MonoBehaviour
     private CharacterAnim_MT _characterAnim;
 
     private GameObject _nowPlayer;
-    private void Start()
-    {
-        _characterAnim = GetComponent<CharacterAnim_MT>();
-        //_nowPlayer = GameObject.FindWithTag("Player");
-    }
 
     /// <summary>
     /// そのキャラクターのHPを更新する（減らす）
@@ -17,7 +12,9 @@ public class WriteHitPoint_KH : MonoBehaviour
     /// <param name="afterAttackedHitPoint">攻撃された後のHP</param>
     public void UpdateHitPoint(StatusManager_MT attackdStatus, int afterAttackedHitPoint)
     {
+        _nowPlayer = GameObject.FindWithTag("Player");
+        _characterAnim = _nowPlayer.GetComponent<CharacterAnim_MT>();
         attackdStatus.HP = afterAttackedHitPoint;
-        _characterAnim.NowAnim = "Move";
+        _characterAnim.NowAnim = "GotDamage";
     }
 }

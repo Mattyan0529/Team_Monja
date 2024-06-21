@@ -21,6 +21,8 @@ public class CharacterAnim_MT : MonoBehaviour
     private void Update()
     {
         AnimSwitch();
+        if (gameObject.CompareTag("Player"))
+        Debug.Log(NowAnim);
     }
 
     private void AnimSwitch()
