@@ -17,8 +17,11 @@ public class PlayerSkill_KH : MonoBehaviour
     //松本
     private CharacterAnim_MT _characterAnim = default;
 
+    private float _coolTime = 2f;    // スキルを発動してから次に発動できるようになるまでの時間
+    private float _elapsedTime = 0f;
 
     private int _skillNum;
+    private bool _canUseSkill = true;
 
     private void Awake()
     {
@@ -53,6 +56,13 @@ public class PlayerSkill_KH : MonoBehaviour
         {
             GameobjectTagJudge();
         }
+
+        if (!_canUseSkill)
+        {
+            UpdateTime();
+        }
+
+        Debug.Log(_canUseSkill);
     }
 
     /// <summary>
@@ -112,8 +122,10 @@ public class PlayerSkill_KH : MonoBehaviour
     /// </summary>
     private void CallSkill()
     {
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && _canUseSkill)
         {
+            _canUseSkill = false;
+
             switch (_skillNum)
             {
                 case (int)MonsterSkill_KH.SkillType.HighSpeedAssault:      // 高速突撃の場合
@@ -141,6 +153,22 @@ public class PlayerSkill_KH : MonoBehaviour
                     _characterAnim.NowAnim = "Move";
                     return;
             }
+        }
+    }
+
+    /// <summary>
+    /// 定期的にスキルを発動
+    /// </summary>
+    private void UpdateTime()
+    {
+        // 時間加算
+        _elapsedTime += Time.deltaTime;
+
+        // 規定時間に達していた場合
+        if (_elapsedTime > _coolTime)
+        {
+            _elapsedTime = 0f;
+            _canUseSkill = true;
         }
     }
 }
