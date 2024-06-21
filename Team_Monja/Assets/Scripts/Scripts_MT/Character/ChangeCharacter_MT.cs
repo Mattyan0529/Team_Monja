@@ -12,6 +12,8 @@ public class ChangeCharacter_MT : MonoBehaviour
 
     [SerializeField,Header("このキャラクターの番号をいれてねてね")]
     private int _IconNum = default;
+    [SerializeField,Header("canvas入れろなさい")]
+    private GameObject _canvas = default;
 
     ChangeIcon_MT changeIcon;
     StatusManager_MT statusManagerPlayer;
@@ -24,7 +26,7 @@ public class ChangeCharacter_MT : MonoBehaviour
         _soundEffectManagement = _residentScript.GetComponent<SoundEffectManagement_KH>();
 
         // プレイヤーのChangeIcon_MTコンポーネントを取得
-        changeIcon = GetComponent<ChangeIcon_MT>();
+        changeIcon = _canvas.GetComponentInChildren<ChangeIcon_MT>();
         if (changeIcon == null)
         {
             Debug.LogError("プレイヤーのChangeIcon_MTが見つかりません");

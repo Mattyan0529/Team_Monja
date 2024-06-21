@@ -23,7 +23,7 @@ public class StatusManager_MT : MonoBehaviour
     private int _def = 0;
 
     //コンポーネント
-    MoveSlider_MT moveSlider;
+    //MoveSlider_MT moveSlider;
 
     //canvas
     [SerializeField] private GameObject canvasObj;
@@ -52,8 +52,8 @@ public class StatusManager_MT : MonoBehaviour
         // 現在のHPを最大HPに設定
         HP = MaxHP;
         //HPバー更新
-        moveSlider.NewValue(MaxHP);
-        moveSlider.NowValue(HP);
+        //moveSlider.NewValue(MaxHP);
+        //moveSlider.NowValue(HP);
     }
 
     // ステータスの初期化
@@ -72,7 +72,8 @@ public class StatusManager_MT : MonoBehaviour
         Strength = Mathf.FloorToInt((_baseStrength + PlusStrength) * strengthMultiplier);
         Defense = Mathf.FloorToInt((_baseDefense + PlusDefense) * defenseMultiplier);
         //HPバー更新
-        moveSlider.NowValue(HP);
+        //moveSlider.NowValue(HP);
+        Debug.Log("kakaka");
     }
 
     // ステータスの更新をリセットするメソッド
@@ -93,6 +94,6 @@ public class StatusManager_MT : MonoBehaviour
             HP = MaxHP;
         }
         //HPバー更新
-        moveSlider.NowValue(HP);
+        //moveSlider.NowValue(HP);
     }
 }
