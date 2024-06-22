@@ -23,7 +23,10 @@ public class StatusManager_MT : MonoBehaviour
     private int _def = 0;
 
     //コンポーネント
-    MoveSlider_MT moveSlider;
+    MoveSlider_MT _moveSlider;
+    StrengthStatusUI_MT _strengthStatusUI;
+    DefenseStatusUI_MT _defenseStatusUI;
+    HPStatusUI_MT _hpStatusUI;
 
     //canvas
     [SerializeField] private GameObject canvasObj;
@@ -45,11 +48,11 @@ public class StatusManager_MT : MonoBehaviour
 
     private void Start()
     {
+        _moveSlider = canvasObj.GetComponentInChildren<MoveSlider_MT>();
+        _strengthStatusUI = canvasObj.GetComponentInChildren<StrengthStatusUI_MT>();
+        _defenseStatusUI = canvasObj.GetComponentInChildren<DefenseStatusUI_MT>();
+        _hpStatusUI = canvasObj.GetComponentInChildren<HPStatusUI_MT>();
 
-            // スライダーコンポーネントの取得
-            moveSlider = canvasObj.GetComponentInChildren<MoveSlider_MT>();
-
-        Debug.Log("スライダー" + moveSlider);
 
         // 倍率を適用
         ApplyMultipliers();
@@ -60,11 +63,22 @@ public class StatusManager_MT : MonoBehaviour
         //HPバー更新
         if (CompareTag("Player"))
         {
-            moveSlider.SetMaxHP(MaxHP);
-            moveSlider.SetCurrentHP(HP);
+            _moveSlider.SetMaxHP(MaxHP);
+            _moveSlider.SetCurrentHP(HP);
         }
 
     }
+
+    private void Update()
+    {
+        if(CompareTag("Player"))
+        {
+            _strengthStatusUI.ChangeText(Strength);
+            _defenseStatusUI.ChangeText(Defense);
+            _hpStatusUI.ChangeText(HP, MaxHP);
+        }
+    }
+
 
     // ステータスの初期化
     private void InitializeStatus()
@@ -86,12 +100,12 @@ public class StatusManager_MT : MonoBehaviour
         HP = Mathf.Clamp(HP, 0, MaxHP);
 
         //HPバー更新
-        if (moveSlider != null)
+        if (_moveSlider != null)
         {
             if (CompareTag("Player"))
             {
-                moveSlider.SetMaxHP(MaxHP);
-                moveSlider.SetCurrentHP(HP);
+                _moveSlider.SetMaxHP(MaxHP);
+                _moveSlider.SetCurrentHP(HP);
             }
         }
         Debug.Log($"倍率適用後: MaxHP = {MaxHP}, Strength = {Strength}, Defense = {Defense}, HP = {HP}");
@@ -106,12 +120,12 @@ public class StatusManager_MT : MonoBehaviour
         Defense = Mathf.FloorToInt(Defense / defenseMultiplier);
 
         //HPバー更新
-        if (moveSlider != null)
+        if (_moveSlider != null)
         {
             if (CompareTag("Player"))
             {
-                moveSlider.SetMaxHP(MaxHP);
-                moveSlider.SetCurrentHP(HP);
+                _moveSlider.SetMaxHP(MaxHP);
+                _moveSlider.SetCurrentHP(HP);
             }
         }
         Debug.Log($"倍率リセット後: MaxHP = {MaxHP}, Strength = {Strength}, Defense = {Defense}, HP = {HP}");
@@ -126,11 +140,11 @@ public class StatusManager_MT : MonoBehaviour
             HP = MaxHP;
         }
         //HPバー更新
-        if (moveSlider != null)
+        if (_moveSlider != null)
         {
             if (CompareTag("Player"))
             {
-                moveSlider.SetCurrentHP(HP);
+                _moveSlider.SetCurrentHP(HP);
             }
         }
         Debug.Log($"回復後: HP = {HP}");

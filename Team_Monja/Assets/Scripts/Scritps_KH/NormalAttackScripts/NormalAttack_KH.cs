@@ -15,16 +15,12 @@ public class NormalAttack_KH : MonoBehaviour
     private bool _isAttack = false;
 
     private WriteHitPoint_KH _writeHitPoint = default;
-    private SoundEffectManagement_KH _soundEffectManagement = default;
-    private AudioSource _audioSource = default;
     //松本
     private CharacterAnim_MT _characterAnim = default;
 
     void Start()
     {
         _writeHitPoint = _residentScript.GetComponent<WriteHitPoint_KH>();
-        _soundEffectManagement = _residentScript.GetComponent<SoundEffectManagement_KH>();
-        _audioSource = GetComponent<AudioSource>();
         _characterAnim = GetComponent<CharacterAnim_MT>();
     }
 
@@ -34,9 +30,6 @@ public class NormalAttack_KH : MonoBehaviour
         AttackInputManager();
     }
 
-    /// <summary>
-    /// 入力に応じて通常攻撃
-    /// </summary>
     private void AttackInputManager()
     {
         if (Input.GetMouseButtonDown(0))
@@ -52,6 +45,7 @@ public class NormalAttack_KH : MonoBehaviour
     {
         //松本
         _characterAnim.NowAnim = "Attack";
+
 
         _isAttack = true;
 
@@ -84,8 +78,6 @@ public class NormalAttack_KH : MonoBehaviour
     /// </summary>
     public void HitDecision(GameObject hitObj)
     {
-        _soundEffectManagement.PlaySlowPunchSound(_audioSource);
-
         // 相手と自分のStatusManagerが両方必要
         StatusManager_MT targetStatusManager = hitObj.gameObject.GetComponent<StatusManager_MT>();
         StatusManager_MT myStatusManager = GetComponent<StatusManager_MT>();

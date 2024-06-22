@@ -22,7 +22,6 @@ public class EatEnemy_MT : MonoBehaviour
 
         // 追記：北
         _soundEffectManagement = _residentScript.GetComponent<SoundEffectManagement_KH>();
-        _audioSource = GetComponent<AudioSource>();
 
         if (closestEnemyFinder == null)
         {
@@ -49,7 +48,7 @@ public class EatEnemy_MT : MonoBehaviour
         if (closestObject != null && closestObject.gameObject.activeSelf && closestObject.CompareTag("Enemy"))
         {
             statusManagerEnemy = closestObject.GetComponent<StatusManager_MT>();
-            if (statusManagerEnemy != null && statusManagerEnemy.HP <= 0)
+            if (statusManagerEnemy != null && statusManagerEnemy.HP <= 0 )
             {
                 // 現在のステータスの倍率をリセット
                 statusManagerPlayer.ResetMultipliers();
@@ -68,6 +67,10 @@ public class EatEnemy_MT : MonoBehaviour
 
 
                 // 追記：北
+                if (_audioSource == null)
+                {
+                    _audioSource = GetComponentInChildren<AudioSource>();
+                }
                 _soundEffectManagement.PlayEatSound(_audioSource);
             }
             else

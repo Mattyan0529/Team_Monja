@@ -25,7 +25,6 @@ public class FlySkill_KH : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody>();
         _soundEffectManagement = _residentScript.GetComponent<SoundEffectManagement_KH>();
-        _audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -47,6 +46,11 @@ public class FlySkill_KH : MonoBehaviour
         if (_isFlying)
         {
             // SE‚ğ–Â‚ç‚·
+            if (_audioSource == null)
+            {
+                _audioSource = GetComponentInChildren<AudioSource>();
+            }
+
             _soundEffectManagement.PlayWindSound(_audioSource);
 
             // ”ò‚Ñn‚ß‚ÌÅ‚“’B“_‚ğŒˆ‚ß‚é

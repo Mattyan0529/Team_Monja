@@ -14,6 +14,7 @@ public class Petrification_KH : MonoBehaviour
 
     private GameObject _petrificationArea;
 
+
     private float _deleteTime = 1f;
     private float _elapsedTime = 0f;
 
@@ -25,7 +26,7 @@ public class Petrification_KH : MonoBehaviour
         // 子オブジェクトの中からPetrificationAreaを取得
         _petrificationArea = transform.Find("PetrificationArea").gameObject;
         _soundEffectManagement = _residentScript.GetComponent<SoundEffectManagement_KH>();
-        _audioSource = GetComponent<AudioSource>();
+
     }
 
     void Update()
@@ -41,6 +42,10 @@ public class Petrification_KH : MonoBehaviour
         _isSphereExists = true;
         _petrificationArea.SetActive(true);
 
+        if (_audioSource == null)
+        {
+            _audioSource = GetComponentInChildren<AudioSource>();
+        }
         // SEを鳴らす
         _soundEffectManagement.PlayMagicSound(_audioSource);
     }

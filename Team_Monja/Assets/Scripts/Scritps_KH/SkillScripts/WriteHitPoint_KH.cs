@@ -6,15 +6,8 @@ public class WriteHitPoint_KH : MonoBehaviour
     private CharacterAnim_MT _characterAnim;
     private GameObject _nowPlayer;
 
-    private SoundEffectManagement_KH _soundEffectManagement = default;
-
     //canvas
     [SerializeField] private GameObject _canvasObj;
-
-    private void Start()
-    {
-        _soundEffectManagement = GetComponent<SoundEffectManagement_KH>();
-    }
 
     /// <summary>
     /// そのキャラクターのHPを更新する（減らす）
@@ -36,10 +29,6 @@ public class WriteHitPoint_KH : MonoBehaviour
         }
         //ステータスを更新
         attackdStatus.HP = afterAttackedHitPoint;
-
-        // SE
-        _soundEffectManagement.PlayDamageSound(attackdStatus.gameObject.GetComponent<AudioSource>());
-
         //ダメージくらったときのアニメ    
         _characterAnim.NowAnim = "GotDamage";
     }

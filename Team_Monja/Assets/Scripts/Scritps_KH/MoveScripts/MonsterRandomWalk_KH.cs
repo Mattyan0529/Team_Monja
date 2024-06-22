@@ -4,6 +4,9 @@ public class MonsterRandomWalk_KH : MonoBehaviour
 {
     private Vector3 _monsterRotation = new Vector3(0f, 0f, 0f);
     private Rigidbody _rigidbody = default;
+    //èºñ{
+    CharacterAnim_MT _characterAnim = default;
+
 
     private float _updateTime = 2f;
     private float _elapsedTime = 0f;
@@ -14,6 +17,8 @@ public class MonsterRandomWalk_KH : MonoBehaviour
     void Start()
     {
         _rigidbody = gameObject.GetComponent<Rigidbody>();
+        //èºñ{
+        _characterAnim = GetComponent<CharacterAnim_MT>();
         MonsterWalk();
     }
 
@@ -34,6 +39,9 @@ public class MonsterRandomWalk_KH : MonoBehaviour
 
         // â¡ë¨
         _rigidbody.AddForce(transform.forward * _speed * Time.deltaTime, ForceMode.Force);
+
+        //èºñ{
+        _characterAnim.NowAnim = "Move";
     }
 
     /// <summary>

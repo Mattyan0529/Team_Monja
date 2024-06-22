@@ -7,8 +7,8 @@ public class MonsterSkill_KH : MonoBehaviour
     [SerializeField]
     private GameObject _followArea;
 
-    private float _callSkillTime = 0f;    // 何秒おきにスキルを呼び出すか
-    private float _elapsedTime = 0f;
+    private float _updateTime = 0f;    // 何秒おきにスキルを呼び出すか
+    private float _elapsedTime = default;
 
     private float _maxTimeSpacing = 4f;
     private float _minTimeSpacing = 2f;
@@ -23,6 +23,9 @@ public class MonsterSkill_KH : MonoBehaviour
     private FlySkill_KH _flySkill = default;
     private Petrification_KH _petrification = default;
     private BossSkill_KH _bossSkill = default;
+    //松本
+    private CharacterAnim_MT _characterAnim;
+
 
     private NormalAttack_KH _normalAttack = default;
     private PlayerGuard_KH _playerGuard = default;
@@ -63,8 +66,11 @@ public class MonsterSkill_KH : MonoBehaviour
 
     void Start()
     {
+        //松本
+        _characterAnim = GetComponent<CharacterAnim_MT>();
+
         GameobjectTagJudge();
-        _callSkillTime = Random.Range(_minTimeSpacing, _maxTimeSpacing);
+        _updateTime = Random.Range(_minTimeSpacing, _maxTimeSpacing);
     }
 
     void Update()
@@ -158,7 +164,7 @@ public class MonsterSkill_KH : MonoBehaviour
         _elapsedTime += Time.deltaTime;
 
         // 規定時間に達していた場合
-        if (_elapsedTime > _callSkillTime)
+        if (_elapsedTime > _updateTime)
         {
             RandomCallSkill();      // スキル発動
             _elapsedTime = 0f;
@@ -179,7 +185,7 @@ public class MonsterSkill_KH : MonoBehaviour
 
             case (int)SkillType.WeaponAttack:          // 武器を使った攻撃などの場合
                                                        // ランダム移動中（プレイヤーが攻撃範囲外）は処理しないが、その判断はAttack内でしてる
-                 _weaponAttack.Attack();
+                _weaponAttack.Attack();
                 return;
 
             case (int)SkillType.LongDistanceAttack:        // 遠距離攻撃の場合
