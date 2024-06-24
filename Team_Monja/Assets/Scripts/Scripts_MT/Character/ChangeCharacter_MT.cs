@@ -58,8 +58,9 @@ public class ChangeCharacter_MT : MonoBehaviour
             return;
         }
 
-        // 最も近い敵のColliderを取得
+        // 最も近い敵のColliderとCharacterAnim_MTを取得
         Collider closestObject = closestEnemyFinder.GetClosestObject(objectsInTrigger, referencePoint);
+        CharacterAnim_MT closestObjectAnim = closestObject.GetComponent<CharacterAnim_MT>();
 
         if (closestObject != null && closestObject.gameObject.activeSelf && closestObject.CompareTag("Enemy"))
         {
@@ -77,8 +78,13 @@ public class ChangeCharacter_MT : MonoBehaviour
                 }
                 _soundEffectManagement.PlayPossessionSound(_audioSource);
 
-                // タグを変更
+                // 近くの敵のタグを変更
                 closestObject.gameObject.tag = "Player";
+                //アニメーションを初期化
+                closestObjectAnim.NowAnim = "NewCharacter";
+                //自身のHPを0にする
+                statusManagerPlayer.HP = 0;
+                //自身のタグを変更
                 this.gameObject.tag = "Enemy";
             }
             else

@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class BossSkill_KH : MonoBehaviour
 {
+    //èºñ{
+    private CharacterAnim_MT _characterAnim = default;
+
     private LongDistanceAttack_KH _longDistanceAttack = default;
     private WeaponAttack_KH _weaponAttack = default;
 
@@ -14,6 +17,7 @@ public class BossSkill_KH : MonoBehaviour
     {
         _longDistanceAttack = GetComponent<LongDistanceAttack_KH>();
         _weaponAttack = GetComponent<WeaponAttack_KH>();
+        _characterAnim = GetComponent<CharacterAnim_MT>();
     }
 
     public void RandomSkillCall()
@@ -25,12 +29,15 @@ public class BossSkill_KH : MonoBehaviour
         {
             case < _fireSphereProbability:        // âŒãÖ
                 _longDistanceAttack.GenerateBullet();
+                _characterAnim.NowAnim = "Skill";
                 break;
             case < _fireSphereProbability + _hitProbability:        // â£ÇÈ
                 _weaponAttack.Attack();
+                _characterAnim.NowAnim = "Attack";
                 break;
             case < _fireSphereProbability + _hitProbability + _biteProbability:       // äöÇﬁ
                 _weaponAttack.Attack();
+                _characterAnim.NowAnim = "Attack2";
                 break;
         }
     }
