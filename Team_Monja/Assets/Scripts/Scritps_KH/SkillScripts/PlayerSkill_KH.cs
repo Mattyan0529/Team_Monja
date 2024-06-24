@@ -2,8 +2,12 @@ using UnityEngine;
 
 public class PlayerSkill_KH : MonoBehaviour
 {
+    [SerializeField]
+    GameObject _coolTimeUIObj = default;
+
     private MonsterSkill_KH _myMonsterSkill = default;
     private PlayerMove_MT _playerMove = default;
+    private CoolTimeUI _coolTimeUI = default;
 
     private HighSpeedAssault_KH _highSpeedAssault = default;
     private WeaponAttack_KH _weaponAttack = default;
@@ -42,6 +46,8 @@ public class PlayerSkill_KH : MonoBehaviour
         {
             _playerGuard = GetComponent<PlayerGuard_KH>();
         }
+
+        _coolTimeUI = _coolTimeUIObj.GetComponent<CoolTimeUI>();
 
         SkillJudge();
         GameobjectTagJudge();
@@ -151,6 +157,8 @@ public class PlayerSkill_KH : MonoBehaviour
                     _characterAnim.NowAnim = "Skill";
                     return;
             }
+
+            _coolTimeUI.StartCoolTime();
         }
     }
 
