@@ -1,5 +1,6 @@
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using static MonsterSkill_KH;
 
 public class PlayerSkill_KH : MonoBehaviour
 {
@@ -127,7 +128,7 @@ public class PlayerSkill_KH : MonoBehaviour
     /// </summary>
     private void CallSkill()
     {
-        if(Input.GetMouseButtonDown(1) && _skillNum == (int)MonsterSkill_KH.SkillType.Fly && _flySkill.IsFlying)
+        if (Input.GetMouseButtonDown(1) && _skillNum == (int)MonsterSkill_KH.SkillType.Fly && _flySkill.IsFlying)
         {
             _flySkill.StopFly();
         }
@@ -178,6 +179,37 @@ public class PlayerSkill_KH : MonoBehaviour
         {
             _elapsedTime = 0f;
             _canUseSkill = true;
+        }
+    }
+
+    private void OnEnable()
+    {
+        switch (_myMonsterSkill.SkillTypeNum)
+        {
+            case (int)SkillType.HighSpeedAssault:      // ‚‘¬“ËŒ‚‚Ìê‡
+
+                _highSpeedAssault.enabled = true;
+                return;
+
+            case (int)SkillType.WeaponAttack:          // •Ší‚ğg‚Á‚½UŒ‚‚È‚Ç‚Ìê‡
+
+                _weaponAttack.enabled = true;
+                return;
+
+            case (int)SkillType.LongDistanceAttack:        // ‰“‹——£UŒ‚‚Ìê‡
+
+                _longDistanceAttack.enabled = true;
+                return;
+
+            case (int)SkillType.Fly:                   // ”ò‚ÔƒXƒLƒ‹‚Ìê‡
+
+                _flySkill.enabled = true;
+                return;
+
+            case (int)SkillType.Petrification:         // Î‰»‚Ìê‡
+
+                _petrification.enabled = true;
+                return;
         }
     }
 }

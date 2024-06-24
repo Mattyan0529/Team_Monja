@@ -6,6 +6,10 @@ public class MonsterSkill_KH : MonoBehaviour
     private GameObject _residentScript;
     [SerializeField]
     private GameObject _followArea;
+    [SerializeField]
+    private Sprite _skillIcon = default;
+    [SerializeField]
+    private GameObject _skillSpriteObj = default;
 
     private float _updateTime = 0f;    // 何秒おきにスキルを呼び出すか
     private float _elapsedTime = default;
@@ -13,9 +17,12 @@ public class MonsterSkill_KH : MonoBehaviour
     private float _maxTimeSpacing = 4f;
     private float _minTimeSpacing = 2f;
 
+    private float _followAreaSize = 15f;
+
     private PlayerSkill_KH _playerSkill = default;
     private PlayerManager_KH _playerManager = default;
     private MonsterRandomWalk_KH _monsterRandomWalk = default;
+    private SkillSpriteChange_KH _skillSpriteChange = default;
 
     private HighSpeedAssault_KH _highSpeedAssault = default;
     private WeaponAttack_KH _weaponAttack = default;
@@ -69,6 +76,7 @@ public class MonsterSkill_KH : MonoBehaviour
         //松本
         _characterAnim = GetComponent<CharacterAnim_MT>();
 
+        _skillSpriteChange = _skillSpriteObj.GetComponent<SkillSpriteChange_KH>();
         GameobjectTagJudge();
         _updateTime = Random.Range(_minTimeSpacing, _maxTimeSpacing);
     }
@@ -93,8 +101,10 @@ public class MonsterSkill_KH : MonoBehaviour
         if (gameObject.CompareTag("Player"))
         {
             _playerManager.Player = gameObject;     // プレイヤー更新
+            _followArea.transform.localScale = gameObject.transform.localScale * _followAreaSize;
             _followArea.transform.SetParent(gameObject.transform);
             _playerSkill.enabled = true;
+            _skillSpriteChange.ChangeSprite(_skillIcon);
 
             if (GetComponent<NormalAttack_KH>())
             {
@@ -210,5 +220,43 @@ public class MonsterSkill_KH : MonoBehaviour
                 return;
         }
 
+    }
+
+    private void OnDisable()
+    {
+        if(gameObject.CompareTag("Player"))return;
+
+        switch (SkillTypeNum)
+        {
+            case (int)SkillType.HighSpeedAssault:      // 高速突撃の場合
+
+                _highSpeedAssault.enabled = false;
+                return;
+
+            case (int)SkillType.WeaponAttack:          // 武器を使った攻撃などの場合
+                                                       
+                _weaponAttack.enabled = false;
+                return;
+
+            case (int)SkillType.LongDistanceAttack:        // 遠距離攻撃の場合
+
+                _longDistanceAttack.enabled = false;
+                return;
+
+            case (int)SkillType.Fly:                   // 飛ぶスキルの場合
+
+                _flySkill.enabled = false;
+                return;
+
+            case (int)SkillType.Petrification:         // 石化の場合
+
+                _petrification.enabled = false;
+                return;
+
+            case (int)SkillType.Boss:       // ボスのスキルの場合
+
+                _bossSkill.enabled = false;
+                return;
+        }
     }
 }

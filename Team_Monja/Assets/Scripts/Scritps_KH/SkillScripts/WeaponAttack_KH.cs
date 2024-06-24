@@ -34,6 +34,7 @@ public class WeaponAttack_KH : MonoBehaviour
 
         // 子オブジェクトの中からAttackAreaを取得
         _attackArea = transform.Find("AttackArea").gameObject;
+        _attackArea.SetActive(false);
     }
 
     void Update()

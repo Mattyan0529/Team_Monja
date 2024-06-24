@@ -15,7 +15,7 @@ public class LongDistanceAttack_KH : MonoBehaviour
     private SoundEffectManagement_KH _soundEffectManagement = default;
     private AudioSource _audioSource = default;
 
-    private float _deleteTime = 3f;
+    private float _deleteTime = 2f;
     private float _elapsedTime = 0f;
 
     private bool _isShot = false;
@@ -94,7 +94,6 @@ public class LongDistanceAttack_KH : MonoBehaviour
     private void UpdateTime()
     {
         if (!_isShot) return;     // UŒ‚’†ˆÈŠO‚Íˆ—‚ğs‚í‚È‚¢
-
         // ŠÔ‰ÁZ
         _elapsedTime += Time.deltaTime;
 
@@ -105,5 +104,11 @@ public class LongDistanceAttack_KH : MonoBehaviour
             _elapsedTime = 0f;
             _isShot = false;
         }
+    }
+
+    private void OnDisable()
+    {
+        _bulletHitDecision.DisableBullet();
+        _isShot = false;
     }
 }

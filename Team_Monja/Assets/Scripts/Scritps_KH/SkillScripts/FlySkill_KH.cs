@@ -129,4 +129,9 @@ public class FlySkill_KH : MonoBehaviour
         _rigidbody.velocity = Vector3.zero;
         _isFlying = false;
     }
+
+    private void OnDisable()
+    {
+        StopFly();
+    }
 }

@@ -17,5 +17,6 @@ public class SkillSpriteChange_KH : MonoBehaviour
     public void ChangeSprite(Sprite skillIcon)
     {
         _image.sprite = skillIcon;
+        Debug.Log("wa");
     }
 }
