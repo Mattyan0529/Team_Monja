@@ -33,7 +33,13 @@ public class FlySkill_KH : MonoBehaviour
         {
             FlyHeightUpdate();
             FlyAddForce();
+            StopFly();
         }
+    }
+
+    public bool IsFlying
+    {
+        get { return _isFlying; }
     }
 
     /// <summary>
@@ -41,25 +47,22 @@ public class FlySkill_KH : MonoBehaviour
     /// </summary>
     public void PlayerFlyManager()
     {
-        _isFlying = !_isFlying;     // 飛んでいるときは降りる、飛んでいないときは飛び始める
+        _isFlying = true;     // 飛んでいるときは降りる、飛んでいないときは飛び始める
 
-        if (_isFlying)
+        // SEを鳴らす
+        if (_audioSource == null)
         {
-            // SEを鳴らす
-            if (_audioSource == null)
-            {
-                _audioSource = GetComponentInChildren<AudioSource>();
-            }
+            _audioSource = GetComponentInChildren<AudioSource>();
+        }
 
-            _soundEffectManagement.PlayWindSound(_audioSource);
+        _soundEffectManagement.PlayWindSound(_audioSource);
 
-            // 飛び始めの最高到達点を決める
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position, Vector3.down, out hit, _rayLength, groundLayer))
-            {
-                _startHeight = hit.point.y;
-                _currentMaxHeight = _startHeight + _maxUpHeight;
-            }
+        // 飛び始めの最高到達点を決める
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, _rayLength, groundLayer))
+        {
+            _startHeight = hit.point.y;
+            _currentMaxHeight = _startHeight + _maxUpHeight;
         }
     }
 
@@ -119,6 +122,15 @@ public class FlySkill_KH : MonoBehaviour
                 _startHeight = groundHeight;
                 _currentMaxHeight = _startHeight + _maxUpHeight;
             }
+        }
+    }
+
+    private void StopFly()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            _rigidbody.velocity = Vector3.zero;
+            _isFlying = false;
         }
     }
 }

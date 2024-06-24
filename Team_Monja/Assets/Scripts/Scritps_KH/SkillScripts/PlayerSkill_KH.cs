@@ -1,3 +1,4 @@
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class PlayerSkill_KH : MonoBehaviour
@@ -135,27 +136,28 @@ public class PlayerSkill_KH : MonoBehaviour
                 case (int)MonsterSkill_KH.SkillType.HighSpeedAssault:      // ‚‘¬“ËŒ‚‚Ìê‡
                     _highSpeedAssault.SpeedUp();
                     _characterAnim.NowAnim = "Skill";
-                    return;
+                    break;
 
                 case (int)MonsterSkill_KH.SkillType.WeaponAttack:          // •Ší‚ğg‚Á‚½UŒ‚‚È‚Ç‚Ìê‡
                     _weaponAttack.Attack();
                     _characterAnim.NowAnim = "Skill";
-                    return;
+                    break;
 
                 case (int)MonsterSkill_KH.SkillType.LongDistanceAttack:        // ‰“‹——£UŒ‚‚Ìê‡
                     _longDistanceAttack.GenerateBullet();
                     _characterAnim.NowAnim = "Skill";
-                    return;
+                    break;
 
                 case (int)MonsterSkill_KH.SkillType.Fly:                   // ”ò‚ÔƒXƒLƒ‹‚Ìê‡
+                    if (_flySkill.IsFlying) return;
                     _flySkill.PlayerFlyManager();
                     _characterAnim.NowAnim = "Skill";
-                    return;
+                    break;
 
                 case (int)MonsterSkill_KH.SkillType.Petrification:         // Î‰»‚Ìê‡
                     _petrification.CreatePetrificationArea();
                     _characterAnim.NowAnim = "Skill";
-                    return;
+                    break;
             }
 
             _coolTimeUI.StartCoolTime();
