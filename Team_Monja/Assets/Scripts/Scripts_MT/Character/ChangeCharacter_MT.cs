@@ -7,8 +7,13 @@ public class ChangeCharacter_MT : MonoBehaviour
     // 追記：北
     [SerializeField]
     private GameObject _residentScript = default;
+    [SerializeField]
+    private Sprite _skillIcon = default;
+    [SerializeField]
+    private GameObject _skillSpriteObj = default;
     private AudioSource _audioSource = default;
     private SoundEffectManagement_KH _soundEffectManagement = default;
+    private SkillSpriteChange_KH _skillSpriteChange = default;
 
     [SerializeField,Header("このキャラクターの番号をいれてねてね")]
     private int _IconNum = default;
@@ -24,6 +29,7 @@ public class ChangeCharacter_MT : MonoBehaviour
     {
         // 追記：北
         _soundEffectManagement = _residentScript.GetComponent<SoundEffectManagement_KH>();
+        _skillSpriteChange = _skillSpriteObj.GetComponent<SkillSpriteChange_KH>();
 
         // プレイヤーのChangeIcon_MTコンポーネントを取得
         changeIcon = _canvas.GetComponentInChildren<ChangeIcon_MT>();
@@ -77,6 +83,7 @@ public class ChangeCharacter_MT : MonoBehaviour
                     _audioSource = GetComponentInChildren<AudioSource>();
                 }
                 _soundEffectManagement.PlayPossessionSound(_audioSource);
+                _skillSpriteChange.ChangeSprite(_skillIcon);
 
                 // 近くの敵のタグを変更
                 closestObject.gameObject.tag = "Player";

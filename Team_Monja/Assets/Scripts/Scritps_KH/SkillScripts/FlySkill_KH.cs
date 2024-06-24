@@ -33,7 +33,6 @@ public class FlySkill_KH : MonoBehaviour
         {
             FlyHeightUpdate();
             FlyAddForce();
-            StopFly();
         }
     }
 
@@ -125,12 +124,9 @@ public class FlySkill_KH : MonoBehaviour
         }
     }
 
-    private void StopFly()
+    public void StopFly()
     {
-        if (Input.GetMouseButtonDown(1))
-        {
-            _rigidbody.velocity = Vector3.zero;
-            _isFlying = false;
-        }
+        _rigidbody.velocity = Vector3.zero;
+        _isFlying = false;
     }
 }

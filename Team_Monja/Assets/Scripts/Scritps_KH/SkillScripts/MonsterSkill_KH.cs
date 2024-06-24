@@ -30,7 +30,7 @@ public class MonsterSkill_KH : MonoBehaviour
     private NormalAttack_KH _normalAttack = default;
     private PlayerGuard_KH _playerGuard = default;
 
-    private int _skillNum = 0;
+    private int _skillNum = 6;
 
     /// <summary>
     /// スキルの大まかなタイプ

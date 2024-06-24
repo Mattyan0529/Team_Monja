@@ -1,20 +1,21 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SkillSpriteChange_KH : MonoBehaviour
 {
-    private SpriteRenderer _spriteRenderer = default;
+    private Image _image = default;
 
     void Start()
     {
-        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _image = GetComponent<Image>();
     }
 
     /// <summary>
     /// スキルのアイコンを変更する
     /// </summary>
     /// <param name="spriteNum"></param>
-    private void ChangeSprite(Sprite skillIcon)
+    public void ChangeSprite(Sprite skillIcon)
     {
-        _spriteRenderer.sprite = skillIcon;
+        _image.sprite = skillIcon;
     }
 }

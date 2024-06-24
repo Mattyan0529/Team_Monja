@@ -67,7 +67,7 @@ public class PlayerSkill_KH : MonoBehaviour
         if (!_canUseSkill)
         {
             UpdateTime();
-    }
+        }
     }
 
     /// <summary>
@@ -127,10 +127,12 @@ public class PlayerSkill_KH : MonoBehaviour
     /// </summary>
     private void CallSkill()
     {
-        if (Input.GetMouseButtonDown(1) && _canUseSkill)
+        if(Input.GetMouseButtonDown(1) && _skillNum == (int)MonsterSkill_KH.SkillType.Fly && _flySkill.IsFlying)
         {
-            _canUseSkill = false;
-
+            _flySkill.StopFly();
+        }
+        else if (Input.GetMouseButtonDown(1) && _canUseSkill)
+        {
             switch (_skillNum)
             {
                 case (int)MonsterSkill_KH.SkillType.HighSpeedAssault:      // çÇë¨ìÀåÇÇÃèÍçá
@@ -149,7 +151,6 @@ public class PlayerSkill_KH : MonoBehaviour
                     break;
 
                 case (int)MonsterSkill_KH.SkillType.Fly:                   // îÚÇ‘ÉXÉLÉãÇÃèÍçá
-                    if (_flySkill.IsFlying) return;
                     _flySkill.PlayerFlyManager();
                     _characterAnim.NowAnim = "Skill";
                     break;
@@ -159,7 +160,7 @@ public class PlayerSkill_KH : MonoBehaviour
                     _characterAnim.NowAnim = "Skill";
                     break;
             }
-
+            _canUseSkill = false;
             _coolTimeUI.StartCoolTime();
         }
     }
