@@ -30,12 +30,12 @@ public class EatOrChangeController_MT : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             RemoveClosestObject();
         }
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.M))
         {
             ChangeTagClosestObject();
         }

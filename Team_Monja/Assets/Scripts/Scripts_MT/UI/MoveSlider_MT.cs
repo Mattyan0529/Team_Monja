@@ -5,8 +5,7 @@ public class MoveSlider_MT : MonoBehaviour
 {
     private Slider _thisSlider;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         _thisSlider = GetComponent<Slider>();
         if (_thisSlider == null)
@@ -14,6 +13,7 @@ public class MoveSlider_MT : MonoBehaviour
             Debug.LogError("Sliderコンポーネントが見つかりませんでした。");
         }
     }
+
 
     /// <summary>
     /// HPの最大値を更新
