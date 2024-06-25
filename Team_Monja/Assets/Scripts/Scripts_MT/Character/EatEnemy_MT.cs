@@ -50,6 +50,9 @@ public class EatEnemy_MT : MonoBehaviour
             statusManagerEnemy = closestObject.GetComponent<StatusManager_MT>();
             if (statusManagerEnemy != null && statusManagerEnemy.HP <= 0 )
             {
+                //現在MaxHPを記録
+                int currentMaxHP = statusManagerPlayer.MaxHP;
+
                 // 現在のステータスの倍率をリセット
                 statusManagerPlayer.ResetMultipliers();
 
@@ -64,7 +67,8 @@ public class EatEnemy_MT : MonoBehaviour
 
                 // ステータスの倍率を再適用
                 statusManagerPlayer.ApplyMultipliers();
-
+                //食べてMaxHPが増えた分だけ回復
+                statusManagerPlayer.HealHP(statusManagerPlayer.MaxHP - currentMaxHP);
 
                 // 追記：北
                 if (_audioSource == null)
