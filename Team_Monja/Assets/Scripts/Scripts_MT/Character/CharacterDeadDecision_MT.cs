@@ -11,6 +11,7 @@ public class CharacterDeadDecision_MT : MonoBehaviour
     MonsterRandomWalk_KH _monsterRandomWalk = default;
     MonsterSkill_KH _monsterSkill = default;
     PlayerRangeInJudge_KH _playerRangeInJudge = default;
+    PlayerMove_MT _playerMove = default;
     private bool _isAlive = true;
 
     void Start()
@@ -21,6 +22,7 @@ public class CharacterDeadDecision_MT : MonoBehaviour
         _monsterRandomWalk = GetComponent<MonsterRandomWalk_KH>();
         _monsterSkill = GetComponent<MonsterSkill_KH>();
         _playerRangeInJudge = GetComponent<PlayerRangeInJudge_KH>();
+        _playerMove = GetComponent<PlayerMove_MT>();
     }
 
     void Update()
@@ -51,14 +53,14 @@ public class CharacterDeadDecision_MT : MonoBehaviour
     }
 
     /// <summary>
-    /// 食べられたモンスターの動きを止める　追記：北
+    /// 食べられたモンスターとプレイヤーの動きを止める　追記：北
     /// </summary>
     private void EnemyStop()
     {
-
         _playerRangeInJudge.enabled = false;
         _monsterRandomWalk.enabled = false;
         _monsterSkill.enabled = false;
+        _playerMove.enabled = false;
 
         _isAlive = false; 
     }
