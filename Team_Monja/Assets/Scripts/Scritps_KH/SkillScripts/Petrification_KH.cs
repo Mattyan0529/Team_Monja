@@ -134,4 +134,9 @@ public class Petrification_KH : MonoBehaviour
     {
         PetrificationCancellation();
     }
+
+    private void OnDestroy()
+    {
+        PetrificationCancellation();
+    }
 }
