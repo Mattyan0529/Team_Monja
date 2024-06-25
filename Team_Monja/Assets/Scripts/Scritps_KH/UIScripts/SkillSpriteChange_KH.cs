@@ -5,7 +5,7 @@ public class SkillSpriteChange_KH : MonoBehaviour
 {
     private Image _image = default;
 
-    void Start()
+    private void Awake()
     {
         _image = GetComponent<Image>();
     }
@@ -17,6 +17,5 @@ public class SkillSpriteChange_KH : MonoBehaviour
     public void ChangeSprite(Sprite skillIcon)
     {
         _image.sprite = skillIcon;
-        Debug.Log("wa");
     }
 }
