@@ -57,7 +57,7 @@ public class WeaponAttack_KH : MonoBehaviour
         _characterAnim.NowAnim = "Skill";
 
         // “®‚«‚ğ~‚ß‚é
-        if (gameObject.CompareTag("Enemy"))
+        if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss"))
         {
             _playerRangeInJudge.enabled = false;
         }
@@ -113,7 +113,7 @@ public class WeaponAttack_KH : MonoBehaviour
         if (_elapsedTime > _deleteTime)
         {
             // “®‚«‚ğÄŠJ‚·‚é
-            if (gameObject.CompareTag("Enemy"))
+            if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss"))
             {
                 _playerRangeInJudge.enabled = true;
             }

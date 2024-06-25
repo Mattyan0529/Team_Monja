@@ -56,7 +56,7 @@ public class Petrification_KH : MonoBehaviour
     /// <param name="petrificationTarget">石化対象</param>
     public void Petrification(GameObject petrificationTarget)
     {
-        if (petrificationTarget.CompareTag("Enemy") && gameObject.CompareTag("Player"))     // 敵を石化する場合
+        if ((petrificationTarget.CompareTag("Enemy") || petrificationTarget.CompareTag("Boss")) && gameObject.CompareTag("Player"))     // 敵を石化する場合
         {
             _monsterRandomWalk = petrificationTarget.GetComponent<MonsterRandomWalk_KH>();
             _playerRangeInJudge = petrificationTarget.GetComponent<PlayerRangeInJudge_KH>();
@@ -69,7 +69,7 @@ public class Petrification_KH : MonoBehaviour
 
             _isPetrification = true;
         }
-        else if (petrificationTarget.CompareTag("Player") && gameObject.CompareTag("Enemy"))       // プレイヤーを石化する場合
+        else if (petrificationTarget.CompareTag("Player") &&( gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss")))       // プレイヤーを石化する場合
         {
             _playerMove = petrificationTarget.GetComponent<PlayerMove_MT>();
             _rigidbody = petrificationTarget.GetComponent<Rigidbody>();
@@ -102,7 +102,7 @@ public class Petrification_KH : MonoBehaviour
 
             _isPetrification = false;
         }
-        else if (gameObject.CompareTag("Enemy"))       // プレイヤーの石化を解除する場合
+        else if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss"))       // プレイヤーの石化を解除する場合
         {
             _playerMove.enabled = true;
 

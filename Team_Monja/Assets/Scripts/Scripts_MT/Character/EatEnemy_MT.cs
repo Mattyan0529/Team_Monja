@@ -45,7 +45,7 @@ public class EatEnemy_MT : MonoBehaviour
         // ClosestEnemyFinder_MT‚ğg—p‚µ‚ÄÅ‚à‹ß‚¢“G‚ğæ“¾
         Collider closestObject = closestEnemyFinder.GetClosestObject(objectsInTrigger, referencePoint);
 
-        if (closestObject != null && closestObject.gameObject.activeSelf && closestObject.CompareTag("Enemy"))
+        if (closestObject != null && closestObject.gameObject.activeSelf &&( closestObject.CompareTag("Enemy") || closestObject.CompareTag("Boss")))
         {
             statusManagerEnemy = closestObject.GetComponent<StatusManager_MT>();
             if (statusManagerEnemy != null && statusManagerEnemy.HP <= 0 )

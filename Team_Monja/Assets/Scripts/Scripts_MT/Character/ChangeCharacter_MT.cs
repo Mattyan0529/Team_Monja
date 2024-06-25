@@ -62,7 +62,7 @@ public class ChangeCharacter_MT : MonoBehaviour
         Collider closestObject = closestEnemyFinder.GetClosestObject(objectsInTrigger, referencePoint);
         CharacterAnim_MT closestObjectAnim = closestObject.GetComponent<CharacterAnim_MT>();
 
-        if (closestObject != null && closestObject.gameObject.activeSelf && closestObject.CompareTag("Enemy"))
+        if (closestObject != null && closestObject.gameObject.activeSelf && (closestObject.CompareTag("Enemy") || closestObject.CompareTag("Boss")))
         {
             statusManagerEnemy = closestObject.GetComponent<StatusManager_MT>();
             if (statusManagerEnemy != null && statusManagerEnemy.HP <= 0)

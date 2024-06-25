@@ -48,7 +48,7 @@ public class CameraManager_MT : MonoBehaviour
             audioListener.enabled = true;
         }
         //“G‚Ì‚Æ‚«
-        else if (this.gameObject.CompareTag("Enemy"))
+        else if (this.gameObject.CompareTag("Enemy")|| this.gameObject.CompareTag("Boss"))
         {
             playerCamera.enabled = false;
             audioListener.enabled = false;

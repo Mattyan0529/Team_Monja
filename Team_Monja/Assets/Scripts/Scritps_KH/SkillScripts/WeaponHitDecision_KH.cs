@@ -14,11 +14,11 @@ public class WeaponHitDecision_KH : MonoBehaviour
         // ÉKÅ[ÉhíÜÇ≈Ç†ÇÍÇŒçUåÇñ≥å¯
         if (other.gameObject.GetComponent<PlayerGuard_KH>() && other.gameObject.GetComponent<PlayerGuard_KH>().IsGuard) return;
 
-        if (gameObject.transform.parent.CompareTag("Enemy") && other.gameObject.CompareTag("Player"))
+        if ((gameObject.transform.parent.CompareTag("Enemy") || gameObject.transform.parent.CompareTag("Boss")) && other.gameObject.CompareTag("Player"))
         {
             _weaponAttack.HitDecision(other.gameObject);
         }
-        else if (gameObject.transform.parent.CompareTag("Player") && other.gameObject.CompareTag("Enemy"))
+        else if (gameObject.transform.parent.CompareTag("Player") && (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Boss")))
         {
             _weaponAttack.HitDecision(other.gameObject);
         }

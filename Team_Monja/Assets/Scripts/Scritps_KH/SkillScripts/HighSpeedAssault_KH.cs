@@ -28,7 +28,7 @@ public class HighSpeedAssault_KH : MonoBehaviour
         _soundEffectManagement = _residentScript.GetComponent<SoundEffectManagement_KH>();
         _rigidbody = GetComponent<Rigidbody>();
 
-        if (gameObject.tag == "Enemy")
+        if (gameObject.tag == "Enemy" || gameObject.tag == "Boss")
         {
             _monsterRandomWalk = GetComponent<MonsterRandomWalk_KH>();
         }
@@ -50,9 +50,9 @@ public class HighSpeedAssault_KH : MonoBehaviour
     {
         // すでに加速中のときと、ランダム移動中は加速しない
         if (_isSpeedUp) return;
-        if (gameObject.CompareTag("Enemy") && _monsterRandomWalk.enabled) return;
+        if ((gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss")) && _monsterRandomWalk.enabled) return;
 
-        if (gameObject.CompareTag("Enemy"))
+        if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss"))
         {
             _monsterRandomWalk.enabled = false;     // 方向転換をオフ
             _rigidbody.AddForce(transform.forward * _addForce, ForceMode.Impulse);
@@ -91,7 +91,7 @@ public class HighSpeedAssault_KH : MonoBehaviour
     /// </summary>
     private void SpeedDown()
     {
-        if (gameObject.CompareTag("Enemy"))
+        if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss"))
         {
             _monsterRandomWalk.enabled = true;     // 方向転換をオン
         }
@@ -148,7 +148,7 @@ public class HighSpeedAssault_KH : MonoBehaviour
         if (collision.gameObject.GetComponent<PlayerGuard_KH>() && 
             !collision.gameObject.GetComponent<PlayerGuard_KH>().IsGuard) return;       // ガード中であれば攻撃無効
 
-        if (gameObject.CompareTag("Enemy") && collision.gameObject.CompareTag("Player"))       // 自分がモンスターで相手がプレイヤーだった場合
+        if ((gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss")) && collision.gameObject.CompareTag("Player"))       // 自分がモンスターで相手がプレイヤーだった場合
         {
             _soundEffectManagement.StopSound(_audioSource);
             _soundEffectManagement.PlaySlowPunchSound(_audioSource);
@@ -157,7 +157,7 @@ public class HighSpeedAssault_KH : MonoBehaviour
             _targetStatusManager = collision.gameObject.GetComponent<StatusManager_MT>();
             HitPointCalculation(_myStatusManager, _targetStatusManager);
         }
-        else if (gameObject.CompareTag("Player") && collision.gameObject.CompareTag("Enemy"))       // 自分がプレイヤーで相手がモンスターだった場合
+        else if (gameObject.CompareTag("Player") && (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Boss")))       // 自分がプレイヤーで相手がモンスターだった場合
         {
             _soundEffectManagement.StopSound(_audioSource);
             _soundEffectManagement.PlaySlowPunchSound(_audioSource);

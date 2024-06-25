@@ -1,4 +1,6 @@
+using NUnit.Framework.Constraints;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StatusManager_MT : MonoBehaviour
 {
@@ -17,19 +19,30 @@ public class StatusManager_MT : MonoBehaviour
     [SerializeField] private int _plusStatStrength = 0; // インスペクターで設定可能
     [SerializeField] private int _plusStatDefense = 0; // インスペクターで設定可能
 
+    [SerializeField] private Image _damageImage = default;
+
     private int _maxHP = 0;
     private int _hp = 0;
     private int _str = 0;
     private int _def = 0;
 
+    //HPを比較するよう
+    private int _currentHP = 0;
+    //_damageImageを透過するスピード
+    private float _fadeSpeed = 0.1f;
+
     //コンポーネント
-    MoveSlider_MT _moveSlider;
-    StrengthStatusUI_MT _strengthStatusUI;
-    DefenseStatusUI_MT _defenseStatusUI;
-    HPStatusUI_MT _hpStatusUI;
+    private MoveSlider_MT _moveSliderPlayer;
+    private MoveSlider_MT _moveSliderBoss;
+    private StrengthStatusUI_MT _strengthStatusUI;
+    private DefenseStatusUI_MT _defenseStatusUI;
+    private HPStatusUI_MT _hpStatusUI;
+    private BossStatusHP_MT _bossStatusHP;
+
 
     //canvas
-    [SerializeField] private GameObject canvasObj;
+    [SerializeField] private GameObject canvasObjPlayer;
+    [SerializeField] private GameObject canvasObjBoss   ;
 
     // ステータスのプロパティ
     public int MaxHP { get { return _maxHP; } private set { _maxHP = value; } }
@@ -48,10 +61,14 @@ public class StatusManager_MT : MonoBehaviour
 
     private void Start()
     {
-        _moveSlider = canvasObj.GetComponentInChildren<MoveSlider_MT>();
-        _strengthStatusUI = canvasObj.GetComponentInChildren<StrengthStatusUI_MT>();
-        _defenseStatusUI = canvasObj.GetComponentInChildren<DefenseStatusUI_MT>();
-        _hpStatusUI = canvasObj.GetComponentInChildren<HPStatusUI_MT>();
+        //canvasPlayerから取得
+        _moveSliderPlayer = canvasObjPlayer.GetComponentInChildren<MoveSlider_MT>();
+        _strengthStatusUI = canvasObjPlayer.GetComponentInChildren<StrengthStatusUI_MT>();
+        _defenseStatusUI = canvasObjPlayer.GetComponentInChildren<DefenseStatusUI_MT>();
+        _hpStatusUI = canvasObjPlayer.GetComponentInChildren<HPStatusUI_MT>();
+        //canvasBossから取得
+        _bossStatusHP = canvasObjBoss.GetComponentInChildren<BossStatusHP_MT>();
+        _moveSliderBoss = canvasObjBoss.GetComponentInChildren<MoveSlider_MT>();
 
 
         // 倍率を適用
@@ -59,26 +76,56 @@ public class StatusManager_MT : MonoBehaviour
 
         // 現在のHPを最大HPに設定
         HP = MaxHP;
+        _currentHP = HP;
+
 
         //HPバー更新
         if (CompareTag("Player"))
         {
-            _moveSlider.SetMaxHP(MaxHP);
-            _moveSlider.SetCurrentHP(HP);
+            _moveSliderPlayer.SetMaxHP(MaxHP);
+            _moveSliderPlayer.SetCurrentHP(HP);
         }
+        if(CompareTag("Boss"))
+        {
+            _moveSliderBoss.SetMaxHP(MaxHP);
+            _moveSliderBoss.SetCurrentHP(HP);
+        }
+        //ダメージと回復の画面効果の色を透明に
+        _damageImage.color = Color.clear;
 
     }
 
     private void Update()
     {
-        if(CompareTag("Player"))
+        if (CompareTag("Player"))
         {
+            //画面に表示するステータス
             _strengthStatusUI.ChangeText(Strength);
             _defenseStatusUI.ChangeText(Defense);
             _hpStatusUI.ChangeText(HP, MaxHP);
-            _moveSlider.SetMaxHP(MaxHP);
-            _moveSlider.SetCurrentHP(HP);
+            _moveSliderPlayer.SetMaxHP(MaxHP);
+            _moveSliderPlayer.SetCurrentHP(HP);
+
+            //HPが減ったら画面効果をつける
+            if (IsHPChange())
+            {
+                ChangeDamageImage();
+            }
+
         }
+        if(CompareTag("Boss"))
+        {
+            //画面に表示するボスHP
+            _bossStatusHP.ChangeText(HP, MaxHP);
+            _moveSliderBoss.SetMaxHP(MaxHP);
+            _moveSliderBoss.SetCurrentHP(HP);
+
+        }
+
+
+        //ダメージの画面効果を透明に戻していく
+        _damageImage.color = Color.Lerp(_damageImage.color, Color.clear, _fadeSpeed * Time.deltaTime);
+
     }
 
 
@@ -101,7 +148,7 @@ public class StatusManager_MT : MonoBehaviour
         // 現在のHPを更新（必要に応じて調整）
         HP = Mathf.Clamp(HP, 0, MaxHP);
 
-    
+
         Debug.Log($"倍率適用後: MaxHP = {MaxHP}, Strength = {Strength}, Defense = {Defense}, HP = {HP}");
     }
 
@@ -117,7 +164,10 @@ public class StatusManager_MT : MonoBehaviour
         Debug.Log($"倍率リセット後: MaxHP = {MaxHP}, Strength = {Strength}, Defense = {Defense}, HP = {HP}");
     }
 
-    // 回復
+    /// <summary>
+    /// 回復
+    /// </summary>
+    /// <param name="healAmount"></param>
     public void HealHP(int healAmount)
     {
         HP += healAmount;
@@ -128,4 +178,32 @@ public class StatusManager_MT : MonoBehaviour
 
         Debug.Log($"回復後: HP = {HP}");
     }
+
+
+    /// <summary>
+    /// HPが変わったか
+    /// </summary>
+    /// <returns></returns>
+    private bool IsHPChange()
+    {
+        if (_currentHP > HP)
+        {
+            _currentHP = HP;
+            return true;
+        }
+
+        _currentHP = HP;
+
+        return false;
+    }
+
+    /// <summary>
+    /// ダメージを受けたときに画面を赤くする
+    /// </summary>
+    private void ChangeDamageImage()
+    {
+        _damageImage.color = new Color(0.7f, 0, 0, 0.7f);
+    }
+
+
 }

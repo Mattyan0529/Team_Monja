@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - DropDownArrow
+  - Boss
   layers:
   - Default
   - TransparentFX

@@ -11,7 +11,7 @@ public class NormalAttackHitDecision_KH : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag != "Enemy") return;
+        if (other.gameObject.tag != "Enemy" && other.gameObject.tag != "Boss") return;
 
         _normalAttack.HitDecision(other.gameObject);
     }

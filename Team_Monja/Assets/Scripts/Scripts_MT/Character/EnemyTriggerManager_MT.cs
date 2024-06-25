@@ -10,7 +10,7 @@ public class EnemyTriggerManager_MT : MonoBehaviour
     //子オブジェクトのOnTriggerStayの処理
     public void OnChildTriggerStayCanEat(Collider other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Boss"))
         {
             if (!objectsInTrigger.Contains(other))
             {
@@ -23,7 +23,7 @@ public class EnemyTriggerManager_MT : MonoBehaviour
     // 子オブジェクトのOnTriggerExitの処理
     public void OnChildTriggerExitCanEat(Collider other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Boss"))
         {
             if (objectsInTrigger.Contains(other))
             {

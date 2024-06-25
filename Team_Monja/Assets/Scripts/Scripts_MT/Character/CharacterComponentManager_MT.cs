@@ -48,7 +48,7 @@ public class CharacterComponentManager_MT : MonoBehaviour
                     statusManager.HealHP(9999999);
                 }
             }
-            else if (this.gameObject.CompareTag("Enemy"))
+            else if (this.gameObject.CompareTag("Enemy")|| this.gameObject.CompareTag("Boss"))
             {
                 DisablePlayerComponents();
             }

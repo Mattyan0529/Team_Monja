@@ -75,7 +75,7 @@ public class PlayerSkill_KH : MonoBehaviour
     /// </summary>
     private void GameobjectTagJudge()
     {
-        if (gameObject.CompareTag("Enemy"))
+        if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss"))
         {
             _myMonsterSkill.enabled = true;
             _playerMove.enabled = false;

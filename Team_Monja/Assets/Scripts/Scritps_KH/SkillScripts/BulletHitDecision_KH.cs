@@ -51,14 +51,14 @@ public class BulletHitDecision_KH : MonoBehaviour
         // ƒK[ƒh’†‚Å‚ ‚ê‚ÎUŒ‚–³Œø
         if (other.gameObject.GetComponent<PlayerGuard_KH>() && other.gameObject.GetComponent<PlayerGuard_KH>().IsGuard) return;
 
-        if (_parent.CompareTag("Enemy") && other.gameObject.CompareTag("Player"))
+        if ((_parent.CompareTag("Enemy") || _parent.CompareTag("Boss")) && other.gameObject.CompareTag("Player"))
         {
             _longDistanceAttack.HitDecision(other.gameObject);
 
             // ƒvƒŒƒCƒ„[‚É‚ ‚½‚Á‚½’e‚ğíœ
             DisableBullet();
         }
-        else if (_parent.CompareTag("Player") && other.gameObject.CompareTag("Enemy"))
+        else if (_parent.CompareTag("Player") && (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Boss")))
         {
             _longDistanceAttack.HitDecision(other.gameObject);
 
