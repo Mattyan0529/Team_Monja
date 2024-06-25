@@ -76,8 +76,6 @@ public class StatusManager_MT : MonoBehaviour
             _strengthStatusUI.ChangeText(Strength);
             _defenseStatusUI.ChangeText(Defense);
             _hpStatusUI.ChangeText(HP, MaxHP);
-            _moveSlider.SetMaxHP(MaxHP);
-            _moveSlider.SetCurrentHP(HP);
         }
     }
 
@@ -101,6 +99,15 @@ public class StatusManager_MT : MonoBehaviour
         // 現在のHPを更新（必要に応じて調整）
         HP = Mathf.Clamp(HP, 0, MaxHP);
 
+        //HPバー更新
+        if (_moveSlider != null)
+        {
+            if (CompareTag("Player"))
+            {
+                _moveSlider.SetMaxHP(MaxHP);
+                _moveSlider.SetCurrentHP(HP);
+            }
+        }
         Debug.Log($"倍率適用後: MaxHP = {MaxHP}, Strength = {Strength}, Defense = {Defense}, HP = {HP}");
     }
 
@@ -112,6 +119,15 @@ public class StatusManager_MT : MonoBehaviour
         Strength = Mathf.FloorToInt(Strength / strengthMultiplier);
         Defense = Mathf.FloorToInt(Defense / defenseMultiplier);
 
+        //HPバー更新
+        if (_moveSlider != null)
+        {
+            if (CompareTag("Player"))
+            {
+                _moveSlider.SetMaxHP(MaxHP);
+                _moveSlider.SetCurrentHP(HP);
+            }
+        }
         Debug.Log($"倍率リセット後: MaxHP = {MaxHP}, Strength = {Strength}, Defense = {Defense}, HP = {HP}");
     }
 
@@ -123,7 +139,14 @@ public class StatusManager_MT : MonoBehaviour
         {
             HP = MaxHP;
         }
-
+        //HPバー更新
+        if (_moveSlider != null)
+        {
+            if (CompareTag("Player"))
+            {
+                _moveSlider.SetCurrentHP(HP);
+            }
+        }
         Debug.Log($"回復後: HP = {HP}");
     }
 }

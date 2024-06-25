@@ -4,7 +4,8 @@ using UnityEngine.UI;
 public class CoolTimeUI : MonoBehaviour
 {
     private Image _image = default;
-    private float _skillCoolTime = 2.0f;        // PlayerSkill‚Ì_coolTime‚Æ“¯‚¶ŽžŠÔ‚É‚·‚é
+    [SerializeField]
+    private float _skillCoolTime = 2.0f;        // PlayerSkill‚âNormalAttack‚Ì_coolTime‚Æ“¯‚¶ŽžŠÔ‚É‚·‚é
     private bool _isCoolTime = false;
 
     void Start()

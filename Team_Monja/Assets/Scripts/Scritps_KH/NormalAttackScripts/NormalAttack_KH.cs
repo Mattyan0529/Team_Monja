@@ -17,8 +17,10 @@ public class NormalAttack_KH : MonoBehaviour
     private float _coolTime = 0.5f;    // 通常攻撃を発動してから次に発動できるようになるまでの時間
     private float _coolTimeElapsedTime = 0f;
 
+    [SerializeField]
     private GameObject _attackArea;
     private bool _isAttack = false;
+    private bool _canUseNormalAttack = true;
 
     private WriteHitPoint_KH _writeHitPoint = default;
     private CoolTimeUI _coolTimeUI = default;
@@ -35,6 +37,7 @@ public class NormalAttack_KH : MonoBehaviour
     void Update()
     {
         UpdateTime();
+        UpdateCoolTime();
         AttackInputManager();
     }
 
@@ -44,6 +47,8 @@ public class NormalAttack_KH : MonoBehaviour
         {
             Attack();
         }
+
+        Debug.Log(_canUseNormalAttack);
     }
 
     /// <summary>
@@ -51,36 +56,17 @@ public class NormalAttack_KH : MonoBehaviour
     /// </summary>
     private void Attack()
     {
+        if (!_canUseNormalAttack) return;
+
         //松本
         _characterAnim.NowAnim = "Attack";
 
 
         _isAttack = true;
-
-        if (_attackArea != null)        // Sphereがすでにあるときは作成しない
-        {
-            _attackArea.SetActive(true);
-            return;
-        }
-
-        _attackArea = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-
-        // Sphereをこのスクリプトがアタッチされているオブジェクトの子に設定
-        _attackArea.transform.parent = transform;
-
-        // SphereのTransformを設定
-        _attackArea.transform.localPosition = _position;
-        _attackArea.transform.localScale = new Vector3(_radius, _radius, _radius);
-
-        // Sphereのマテリアルを設定（透明に）
-        Renderer renderer = _attackArea.GetComponent<Renderer>();
-        renderer.enabled = false;
-
-        _attackArea.GetComponent<SphereCollider>().isTrigger = true;
-
-        _attackArea.AddComponent<NormalAttackHitDecision_KH>();
-
+        _canUseNormalAttack = false;
         _coolTimeUI.StartCoolTime();
+
+        _attackArea.SetActive(true);
     }
 
     /// <summary>
@@ -126,6 +112,24 @@ public class NormalAttack_KH : MonoBehaviour
             _attackArea.SetActive(false);
             _elapsedTime = 0f;
             _isAttack = false;
+        }
+    }
+
+    /// <summary>
+    /// 一定時間後攻撃範囲を削除する
+    /// </summary>
+    private void UpdateCoolTime()
+    {
+        if (_canUseNormalAttack) return;     // 攻撃中以外は処理を行わない
+
+        // 時間加算
+        _coolTimeElapsedTime += Time.deltaTime;
+
+        // 規定時間に達していた場合
+        if (_coolTimeElapsedTime > _coolTime)
+        {
+            _coolTimeElapsedTime = 0f;
+            _canUseNormalAttack = true;
         }
     }
 }
