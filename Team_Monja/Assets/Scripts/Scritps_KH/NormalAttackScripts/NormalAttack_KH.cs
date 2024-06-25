@@ -5,16 +5,23 @@ public class NormalAttack_KH : MonoBehaviour
     [SerializeField]
     private GameObject _residentScript;
 
+    [SerializeField]
+    GameObject _coolTimeUIObj = default;
+
     private float _radius = 4f;      // UŒ‚”ÍˆÍ‚Æ‚µ‚Ä¶‚İo‚·Sphere‚Ì”¼Œa
     private Vector3 _position = Vector3.zero;       // Sphere‚ÌˆÊ’u
 
     private float _deleteTime = 0.2f;
     private float _elapsedTime = 0f;
 
+    private float _coolTime = 0.5f;    // ’ÊíUŒ‚‚ğ”­“®‚µ‚Ä‚©‚çŸ‚É”­“®‚Å‚«‚é‚æ‚¤‚É‚È‚é‚Ü‚Å‚ÌŠÔ
+    private float _coolTimeElapsedTime = 0f;
+
     private GameObject _attackArea;
     private bool _isAttack = false;
 
     private WriteHitPoint_KH _writeHitPoint = default;
+    private CoolTimeUI _coolTimeUI = default;
     //¼–{
     private CharacterAnim_MT _characterAnim = default;
 
@@ -22,6 +29,7 @@ public class NormalAttack_KH : MonoBehaviour
     {
         _writeHitPoint = _residentScript.GetComponent<WriteHitPoint_KH>();
         _characterAnim = GetComponent<CharacterAnim_MT>();
+        _coolTimeUI = _coolTimeUIObj.GetComponent<CoolTimeUI>();
     }
 
     void Update()
@@ -71,6 +79,8 @@ public class NormalAttack_KH : MonoBehaviour
         _attackArea.GetComponent<SphereCollider>().isTrigger = true;
 
         _attackArea.AddComponent<NormalAttackHitDecision_KH>();
+
+        _coolTimeUI.StartCoolTime();
     }
 
     /// <summary>
