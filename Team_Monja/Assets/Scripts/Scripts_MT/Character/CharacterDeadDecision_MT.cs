@@ -12,6 +12,8 @@ public class CharacterDeadDecision_MT : MonoBehaviour
     MonsterSkill_KH _monsterSkill = default;
     PlayerRangeInJudge_KH _playerRangeInJudge = default;
     PlayerMove_MT _playerMove = default;
+    PlayerSkill_KH _playerSkill = default;
+    NormalAttack_KH _normalAttack = default;
     private bool _isAlive = true;
 
     void Start()
@@ -23,6 +25,8 @@ public class CharacterDeadDecision_MT : MonoBehaviour
         _monsterSkill = GetComponent<MonsterSkill_KH>();
         _playerRangeInJudge = GetComponent<PlayerRangeInJudge_KH>();
         _playerMove = GetComponent<PlayerMove_MT>();
+        _playerSkill = GetComponent<PlayerSkill_KH>();
+        _normalAttack = GetComponent<NormalAttack_KH>();
     }
 
     void Update()
@@ -61,6 +65,8 @@ public class CharacterDeadDecision_MT : MonoBehaviour
         _monsterRandomWalk.enabled = false;
         _monsterSkill.enabled = false;
         _playerMove.enabled = false;
+        _playerSkill.enabled = false;
+        _normalAttack.enabled = false;
 
         _isAlive = false; 
     }
