@@ -14,6 +14,8 @@ public class WeaponAttack_KH : MonoBehaviour
     private SoundEffectManagement_KH _soundEffectManagement = default;
     private AudioSource _audioSource = default;
     private MonsterRandomWalk_KH _monsterRandomWalk = default;
+    private PlayerRangeInJudge_KH _playerRangeInJudge = default;
+    private PlayerMove_MT _playerMove = default;
 
     private bool _isAttack = false;
 
@@ -23,6 +25,8 @@ public class WeaponAttack_KH : MonoBehaviour
     private void Awake()
     {
         _monsterRandomWalk = GetComponent<MonsterRandomWalk_KH>();
+        _playerRangeInJudge = GetComponent<PlayerRangeInJudge_KH>();
+        _playerMove = GetComponent<PlayerMove_MT>();
     }
 
     void Start()
@@ -51,6 +55,16 @@ public class WeaponAttack_KH : MonoBehaviour
 
         //èºñ{
         _characterAnim.NowAnim = "Skill";
+
+        // ìÆÇ´Çé~ÇﬂÇÈ
+        if (gameObject.CompareTag("Enemy"))
+        {
+            _playerRangeInJudge.enabled = false;
+        }
+        if (gameObject.CompareTag("Player"))
+        {
+            _playerMove.enabled = false;
+        }
 
         _isAttack = true;
         _attackArea.SetActive(true);
@@ -98,6 +112,16 @@ public class WeaponAttack_KH : MonoBehaviour
         // ãKíËéûä‘Ç…íBÇµÇƒÇ¢ÇΩèÍçá
         if (_elapsedTime > _deleteTime)
         {
+            // ìÆÇ´ÇçƒäJÇ∑ÇÈ
+            if (gameObject.CompareTag("Enemy"))
+            {
+                _playerRangeInJudge.enabled = true;
+            }
+            if (gameObject.CompareTag("Player"))
+            {
+                _playerMove.enabled = true;
+            }
+
             _attackArea.SetActive(false);
             _elapsedTime = 0f;
             _isAttack = false;

@@ -8,9 +8,6 @@ public class NormalAttack_KH : MonoBehaviour
     [SerializeField]
     GameObject _coolTimeUIObj = default;
 
-    private float _radius = 4f;      // 攻撃範囲として生み出すSphereの半径
-    private Vector3 _position = Vector3.zero;       // Sphereの位置
-
     private float _deleteTime = 0.2f;
     private float _elapsedTime = 0f;
 
@@ -114,7 +111,7 @@ public class NormalAttack_KH : MonoBehaviour
     }
 
     /// <summary>
-    /// 一定時間後攻撃範囲を削除する
+    /// クールタイム後通常攻撃を使えるようにする
     /// </summary>
     private void UpdateCoolTime()
     {
