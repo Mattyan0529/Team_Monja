@@ -145,8 +145,8 @@ public class HighSpeedAssault_KH : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (!_isSpeedUp) return;        // 高速突撃中でなければ処理を行わない
-        if (!collision.gameObject.GetComponent<PlayerGuard_KH>()) return;
-        if (!collision.gameObject.GetComponent<PlayerGuard_KH>().IsGuard) return;       // ガード中であれば攻撃無効
+        if (collision.gameObject.GetComponent<PlayerGuard_KH>() && 
+            !collision.gameObject.GetComponent<PlayerGuard_KH>().IsGuard) return;       // ガード中であれば攻撃無効
 
         if (gameObject.CompareTag("Enemy") && collision.gameObject.CompareTag("Player"))       // 自分がモンスターで相手がプレイヤーだった場合
         {
