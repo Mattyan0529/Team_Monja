@@ -19,10 +19,8 @@ public class BackGroundMusicManagement_KH : MonoBehaviour
 
     void Start()
     {
-        DontDestroyOnLoad(gameObject);
-
         _audioSource = GetComponent<AudioSource>();
-        PlayTitleMusic();
+        PlayGameMusic();
     }
 
     /// <summary>
