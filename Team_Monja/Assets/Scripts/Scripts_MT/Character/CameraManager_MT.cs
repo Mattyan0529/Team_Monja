@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class CameraManager_MT : MonoBehaviour
 {
-    Camera playerCamera;
-    AudioListener audioListener;
+    private Camera playerCamera;
+    private AudioListener audioListener;
+   
 
     private float mouseSensitivity = 1000.0f; // マウス感度
     private Transform playerBody; // カメラが追従するプレイヤーオブジェクト
@@ -15,8 +16,10 @@ public class CameraManager_MT : MonoBehaviour
 
     void Start()
     {
+        //子オブジェクトからコンポーネント取得
         playerCamera = GetComponentInChildren<Camera>();
         audioListener = GetComponentInChildren<AudioListener>();
+      
 
         // カーソルをロックして画面中央に固定
         Cursor.lockState = CursorLockMode.Locked;
@@ -28,28 +31,27 @@ public class CameraManager_MT : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        PlayerCheck();
-        if (this.gameObject.CompareTag("Player"))
-        {
-            CameraMove();
-            CameraTransparent();
-        }
+        CameraSwitch();
     }
 
     /// <summary>
     /// タグによってカメラを切り替える
     /// </summary>
-    private void PlayerCheck()
+    private void CameraSwitch()
     {
         //プレイヤーのとき
         if (this.gameObject.CompareTag("Player"))
         {
+            playerCamera.tag = "MainCamera";
             playerCamera.enabled = true;
             audioListener.enabled = true;
+            CameraMove();
+            CameraTransparent();
         }
         //敵のとき
         else if (this.gameObject.CompareTag("Enemy")|| this.gameObject.CompareTag("Boss"))
         {
+            playerCamera.tag = "Untagged";
             playerCamera.enabled = false;
             audioListener.enabled = false;
         }

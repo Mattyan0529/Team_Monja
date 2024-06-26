@@ -9,7 +9,7 @@ public class DropDownArrow_MT : MonoBehaviour
 
     CharacterDeadDecision_MT characterDeadDecision;
     MeshRenderer meshRenderer;
-        
+
     void Start()
     {
         meshRenderer = GetComponent<MeshRenderer>();
@@ -22,10 +22,14 @@ public class DropDownArrow_MT : MonoBehaviour
 
     void Update()
     {
-        if(characterDeadDecision.IsDeadDecision())
+        if (characterDeadDecision.IsDeadDecision())
         {
-            meshRenderer.enabled = true;
-            MoveArrow();
+            if (CompareTag("Player"))
+            {
+                meshRenderer.enabled = true;
+                MoveArrow();
+            }
+            return;
         }
         else
         {
