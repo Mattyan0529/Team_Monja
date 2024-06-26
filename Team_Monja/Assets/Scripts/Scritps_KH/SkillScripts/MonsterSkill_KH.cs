@@ -177,6 +177,7 @@ public class MonsterSkill_KH : MonoBehaviour
         if (_elapsedTime > _updateTime)
         {
             RandomCallSkill();      // ƒXƒLƒ‹”­“®
+            _characterAnim.NowAnim = "Skill";
             _elapsedTime = 0f;
         }
     }

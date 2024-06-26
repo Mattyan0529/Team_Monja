@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -67,9 +67,6 @@ LightmapSettings:
     m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 1
     m_TextureCompression: 1
-    m_FinalGather: 0
-    m_FinalGatherFiltering: 1
-    m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
     m_MixedBakeMode: 2
     m_BakeBackend: 1
@@ -547,7 +544,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 710853904}
-  - component: {fileID: 710853903}
   - component: {fileID: 710853905}
   - component: {fileID: 710853906}
   m_Layer: 0
@@ -557,19 +553,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &710853903
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 710853902}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e2d3a0a912de964b9aa126bb18a099a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _soundEffectManager: {fileID: 710853902}
 --- !u!4 &710853904
 Transform:
   m_ObjectHideFlags: 0
@@ -795,7 +778,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1375969088}
-  - component: {fileID: 1375969087}
+  - component: {fileID: 1375969090}
+  - component: {fileID: 1375969089}
   m_Layer: 0
   m_Name: SceneCangeObjrct
   m_TagString: Untagged
@@ -803,19 +787,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1375969087
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1375969086}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 447721b775d457f4f9934ee4e13493c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _managementPushButton: {fileID: 710853903}
 --- !u!4 &1375969088
 Transform:
   m_ObjectHideFlags: 0
@@ -831,6 +802,40 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1375969089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1375969086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b31c5641aa98f284a8a7345181deda49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: Stage
+  optionPanel: {fileID: 0}
+  useEnterKey: 1
+  useBackspaceKey: 0
+  useEscapeKey: 0
+--- !u!114 &1375969090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1375969086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b31c5641aa98f284a8a7345181deda49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: TitleScreen
+  optionPanel: {fileID: 0}
+  useEnterKey: 0
+  useBackspaceKey: 1
+  useEscapeKey: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
