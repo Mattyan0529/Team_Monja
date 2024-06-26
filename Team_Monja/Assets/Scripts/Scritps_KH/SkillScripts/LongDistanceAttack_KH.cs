@@ -7,7 +7,7 @@ public class LongDistanceAttack_KH : MonoBehaviour
 
     private float _bulletSpeed = 50f;
 
-    private float _addSpownPos;     // 弾を生成するときにyに足す値
+    private float _addSpownPos = 1f;     // 弾を生成するときにyに足す値
 
     private GameObject _bullet = default;
     private WriteHitPoint_KH _writeHitPoint = default;
@@ -46,6 +46,7 @@ public class LongDistanceAttack_KH : MonoBehaviour
         _bullet.transform.position = new Vector3(transform.position.x, transform.position.y + _addSpownPos, transform.position.z);
         Rigidbody rigidbody = _bullet.GetComponent<Rigidbody>();
         rigidbody.velocity = transform.forward * _bulletSpeed;
+        _bullet.transform.SetParent(null);
         _bulletHitDecision.ActivateBullet();
 
         if (_audioSource == null)
@@ -64,6 +65,7 @@ public class LongDistanceAttack_KH : MonoBehaviour
     public void HitDecision(GameObject hitObj)
     {
         _isShot = false;
+        _bullet.transform.SetParent(gameObject.transform);
 
         // 相手と自分のStatusManagerが両方必要
         StatusManager_MT targetStatusManager = hitObj.gameObject.GetComponent<StatusManager_MT>();
@@ -101,6 +103,7 @@ public class LongDistanceAttack_KH : MonoBehaviour
         if (_elapsedTime > _deleteTime)
         {
             _bulletHitDecision.DisableBullet();
+            _bullet.transform.SetParent(gameObject.transform);
             _elapsedTime = 0f;
             _isShot = false;
         }
