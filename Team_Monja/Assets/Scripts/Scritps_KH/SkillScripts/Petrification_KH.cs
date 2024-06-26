@@ -105,6 +105,7 @@ public class Petrification_KH : MonoBehaviour
         else if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss"))       // ƒvƒŒƒCƒ„[‚ÌÎ‰»‚ğ‰ğœ‚·‚éê‡
         {
             _playerMove.enabled = true;
+
             _isPetrification = false;
         }
     }
@@ -131,13 +132,11 @@ public class Petrification_KH : MonoBehaviour
 
     private void OnDisable()
     {
-        _petrificationArea.SetActive(false);
         PetrificationCancellation();
     }
 
     private void OnDestroy()
     {
-        _petrificationArea.SetActive(false);
         PetrificationCancellation();
     }
 }
