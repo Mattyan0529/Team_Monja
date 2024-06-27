@@ -58,7 +58,7 @@ public class NormalAttack_KH : MonoBehaviour
         if (!_canUseNormalAttack) return;
 
         // SEÇñ¬ÇÁÇ∑
-        _soundEffectManagement.PlayStrongPunchSound(_audioSource);
+        _soundEffectManagement.PlaySlowPunchSound(_audioSource);
 
         //èºñ{
         _characterAnim.NowAnim = "Attack";
