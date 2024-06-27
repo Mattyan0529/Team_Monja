@@ -17,10 +17,11 @@ public class GameEndCamera_MT : MonoBehaviour
     [SerializeField] private GameObject _gameOverImage = default;
 
 
-    private float _slowTimeScale = 0.5f; //だんだん時間が止まる処理で使う
+    private float _slowTimeScale = 0.3f; //スローモーションの時の時間速度
     private Vector3 _deadCameraPosition = new Vector3(0, 0, 0);　//死んだときのカメラの位置
     private Vector3 _deadCameraRotation = new Vector3(0, 0, 0);  // 死んだときのカメラの向き
     private bool _isCoroutineActive = false;//コルーチンが動作中かどうか
+    private bool _isGameClear = false;//ゲームクリア
 
     private void Start()
     {
@@ -35,7 +36,7 @@ public class GameEndCamera_MT : MonoBehaviour
     private void Update()
     {
         //誤動作防止
-        if (_statusManagerPlayer.HP > 0 && _isCoroutineActive)
+        if (_statusManagerPlayer.HP > 0 && _isCoroutineActive && CompareTag("Player") && !_isGameClear)
         {
             ResetGameOverCorouine();
         }  
@@ -46,7 +47,7 @@ public class GameEndCamera_MT : MonoBehaviour
         StopCoroutine(GameOverCoroutine());
         _cameraManager.enabled = true;
         Time.timeScale = 1;
-        Debug.Log("resetgameover");
+        Debug.Log("resetgameover" + this.gameObject);
     }
 
     public IEnumerator GameOverCoroutine()
@@ -54,7 +55,7 @@ public class GameEndCamera_MT : MonoBehaviour
         _isCoroutineActive = true;
 
         //何秒待つのか
-        float slowTime = 1.5f;
+        float slowTime = 1.75f;
 
         //カメラの位置を設定
         _deadCameraPosition = new Vector3(0, 6, 0);
@@ -98,14 +99,11 @@ public class GameEndCamera_MT : MonoBehaviour
     public IEnumerator GameClearCoroutine()
     {
         _isCoroutineActive = true;
+        //ゲームクリアのboolをtrue
+        _isGameClear = true;
 
         //何秒待つのか
-        float slowTime = 1.5f;
-
-        ////カメラの位置を設定
-        //_deadCameraPosition = new Vector3(0, 6, 0);
-        ////カメラの向きを設定
-        //_deadCameraRotation = new Vector3(90, 180, 0);
+        float slowTime = 1f;
 
         //カメラを取得
         Camera mainCamera = Camera.main;
@@ -128,10 +126,6 @@ public class GameEndCamera_MT : MonoBehaviour
         Time.timeScale = _slowTimeScale;
 
         yield return new WaitForSeconds(slowTime);
-
-        ////死んだときのカメラを調整
-        //mainCamera.transform.localPosition = _deadCameraPosition;
-        //mainCamera.transform.localRotation = Quaternion.Euler(_deadCameraRotation);
 
         //時間停止
         Time.timeScale = 0;
