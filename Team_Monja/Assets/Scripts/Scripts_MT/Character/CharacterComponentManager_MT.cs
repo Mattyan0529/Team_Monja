@@ -10,6 +10,8 @@ public class CharacterComponentManager_MT : MonoBehaviour
     private EatOrChangeController_MT eatOrChangeController;
     private ClosestEnemyFinder_MT closestEnemyFinder;
     private ChangeCharacter_MT changeCharacter;
+    private GameEndCamera_MT gameEndCamera;
+    private KillEnemy_MT killEnemy;
 
     private string _currentTag;
 
@@ -26,6 +28,9 @@ public class CharacterComponentManager_MT : MonoBehaviour
         eatOrChangeController = GetComponent<EatOrChangeController_MT>();
         closestEnemyFinder = GetComponent<ClosestEnemyFinder_MT>();
         changeCharacter = GetComponent<ChangeCharacter_MT>();
+        gameEndCamera = GetComponent<GameEndCamera_MT>();
+        killEnemy = GetComponent<KillEnemy_MT>();
+
 
         _currentTag = this.gameObject.tag;
 
@@ -39,6 +44,7 @@ public class CharacterComponentManager_MT : MonoBehaviour
         {
             if (this.gameObject.CompareTag("Player"))
             {
+
                 EnablePlayerComponents();
         
                 // ステータスの倍率を掛けなおして、HPをMaxに設定
@@ -64,6 +70,8 @@ public class CharacterComponentManager_MT : MonoBehaviour
         eatOrChangeController.enabled = true;
         closestEnemyFinder.enabled = true;
         changeCharacter.enabled = true;
+        gameEndCamera.enabled = true;
+        killEnemy.enabled = true;
     }
 
     void DisablePlayerComponents()
@@ -74,5 +82,7 @@ public class CharacterComponentManager_MT : MonoBehaviour
         eatOrChangeController.enabled = false;
         closestEnemyFinder.enabled = false;
         changeCharacter.enabled = false;
+        gameEndCamera.enabled = false;
+        killEnemy.enabled = false;
     }
 }

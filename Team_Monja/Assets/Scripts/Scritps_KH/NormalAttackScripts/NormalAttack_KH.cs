@@ -21,8 +21,6 @@ public class NormalAttack_KH : MonoBehaviour
 
     private WriteHitPoint_KH _writeHitPoint = default;
     private CoolTimeUI _coolTimeUI = default;
-    private AudioSource _audioSource = default;
-    private SoundEffectManagement_KH _soundEffectManagement = default;
     //èºñ{
     private CharacterAnim_MT _characterAnim = default;
 
@@ -31,8 +29,6 @@ public class NormalAttack_KH : MonoBehaviour
         _writeHitPoint = _residentScript.GetComponent<WriteHitPoint_KH>();
         _characterAnim = GetComponent<CharacterAnim_MT>();
         _coolTimeUI = _coolTimeUIObj.GetComponent<CoolTimeUI>();
-        _soundEffectManagement = _residentScript.GetComponent<SoundEffectManagement_KH>();
-        _audioSource = GetComponentInChildren<AudioSource>();
     }
 
     void Update()
@@ -56,9 +52,6 @@ public class NormalAttack_KH : MonoBehaviour
     private void Attack()
     {
         if (!_canUseNormalAttack) return;
-
-        // SEÇñ¬ÇÁÇ∑
-        _soundEffectManagement.PlaySlowPunchSound(_audioSource);
 
         //èºñ{
         _characterAnim.NowAnim = "Attack";

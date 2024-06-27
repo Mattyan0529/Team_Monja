@@ -24,12 +24,12 @@ public class DropDownArrow_MT : MonoBehaviour
     {
         if (characterDeadDecision.IsDeadDecision())
         {
-            if (!CompareTag("Player"))
+            if (CompareTag("Player"))
             {
-                meshRenderer.enabled = true;
-                MoveArrow();
+                return;
             }
-            return;
+            meshRenderer.enabled = true;
+            MoveArrow();
         }
         else
         {

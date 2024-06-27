@@ -147,9 +147,6 @@ public class StatusManager_MT : MonoBehaviour
 
         // 現在のHPを更新（必要に応じて調整）
         HP = Mathf.Clamp(HP, 0, MaxHP);
-
-
-        Debug.Log($"倍率適用後: MaxHP = {MaxHP}, Strength = {Strength}, Defense = {Defense}, HP = {HP}");
     }
 
     // ステータスの更新をリセットするメソッド
@@ -159,9 +156,6 @@ public class StatusManager_MT : MonoBehaviour
         MaxHP = Mathf.FloorToInt(MaxHP / healthMultiplier);
         Strength = Mathf.FloorToInt(Strength / strengthMultiplier);
         Defense = Mathf.FloorToInt(Defense / defenseMultiplier);
-
-
-        Debug.Log($"倍率リセット後: MaxHP = {MaxHP}, Strength = {Strength}, Defense = {Defense}, HP = {HP}");
     }
 
     /// <summary>
@@ -175,8 +169,6 @@ public class StatusManager_MT : MonoBehaviour
         {
             HP = MaxHP;
         }
-
-        Debug.Log($"回復後: HP = {HP}");
     }
 
 

@@ -81,8 +81,6 @@ public class BulletHitDecision_KH : MonoBehaviour
     /// </summary>
     public void DisableBullet()
     {
-        if (_bulletRenderer == null) return;
-
         _bulletRenderer.enabled = false;
         _bulletCollider.enabled = false;
         _bulletRigidbody.velocity = Vector3.zero;
