@@ -23,6 +23,7 @@ public class MonsterSkill_KH : MonoBehaviour
     private PlayerManager_KH _playerManager = default;
     private MonsterRandomWalk_KH _monsterRandomWalk = default;
     private SkillSpriteChange_KH _skillSpriteChange = default;
+    private CharacterDeadDecision_MT _characterDeadDecision = default;
 
     private HighSpeedAssault_KH _highSpeedAssault = default;
     private WeaponAttack_KH _weaponAttack = default;
@@ -77,6 +78,7 @@ public class MonsterSkill_KH : MonoBehaviour
         _characterAnim = GetComponent<CharacterAnim_MT>();
 
         _skillSpriteChange = _skillSpriteObj.GetComponent<SkillSpriteChange_KH>();
+        _characterDeadDecision = GetComponent<CharacterDeadDecision_MT>();
         GameobjectTagJudge();
         _updateTime = Random.Range(_minTimeSpacing, _maxTimeSpacing);
     }
@@ -226,6 +228,7 @@ public class MonsterSkill_KH : MonoBehaviour
     private void OnDisable()
     {
         if(gameObject.CompareTag("Player"))return;
+        if (!_characterDeadDecision.IsDeadDecision()) return;
 
         switch (SkillTypeNum)
         {

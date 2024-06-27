@@ -24,6 +24,7 @@ public class LongDistanceAttack_KH : MonoBehaviour
     {
         _writeHitPoint = _residentScript.GetComponent<WriteHitPoint_KH>();
         _soundEffectManagement = _residentScript.GetComponent<SoundEffectManagement_KH>();
+        _audioSource = GetComponentInChildren<AudioSource>();
 
         // 子オブジェクトからBulletを取得
         _bullet = transform.Find("Bullet").gameObject;
@@ -49,10 +50,6 @@ public class LongDistanceAttack_KH : MonoBehaviour
         _bullet.transform.SetParent(null);
         _bulletHitDecision.ActivateBullet();
 
-        if (_audioSource == null)
-        {
-            _audioSource = GetComponentInChildren<AudioSource>();
-        }
         // SEを鳴らす
         _soundEffectManagement.PlayLongDistanceAttackSound(_audioSource);
 
