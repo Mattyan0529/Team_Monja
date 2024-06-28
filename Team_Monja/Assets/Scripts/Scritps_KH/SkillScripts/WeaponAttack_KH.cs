@@ -5,6 +5,10 @@ public class WeaponAttack_KH : MonoBehaviour
     [SerializeField]
     private GameObject _residentScript;
 
+    [SerializeField]
+    private EffectManager _effectManager; // EffectManagerの参照を追加
+
+
     private float _deleteTime = 0.5f;
     private float _elapsedTime = 0f;
 
@@ -55,6 +59,16 @@ public class WeaponAttack_KH : MonoBehaviour
 
         //松本
         _characterAnim.NowAnim = "Skill";
+
+        //スキルエフェクト
+        if (_effectManager != null)
+        {
+            _effectManager.ShowSpecialAttackEffect(transform);
+        }
+        else
+        {
+            Debug.LogError("EffectManager component is not found.");
+        }
 
         // 動きを止める
         if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss"))

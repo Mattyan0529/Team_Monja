@@ -8,6 +8,10 @@ public class NormalAttack_KH : MonoBehaviour
     [SerializeField]
     GameObject _coolTimeUIObj = default;
 
+    [SerializeField]
+    private EffectManager _effectManager; // EffectManagerの参照を追加
+
+
     private float _deleteTime = 0.2f;
     private float _elapsedTime = 0f;
 
@@ -56,6 +60,8 @@ public class NormalAttack_KH : MonoBehaviour
         //松本
         _characterAnim.NowAnim = "Attack";
 
+        // 通常攻撃エフェクトを表示
+        _effectManager.ShowNormalAttackEffect(transform);
 
         _isAttack = true;
         _canUseNormalAttack = false;
