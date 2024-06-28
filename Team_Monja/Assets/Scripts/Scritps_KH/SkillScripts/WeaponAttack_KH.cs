@@ -20,6 +20,7 @@ public class WeaponAttack_KH : MonoBehaviour
     private MonsterRandomWalk_KH _monsterRandomWalk = default;
     private PlayerRangeInJudge_KH _playerRangeInJudge = default;
     private PlayerMove_MT _playerMove = default;
+    private CreateDamageImage _createDamageImage = default;
 
     private bool _isAttack = false;
 
@@ -37,6 +38,7 @@ public class WeaponAttack_KH : MonoBehaviour
     {
         _writeHitPoint = _residentScript.GetComponent<WriteHitPoint_KH>();
         _soundEffectManagement = _residentScript.GetComponent<SoundEffectManagement_KH>();
+        _createDamageImage = _residentScript.GetComponent<CreateDamageImage>();
         _characterAnim = GetComponent<CharacterAnim_MT>();
         _audioSource = GetComponent<AudioSource>();
 
@@ -111,6 +113,7 @@ public class WeaponAttack_KH : MonoBehaviour
 
         int damage = targetHitPoint - (myAttackPower - targetDefensePower);
         _writeHitPoint.UpdateHitPoint(targetStatus, damage);      // targetStatusÇÃHPÇçXêV
+        _createDamageImage.InstantiateDamageImage(gameObject, myAttackPower - targetDefensePower);
     }
 
     /// <summary>

@@ -11,6 +11,7 @@ public class HighSpeedAssault_KH : MonoBehaviour
     private Rigidbody _rigidbody = default;
     private SoundEffectManagement_KH _soundEffectManagement = default;
     private AudioSource _audioSource = default;
+    private CreateDamageImage _createDamageImage = default;
 
     private StatusManager_MT _myStatusManager = default;        // 自分のステータス
     private StatusManager_MT _targetStatusManager = default;    // 攻撃相手のステータス
@@ -25,6 +26,7 @@ public class HighSpeedAssault_KH : MonoBehaviour
     void Start()
     {
         _writeHitPoint = _residentScript.GetComponent<WriteHitPoint_KH>();
+        _createDamageImage = _residentScript.GetComponent<CreateDamageImage>();
         _soundEffectManagement = _residentScript.GetComponent<SoundEffectManagement_KH>();
         _rigidbody = GetComponent<Rigidbody>();
 
@@ -139,6 +141,8 @@ public class HighSpeedAssault_KH : MonoBehaviour
 
         int damage = targetHitPoint - (myAttackPower - targetDefensePower);
         _writeHitPoint.UpdateHitPoint(targetStatus, damage);      // targetStatusesのHPを更新
+        _createDamageImage.InstantiateDamageImage(gameObject, myAttackPower - targetDefensePower);
+
         SpeedDown();
     }
 

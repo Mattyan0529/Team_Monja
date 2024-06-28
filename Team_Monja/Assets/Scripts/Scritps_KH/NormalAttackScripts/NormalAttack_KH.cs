@@ -25,6 +25,7 @@ public class NormalAttack_KH : MonoBehaviour
 
     private WriteHitPoint_KH _writeHitPoint = default;
     private CoolTimeUI _coolTimeUI = default;
+    private CreateDamageImage _createDamageImage = default;
     //èºñ{
     private CharacterAnim_MT _characterAnim = default;
 
@@ -33,6 +34,7 @@ public class NormalAttack_KH : MonoBehaviour
         _writeHitPoint = _residentScript.GetComponent<WriteHitPoint_KH>();
         _characterAnim = GetComponent<CharacterAnim_MT>();
         _coolTimeUI = _coolTimeUIObj.GetComponent<CoolTimeUI>();
+        _createDamageImage = _residentScript.GetComponent<CreateDamageImage>();
     }
 
     void Update()
@@ -95,6 +97,8 @@ public class NormalAttack_KH : MonoBehaviour
 
         int damage = targetHitPoint - (myAttackPower - targetDefensePower);
         _writeHitPoint.UpdateHitPoint(targetStatus, damage);      // targetStatusÇÃHPÇçXêV
+
+        _createDamageImage.InstantiateDamageImage(gameObject, myAttackPower - targetDefensePower);
     }
 
     /// <summary>
