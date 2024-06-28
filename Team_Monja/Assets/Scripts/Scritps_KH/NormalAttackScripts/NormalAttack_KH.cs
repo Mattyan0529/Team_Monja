@@ -60,14 +60,14 @@ public class NormalAttack_KH : MonoBehaviour
         //松本
         _characterAnim.NowAnim = "Attack";
 
-        // 通常攻撃エフェクトを表示
-        _effectManager.ShowNormalAttackEffect(transform);
-
         _isAttack = true;
         _canUseNormalAttack = false;
         _coolTimeUI.StartCoolTime();
 
         _attackArea.SetActive(true);
+
+        // 通常攻撃エフェクトを表示
+        _effectManager.ShowNormalAttackEffect(transform);
     }
 
     /// <summary>
