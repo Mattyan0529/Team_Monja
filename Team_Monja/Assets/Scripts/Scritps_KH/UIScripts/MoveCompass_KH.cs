@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MoveCompass : MonoBehaviour
+public class MoveCompass_KH : MonoBehaviour
 {
     // 目的地となるオブジェクト
     [Header("ボスをいれてね")]
