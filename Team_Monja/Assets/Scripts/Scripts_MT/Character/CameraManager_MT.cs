@@ -77,7 +77,7 @@ public class CameraManager_MT : MonoBehaviour
     {
         if (_InWall)
         {
-            playerCamera.nearClipPlane = 7.5f; // “§‰ß‹——£‚ğİ’è
+            playerCamera.nearClipPlane = 7.25f; // “§‰ß‹——£‚ğİ’è
         }
         else
         {

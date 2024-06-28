@@ -17,6 +17,8 @@ public class CharacterComponentManager_MT : MonoBehaviour
 
     // キャラ変更した時に倍率を掛けなおす
     private StatusManager_MT statusManager;
+    //敵のHPバーを変更時に更新
+    private EnemyHP_MT enemyHP;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +37,8 @@ public class CharacterComponentManager_MT : MonoBehaviour
         _currentTag = this.gameObject.tag;
 
         statusManager = GetComponent<StatusManager_MT>();
+        //子オブジェクトからコンポーネントを取得
+        enemyHP = GetComponentInChildren<EnemyHP_MT>();
     }
 
     // Update is called once per frame
@@ -52,6 +56,7 @@ public class CharacterComponentManager_MT : MonoBehaviour
                 {
                     statusManager.ApplyMultipliers();
                     statusManager.HealHP(9999999);
+                    enemyHP.CameraChange();
                 }
             }
             else if (this.gameObject.CompareTag("Enemy")|| this.gameObject.CompareTag("Boss"))

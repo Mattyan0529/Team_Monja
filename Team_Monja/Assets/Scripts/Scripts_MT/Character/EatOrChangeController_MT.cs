@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class EatOrChangeController_MT : MonoBehaviour
 {
-    EatEnemy_MT eatEnemy;
-    ChangeCharacter_MT changeCharacter;
-    EnemyTriggerManager_MT enemyTriggerManager;
+    private EatEnemy_MT eatEnemy;
+    private ChangeCharacter_MT changeCharacter;
+    private EnemyTriggerManager_MT enemyTriggerManager;
+
 
     void Start()
     {
         eatEnemy = GetComponent<EatEnemy_MT>();
         changeCharacter = GetComponent<ChangeCharacter_MT>();
         enemyTriggerManager = GetComponent<EnemyTriggerManager_MT>();
+
 
         if (eatEnemy == null)
         {
