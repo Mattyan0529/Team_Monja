@@ -83,7 +83,6 @@ public class MonsterSkill_KH : MonoBehaviour
 
     void Update()
     {
-        GameobjectTagJudge();
         UpdateTime();
 
         // 乗り移りが発生したらタグを変更（Mが押されたが乗り移りが発生しなかったときも処理が走ってしまう）
@@ -96,7 +95,7 @@ public class MonsterSkill_KH : MonoBehaviour
     /// <summary>
     /// モンスターからプレイヤーに変わったらスクリプト切り替え
     /// </summary>
-    private void GameobjectTagJudge()
+    public void GameobjectTagJudge()
     {
         if (gameObject.CompareTag("Player"))
         {

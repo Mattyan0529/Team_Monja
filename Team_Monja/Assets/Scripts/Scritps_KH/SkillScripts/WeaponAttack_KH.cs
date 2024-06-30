@@ -20,7 +20,7 @@ public class WeaponAttack_KH : MonoBehaviour
     private MonsterRandomWalk_KH _monsterRandomWalk = default;
     private PlayerRangeInJudge_KH _playerRangeInJudge = default;
     private PlayerMove_MT _playerMove = default;
-    private CreateDamageImage _createDamageImage = default;
+    private CreateDamageImage_KH _createDamageImage = default;
 
     private bool _isAttack = false;
 
@@ -38,7 +38,7 @@ public class WeaponAttack_KH : MonoBehaviour
     {
         _writeHitPoint = _residentScript.GetComponent<WriteHitPoint_KH>();
         _soundEffectManagement = _residentScript.GetComponent<SoundEffectManagement_KH>();
-        _createDamageImage = _residentScript.GetComponent<CreateDamageImage>();
+        _createDamageImage = _residentScript.GetComponent<CreateDamageImage_KH>();
         _characterAnim = GetComponent<CharacterAnim_MT>();
         _audioSource = GetComponent<AudioSource>();
 
@@ -112,8 +112,8 @@ public class WeaponAttack_KH : MonoBehaviour
         if (myAttackPower < targetDefensePower) return;        // 防御力のほうが高かったら0ダメージ
 
         int damage = targetHitPoint - (myAttackPower - targetDefensePower);
+        _createDamageImage.InstantiateDamageImage(gameObject, targetStatus.gameObject, myAttackPower - targetDefensePower);
         _writeHitPoint.UpdateHitPoint(targetStatus, damage);      // targetStatusのHPを更新
-        _createDamageImage.InstantiateDamageImage(gameObject, myAttackPower - targetDefensePower);
     }
 
     /// <summary>

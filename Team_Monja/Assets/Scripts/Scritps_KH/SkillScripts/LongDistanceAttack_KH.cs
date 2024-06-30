@@ -14,7 +14,7 @@ public class LongDistanceAttack_KH : MonoBehaviour
     private BulletHitDecision_KH _bulletHitDecision = default;
     private SoundEffectManagement_KH _soundEffectManagement = default;
     private AudioSource _audioSource = default;
-    private CreateDamageImage _createDamageImage = default;
+    private CreateDamageImage_KH _createDamageImage = default;
 
     private float _deleteTime = 2f;
     private float _elapsedTime = 0f;
@@ -24,7 +24,7 @@ public class LongDistanceAttack_KH : MonoBehaviour
     void Start()
     {
         _writeHitPoint = _residentScript.GetComponent<WriteHitPoint_KH>();
-        _createDamageImage = _residentScript.GetComponent<CreateDamageImage>();
+        _createDamageImage = _residentScript.GetComponent<CreateDamageImage_KH>();
         _soundEffectManagement = _residentScript.GetComponent<SoundEffectManagement_KH>();
 
         // 子オブジェクトからBulletを取得
@@ -88,9 +88,8 @@ public class LongDistanceAttack_KH : MonoBehaviour
         if (myAttackPower < targetDefensePower) return;        // 防御力のほうが高かったら0ダメージ
 
         int damage = targetHitPoint - (myAttackPower - targetDefensePower);
-
+        _createDamageImage.InstantiateDamageImage(gameObject, targetStatus.gameObject, myAttackPower - targetDefensePower);
         _writeHitPoint.UpdateHitPoint(targetStatus, damage);      // targetStatusのHPを更新
-        _createDamageImage.InstantiateDamageImage(gameObject, myAttackPower - targetDefensePower);
     }
 
     /// <summary>

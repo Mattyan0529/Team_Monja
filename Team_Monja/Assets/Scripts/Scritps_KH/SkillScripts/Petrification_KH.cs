@@ -78,6 +78,8 @@ public class Petrification_KH : MonoBehaviour
             _playerMove.enabled = false;
             _rigidbody.velocity = Vector3.zero;
 
+            Debug.Log(_playerMove);
+
             _isPetrification = true;
         }
     }
@@ -105,6 +107,8 @@ public class Petrification_KH : MonoBehaviour
         else if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss"))       // ƒvƒŒƒCƒ„[‚ÌÎ‰»‚ğ‰ğœ‚·‚éê‡
         {
             _playerMove.enabled = true;
+
+            Debug.Log(_playerMove);
 
             _isPetrification = false;
         }

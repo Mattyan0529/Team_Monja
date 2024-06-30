@@ -20,7 +20,7 @@ public class EffectManager : MonoBehaviour
 
     // 通常攻撃エフェクトのスケール
     [SerializeField]
-    private Vector3 normalAttackEffectScale = new Vector3(1.0f, 1.0f, 1.0f);
+    private Vector3 normalAttackEffectScale = new Vector3(0.5f, 0.5f, 0.5f);
 
     [Space(20)]
     [Header("SpecialAttack")]

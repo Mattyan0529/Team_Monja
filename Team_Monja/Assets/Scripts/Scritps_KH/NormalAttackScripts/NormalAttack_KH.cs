@@ -25,7 +25,7 @@ public class NormalAttack_KH : MonoBehaviour
 
     private WriteHitPoint_KH _writeHitPoint = default;
     private CoolTimeUI _coolTimeUI = default;
-    private CreateDamageImage _createDamageImage = default;
+    private CreateDamageImage_KH _createDamageImage = default;
     //松本
     private CharacterAnim_MT _characterAnim = default;
 
@@ -34,7 +34,7 @@ public class NormalAttack_KH : MonoBehaviour
         _writeHitPoint = _residentScript.GetComponent<WriteHitPoint_KH>();
         _characterAnim = GetComponent<CharacterAnim_MT>();
         _coolTimeUI = _coolTimeUIObj.GetComponent<CoolTimeUI>();
-        _createDamageImage = _residentScript.GetComponent<CreateDamageImage>();
+        _createDamageImage = _residentScript.GetComponent<CreateDamageImage_KH>();
     }
 
     void Update()
@@ -96,9 +96,8 @@ public class NormalAttack_KH : MonoBehaviour
         if (myAttackPower < targetDefensePower) return;        // 防御力のほうが高かったら0ダメージ
 
         int damage = targetHitPoint - (myAttackPower - targetDefensePower);
+        _createDamageImage.InstantiateDamageImage(gameObject, targetStatus.gameObject, myAttackPower - targetDefensePower);
         _writeHitPoint.UpdateHitPoint(targetStatus, damage);      // targetStatusのHPを更新
-
-        _createDamageImage.InstantiateDamageImage(gameObject, myAttackPower - targetDefensePower);
     }
 
     /// <summary>

@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class CreateDamageImage : MonoBehaviour
+public class CreateDamageImage_KH : MonoBehaviour
 {
     [SerializeField]
     private GameObject _damageImage = default;
@@ -16,8 +16,11 @@ public class CreateDamageImage : MonoBehaviour
         _damageImage.SetActive(false);
     }
 
-    public void InstantiateDamageImage(GameObject player, int damage)
+    public void InstantiateDamageImage(GameObject player, GameObject target, int damage)
     {
+        // 死んでたらダメージを表示しない
+        if (target.GetComponent<CharacterDeadDecision_MT>().IsDeadDecision()) return;
+
         Vector3 position = new Vector3
             (player.transform.position.x, player.transform.position.y + _createAddY, player.transform.position.z);
 
