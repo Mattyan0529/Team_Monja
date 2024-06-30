@@ -6,7 +6,7 @@ public class CameraManager_MT : MonoBehaviour
 {
     private Camera playerCamera;
     private AudioListener audioListener;
-   
+    private EnemyHP_MT enemyHP;
 
     private float mouseSensitivity = 100.0f; // マウス感度
     private Transform playerBody; // カメラが追従するプレイヤーオブジェクト
@@ -19,7 +19,7 @@ public class CameraManager_MT : MonoBehaviour
         //子オブジェクトからコンポーネント取得
         playerCamera = GetComponentInChildren<Camera>();
         audioListener = GetComponentInChildren<AudioListener>();
-      
+        enemyHP = GetComponentInChildren<EnemyHP_MT>();
 
         // カーソルをロックして画面中央に固定
         Cursor.lockState = CursorLockMode.Locked;
@@ -47,6 +47,7 @@ public class CameraManager_MT : MonoBehaviour
             audioListener.enabled = true;
             CameraMove();
             CameraTransparent();
+            enemyHP.CameraChange();
         }
         //敵のとき
         else if (this.gameObject.CompareTag("Enemy")|| this.gameObject.CompareTag("Boss"))
