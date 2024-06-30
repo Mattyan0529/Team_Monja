@@ -15,7 +15,6 @@ public class CharacterDeadDecision_MT : MonoBehaviour
     private PlayerMove_MT _playerMove = default;
     private PlayerSkill_KH _playerSkill = default;
     private NormalAttack_KH _normalAttack = default;
-    private PlayerGuard_KH _playerGuard = default;
     private CameraManager_MT _cameraManager = default;
 
     private bool _isAlive = true;
@@ -33,8 +32,7 @@ public class CharacterDeadDecision_MT : MonoBehaviour
         _playerRangeInJudge = GetComponent<PlayerRangeInJudge_KH>();
         _playerMove = GetComponent<PlayerMove_MT>();
         _playerSkill = GetComponent<PlayerSkill_KH>();
-        TryGetComponent<NormalAttack_KH>(out _normalAttack);
-        TryGetComponent<PlayerGuard_KH>(out _playerGuard);
+        _normalAttack = GetComponent<NormalAttack_KH>();
     }
 
     void Update()
@@ -83,15 +81,7 @@ public class CharacterDeadDecision_MT : MonoBehaviour
         _monsterSkill.enabled = false;
         _playerMove.enabled = false;
         _playerSkill.enabled = false;
-
-        if (_normalAttack != null)
-        {
-            _normalAttack.enabled = false;
-        }
-        else if(_playerGuard != null)
-        {
-            _playerGuard.enabled = false;
-        }
+        _normalAttack.enabled = false;
 
         _characterAnim.NowAnim = "Die";
 

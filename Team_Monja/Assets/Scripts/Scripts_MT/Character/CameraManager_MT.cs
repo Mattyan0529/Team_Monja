@@ -8,7 +8,7 @@ public class CameraManager_MT : MonoBehaviour
     private AudioListener audioListener;
    
 
-    private float mouseSensitivity = 1000.0f; // マウス感度
+    private float mouseSensitivity = 100.0f; // マウス感度
     private Transform playerBody; // カメラが追従するプレイヤーオブジェクト
     private bool _InWall = false;//カメラが壁の中に入っているか
 
