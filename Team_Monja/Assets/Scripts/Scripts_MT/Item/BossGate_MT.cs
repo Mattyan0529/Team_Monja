@@ -30,4 +30,8 @@ public class BossGate_MT : MonoBehaviour
             Debug.Log("OnTrrigerED");
         }
     }
+    private void OnTriggerExit(Collider other)
+    {
+        _collider.isTrigger = false;
+    }
 }
