@@ -9,7 +9,6 @@ public class ChangeCharacter_MT : MonoBehaviour
     private GameObject _residentScript = default;
     private AudioSource _audioSource = default;
     private SoundEffectManagement_KH _soundEffectManagement = default;
-    private MonsterSkill_KH _monsterSkill = default;
 
     [SerializeField,Header("このキャラクターの番号をいれてねてね")]
     private int _IconNum = default;
@@ -25,8 +24,6 @@ public class ChangeCharacter_MT : MonoBehaviour
     {
         // 追記：北
         _soundEffectManagement = _residentScript.GetComponent<SoundEffectManagement_KH>();
-        _monsterSkill = GetComponent<MonsterSkill_KH>();
-        _audioSource = GetComponent<AudioSource>();
 
         // プレイヤーのChangeIcon_MTコンポーネントを取得
         changeIcon = _canvas.GetComponentInChildren<ChangeIcon_MT>();
@@ -74,8 +71,8 @@ public class ChangeCharacter_MT : MonoBehaviour
                 objectsInTrigger.Remove(closestObject);
 
                 // 死んだときに切ったスクリプトを復活　追記：北
-                MonsterSkill_KH monsterSkill = closestObject.GetComponent<MonsterSkill_KH>();
-                monsterSkill.enabled = true;
+                closestObject.GetComponent<MonsterSkill_KH>().enabled = true;
+                if (_audioSource == null)
                 {
                     _audioSource = GetComponentInChildren<AudioSource>();
                 }
@@ -89,11 +86,6 @@ public class ChangeCharacter_MT : MonoBehaviour
                 statusManagerPlayer.HP = 0;
                 //自身のタグを変更
                 this.gameObject.tag = "Enemy";
-
-                // 元のプレイヤーのMonsterSkillのプレイヤーを変更
-                _monsterSkill.GameobjectTagJudge();
-                // 新しいプレイヤーのMonsterSkillのプレイヤーを変更
-                monsterSkill.GameobjectTagJudge();
             }
             else
             {

@@ -5,6 +5,9 @@ public class FlySkill_KH : MonoBehaviour
     [SerializeField]
     private GameObject _residentScript = default;
 
+    [SerializeField]
+    private EffectManager _effectManager; // EffectManager‚ÌQÆ‚ğ’Ç‰Á
+
     private Rigidbody _rigidbody = default;
     private AudioSource _audioSource = default;
 

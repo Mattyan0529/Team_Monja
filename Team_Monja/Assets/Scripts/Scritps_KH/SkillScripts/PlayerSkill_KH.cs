@@ -73,7 +73,7 @@ public class PlayerSkill_KH : MonoBehaviour
     /// <summary>
     /// n‚Ü‚Á‚½“_‚ÅEnemy‚¾‚Á‚½‚ç©“®‚ÅEnemyó‘Ô‚É‚·‚é
     /// </summary>
-    public void GameobjectTagJudge()
+    private void GameobjectTagJudge()
     {
         if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss"))
         {

@@ -5,6 +5,13 @@ public class HighSpeedAssault_KH : MonoBehaviour
     [SerializeField]
     private GameObject _residentScript;
 
+    [SerializeField]
+    private EffectManager _effectManager; // EffectManagerの参照を追加
+
+
+    // エフェクトのインスタンス
+    private GameObject _speedUpEffectInstance;
+
     private WriteHitPoint_KH _writeHitPoint = default;
     private MonsterRandomWalk_KH _monsterRandomWalk = default;
     private PlayerMove_MT _playerMove = default;
@@ -66,6 +73,7 @@ public class HighSpeedAssault_KH : MonoBehaviour
 
             // SEが鳴る
             _soundEffectManagement.PlaySlashAttackSound(_audioSource);
+
         }
         else if (gameObject.CompareTag("Player"))
         {
@@ -85,6 +93,16 @@ public class HighSpeedAssault_KH : MonoBehaviour
             _soundEffectManagement.PlaySlashAttackSound(_audioSource);
         }
 
+        //スキルエフェクト
+        if (_effectManager != null)
+        {
+            _effectManager.ShowSpecialAttackEffect(transform);
+        }
+        else
+        {
+            Debug.LogError("EffectManager component is not found.");
+        }
+
         _isSpeedUp = true;
     }
 
@@ -93,6 +111,9 @@ public class HighSpeedAssault_KH : MonoBehaviour
     /// </summary>
     private void SpeedDown()
     {
+
+
+        _isSpeedUp = false;
         if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss"))
         {
             _monsterRandomWalk.enabled = true;     // 方向転換をオン
@@ -103,7 +124,13 @@ public class HighSpeedAssault_KH : MonoBehaviour
         }
 
         _soundEffectManagement.StopSound(_audioSource);
-        _isSpeedUp = false;
+
+        // エフェクトを無効にする
+        if (_speedUpEffectInstance != null)
+        {
+            Destroy(_speedUpEffectInstance);
+            _speedUpEffectInstance = null;
+        }
     }
 
     /// <summary>
@@ -149,7 +176,7 @@ public class HighSpeedAssault_KH : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (!_isSpeedUp) return;        // 高速突撃中でなければ処理を行わない
-        if (collision.gameObject.GetComponent<PlayerGuard_KH>() && 
+        if (collision.gameObject.GetComponent<PlayerGuard_KH>() &&
             !collision.gameObject.GetComponent<PlayerGuard_KH>().IsGuard) return;       // ガード中であれば攻撃無効
 
         if ((gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss")) && collision.gameObject.CompareTag("Player"))       // 自分がモンスターで相手がプレイヤーだった場合

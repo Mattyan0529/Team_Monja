@@ -6,7 +6,7 @@ public class IconFlashing_KH : MonoBehaviour
     private Image _image = default;
 
     // ‚±‚Ì’l‚ª‘å‚«‚¢‚Ù‚Ç‘¬‚­“_–Å‚·‚é
-    private float _flashingTime = 5f;
+    private float _flashingTime = 3f;
 
     void Start()
     {

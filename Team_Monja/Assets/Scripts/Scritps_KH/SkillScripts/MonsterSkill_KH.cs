@@ -10,10 +10,6 @@ public class MonsterSkill_KH : MonoBehaviour
     private Sprite _skillIcon = default;
     [SerializeField]
     private GameObject _skillSpriteObj = default;
-    [SerializeField]
-    private Sprite _normalIcon = default;
-    [SerializeField]
-    private GameObject _normalAttackSpriteObj = default;
 
     private float _updateTime = 0f;    // 何秒おきにスキルを呼び出すか
     private float _elapsedTime = default;
@@ -27,7 +23,6 @@ public class MonsterSkill_KH : MonoBehaviour
     private PlayerManager_KH _playerManager = default;
     private MonsterRandomWalk_KH _monsterRandomWalk = default;
     private SkillSpriteChange_KH _skillSpriteChange = default;
-    private SkillSpriteChange_KH _normalAttackSpriteChange = default;
 
     private HighSpeedAssault_KH _highSpeedAssault = default;
     private WeaponAttack_KH _weaponAttack = default;
@@ -82,13 +77,13 @@ public class MonsterSkill_KH : MonoBehaviour
         _characterAnim = GetComponent<CharacterAnim_MT>();
 
         _skillSpriteChange = _skillSpriteObj.GetComponent<SkillSpriteChange_KH>();
-        _normalAttackSpriteChange = _normalAttackSpriteObj.GetComponent<SkillSpriteChange_KH>();
         GameobjectTagJudge();
         _updateTime = Random.Range(_minTimeSpacing, _maxTimeSpacing);
     }
 
     void Update()
     {
+        GameobjectTagJudge();
         UpdateTime();
 
         // 乗り移りが発生したらタグを変更（Mが押されたが乗り移りが発生しなかったときも処理が走ってしまう）
@@ -101,7 +96,7 @@ public class MonsterSkill_KH : MonoBehaviour
     /// <summary>
     /// モンスターからプレイヤーに変わったらスクリプト切り替え
     /// </summary>
-    public void GameobjectTagJudge()
+    private void GameobjectTagJudge()
     {
         if (gameObject.CompareTag("Player"))
         {
@@ -110,7 +105,6 @@ public class MonsterSkill_KH : MonoBehaviour
             _followArea.transform.SetParent(gameObject.transform);
             _playerSkill.enabled = true;
             _skillSpriteChange.ChangeSprite(_skillIcon);
-            _normalAttackSpriteChange.ChangeSprite(_normalIcon);
 
             if (GetComponent<NormalAttack_KH>())
             {

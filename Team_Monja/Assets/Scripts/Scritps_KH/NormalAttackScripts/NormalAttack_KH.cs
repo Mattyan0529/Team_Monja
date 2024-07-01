@@ -97,7 +97,7 @@ public class NormalAttack_KH : MonoBehaviour
 
         int damage = targetHitPoint - (myAttackPower - targetDefensePower);
         _createDamageImage.InstantiateDamageImage(gameObject, targetStatus.gameObject, myAttackPower - targetDefensePower);
-        _writeHitPoint.UpdateHitPoint(targetStatus, damage);      // targetStatusのHPを更新
+        _writeHitPoint.UpdateHitPoint(targetStatus, damage);      // targetStatusのHPを更新  
     }
 
     /// <summary>

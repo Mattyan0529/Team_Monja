@@ -5,6 +5,9 @@ public class LongDistanceAttack_KH : MonoBehaviour
     [SerializeField]
     private GameObject _residentScript;
 
+    [SerializeField]
+    private EffectManager _effectManager; // EffectManagerの参照を追加
+
     private float _bulletSpeed = 50f;
 
     private float _addSpownPos = 1f;     // 弾を生成するときにyに足す値
@@ -59,6 +62,15 @@ public class LongDistanceAttack_KH : MonoBehaviour
         _soundEffectManagement.PlayLongDistanceAttackSound(_audioSource);
 
         _isShot = true;
+        //スキルエフェクト
+        if (_effectManager != null)
+        {
+            _effectManager.ShowSpecialAttackEffect(transform);
+        }
+        else
+        {
+            Debug.LogError("EffectManager component is not found.");
+        }
     }
 
     /// <summary>

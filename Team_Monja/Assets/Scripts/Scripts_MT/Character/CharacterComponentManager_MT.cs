@@ -56,6 +56,7 @@ public class CharacterComponentManager_MT : MonoBehaviour
                 {
                     statusManager.ApplyMultipliers();
                     statusManager.HealHP(9999999);
+                    enemyHP.CameraChange();
                     enemyHP.TagCheck();
                     enemyHP.SetPlayerArea();
                 }

@@ -5,6 +5,9 @@ public class Petrification_KH : MonoBehaviour
     [SerializeField]
     private GameObject _residentScript = default;
 
+    [SerializeField]
+    private EffectManager _effectManager; // EffectManagerの参照を追加
+
     private PlayerMove_MT _playerMove = default;
     private MonsterRandomWalk_KH _monsterRandomWalk = default;
     private PlayerRangeInJudge_KH _playerRangeInJudge = default;
@@ -48,6 +51,16 @@ public class Petrification_KH : MonoBehaviour
         }
         // SEを鳴らす
         _soundEffectManagement.PlayMagicSound(_audioSource);
+
+        //スキルエフェクト
+        if (_effectManager != null)
+        {
+            _effectManager.ShowSpecialAttackEffect(transform);
+        }
+        else
+        {
+            Debug.LogError("EffectManager component is not found.");
+        }
     }
 
     /// <summary>
@@ -78,8 +91,6 @@ public class Petrification_KH : MonoBehaviour
             _playerMove.enabled = false;
             _rigidbody.velocity = Vector3.zero;
 
-            Debug.Log(_playerMove);
-
             _isPetrification = true;
         }
     }
@@ -107,8 +118,6 @@ public class Petrification_KH : MonoBehaviour
         else if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss"))       // プレイヤーの石化を解除する場合
         {
             _playerMove.enabled = true;
-
-            Debug.Log(_playerMove);
 
             _isPetrification = false;
         }
