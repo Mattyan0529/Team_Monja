@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using System.Collections; // これが必要な名前空間のインポートよ
 
 public class SceneSwitcher_SM : MonoBehaviour
 {
@@ -66,23 +65,6 @@ public class SceneSwitcher_SM : MonoBehaviour
     // シーンをロードするメソッド
     private void LoadScene()
     {
-        // 現在のシーンをアンロードしてから新しいシーンをロード
-        StartCoroutine(UnloadCurrentAndLoadNewScene());
-    }
-
-    // 現在のシーンをアンロードしてから新しいシーンをロードするコルーチン
-    private IEnumerator UnloadCurrentAndLoadNewScene()
-    {
-        // 現在のシーンをアンロード
-        AsyncOperation unloadOperation = SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
-
-        // アンロードが完了するまで待つ
-        while (!unloadOperation.isDone)
-        {
-            yield return null;
-        }
-
-        // 新しいシーンをロード
         SceneManager.LoadScene(sceneName);
     }
 

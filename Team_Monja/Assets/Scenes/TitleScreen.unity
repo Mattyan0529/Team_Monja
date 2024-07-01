@@ -247,9 +247,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b31c5641aa98f284a8a7345181deda49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: 
+  sceneName: TitleScreen
   optionPanel: {fileID: 0}
-  useEnterKey: 0
+  useEnterKey: 1
   useBackspaceKey: 0
   useEscapeKey: 0
 --- !u!114 &65069951
