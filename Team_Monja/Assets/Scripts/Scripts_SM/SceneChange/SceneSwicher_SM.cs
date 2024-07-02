@@ -43,10 +43,6 @@ public class SceneSwitcher_SM : MonoBehaviour
             LoadScene();
         }
 
-        if (useEscapeKey && Input.GetKeyDown(KeyCode.Escape))
-        {
-            ToggleOptionPanel();
-        }
     }
 
     // ボタンクリック時に呼ばれるメソッド
@@ -78,12 +74,5 @@ public class SceneSwitcher_SM : MonoBehaviour
 #endif
     }
 
-    // オプション画面の表示/非表示を切り替えるメソッド
-    private void ToggleOptionPanel()
-    {
-        if (optionPanel != null)
-        {
-            optionPanel.SetActive(!optionPanel.activeSelf);
-        }
-    }
+
 }
