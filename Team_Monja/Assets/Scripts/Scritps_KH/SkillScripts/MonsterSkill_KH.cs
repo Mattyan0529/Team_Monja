@@ -10,6 +10,10 @@ public class MonsterSkill_KH : MonoBehaviour
     private Sprite _skillIcon = default;
     [SerializeField]
     private GameObject _skillSpriteObj = default;
+    [SerializeField]
+    private Sprite _normalAttackIcon = default;
+    [SerializeField]
+    private GameObject _normalAttackSpriteObj = default;
 
     private float _updateTime = 0f;    // âΩïbÇ®Ç´Ç…ÉXÉLÉãÇåƒÇ—èoÇ∑Ç©
     private float _elapsedTime = default;
@@ -23,6 +27,7 @@ public class MonsterSkill_KH : MonoBehaviour
     private PlayerManager_KH _playerManager = default;
     private MonsterRandomWalk_KH _monsterRandomWalk = default;
     private SkillSpriteChange_KH _skillSpriteChange = default;
+    private SkillSpriteChange_KH _normalAttackSpriteChange = default;
 
     private HighSpeedAssault_KH _highSpeedAssault = default;
     private WeaponAttack_KH _weaponAttack = default;
@@ -77,6 +82,7 @@ public class MonsterSkill_KH : MonoBehaviour
         _characterAnim = GetComponent<CharacterAnim_MT>();
 
         _skillSpriteChange = _skillSpriteObj.GetComponent<SkillSpriteChange_KH>();
+        _normalAttackSpriteChange = _normalAttackSpriteObj.GetComponent<SkillSpriteChange_KH>();
         GameobjectTagJudge();
         _updateTime = Random.Range(_minTimeSpacing, _maxTimeSpacing);
     }
@@ -105,6 +111,7 @@ public class MonsterSkill_KH : MonoBehaviour
             _followArea.transform.SetParent(gameObject.transform);
             _playerSkill.enabled = true;
             _skillSpriteChange.ChangeSprite(_skillIcon);
+            _normalAttackSpriteChange.ChangeSprite(_normalAttackIcon);
 
             if (GetComponent<NormalAttack_KH>())
             {

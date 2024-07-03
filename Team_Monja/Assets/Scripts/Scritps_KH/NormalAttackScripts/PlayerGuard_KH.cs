@@ -2,20 +2,35 @@ using UnityEngine;
 
 public class PlayerGuard_KH : MonoBehaviour
 {
-    private bool _isGuard = false;
+    [SerializeField]
+    private GameObject _coolTimeObj = default;
 
-    private float _deleteTime = 1f;
+    private bool _isGuard = false;
+    private bool _canUseGuard = true;
+
+    private float _deleteTime = 0.5f;
     private float _elapsedTime = 0f;
+
+    private float _coolTime = 0.5f;
+    private float _coolTimeElapsedTime = 0f;
+
+    private CoolTimeUI _coolTimeUI = default;
 
     public bool IsGuard
     {
         get { return _isGuard; }
     }
 
+    private void Start()
+    {
+        _coolTimeUI = _coolTimeObj.GetComponent<CoolTimeUI>();
+    }
+
     void Update()
     {
         GuardManagement();
         UpdateTime();
+        UpdateCoolTime();
     }
 
     /// <summary>
@@ -25,12 +40,13 @@ public class PlayerGuard_KH : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if(_isGuard == false)
-            {
-                _elapsedTime = 0f;
-            }
+            if (_isGuard == true) return;
 
-            _isGuard = !_isGuard;
+            _canUseGuard = false;
+            _elapsedTime = 0f;
+            _coolTimeElapsedTime = 0f;
+            _coolTimeUI.StartCoolTime();
+            _isGuard = true;
         }
     }
 
@@ -47,6 +63,24 @@ public class PlayerGuard_KH : MonoBehaviour
         {
             _isGuard = false;
             _elapsedTime = 0f;
+        }
+    }
+
+    /// <summary>
+    /// çƒìxÉKÅ[ÉhÇ™Ç≈Ç´ÇÈÇÊÇ§Ç…Ç∑ÇÈ
+    /// </summary>
+    private void UpdateCoolTime()
+    {
+        if (_canUseGuard) return;
+
+        // éûä‘â¡éZ
+        _coolTimeElapsedTime += Time.deltaTime;
+
+        // ãKíËéûä‘Ç…íBÇµÇƒÇ¢ÇΩèÍçá
+        if (_coolTimeElapsedTime > _coolTime)
+        {
+            _coolTimeElapsedTime = 0f;
+            _canUseGuard = true;
         }
     }
 }
