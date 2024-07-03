@@ -11,6 +11,8 @@ public class EnemyHP_MT : MonoBehaviour
     private StatusManager_MT _statusManager;
     private EnemyTriggerManager_MT _enemyTriggerManager;
 
+    private Transform _childObj;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,9 +20,9 @@ public class EnemyHP_MT : MonoBehaviour
         _statusManager = GetComponentInParent<StatusManager_MT>();
         _collider = GetComponentInParent<Collider>();
         _moveSlider = GetComponentInChildren<MoveSlider_MT>();
+        _childObj = transform.GetChild(0);
 
         SetPlayerArea(); // プレイヤーとそのコンポーネントを取得
-        CameraChange(); // カメラを設定
         TagCheck(); // タグに基づいてCanvasの初期状態を設定
     }
 
@@ -32,43 +34,34 @@ public class EnemyHP_MT : MonoBehaviour
         NearEnemyCheck(); // 敵が近くにいる場合にCanvasを表示する
     }
 
-    // Canvasをメインカメラに設定
-    public void CameraChange()
-    {
-        _canvas.worldCamera = Camera.main;
-    }
 
-    // プレイヤーを見つけてEnemyTriggerManagerを取得
+    // EnemyTriggerManagerを取得
     public void SetPlayerArea()
     {
-        GameObject player = GameObject.FindWithTag("Player");
-        if (player != null)
+        GameObject nearTrigger = GameObject.FindWithTag("NearTrigger");
+        if (nearTrigger != null)
         {
-            _enemyTriggerManager = player.GetComponent<EnemyTriggerManager_MT>();
+            _enemyTriggerManager = nearTrigger.GetComponent<EnemyTriggerManager_MT>();
         }
         else
         {
-            Debug.LogError("Player not found.");
+            Debug.LogError("NearTrigger not found.");
         }
     }
 
-    // 敵でなければCanvasを非アクティブにする
+    // 敵でなければHPバーを非アクティブにする
     public void TagCheck()
     {
         if (!this.transform.parent.CompareTag("Enemy"))
         {
-            _canvas.enabled = false;
+           _childObj.gameObject.SetActive(false);
         }
     }
 
     // Canvasをメインカメラの方向に向ける
     private void LookCamera()
     {
-        if(Camera.main != null)
-        {
-            _canvas.transform.rotation = Camera.main.transform.rotation;
-        }
-
+        _canvas.transform.rotation = Camera.main.transform.rotation;
     }
 
     // スライダーの値を設定する
@@ -78,18 +71,18 @@ public class EnemyHP_MT : MonoBehaviour
         _moveSlider.SetCurrentHP(_statusManager.HP);
     }
 
-    // 敵が近くにいたらCanvasを表示する
+    // 敵が近くにいたらHPバーを表示する
     private void NearEnemyCheck()
     {
         if (this.transform.parent.CompareTag("Enemy"))
         {
             if (_enemyTriggerManager.objectsInTrigger.Contains(_collider))
             {
-                _canvas.enabled = true;
+                _childObj.gameObject.SetActive(true);
             }
             else
             {
-                _canvas.enabled = false;
+                _childObj.gameObject.SetActive(false);
             }
         }
     }

@@ -6,9 +6,26 @@ public class EnemyTriggerManager_MT : MonoBehaviour
 {
     public List<Collider> objectsInTrigger = new List<Collider>(); // トリガー内のオブジェクトを保持するリスト
 
+    private GameObject _playerObj;
 
-    //子オブジェクトのOnTriggerStayの処理
-    public void OnChildTriggerStayCanEat(Collider other)
+    private void Start()
+    {
+        SetToPlayer();
+    }
+
+    /// <summary>
+    /// プレイヤーを探して自身を子オブジェクトにする
+    /// </summary>
+    public void SetToPlayer()
+    {
+        _playerObj = GameObject.FindWithTag("Player");
+        transform.SetParent(_playerObj.transform);
+        this.transform.localPosition = Vector3.zero;
+    }
+
+
+
+    private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Boss"))
         {
@@ -21,7 +38,7 @@ public class EnemyTriggerManager_MT : MonoBehaviour
 
 
     // 子オブジェクトのOnTriggerExitの処理
-    public void OnChildTriggerExitCanEat(Collider other)
+    private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Boss"))
         {

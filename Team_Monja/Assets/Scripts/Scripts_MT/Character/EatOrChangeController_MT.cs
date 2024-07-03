@@ -7,27 +7,13 @@ public class EatOrChangeController_MT : MonoBehaviour
     private EatEnemy_MT eatEnemy;
     private ChangeCharacter_MT changeCharacter;
     private EnemyTriggerManager_MT enemyTriggerManager;
-
-
     void Start()
     {
         eatEnemy = GetComponent<EatEnemy_MT>();
         changeCharacter = GetComponent<ChangeCharacter_MT>();
-        enemyTriggerManager = GetComponent<EnemyTriggerManager_MT>();
 
-
-        if (eatEnemy == null)
-        {
-            Debug.LogError("EatEnemy_MT‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ");
-        }
-        if (changeCharacter == null)
-        {
-            Debug.LogError("ChangeCharacter_MT‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ");
-        }
-        if (enemyTriggerManager == null)
-        {
-            Debug.LogError("EnemyTriggerManager_MT‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ");
-        }
+        GameObject _nearTrigger = GameObject.FindWithTag("NearTrigger");
+        enemyTriggerManager = _nearTrigger.GetComponent<EnemyTriggerManager_MT>();
     }
 
     void Update()
@@ -48,7 +34,7 @@ public class EatOrChangeController_MT : MonoBehaviour
     {
         if (eatEnemy != null)
         {
-            eatEnemy.RemoveClosestObject(enemyTriggerManager.objectsInTrigger, transform);
+                eatEnemy.RemoveClosestObject(enemyTriggerManager.objectsInTrigger, transform);
         }
         else
         {
@@ -61,7 +47,7 @@ public class EatOrChangeController_MT : MonoBehaviour
     {
         if (changeCharacter != null)
         {
-            changeCharacter.ChangeTagClosestObject(enemyTriggerManager.objectsInTrigger, transform);
+                changeCharacter.ChangeTagClosestObject(enemyTriggerManager.objectsInTrigger, transform);
         }
         else
         {

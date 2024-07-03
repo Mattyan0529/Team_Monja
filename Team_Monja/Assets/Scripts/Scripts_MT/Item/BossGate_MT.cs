@@ -8,6 +8,7 @@ public class BossGate_MT : MonoBehaviour
 {
     [SerializeField] private GameObject _canvasObjBoss = default;
     [SerializeField] private GameObject _gateObj = default;
+    [SerializeField] private GameObject _pressF = default;
 
     private Canvas _canvasBoss;
     private Collider _collider;
@@ -22,16 +23,22 @@ public class BossGate_MT : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
 
-        if (other.gameObject.CompareTag("Player") && Input.GetKeyDown(KeyCode.F))
+        if (other.gameObject.CompareTag("Player") )
         {
-            _collider.isTrigger = true;
-            _canvasBoss.enabled = true;
-
-            Debug.Log("OnTrrigerED");
+            _pressF.SetActive(true);
+            if(Input.GetKeyDown(KeyCode.F))
+            {
+                _collider.isTrigger = true;
+                _canvasBoss.enabled = true;
+                _pressF.SetActive(false);
+            }
         }
     }
+
     private void OnTriggerExit(Collider other)
     {
         _collider.isTrigger = false;
+        _pressF.SetActive(false);
     }
+
 }

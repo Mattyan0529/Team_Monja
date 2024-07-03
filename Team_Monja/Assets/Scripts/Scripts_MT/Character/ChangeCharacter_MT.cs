@@ -19,32 +19,23 @@ public class ChangeCharacter_MT : MonoBehaviour
     StatusManager_MT statusManagerPlayer;
     StatusManager_MT statusManagerEnemy;
     ClosestEnemyFinder_MT closestEnemyFinder;
+    EnemyHP_MT enemyHP;
+    EnemyTriggerManager_MT enemyTriggerManager;
 
     void Start()
     {
         // 追記：北
         _soundEffectManagement = _residentScript.GetComponent<SoundEffectManagement_KH>();
 
-        // プレイヤーのChangeIcon_MTコンポーネントを取得
+        // プレイヤーのコンポーネントを取得
         changeIcon = _canvas.GetComponentInChildren<ChangeIcon_MT>();
-        if (changeIcon == null)
-        {
-            Debug.LogError("プレイヤーのChangeIcon_MTが見つかりません");
-        } 
-        
-        // プレイヤーのStatusManager_MTコンポーネントを取得
         statusManagerPlayer = GetComponent<StatusManager_MT>();
-        if (statusManagerPlayer == null)
-        {
-            Debug.LogError("プレイヤーのStatusManager_MTが見つかりません");
-        }
-
-        // ClosestEnemyFinder_MTコンポーネントを取得
         closestEnemyFinder = GetComponent<ClosestEnemyFinder_MT>();
-        if (closestEnemyFinder == null)
-        {
-            Debug.LogError("ClosestEnemyFinder_MTが見つかりません");
-        }
+        enemyHP = GetComponentInChildren<EnemyHP_MT>();
+
+        GameObject nearTrigger = GameObject.FindWithTag("NearTrigger");
+        enemyTriggerManager = nearTrigger.GetComponent<EnemyTriggerManager_MT>();
+
     }
 
     // objectsInTriggerリストから最も近い敵のタグPlayerにする
@@ -80,6 +71,9 @@ public class ChangeCharacter_MT : MonoBehaviour
 
                 // 近くの敵のタグを変更
                 closestObject.gameObject.tag = "Player";
+                // 近くの敵のRotationをリセット
+                closestObject.gameObject.transform.rotation = this.gameObject.transform.rotation;
+           
                 //アニメーションを初期化
                 closestObjectAnim.NowAnim = "NewCharacter";
                 //自身のHPを0にする

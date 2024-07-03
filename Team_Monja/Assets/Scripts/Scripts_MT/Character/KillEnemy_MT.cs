@@ -17,8 +17,10 @@ public class KillEnemy_MT : MonoBehaviour
     private void Start()
     {
         _closestEnemyFinder = GetComponent<ClosestEnemyFinder_MT>();
-        _enemyTriggerManager = GetComponent<EnemyTriggerManager_MT>();
         _gameEndCamera = GetComponent<GameEndCamera_MT>();
+
+        GameObject nearTrigger = GameObject.FindWithTag("NearTrigger");
+        _enemyTriggerManager = nearTrigger.GetComponent<EnemyTriggerManager_MT>();
     }
 
     // Update is called once per frame

@@ -5,57 +5,47 @@ using UnityEngine;
 public class CameraManager_MT : MonoBehaviour
 {
     private Camera playerCamera;
-    private AudioListener audioListener;
-   
+    private GameObject playerObj;
+    private EnemyHP_MT enemyHP;
 
     private float mouseSensitivity = 100.0f; // マウス感度
-    private Transform playerBody; // カメラが追従するプレイヤーオブジェクト
     private bool _InWall = false;//カメラが壁の中に入っているか
 
+    private Vector3 _cameraPosition = new Vector3(0, 6, -9);
+    private Vector3 _cameraRotation = new Vector3(15, 0, 0);
 
-
+    private void Awake()
+    {
+        CameraSwitch();
+    }
     void Start()
     {
-        //子オブジェクトからコンポーネント取得
-        playerCamera = GetComponentInChildren<Camera>();
-        audioListener = GetComponentInChildren<AudioListener>();
-      
+ 
+        playerCamera = GetComponent<Camera>();
 
         // カーソルをロックして画面中央に固定
         Cursor.lockState = CursorLockMode.Locked;
 
-        // プレイヤーのTransformを取得
-        playerBody = this.transform;
+      
     }
 
     // Update is called once per frame
     void Update()
     {
-        CameraSwitch();
+        CameraMove();
+        CameraTransparent();
     }
 
     /// <summary>
-    /// タグによってカメラを切り替える
+    ///プレイヤーにカメラをつける
     /// </summary>
-    private void CameraSwitch()
+    public void CameraSwitch()
     {
-        //プレイヤーのとき
-        if (this.gameObject.CompareTag("Player"))
-        {
-            playerCamera.tag = "MainCamera";
-            playerCamera.enabled = true;
-            audioListener.enabled = true;
-            CameraMove();
-            CameraTransparent();
-        }
-        //敵のとき
-        else if (this.gameObject.CompareTag("Enemy")|| this.gameObject.CompareTag("Boss"))
-        {
-            playerCamera.tag = "Untagged";
-            playerCamera.enabled = false;
-            audioListener.enabled = false;
-        }
-
+        playerObj = GameObject.FindWithTag("Player");
+        transform.SetParent(playerObj.transform);
+        this.transform.localPosition = _cameraPosition;
+        this.transform.localRotation = Quaternion.Euler(_cameraRotation);
+        
     }　
 
     /// <summary>
@@ -67,7 +57,7 @@ public class CameraManager_MT : MonoBehaviour
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
 
         // プレイヤーの水平回転
-        playerBody.Rotate(Vector3.up * mouseX);
+        playerObj.transform.Rotate(Vector3.up * mouseX);
     }
 
     /// <summary>
@@ -85,14 +75,13 @@ public class CameraManager_MT : MonoBehaviour
         }
     }
 
-    // 子オブジェクトのOnTriggerEnterの処理
-    public void OnChildTriggerEnterCamera(Collider other)
+
+    private void OnTriggerEnter(Collider other)
     {
         _InWall = true;
     }
 
-    // 子オブジェクトのOnTriggerExitの処理
-    public void OnChildTriggerExitCamera(Collider other)
+    private void OnTriggerExit(Collider other)
     {
         _InWall = false;
     }

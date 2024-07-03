@@ -23,20 +23,21 @@ public class GameEndCamera_MT : MonoBehaviour
     private bool _isCoroutineActive = false;//コルーチンが動作中かどうか
     private bool _isGameClear = false;//ゲームクリア
 
+
     private void Start()
     {
         //ボスのオブジェクトを取得
         GameObject bossObj = GameObject.FindWithTag("Boss");
 
         _cameraManager = GetComponent<CameraManager_MT>();
-        _statusManagerPlayer = GetComponent<StatusManager_MT>();
+        _statusManagerPlayer = GetComponentInParent<StatusManager_MT>();
         _statusManagerBoss = bossObj.GetComponent<StatusManager_MT>();
     }
 
     private void Update()
     {
         //誤動作防止
-        if (_statusManagerPlayer.HP > 0 && _isCoroutineActive && CompareTag("Player") && !_isGameClear)
+        if (_statusManagerPlayer.HP > 0 && _isCoroutineActive  && !_isGameClear)
         {
             ResetGameOverCorouine();
         }  
@@ -62,9 +63,6 @@ public class GameEndCamera_MT : MonoBehaviour
         //カメラの向きを設定
         _deadCameraRotation = new Vector3(90, 180, 0);
 
-        //カメラを取得
-        Camera mainCamera = Camera.main;
-
         //カメラ操作をできなくする
         _cameraManager.enabled = false;
 
@@ -85,8 +83,8 @@ public class GameEndCamera_MT : MonoBehaviour
         yield return new WaitForSeconds(slowTime);
 
         //死んだときのカメラを調整
-        mainCamera.transform.localPosition = _deadCameraPosition;
-        mainCamera.transform.localRotation = Quaternion.Euler(_deadCameraRotation);
+        transform.localPosition = _deadCameraPosition;
+        transform.localRotation = Quaternion.Euler(_deadCameraRotation);
 
         //時間停止
         Time.timeScale = 0;
@@ -104,9 +102,6 @@ public class GameEndCamera_MT : MonoBehaviour
 
         //何秒待つのか
         float slowTime = 1f;
-
-        //カメラを取得
-        Camera mainCamera = Camera.main;
 
         //カメラ操作をできなくする
         _cameraManager.enabled = false;
