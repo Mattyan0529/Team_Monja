@@ -96,7 +96,7 @@ public class MonsterSkill_KH : MonoBehaviour
     /// <summary>
     /// モンスターからプレイヤーに変わったらスクリプト切り替え
     /// </summary>
-    private void GameobjectTagJudge()
+    public void GameobjectTagJudge()
     {
         if (gameObject.CompareTag("Player"))
         {
