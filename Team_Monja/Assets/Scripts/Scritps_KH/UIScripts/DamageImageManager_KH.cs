@@ -19,7 +19,7 @@ public class DamageImageManager_KH : MonoBehaviour
     void Update()
     {
         UpdateTime();
-        transform.LookAt(_playerManager.Player.transform.Find("camera"));
+        transform.LookAt(_playerManager.Player.transform.Find("MainCamera"));
         transform.Rotate(0f, 180f, 0f);
     }
 
