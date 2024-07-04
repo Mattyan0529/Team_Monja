@@ -48,23 +48,24 @@ public class NormalAttack_KH : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Attack();
+            if (!_canUseNormalAttack) return;
+
+            //èºñ{
+            _characterAnim.NowAnim = "Attack";
+
+            _isAttack = true;
+            _canUseNormalAttack = false;
+            _coolTimeUI.StartCoolTime();
+
         }
     }
 
     /// <summary>
     /// çUåÇîÕàÕÇÃSphereÇê∂ê¨
     /// </summary>
-    private void Attack()
+    public void Attack()
     {
-        if (!_canUseNormalAttack) return;
-
-        //èºñ{
-        _characterAnim.NowAnim = "Attack";
-
-        _isAttack = true;
-        _canUseNormalAttack = false;
-        _coolTimeUI.StartCoolTime();
+        Debug.Log("wa");
 
         _attackArea.SetActive(true);
 

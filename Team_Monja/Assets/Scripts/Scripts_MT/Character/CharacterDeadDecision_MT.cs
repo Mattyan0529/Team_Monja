@@ -26,7 +26,7 @@ public class CharacterDeadDecision_MT : MonoBehaviour
     {
         _statusManager = GetComponent<StatusManager_MT>();
         _characterAnim = GetComponent<CharacterAnim_MT>();
-        _gameEndCamera = GetComponentInChildren<GameEndCamera_MT>();
+        _gameEndCamera = Camera.main.GetComponent<GameEndCamera_MT>();
         // í«ãLÅFñk
         _monsterRandomWalk = GetComponent<MonsterRandomWalk_KH>();
         _monsterSkill = GetComponent<MonsterSkill_KH>();
