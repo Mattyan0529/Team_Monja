@@ -82,10 +82,13 @@ public class WeaponAttack_KH : MonoBehaviour
             _playerMove.enabled = false;
         }
 
+        _soundEffectManagement.PlayStrongPunchSound(_audioSource);
+    }
+
+    private void CreateAttackArea()
+    {
         _isAttack = true;
         _attackArea.SetActive(true);
-
-        _soundEffectManagement.PlayStrongPunchSound(_audioSource);
     }
 
     /// <summary>
