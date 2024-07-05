@@ -32,6 +32,7 @@ public class PlayerSkill_KH : MonoBehaviour
     public bool IsUseSkill
     {
         get { return _isUseSkill; }
+        set { _isUseSkill = value; }
     }
 
     private void Awake()
@@ -135,7 +136,7 @@ public class PlayerSkill_KH : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1) && _skillNum == (int)MonsterSkill_KH.SkillType.Fly && _flySkill.IsFlying)
         {
-            _isUseSkill = true;
+            _isUseSkill = false;
             _flySkill.StopFly();
         }
         else if (Input.GetMouseButtonDown(1) && _canUseSkill)
@@ -178,7 +179,7 @@ public class PlayerSkill_KH : MonoBehaviour
     }
 
     /// <summary>
-    /// スキルを解除
+    /// スキルを再度使えるようにする
     /// </summary>
     private void UpdateTime()
     {
@@ -190,7 +191,6 @@ public class PlayerSkill_KH : MonoBehaviour
         {
             _elapsedTime = 0f;
             _canUseSkill = true;
-            _isUseSkill = false;
         }
     }
 

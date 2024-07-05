@@ -19,6 +19,7 @@ public class HighSpeedAssault_KH : MonoBehaviour
     private SoundEffectManagement_KH _soundEffectManagement = default;
     private AudioSource _audioSource = default;
     private CreateDamageImage_KH _createDamageImage = default;
+    private PlayerSkill_KH _playerSkill = default;
 
     private StatusManager_MT _myStatusManager = default;        // 自分のステータス
     private StatusManager_MT _targetStatusManager = default;    // 攻撃相手のステータス
@@ -36,6 +37,7 @@ public class HighSpeedAssault_KH : MonoBehaviour
         _createDamageImage = _residentScript.GetComponent<CreateDamageImage_KH>();
         _soundEffectManagement = _residentScript.GetComponent<SoundEffectManagement_KH>();
         _rigidbody = GetComponent<Rigidbody>();
+        _playerSkill = GetComponent<PlayerSkill_KH>();
 
         if (gameObject.tag == "Enemy" || gameObject.tag == "Boss")
         {
@@ -111,8 +113,6 @@ public class HighSpeedAssault_KH : MonoBehaviour
     /// </summary>
     private void SpeedDown()
     {
-
-
         _isSpeedUp = false;
         if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss"))
         {
@@ -131,6 +131,8 @@ public class HighSpeedAssault_KH : MonoBehaviour
             Destroy(_speedUpEffectInstance);
             _speedUpEffectInstance = null;
         }
+
+        _playerSkill.IsUseSkill = false;
     }
 
     /// <summary>

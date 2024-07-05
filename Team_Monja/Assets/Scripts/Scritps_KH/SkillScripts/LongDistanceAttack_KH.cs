@@ -17,6 +17,7 @@ public class LongDistanceAttack_KH : MonoBehaviour
     private SoundEffectManagement_KH _soundEffectManagement = default;
     private AudioSource _audioSource = default;
     private CreateDamageImage_KH _createDamageImage = default;
+    private PlayerSkill_KH _playerSkill = default;
 
     private float _deleteTime = 2f;
     private float _elapsedTime = 0f;
@@ -28,6 +29,7 @@ public class LongDistanceAttack_KH : MonoBehaviour
         _writeHitPoint = _residentScript.GetComponent<WriteHitPoint_KH>();
         _createDamageImage = _residentScript.GetComponent<CreateDamageImage_KH>();
         _soundEffectManagement = _residentScript.GetComponent<SoundEffectManagement_KH>();
+        _playerSkill = GetComponent<PlayerSkill_KH>();
 
         // 子オブジェクトからBulletを取得
         _bullet = transform.Find("Bullet").gameObject;
@@ -111,6 +113,7 @@ public class LongDistanceAttack_KH : MonoBehaviour
             _bullet.transform.SetParent(gameObject.transform);
             _elapsedTime = 0f;
             _isShot = false;
+            _playerSkill.IsUseSkill = false;
         }
     }
 

@@ -15,6 +15,7 @@ public class Petrification_KH : MonoBehaviour
     private AudioSource _audioSource = default;
     private SoundEffectManagement_KH _soundEffectManagement = default;
     private PlayerSkill_KH _playerSkill = default;
+    private PlayerSkill_KH _myPlayerSkill = default;
     private MonsterSkill_KH _monsterSkill = default;
     private NormalAttack_KH _normalAttack = default;
     private PlayerGuard_KH _playerGuard = default;
@@ -33,6 +34,7 @@ public class Petrification_KH : MonoBehaviour
         // 子オブジェクトの中からPetrificationAreaを取得
         _petrificationArea = transform.Find("PetrificationArea").gameObject;
         _soundEffectManagement = _residentScript.GetComponent<SoundEffectManagement_KH>();
+        _myPlayerSkill = GetComponent<PlayerSkill_KH>();
 
     }
 
@@ -175,6 +177,7 @@ public class Petrification_KH : MonoBehaviour
             PetrificationCancellation();
             _elapsedTime = 0f;
             _isSphereExists = false;
+            _myPlayerSkill.IsUseSkill = false;
         }
     }
 

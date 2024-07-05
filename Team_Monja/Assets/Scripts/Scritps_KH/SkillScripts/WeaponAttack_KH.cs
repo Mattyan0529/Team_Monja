@@ -21,6 +21,7 @@ public class WeaponAttack_KH : MonoBehaviour
     private PlayerRangeInJudge_KH _playerRangeInJudge = default;
     private PlayerMove_MT _playerMove = default;
     private CreateDamageImage_KH _createDamageImage = default;
+    private PlayerSkill_KH _playerSkill = default;
 
     private bool _isAttack = false;
 
@@ -41,6 +42,7 @@ public class WeaponAttack_KH : MonoBehaviour
         _createDamageImage = _residentScript.GetComponent<CreateDamageImage_KH>();
         _characterAnim = GetComponent<CharacterAnim_MT>();
         _audioSource = GetComponent<AudioSource>();
+        _playerSkill = GetComponent<PlayerSkill_KH>();
 
         // 子オブジェクトの中からAttackAreaを取得
         _attackArea = transform.Find("AttackArea").gameObject;
@@ -145,6 +147,7 @@ public class WeaponAttack_KH : MonoBehaviour
             _attackArea.SetActive(false);
             _elapsedTime = 0f;
             _isAttack = false;
+            _playerSkill.IsUseSkill = false;
         }
     }
 }
