@@ -63,10 +63,8 @@ public class NormalAttack_KH : MonoBehaviour
     /// <summary>
     /// 攻撃範囲のSphereを生成
     /// </summary>
-    public void Attack()
+    public void NormalAttack()
     {
-        Debug.Log("wa");
-
         _attackArea.SetActive(true);
 
         // 通常攻撃エフェクトを表示
