@@ -42,11 +42,11 @@ public class PlayerGuard_KH : MonoBehaviour
         {
             if (_isGuard == true) return;
 
+            _isGuard = true;
             _canUseGuard = false;
             _elapsedTime = 0f;
             _coolTimeElapsedTime = 0f;
             _coolTimeUI.StartCoolTime();
-            _isGuard = true;
         }
     }
 

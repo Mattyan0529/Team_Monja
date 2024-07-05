@@ -27,6 +27,12 @@ public class PlayerSkill_KH : MonoBehaviour
 
     private int _skillNum;
     private bool _canUseSkill = true;
+    private bool _isUseSkill = false;
+
+    public bool IsUseSkill
+    {
+        get { return _isUseSkill; }
+    }
 
     private void Awake()
     {
@@ -129,10 +135,16 @@ public class PlayerSkill_KH : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1) && _skillNum == (int)MonsterSkill_KH.SkillType.Fly && _flySkill.IsFlying)
         {
+            _isUseSkill = true;
             _flySkill.StopFly();
         }
         else if (Input.GetMouseButtonDown(1) && _canUseSkill)
         {
+            if (_normalAttack != null && _normalAttack.IsAttack) return;
+            if (_playerGuard != null && _playerGuard.IsGuard) return;
+
+            _isUseSkill = true;
+
             switch (_skillNum)
             {
                 case (int)MonsterSkill_KH.SkillType.HighSpeedAssault:      // 高速突撃の場合
@@ -166,7 +178,7 @@ public class PlayerSkill_KH : MonoBehaviour
     }
 
     /// <summary>
-    /// 定期的にスキルを発動
+    /// スキルを解除
     /// </summary>
     private void UpdateTime()
     {
@@ -178,6 +190,7 @@ public class PlayerSkill_KH : MonoBehaviour
         {
             _elapsedTime = 0f;
             _canUseSkill = true;
+            _isUseSkill = false;
         }
     }
 

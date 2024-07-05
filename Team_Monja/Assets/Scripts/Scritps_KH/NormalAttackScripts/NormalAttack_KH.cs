@@ -26,8 +26,14 @@ public class NormalAttack_KH : MonoBehaviour
     private WriteHitPoint_KH _writeHitPoint = default;
     private CoolTimeUI _coolTimeUI = default;
     private CreateDamageImage_KH _createDamageImage = default;
+    private PlayerSkill_KH _playerSkill = default;
     //èºñ{
     private CharacterAnim_MT _characterAnim = default;
+
+    public bool IsAttack
+    {
+        get { return _isAttack; }
+    }
 
     void Start()
     {
@@ -35,6 +41,7 @@ public class NormalAttack_KH : MonoBehaviour
         _characterAnim = GetComponent<CharacterAnim_MT>();
         _coolTimeUI = _coolTimeUIObj.GetComponent<CoolTimeUI>();
         _createDamageImage = _residentScript.GetComponent<CreateDamageImage_KH>();
+        _playerSkill = GetComponent<PlayerSkill_KH>();
     }
 
     void Update()
@@ -49,13 +56,14 @@ public class NormalAttack_KH : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             if (!_canUseNormalAttack) return;
-
-            //èºñ{
-            _characterAnim.NowAnim = "Attack";
+            if (_playerSkill.IsUseSkill) return;
 
             _isAttack = true;
             _canUseNormalAttack = false;
             _coolTimeUI.StartCoolTime();
+
+            //èºñ{
+            _characterAnim.NowAnim = "Attack";
         }
     }
 
