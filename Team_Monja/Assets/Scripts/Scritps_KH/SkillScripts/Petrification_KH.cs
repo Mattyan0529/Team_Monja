@@ -14,6 +14,10 @@ public class Petrification_KH : MonoBehaviour
     private Rigidbody _rigidbody = default;
     private AudioSource _audioSource = default;
     private SoundEffectManagement_KH _soundEffectManagement = default;
+    private PlayerSkill_KH _playerSkill = default;
+    private MonsterSkill_KH _monsterSkill = default;
+    private NormalAttack_KH _normalAttack = default;
+    private PlayerGuard_KH _playerGuard = default;
 
     private GameObject _petrificationArea;
 
@@ -64,7 +68,7 @@ public class Petrification_KH : MonoBehaviour
     }
 
     /// <summary>
-    /// 移動系スクリプトを無効化する
+    /// 移動系スクリプトと攻撃系スクリプトを無効化する
     /// </summary>
     /// <param name="petrificationTarget">石化対象</param>
     public void Petrification(GameObject petrificationTarget)
@@ -74,29 +78,47 @@ public class Petrification_KH : MonoBehaviour
             _monsterRandomWalk = petrificationTarget.GetComponent<MonsterRandomWalk_KH>();
             _playerRangeInJudge = petrificationTarget.GetComponent<PlayerRangeInJudge_KH>();
             _rigidbody = petrificationTarget.GetComponent<Rigidbody>();
+            _monsterSkill = petrificationTarget.GetComponent<MonsterSkill_KH>();
 
             // 移動系のスクリプトを無効化
             _monsterRandomWalk.enabled = false;
             _playerRangeInJudge.enabled = false;
             _rigidbody.velocity = Vector3.zero;
 
+            // 攻撃系のスクリプトを無効化
+            _monsterSkill.enabled = false;
+
             _isPetrification = true;
         }
         else if (petrificationTarget.CompareTag("Player") &&( gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss")))       // プレイヤーを石化する場合
         {
             _playerMove = petrificationTarget.GetComponent<PlayerMove_MT>();
+            _playerSkill = petrificationTarget.GetComponent<PlayerSkill_KH>();
+            petrificationTarget.TryGetComponent<NormalAttack_KH>(out _normalAttack);
+            petrificationTarget.TryGetComponent<PlayerGuard_KH>(out _playerGuard);
             _rigidbody = petrificationTarget.GetComponent<Rigidbody>();
 
             // 移動系のスクリプトを無効化
             _playerMove.enabled = false;
             _rigidbody.velocity = Vector3.zero;
 
+            // 攻撃系のスクリプトを無効化
+            _playerSkill.enabled = false;
+            if (_normalAttack != null)
+            {
+                _normalAttack.enabled = false;
+            }
+            if (_playerGuard != null)
+            {
+                _playerGuard.enabled = false;
+            }
+
             _isPetrification = true;
         }
     }
 
     /// <summary>
-    /// 移動系スクリプトを有効化する
+    /// 移動系スクリプトと攻撃系スクリプトを有効化する
     /// </summary>
     private void PetrificationCancellation()
     {
@@ -113,11 +135,24 @@ public class Petrification_KH : MonoBehaviour
                 _playerRangeInJudge.enabled = true;
             }
 
+            _monsterSkill.enabled = true;
+
             _isPetrification = false;
         }
         else if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss"))       // プレイヤーの石化を解除する場合
         {
             _playerMove.enabled = true;
+
+            _playerSkill.enabled = true;
+            if (_normalAttack != null)
+            {
+                _normalAttack.enabled = true;
+            }
+            if (_playerGuard != null)
+            {
+                _playerGuard.enabled = true;
+            }
+
 
             _isPetrification = false;
         }

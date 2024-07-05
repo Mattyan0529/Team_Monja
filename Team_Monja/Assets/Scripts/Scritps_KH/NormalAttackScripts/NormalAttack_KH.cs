@@ -56,7 +56,6 @@ public class NormalAttack_KH : MonoBehaviour
             _isAttack = true;
             _canUseNormalAttack = false;
             _coolTimeUI.StartCoolTime();
-
         }
     }
 
