@@ -23,21 +23,17 @@ public class GameEndCamera_MT : MonoBehaviour
     private bool _isCoroutineActive = false;//コルーチンが動作中かどうか
     private bool _isGameClear = false;//ゲームクリア
 
-
     private void Start()
     {
-        //ボスのオブジェクトを取得
-        GameObject bossObj = GameObject.FindWithTag("Boss");
-
         _cameraManager = GameObject.FindWithTag("CameraPos").GetComponent<CameraManager_MT>();
-        _statusManagerPlayer = GetComponentInParent<StatusManager_MT>();
-        _statusManagerBoss = bossObj.GetComponent<StatusManager_MT>();
+        _statusManagerPlayer = GameObject.FindWithTag("Player").GetComponent<StatusManager_MT>();
+        _statusManagerBoss = GameObject.FindWithTag("Boss").GetComponent<StatusManager_MT>();
     }
 
     private void Update()
     {
         //誤動作防止
-        if ( _isCoroutineActive  && !_isGameClear)
+        if (_statusManagerPlayer.HP > 0 && _isCoroutineActive  && !_isGameClear)
         {
             ResetGameOverCorouine();
         }  

@@ -10,9 +10,6 @@ public class CameraManager_MT : MonoBehaviour
 
     private float mouseSensitivity = 100.0f; // マウス感度
     private bool _InWall = false;//カメラが壁の中に入っているか
-    [SerializeField]
-    private Vector3 _cameraPositionOffset = new Vector3(0, 6, -9);
-
     private void Awake()
     {
         FindPlayer();

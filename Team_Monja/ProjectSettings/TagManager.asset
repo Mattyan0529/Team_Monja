@@ -8,6 +8,8 @@ TagManager:
   - DropDownArrow
   - Boss
   - NearTrigger
+  - Missile
+  - CameraPos
   layers:
   - Default
   - TransparentFX
