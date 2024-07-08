@@ -134,12 +134,12 @@ public class PlayerSkill_KH : MonoBehaviour
     /// </summary>
     private void CallSkill()
     {
-        if (Input.GetMouseButtonDown(1) && _skillNum == (int)MonsterSkill_KH.SkillType.Fly && _flySkill.IsFlying)
+        if (Input.GetMouseButtonDown(0) && _skillNum == (int)MonsterSkill_KH.SkillType.Fly && _flySkill.IsFlying)
         {
             _isUseSkill = false;
             _flySkill.StopFly();
         }
-        else if (Input.GetMouseButtonDown(1) && _canUseSkill)
+        else if (Input.GetMouseButtonDown(0) && _canUseSkill)
         {
             if (_normalAttack != null && _normalAttack.IsAttack) return;
             if (_playerGuard != null && _playerGuard.IsGuard) return;

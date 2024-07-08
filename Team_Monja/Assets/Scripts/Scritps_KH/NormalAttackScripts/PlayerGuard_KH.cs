@@ -38,7 +38,7 @@ public class PlayerGuard_KH : MonoBehaviour
     /// </summary>
     private void GuardManagement()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(1))
         {
             if (_isGuard == true) return;
 
