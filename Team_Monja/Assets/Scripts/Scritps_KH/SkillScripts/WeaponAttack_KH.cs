@@ -79,10 +79,10 @@ public class WeaponAttack_KH : MonoBehaviour
         {
             _playerRangeInJudge.enabled = false;
         }
-        if (gameObject.CompareTag("Player"))
+        /*if (gameObject.CompareTag("Player"))
         {
             _playerMove.enabled = false;
-        }
+        }*/
 
         _soundEffectManagement.PlayStrongPunchSound(_audioSource);
     }

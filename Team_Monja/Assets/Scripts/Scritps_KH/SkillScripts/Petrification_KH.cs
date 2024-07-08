@@ -155,7 +155,6 @@ public class Petrification_KH : MonoBehaviour
                 _playerGuard.enabled = true;
             }
 
-
             _isPetrification = false;
         }
     }
@@ -173,21 +172,28 @@ public class Petrification_KH : MonoBehaviour
         // ‹K’èŽžŠÔ‚É’B‚µ‚Ä‚¢‚½ê‡
         if (_elapsedTime > _deleteTime)
         {
-            _petrificationArea.SetActive(false);
-            PetrificationCancellation();
-            _elapsedTime = 0f;
-            _isSphereExists = false;
-            _myPlayerSkill.IsUseSkill = false;
+            AreaDestroy();
         }
+    }
+
+    private void AreaDestroy()
+    {
+        _petrificationArea.SetActive(false);
+        PetrificationCancellation();
+        _elapsedTime = 0f;
+        _isSphereExists = false;
+        _myPlayerSkill.IsUseSkill = false;
     }
 
     private void OnDisable()
     {
+        AreaDestroy();
         PetrificationCancellation();
     }
 
     private void OnDestroy()
     {
+        AreaDestroy();
         PetrificationCancellation();
     }
 }
