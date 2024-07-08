@@ -20,13 +20,13 @@ public class CameraManager_MT : MonoBehaviour
     }
     void Start()
     {
- 
+
         playerCamera = GetComponent<Camera>();
 
         // カーソルをロックして画面中央に固定
         Cursor.lockState = CursorLockMode.Locked;
 
-      
+
     }
 
     // Update is called once per frame
@@ -45,8 +45,8 @@ public class CameraManager_MT : MonoBehaviour
         transform.SetParent(playerObj.transform);
         this.transform.localPosition = _cameraPosition;
         this.transform.localRotation = Quaternion.Euler(_cameraRotation);
-        
-    }　
+
+    }
 
     /// <summary>
     ///マウスでカメラを動かす 
@@ -54,7 +54,8 @@ public class CameraManager_MT : MonoBehaviour
     private void CameraMove()
     {
         // マウスの移動量を取得
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
+        float mouseX = Input.GetAxis("Horizontal2") * mouseSensitivity * Time.deltaTime
+         + Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
 
         // プレイヤーの水平回転
         playerObj.transform.Rotate(Vector3.up * mouseX);
