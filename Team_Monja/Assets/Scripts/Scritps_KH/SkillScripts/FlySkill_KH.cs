@@ -12,11 +12,11 @@ public class FlySkill_KH : MonoBehaviour
     private AudioSource _audioSource = default;
 
     private float _upSpeed = 3000f;
-    private float _maxUpHeight = 15f;
+    private float _maxUpHeight = 3f;
 
     private float _startHeight = default;
     private float _currentMaxHeight = default;
-    private float _rayLength = 40f;
+    private float _rayLength = 8f;
 
     private bool _isFlying = false;
 
