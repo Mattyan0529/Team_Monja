@@ -6,6 +6,7 @@ public class PostSceneTransitionAnimation : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1;
         // シーン遷移後にアニメーションを再生
         PlayTransitionAnimation();
     }

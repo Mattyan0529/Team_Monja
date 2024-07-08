@@ -10,6 +10,7 @@ public class HoverButton_SM : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     void Start()
     {
+        Time.timeScale = 1;
         button = GetComponent<Button>(); // ボタンコンポーネントを取得
         originalColor = button.image.color; // 初期のボタンの色を保存
     }
