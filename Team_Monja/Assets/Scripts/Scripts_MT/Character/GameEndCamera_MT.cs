@@ -29,7 +29,7 @@ public class GameEndCamera_MT : MonoBehaviour
         //ボスのオブジェクトを取得
         GameObject bossObj = GameObject.FindWithTag("Boss");
 
-        _cameraManager = GetComponent<CameraManager_MT>();
+        _cameraManager = GameObject.FindWithTag("CameraPos").GetComponent<CameraManager_MT>();
         _statusManagerPlayer = GetComponentInParent<StatusManager_MT>();
         _statusManagerBoss = bossObj.GetComponent<StatusManager_MT>();
     }
@@ -37,7 +37,7 @@ public class GameEndCamera_MT : MonoBehaviour
     private void Update()
     {
         //誤動作防止
-        if (_statusManagerPlayer.HP > 0 && _isCoroutineActive  && !_isGameClear)
+        if ( _isCoroutineActive  && !_isGameClear)
         {
             ResetGameOverCorouine();
         }  

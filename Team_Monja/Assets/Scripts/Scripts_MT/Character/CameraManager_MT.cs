@@ -6,22 +6,21 @@ public class CameraManager_MT : MonoBehaviour
 {
     private Camera playerCamera;
     private GameObject playerObj;
-    private EnemyHP_MT enemyHP;
+    private Transform playerTransform;
 
     private float mouseSensitivity = 100.0f; // マウス感度
     private bool _InWall = false;//カメラが壁の中に入っているか
-
-    private Vector3 _cameraPosition = new Vector3(0, 6, -9);
-    private Vector3 _cameraRotation = new Vector3(15, 0, 0);
+    [SerializeField]
+    private Vector3 _cameraPositionOffset = new Vector3(0, 6, -9);
 
     private void Awake()
     {
-        CameraSwitch();
+        FindPlayer();
     }
     void Start()
     {
 
-        playerCamera = GetComponent<Camera>();
+        playerCamera = Camera.main.GetComponent<Camera>();
 
         // カーソルをロックして画面中央に固定
         Cursor.lockState = CursorLockMode.Locked;
@@ -35,18 +34,35 @@ public class CameraManager_MT : MonoBehaviour
         CameraMove();
         CameraTransparent();
     }
+    private void LateUpdate()
+    {
+        PlayerFollowing();
+    }
 
     /// <summary>
-    ///プレイヤーにカメラをつける
+    ///プレイヤーを取得
     /// </summary>
-    public void CameraSwitch()
+    public void FindPlayer()
     {
         playerObj = GameObject.FindWithTag("Player");
-        transform.SetParent(playerObj.transform);
-        this.transform.localPosition = _cameraPosition;
-        this.transform.localRotation = Quaternion.Euler(_cameraRotation);
+        if(playerObj != null)
+        {
+            playerTransform = playerObj.transform;
+        }
 
     }
+
+    /// <summary>
+    /// プレイヤーの座標にカメラを移動
+    /// </summary>
+    private void PlayerFollowing()
+    {
+        if(playerObj != null)
+        {
+            transform.position = playerTransform.position;
+        }
+    }
+
 
     /// <summary>
     ///マウスでカメラを動かす 
@@ -56,9 +72,10 @@ public class CameraManager_MT : MonoBehaviour
         // マウスの移動量を取得
         float mouseX = Input.GetAxis("Horizontal2") * mouseSensitivity * Time.deltaTime
          + Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-
-        // プレイヤーの水平回転
-        playerObj.transform.Rotate(Vector3.up * mouseX);
+        //カメラを回転
+        transform.Rotate(Vector3.up * mouseX,Space.World);
+        //プレイヤーを移動
+        playerObj.transform.Rotate(Vector3.up * mouseX, Space.World);
     }
 
     /// <summary>

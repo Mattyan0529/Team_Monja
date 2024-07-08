@@ -17,7 +17,7 @@ public class KillEnemy_MT : MonoBehaviour
     private void Start()
     {
         _closestEnemyFinder = GetComponent<ClosestEnemyFinder_MT>();
-        _gameEndCamera = Camera.main.GetComponent<GameEndCamera_MT>();
+        _gameEndCamera = GameObject.FindWithTag("CameraPos").GetComponent<GameEndCamera_MT>();
 
         GameObject nearTrigger = GameObject.FindWithTag("NearTrigger");
         _enemyTriggerManager = nearTrigger.GetComponent<EnemyTriggerManager_MT>();
@@ -26,27 +26,33 @@ public class KillEnemy_MT : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // プレイヤーの周りの敵を取得
-        Collider closestEnemy = _closestEnemyFinder.GetClosestObject(_enemyTriggerManager.objectsInTrigger, transform);
-
-        // 近くの敵が存在する場合
-        if (closestEnemy != null)
+        if (_enemyTriggerManager.objectsInTrigger != null)
         {
-            // 敵のStatusManager_MTコンポーネントを取得
-            StatusManager_MT enemyStatus = closestEnemy.GetComponent<StatusManager_MT>();
+            // プレイヤーの周りの敵を取得
+            Collider closestEnemy = _closestEnemyFinder.GetClosestObject(_enemyTriggerManager.objectsInTrigger, transform);
 
-            // 近くの敵がボスであり、HPが0以下の場合
-            if (enemyStatus != null && closestEnemy.CompareTag("Boss") && enemyStatus.HP <= 0)
+            // 近くの敵が存在する場合
+            if (closestEnemy != null)
             {
-                if(_coroutineSwitch)
+                // 敵のStatusManager_MTコンポーネントを取得
+                StatusManager_MT enemyStatus = closestEnemy.GetComponent<StatusManager_MT>();
+
+                // 近くの敵がボスであり、HPが0以下の場合
+                if (enemyStatus != null && closestEnemy.CompareTag("Boss") && enemyStatus.HP <= 0)
                 {
-                    // ボスが死んだときの処理
-                    StartCoroutine(_gameEndCamera.GameClearCoroutine());
-                    _coroutineSwitch = false;
+                    if (_coroutineSwitch)
+                    {
+                        // ボスが死んだときの処理
+                        StartCoroutine(_gameEndCamera.GameClearCoroutine());
+                        _coroutineSwitch = false;
+                    }
+
                 }
-          
             }
         }
+
+
+       
     }
 
 }

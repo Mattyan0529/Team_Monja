@@ -24,7 +24,7 @@ public class CharacterComponentManager_MT : MonoBehaviour
     void Start()
     {
         playerMove = GetComponent<PlayerMove_MT>();     
-        cameraManager = GetComponent<CameraManager_MT>();
+        cameraManager = GameObject.FindWithTag("CameraPos").GetComponent<CameraManager_MT>();
         eatEnemy = GetComponent<EatEnemy_MT>();
         eatOrChangeController = GetComponent<EatOrChangeController_MT>();
         closestEnemyFinder = GetComponent<ClosestEnemyFinder_MT>();
@@ -54,8 +54,8 @@ public class CharacterComponentManager_MT : MonoBehaviour
                 //キャラクターがプレイヤーになったときの処理
                 if (statusManager != null)
                 {
-                    cameraManager = Camera.main.GetComponent<CameraManager_MT>();
-                    cameraManager.CameraSwitch();
+                    cameraManager = GameObject.FindWithTag("CameraPos").GetComponent<CameraManager_MT>();
+                    cameraManager.FindPlayer();
                     enemyTriggerManager.SetToPlayer();
 
                     statusManager.ApplyMultipliers();

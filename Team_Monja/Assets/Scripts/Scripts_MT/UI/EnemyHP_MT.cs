@@ -61,7 +61,7 @@ public class EnemyHP_MT : MonoBehaviour
     // Canvasをメインカメラの方向に向ける
     private void LookCamera()
     {
-        _canvas.transform.rotation = Camera.main.transform.rotation;
+        _canvas.transform.rotation = GameObject.FindWithTag("CameraPos").transform.rotation;
     }
 
     // スライダーの値を設定する

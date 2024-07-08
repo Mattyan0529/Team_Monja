@@ -34,7 +34,11 @@ public class EatOrChangeController_MT : MonoBehaviour
     {
         if (eatEnemy != null)
         {
+            if(enemyTriggerManager.objectsInTrigger != null)
+            {
                 eatEnemy.RemoveClosestObject(enemyTriggerManager.objectsInTrigger, transform);
+            }
+             
         }
         else
         {
@@ -47,7 +51,11 @@ public class EatOrChangeController_MT : MonoBehaviour
     {
         if (changeCharacter != null)
         {
+            if (enemyTriggerManager.objectsInTrigger != null)
+            {
                 changeCharacter.ChangeTagClosestObject(enemyTriggerManager.objectsInTrigger, transform);
+            }
+          
         }
         else
         {
