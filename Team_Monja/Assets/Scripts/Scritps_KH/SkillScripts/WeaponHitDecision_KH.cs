@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class WeaponHitDecision_KH : MonoBehaviour
 {
-    private WeaponAttack_KH _weaponAttack = default;
+    private IDamagable _skillInterface = default;
 
     void Start()
     {
-        _weaponAttack = transform.parent.gameObject.GetComponent<WeaponAttack_KH>();
+        _skillInterface = transform.parent.gameObject.GetComponent<IDamagable>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -16,11 +16,11 @@ public class WeaponHitDecision_KH : MonoBehaviour
 
         if ((gameObject.transform.parent.CompareTag("Enemy") || gameObject.transform.parent.CompareTag("Boss")) && other.gameObject.CompareTag("Player"))
         {
-            _weaponAttack.HitDecision(other.gameObject);
+            _skillInterface.HitDecision(other.gameObject);
         }
         else if (gameObject.transform.parent.CompareTag("Player") && (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Boss")))
         {
-            _weaponAttack.HitDecision(other.gameObject);
+            _skillInterface.HitDecision(other.gameObject);
         }
     }
 }

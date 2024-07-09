@@ -1,6 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class BossSkill_KH : MonoBehaviour
+public class BossSkillAttack : MonoBehaviour
 {/*
     //èºñ{
     private CharacterAnim_MT _characterAnim = default;
@@ -20,7 +22,7 @@ public class BossSkill_KH : MonoBehaviour
         _characterAnim = GetComponent<CharacterAnim_MT>();
     }
 
-    public void RandomSkillCall()
+    public void SpecialAttack()
     {
         // 1Ç©ÇÁ10Ç‹Ç≈ÇÃóêêî
         int skillNum = Random.Range(0, _fireSphereProbability + _hitProbability + _biteProbability);
@@ -42,3 +44,4 @@ public class BossSkill_KH : MonoBehaviour
         }
     }*/
 }
+

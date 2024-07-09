@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BulletHitDecision_KH : MonoBehaviour
 {
-    private LongDistanceAttack_KH _longDistanceAttack = default;
+    private IDamagable _skillInterface = default;
     private MeshRenderer _bulletRenderer = default;
     private SphereCollider _bulletCollider = default;
     private Rigidbody _bulletRigidbody = default;
@@ -35,8 +35,8 @@ public class BulletHitDecision_KH : MonoBehaviour
         }
 
         // LongDistanceAttack_KH‚Ìæ“¾
-        _longDistanceAttack = _parent.GetComponent<LongDistanceAttack_KH>();
-        if (_longDistanceAttack == null)
+        _skillInterface = _parent.GetComponent<IDamagable>();
+        if (_skillInterface == null)
         {
             Debug.LogError("LongDistanceAttack_KH‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½B", this);
         }
@@ -53,14 +53,14 @@ public class BulletHitDecision_KH : MonoBehaviour
 
         if ((_parent.CompareTag("Enemy") || _parent.CompareTag("Boss")) && other.gameObject.CompareTag("Player"))
         {
-            _longDistanceAttack.HitDecision(other.gameObject);
+            _skillInterface.HitDecision(other.gameObject);
 
             // ƒvƒŒƒCƒ„[‚É‚ ‚½‚Á‚½’e‚ğíœ
             DisableBullet();
         }
         else if (_parent.CompareTag("Player") && (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Boss")))
         {
-            _longDistanceAttack.HitDecision(other.gameObject);
+            _skillInterface.HitDecision(other.gameObject);
 
             // “G‚É‚ ‚½‚Á‚½’e‚ğíœ
             DisableBullet();

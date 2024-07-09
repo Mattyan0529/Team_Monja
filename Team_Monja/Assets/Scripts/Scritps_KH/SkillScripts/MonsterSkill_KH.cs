@@ -28,11 +28,7 @@ public class MonsterSkill_KH : MonoBehaviour
     private MonsterRandomWalk_KH _monsterRandomWalk = default;
     private SkillSpriteChange_KH _skillSpriteChange = default;
     private SkillSpriteChange_KH _normalAttackSpriteChange = default;
-
-    private WeaponAttack_KH _weaponAttack = default;
-    private LongDistanceAttack_KH _longDistanceAttack = default;
-    private FlySkill_KH _flySkill = default;
-    private BossSkill_KH _bossSkill = default;
+    private IDamagable _skillInterface = default;
     //松本
     private CharacterAnim_MT _characterAnim;
 
@@ -46,15 +42,7 @@ public class MonsterSkill_KH : MonoBehaviour
     /// スキルの大まかなタイプ
     /// このタイプごとにスクリプトにまとめてるよ
     /// </summary>
-    public enum SkillType
-    {
-        HighSpeedAssault,
-        WeaponAttack,
-        LongDistanceAttack,
-        Fly,
-        Petrification,
-        Boss
-    }
+
 
     void Awake()
     {
@@ -70,8 +58,6 @@ public class MonsterSkill_KH : MonoBehaviour
         {
             _playerGuard = GetComponent<PlayerGuard_KH>();
         }
-
-        SkillJudge();
     }
 
     void Start()
@@ -83,6 +69,7 @@ public class MonsterSkill_KH : MonoBehaviour
         _normalAttackSpriteChange = _normalAttackSpriteObj.GetComponent<SkillSpriteChange_KH>();
         GameobjectTagJudge();
         _updateTime = Random.Range(_minTimeSpacing, _maxTimeSpacing);
+        _skillInterface = GetComponent<IDamagable>();
     }
 
     void Update()
@@ -91,7 +78,7 @@ public class MonsterSkill_KH : MonoBehaviour
         UpdateTime();
 
         // 乗り移りが発生したらタグを変更（Mが押されたが乗り移りが発生しなかったときも処理が走ってしまう）
-        if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             GameobjectTagJudge();
         }
@@ -126,33 +113,6 @@ public class MonsterSkill_KH : MonoBehaviour
     }
 
     /// <summary>
-    /// このキャラクターが持っているのはどのスキルか判定
-    /// </summary>
-    private void SkillJudge()
-    {
-        if (GetComponent<BossSkill_KH>())      // ボス
-        {
-            _skillNum = (int)SkillType.Boss;
-            _bossSkill = GetComponent<BossSkill_KH>();
-        }
-        else if (GetComponent<WeaponAttack_KH>())      // スキル：武器を使った攻撃
-        {
-            _skillNum = (int)SkillType.WeaponAttack;
-            _weaponAttack = GetComponent<WeaponAttack_KH>();
-        }
-        else if (GetComponent<LongDistanceAttack_KH>())       // スキル：遠距離攻撃
-        {
-            _skillNum = (int)SkillType.LongDistanceAttack;
-            _longDistanceAttack = GetComponent<LongDistanceAttack_KH>();
-        }
-        else if (GetComponent<FlySkill_KH>())       // スキル：飛ぶ
-        {
-            _skillNum = (int)SkillType.Fly;
-            _flySkill = GetComponent<FlySkill_KH>();
-        }
-    }
-
-    /// <summary>
     /// _skillNumをゲット
     /// </summary>
     public int SkillTypeNum
@@ -182,58 +142,6 @@ public class MonsterSkill_KH : MonoBehaviour
     /// </summary>
     private void RandomCallSkill()
     {
-        switch (SkillTypeNum)
-        {
-            case (int)SkillType.WeaponAttack:          // 武器を使った攻撃などの場合
-                                                       // ランダム移動中（プレイヤーが攻撃範囲外）は処理しないが、その判断はAttack内でしてる
-                _weaponAttack.Attack();
-                return;
-
-            case (int)SkillType.LongDistanceAttack:        // 遠距離攻撃の場合
-
-                _longDistanceAttack.GenerateBullet();
-                return;
-
-            case (int)SkillType.Fly:                   // 飛ぶスキルの場合
-
-                _flySkill.MonsterStartFly();
-                return;
-
-
-            case (int)SkillType.Boss:       // ボスのスキルの場合
-
-                _bossSkill.RandomSkillCall();
-                return;
-        }
-
-    }
-
-    private void OnDisable()
-    {
-        if(gameObject.CompareTag("Player"))return;
-
-        switch (SkillTypeNum)
-        {
-
-            case (int)SkillType.WeaponAttack:          // 武器を使った攻撃などの場合
-                                                       
-                _weaponAttack.enabled = false;
-                return;
-
-            case (int)SkillType.LongDistanceAttack:        // 遠距離攻撃の場合
-
-                _longDistanceAttack.enabled = false;
-                return;
-
-            case (int)SkillType.Fly:                   // 飛ぶスキルの場合
-
-                _flySkill.enabled = false;
-                return;
-
-            case (int)SkillType.Boss:       // ボスのスキルの場合
-
-                _bossSkill.enabled = false;
-                return;
-        }
+        _skillInterface.SpecialAttack();
     }
 }

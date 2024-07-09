@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class LongDistanceAttack_KH : MonoBehaviour
+public class EvillMageSkillAttack : MonoBehaviour,IDamagable
 {
     [SerializeField]
     private GameObject _residentScript;
@@ -44,7 +44,7 @@ public class LongDistanceAttack_KH : MonoBehaviour
     /// <summary>
     /// ‰“‹——£‚Ì’e‚ğ¶¬‚·‚é
     /// </summary>
-    public void GenerateBullet()
+    public void SpecialAttack()
     {
         if (_isShot) return;      // d•¡‚ÅUŒ‚‚Í‚µ‚È‚¢
 
@@ -123,3 +123,4 @@ public class LongDistanceAttack_KH : MonoBehaviour
         _isShot = false;
     }
 }
+

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class WeaponAttack_KH : MonoBehaviour
+public class LizardWarriorSkillAttack : MonoBehaviour,IDamagable
 {
     [SerializeField]
     private GameObject _residentScript;
@@ -19,6 +19,7 @@ public class WeaponAttack_KH : MonoBehaviour
     private AudioSource _audioSource = default;
     private MonsterRandomWalk_KH _monsterRandomWalk = default;
     private PlayerRangeInJudge_KH _playerRangeInJudge = default;
+    private PlayerMove_MT _playerMove = default;
     private CreateDamageImage_KH _createDamageImage = default;
     private PlayerSkill_KH _playerSkill = default;
 
@@ -31,6 +32,7 @@ public class WeaponAttack_KH : MonoBehaviour
     {
         _monsterRandomWalk = GetComponent<MonsterRandomWalk_KH>();
         _playerRangeInJudge = GetComponent<PlayerRangeInJudge_KH>();
+        _playerMove = GetComponent<PlayerMove_MT>();
     }
 
     void Start()
@@ -52,10 +54,7 @@ public class WeaponAttack_KH : MonoBehaviour
         UpdateTime();
     }
 
-    /// <summary>
-    /// 攻撃をする
-    /// </summary>
-    public void Attack()
+    public void SpecialAttack()
     {
         if (_monsterRandomWalk.enabled) return;     // ランダム移動中（プレイヤーが攻撃範囲外）は処理しない
 
@@ -77,10 +76,6 @@ public class WeaponAttack_KH : MonoBehaviour
         {
             _playerRangeInJudge.enabled = false;
         }
-        /*if (gameObject.CompareTag("Player"))
-        {
-            _playerMove.enabled = false;
-        }*/
 
         _soundEffectManagement.PlayStrongPunchSound(_audioSource);
     }
@@ -137,6 +132,10 @@ public class WeaponAttack_KH : MonoBehaviour
             {
                 _playerRangeInJudge.enabled = true;
             }
+            if (gameObject.CompareTag("Player"))
+            {
+                _playerMove.enabled = true;
+            }
 
             _attackArea.SetActive(false);
             _elapsedTime = 0f;
@@ -145,3 +144,4 @@ public class WeaponAttack_KH : MonoBehaviour
         }
     }
 }
+

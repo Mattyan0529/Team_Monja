@@ -9,9 +9,7 @@ public class PlayerSkill_KH : MonoBehaviour
     private MonsterSkill_KH _myMonsterSkill = default;
     private CoolTimeUI _coolTimeUI = default;
 
-    private WeaponAttack_KH _weaponAttack = default;
-    private LongDistanceAttack_KH _longDistanceAttack = default;
-    private FlySkill_KH _flySkill = default;
+    private IDamagable _skillInterface = default;
 
     private NormalAttack_KH _normalAttack = default;
     private PlayerGuard_KH _playerGuard = default;
@@ -54,11 +52,11 @@ public class PlayerSkill_KH : MonoBehaviour
         }
 
         _coolTimeUI = _coolTimeUIObj.GetComponent<CoolTimeUI>();
+        _skillInterface = GetComponent<IDamagable>();
 
         float lefttrigger = Input.GetAxis("skill");
 
 
-        SkillJudge();
         GameobjectTagJudge();
     }
 
@@ -67,7 +65,7 @@ public class PlayerSkill_KH : MonoBehaviour
         CallSkill();
 
         // 乗り移りが発生したらタグを変更（Mが押されたが乗り移りが発生しなかったときも処理が走ってしまう）
-        if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             GameobjectTagJudge();
         }
@@ -101,64 +99,22 @@ public class PlayerSkill_KH : MonoBehaviour
     }
 
     /// <summary>
-    /// どのスキルを持っているか判定
-    /// </summary>
-    private void SkillJudge()
-    {
-        switch (_skillNum)
-        {
-
-            case (int)MonsterSkill_KH.SkillType.WeaponAttack:          // 武器を使った攻撃などの場合
-                _weaponAttack = GetComponent<WeaponAttack_KH>();
-                return;
-
-            case (int)MonsterSkill_KH.SkillType.LongDistanceAttack:        // 遠距離攻撃の場合
-                _longDistanceAttack = GetComponent<LongDistanceAttack_KH>();
-                return;
-
-            case (int)MonsterSkill_KH.SkillType.Fly:                   // 飛ぶスキルの場合
-                _flySkill = GetComponent<FlySkill_KH>();
-                return;
-
-        }
-    }
-
-    /// <summary>
     /// ボタンを押したらスキル発動
     /// </summary>
     private void CallSkill()
     {
-        if (((Input.GetMouseButtonDown(0) || lefttrigger > 0.3f) && _skillNum == (int)MonsterSkill_KH.SkillType.Fly && _flySkill.IsFlying))
+        /*if (((Input.GetMouseButtonDown(0) || lefttrigger > 0.3f) && _skillNum == (int)MonsterSkill_KH.SkillType.Fly && _flySkill.IsFlying))
         {
             _isUseSkill = false;
             _flySkill.StopFly();
-        }
-        else if (((Input.GetMouseButtonDown(0) || lefttrigger > 0.3f) && _canUseSkill))
+        }*/
+        if (((Input.GetMouseButtonDown(0) || lefttrigger > 0.3f) && _canUseSkill))
         {
             if (_normalAttack != null && _normalAttack.IsAttack) return;
             if (_playerGuard != null && _playerGuard.IsGuard) return;
 
             _isUseSkill = true;
-
-            switch (_skillNum)
-            {
-   
-                case (int)MonsterSkill_KH.SkillType.WeaponAttack:          // 武器を使った攻撃などの場合
-                    _weaponAttack.Attack();
-                    _characterAnim.NowAnim = "Skill";
-                    break;
-
-                case (int)MonsterSkill_KH.SkillType.LongDistanceAttack:        // 遠距離攻撃の場合
-                    _longDistanceAttack.GenerateBullet();
-                    _characterAnim.NowAnim = "Skill";
-                    break;
-
-                case (int)MonsterSkill_KH.SkillType.Fly:                   // 飛ぶスキルの場合
-                    _flySkill.PlayerFlyManager();
-                    _characterAnim.NowAnim = "Skill";
-                    break;
-
-            }
+            _skillInterface.SpecialAttack();
             _canUseSkill = false;
             _coolTimeUI.StartCoolTime();
         }
@@ -177,29 +133,6 @@ public class PlayerSkill_KH : MonoBehaviour
         {
             _elapsedTime = 0f;
             _canUseSkill = true;
-        }
-    }
-
-    private void OnEnable()
-    {
-        switch (_myMonsterSkill.SkillTypeNum)
-        {
-
-            case (int)SkillType.WeaponAttack:          // 武器を使った攻撃などの場合
-
-                _weaponAttack.enabled = true;
-                return;
-
-            case (int)SkillType.LongDistanceAttack:        // 遠距離攻撃の場合
-
-                _longDistanceAttack.enabled = true;
-                return;
-
-            case (int)SkillType.Fly:                   // 飛ぶスキルの場合
-
-                _flySkill.enabled = true;
-                return;
-
         }
     }
 }
