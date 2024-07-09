@@ -15,7 +15,6 @@ public class CharacterDeadDecision_MT : MonoBehaviour
     private PlayerSkill_KH _playerSkill = default;
     private NormalAttack_KH _normalAttack = default;
     private PlayerGuard_KH _playerGuard = default;
-    private CameraManager_MT _cameraManager = default;
 
     private bool _isAlive = true;
     private bool _coroutineSwitch = true;
@@ -31,8 +30,9 @@ public class CharacterDeadDecision_MT : MonoBehaviour
         _monsterSkill = GetComponent<MonsterSkill_KH>();
         _playerRangeInJudge = GetComponent<PlayerRangeInJudge_KH>();
         _playerSkill = GetComponent<PlayerSkill_KH>();
-        TryGetComponent<NormalAttack_KH>(out _normalAttack);
-        TryGetComponent<PlayerGuard_KH>(out _playerGuard);
+        _normalAttack = GetComponent<NormalAttack_KH>();
+        _playerGuard = GetComponent<PlayerGuard_KH>();
+
     }
 
     void Update()

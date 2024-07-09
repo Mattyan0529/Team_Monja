@@ -19,7 +19,6 @@ public class WeaponAttack_KH : MonoBehaviour
     private AudioSource _audioSource = default;
     private MonsterRandomWalk_KH _monsterRandomWalk = default;
     private PlayerRangeInJudge_KH _playerRangeInJudge = default;
-    private PlayerMove_MT _playerMove = default;
     private CreateDamageImage_KH _createDamageImage = default;
     private PlayerSkill_KH _playerSkill = default;
 
@@ -32,7 +31,6 @@ public class WeaponAttack_KH : MonoBehaviour
     {
         _monsterRandomWalk = GetComponent<MonsterRandomWalk_KH>();
         _playerRangeInJudge = GetComponent<PlayerRangeInJudge_KH>();
-        _playerMove = GetComponent<PlayerMove_MT>();
     }
 
     void Start()
@@ -138,10 +136,6 @@ public class WeaponAttack_KH : MonoBehaviour
             if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss"))
             {
                 _playerRangeInJudge.enabled = true;
-            }
-            if (gameObject.CompareTag("Player"))
-            {
-                _playerMove.enabled = true;
             }
 
             _attackArea.SetActive(false);
