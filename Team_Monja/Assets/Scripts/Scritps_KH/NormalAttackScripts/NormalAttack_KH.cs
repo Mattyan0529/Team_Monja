@@ -51,28 +51,39 @@ public class NormalAttack_KH : MonoBehaviour
 
     private void AttackInputManager()
     {
-        if (Input.GetMouseButtonDown(0) || Input.GetButtonDown("attack"))
+        if (Input.GetMouseButtonDown(1) || Input.GetButtonDown("attack"))
         {
             if (!_canUseNormalAttack) return;
 
             //松本
             _characterAnim.NowAnim = "Attack";
 
-            _isAttack = true;
-            _canUseNormalAttack = false;
             _coolTimeUI.StartCoolTime();
         }
     }
 
     /// <summary>
-    /// 攻撃範囲のSphereを生成
+    /// 攻撃範囲のCubeをアニメーションから生成
     /// </summary>
     public void NormalAttack()
     {
         _attackArea.SetActive(true);
+        _isAttack = true;
+        _canUseNormalAttack = false;
 
         // 通常攻撃エフェクトを表示
         _effectManager.ShowNormalAttackEffect(transform);
+    }
+
+    /// <summary>
+    /// 通常攻撃の範囲を消去
+    /// （通常はアニメーションから、アニメーションから呼ばれなかったらスクリプトから呼ぶ）
+    /// </summary>
+    public void FinishNormalAttack()
+    {
+        _attackArea.SetActive(false);
+        _elapsedTime = 0f;
+        _isAttack = false;
     }
 
     /// <summary>
@@ -116,9 +127,7 @@ public class NormalAttack_KH : MonoBehaviour
         // 規定時間に達していた場合
         if (_elapsedTime > _deleteTime)
         {
-            _attackArea.SetActive(false);
-            _elapsedTime = 0f;
-            _isAttack = false;
+            FinishNormalAttack();
         }
     }
 

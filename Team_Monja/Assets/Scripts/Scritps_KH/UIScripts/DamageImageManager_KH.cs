@@ -5,6 +5,9 @@ public class DamageImageManager_KH : MonoBehaviour
     [SerializeField]
     private GameObject _residentScript = default;
 
+    [SerializeField]
+    private GameObject _camera = default;
+
     private PlayerManager_KH _playerManager = default;
 
     // ダメージの値を表示しておく時間
@@ -19,7 +22,7 @@ public class DamageImageManager_KH : MonoBehaviour
     void Update()
     {
         UpdateTime();
-        transform.LookAt(_playerManager.Player.transform.Find("MainCamera"));
+        transform.LookAt(_camera.transform);
         transform.Rotate(0f, 180f, 0f);
     }
 

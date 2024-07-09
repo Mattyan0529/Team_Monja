@@ -16,7 +16,7 @@ public class FlySkill_KH : MonoBehaviour
 
     private float _startHeight = default;
     private float _currentMaxHeight = default;
-    private float _rayLength = 8f;
+    private float _rayLength = 10f;
 
     private bool _isFlying = false;
 
