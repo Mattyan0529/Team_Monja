@@ -10,11 +10,9 @@ public class PlayerSkill_KH : MonoBehaviour
     private PlayerMove_MT _playerMove = default;
     private CoolTimeUI _coolTimeUI = default;
 
-    private HighSpeedAssault_KH _highSpeedAssault = default;
     private WeaponAttack_KH _weaponAttack = default;
     private LongDistanceAttack_KH _longDistanceAttack = default;
     private FlySkill_KH _flySkill = default;
-    private Petrification_KH _petrification = default;
 
     private NormalAttack_KH _normalAttack = default;
     private PlayerGuard_KH _playerGuard = default;
@@ -29,6 +27,8 @@ public class PlayerSkill_KH : MonoBehaviour
     private bool _canUseSkill = true;
     private bool _isUseSkill = false;
 
+    private float lefttrigger;
+
     public bool IsUseSkill
     {
         get { return _isUseSkill; }
@@ -38,7 +38,7 @@ public class PlayerSkill_KH : MonoBehaviour
     private void Awake()
     {
         _myMonsterSkill = GetComponent<MonsterSkill_KH>();
-        _playerMove = GetComponent<PlayerMove_MT>();
+        _playerMove = GameObject.FindWithTag("PlayerManager").GetComponent<PlayerMove_MT>();
         _characterAnim = GetComponent<CharacterAnim_MT>();
     }
 
@@ -56,6 +56,9 @@ public class PlayerSkill_KH : MonoBehaviour
         }
 
         _coolTimeUI = _coolTimeUIObj.GetComponent<CoolTimeUI>();
+
+        float lefttrigger = Input.GetAxis("skill");
+
 
         SkillJudge();
         GameobjectTagJudge();
@@ -107,9 +110,6 @@ public class PlayerSkill_KH : MonoBehaviour
     {
         switch (_skillNum)
         {
-            case (int)MonsterSkill_KH.SkillType.HighSpeedAssault:      // ‚‘¬“ËŒ‚‚Ìê‡
-                _highSpeedAssault = GetComponent<HighSpeedAssault_KH>();
-                return;
 
             case (int)MonsterSkill_KH.SkillType.WeaponAttack:          // •Ší‚ğg‚Á‚½UŒ‚‚È‚Ç‚Ìê‡
                 _weaponAttack = GetComponent<WeaponAttack_KH>();
@@ -123,9 +123,6 @@ public class PlayerSkill_KH : MonoBehaviour
                 _flySkill = GetComponent<FlySkill_KH>();
                 return;
 
-            case (int)MonsterSkill_KH.SkillType.Petrification:         // Î‰»‚Ìê‡
-                _petrification = GetComponent<Petrification_KH>();
-                return;
         }
     }
 
@@ -134,12 +131,12 @@ public class PlayerSkill_KH : MonoBehaviour
     /// </summary>
     private void CallSkill()
     {
-        if ((Input.GetMouseButtonDown(0) || Input.GetButtonDown("skill")) && _skillNum == (int)MonsterSkill_KH.SkillType.Fly && _flySkill.IsFlying)
+        if ((Input.GetMouseButtonDown(0) || lefttrigger > 0.3f && _skillNum == (int)MonsterSkill_KH.SkillType.Fly && _flySkill.IsFlying))
         {
             _isUseSkill = false;
             _flySkill.StopFly();
         }
-        else if ((Input.GetMouseButtonDown(0) || Input.GetButtonDown("skill")) && _canUseSkill)
+        else if ((Input.GetMouseButtonDown(0) || lefttrigger > 0.3f && _canUseSkill))
         {
             if (_normalAttack != null && _normalAttack.IsAttack) return;
             if (_playerGuard != null && _playerGuard.IsGuard) return;
@@ -148,11 +145,7 @@ public class PlayerSkill_KH : MonoBehaviour
 
             switch (_skillNum)
             {
-                case (int)MonsterSkill_KH.SkillType.HighSpeedAssault:      // ‚‘¬“ËŒ‚‚Ìê‡
-                    _highSpeedAssault.SpeedUp();
-                    _characterAnim.NowAnim = "Skill";
-                    break;
-
+   
                 case (int)MonsterSkill_KH.SkillType.WeaponAttack:          // •Ší‚ğg‚Á‚½UŒ‚‚È‚Ç‚Ìê‡
                     _weaponAttack.Attack();
                     _characterAnim.NowAnim = "Skill";
@@ -168,10 +161,6 @@ public class PlayerSkill_KH : MonoBehaviour
                     _characterAnim.NowAnim = "Skill";
                     break;
 
-                case (int)MonsterSkill_KH.SkillType.Petrification:         // Î‰»‚Ìê‡
-                    _petrification.CreatePetrificationArea();
-                    _characterAnim.NowAnim = "Skill";
-                    break;
             }
             _canUseSkill = false;
             _coolTimeUI.StartCoolTime();
@@ -198,10 +187,6 @@ public class PlayerSkill_KH : MonoBehaviour
     {
         switch (_myMonsterSkill.SkillTypeNum)
         {
-            case (int)SkillType.HighSpeedAssault:      // ‚‘¬“ËŒ‚‚Ìê‡
-
-                _highSpeedAssault.enabled = true;
-                return;
 
             case (int)SkillType.WeaponAttack:          // •Ší‚ğg‚Á‚½UŒ‚‚È‚Ç‚Ìê‡
 
@@ -218,10 +203,6 @@ public class PlayerSkill_KH : MonoBehaviour
                 _flySkill.enabled = true;
                 return;
 
-            case (int)SkillType.Petrification:         // Î‰»‚Ìê‡
-
-                _petrification.enabled = true;
-                return;
         }
     }
 }

@@ -2,19 +2,19 @@ using UnityEngine;
 
 public class PlayerMove_MT : MonoBehaviour
 {
-    private float moveSpeed = 500f;  // 移動速度
-    private float maxSpeed = 1000f;  // 最大速度
-    private float slopeForce = 100f; // 坂を登る力
+    private float moveSpeed = 5f;  // 移動速度
+    private float maxSpeed = 10f;  // 最大速度
+    private float slopeForce = 10f; // 坂を登る力
     private float groundCheckDistance = 0.1f; // 地面チェック距離
 
+    private GameObject _playerObj;
     private Rigidbody rb;
     private CharacterAnim_MT _characterAnim;
     private bool isGrounded;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        _characterAnim = GetComponent<CharacterAnim_MT>();
+        SetPlayer();
     }
 
     void FixedUpdate()
@@ -22,12 +22,23 @@ public class PlayerMove_MT : MonoBehaviour
         MovePlayer();
     }
 
+    /// <summary>
+    /// プレイヤーオブジェクトを設定する
+    /// </summary>
+    public void SetPlayer()
+    {
+        _playerObj = GameObject.FindWithTag("Player");
+
+        rb = _playerObj.GetComponent<Rigidbody>();
+        _characterAnim = _playerObj.GetComponent<CharacterAnim_MT>();
+    }
+
     void MovePlayer()
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
-        //アニメーション
+        // アニメーション
         if ((moveHorizontal + moveVertical) != 0)
         {
             _characterAnim.NowAnim = "Move";
@@ -37,14 +48,22 @@ public class PlayerMove_MT : MonoBehaviour
             _characterAnim.NowAnim = "Idle";
         }
 
+        // カメラの方向から見たキャラクターの前方ベクトルを計算
+        Vector3 cameraForward = Camera.main.transform.forward;
+        cameraForward.y = 0f; // y軸の影響を無視（水平方向のみを考慮）
 
-        Vector3 movement = new Vector3(moveHorizontal, 0f, moveVertical).normalized * moveSpeed * Time.deltaTime;
+        // カメラの前方ベクトルを基準にした移動ベクトルを計算
+        Vector3 movement = (cameraForward * moveVertical + Camera.main.transform.right * moveHorizontal).normalized * moveSpeed * Time.deltaTime;
 
-        // 移動ベクトルをローカル座標系に変換
-        movement = transform.TransformDirection(movement);
+        // そのままワールド座標系で移動
+        rb.MovePosition(rb.position + movement);
 
-        // 地面に近い場合、より滑らかな動きを得るためにY軸の速度を保持
-        float yVelocity = rb.velocity.y;
+        // キャラクターの向きを移動方向に合わせる
+        if (movement.magnitude > 0)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(movement);
+            _playerObj.transform.rotation = Quaternion.Slerp(_playerObj.transform.rotation, targetRotation, 0.15f);
+        }
 
         // 速度の制限
         if (rb.velocity.magnitude > maxSpeed)
@@ -70,10 +89,7 @@ public class PlayerMove_MT : MonoBehaviour
         // 地面に接触している場合、Y軸の速度をリセット
         if (isGrounded)
         {
-            yVelocity = 0f;
+            rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         }
-
-        // 移動
-        rb.velocity = new Vector3(movement.x, yVelocity, movement.z);
     }
 }

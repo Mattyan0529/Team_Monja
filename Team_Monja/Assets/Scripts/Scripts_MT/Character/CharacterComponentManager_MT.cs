@@ -22,8 +22,7 @@ public class CharacterComponentManager_MT : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
-        playerMove = GetComponent<PlayerMove_MT>();     
+    {     
         cameraManager = GameObject.FindWithTag("CameraPos").GetComponent<CameraManager_MT>();
         eatEnemy = GetComponent<EatEnemy_MT>();
         eatOrChangeController = GetComponent<EatOrChangeController_MT>();
@@ -75,7 +74,6 @@ public class CharacterComponentManager_MT : MonoBehaviour
 
     void EnablePlayerComponents()
     {
-        playerMove.enabled = true;
         eatEnemy.enabled = true;
         eatOrChangeController.enabled = true;
         closestEnemyFinder.enabled = true;
@@ -85,7 +83,6 @@ public class CharacterComponentManager_MT : MonoBehaviour
 
     void DisablePlayerComponents()
     {
-        playerMove.enabled = false;
         eatEnemy.enabled = false;
         eatOrChangeController.enabled = false;
         closestEnemyFinder.enabled = false;

@@ -29,11 +29,9 @@ public class MonsterSkill_KH : MonoBehaviour
     private SkillSpriteChange_KH _skillSpriteChange = default;
     private SkillSpriteChange_KH _normalAttackSpriteChange = default;
 
-    private HighSpeedAssault_KH _highSpeedAssault = default;
     private WeaponAttack_KH _weaponAttack = default;
     private LongDistanceAttack_KH _longDistanceAttack = default;
     private FlySkill_KH _flySkill = default;
-    private Petrification_KH _petrification = default;
     private BossSkill_KH _bossSkill = default;
     //松本
     private CharacterAnim_MT _characterAnim;
@@ -137,11 +135,6 @@ public class MonsterSkill_KH : MonoBehaviour
             _skillNum = (int)SkillType.Boss;
             _bossSkill = GetComponent<BossSkill_KH>();
         }
-        else if (GetComponent<HighSpeedAssault_KH>())       // スキル：高速突撃
-        {
-            _skillNum = (int)SkillType.HighSpeedAssault;
-            _highSpeedAssault = GetComponent<HighSpeedAssault_KH>();
-        }
         else if (GetComponent<WeaponAttack_KH>())      // スキル：武器を使った攻撃
         {
             _skillNum = (int)SkillType.WeaponAttack;
@@ -156,11 +149,6 @@ public class MonsterSkill_KH : MonoBehaviour
         {
             _skillNum = (int)SkillType.Fly;
             _flySkill = GetComponent<FlySkill_KH>();
-        }
-        else if (GetComponent<Petrification_KH>())       // スキル：石化
-        {
-            _skillNum = (int)SkillType.Petrification;
-            _petrification = GetComponent<Petrification_KH>();
         }
     }
 
@@ -196,11 +184,6 @@ public class MonsterSkill_KH : MonoBehaviour
     {
         switch (SkillTypeNum)
         {
-            case (int)SkillType.HighSpeedAssault:      // 高速突撃の場合
-
-                _highSpeedAssault.SpeedUp();
-                return;
-
             case (int)SkillType.WeaponAttack:          // 武器を使った攻撃などの場合
                                                        // ランダム移動中（プレイヤーが攻撃範囲外）は処理しないが、その判断はAttack内でしてる
                 _weaponAttack.Attack();
@@ -216,11 +199,6 @@ public class MonsterSkill_KH : MonoBehaviour
                 _flySkill.MonsterStartFly();
                 return;
 
-            case (int)SkillType.Petrification:         // 石化の場合
-
-                if (_monsterRandomWalk.enabled) return;     // ランダム移動中（プレイヤーが攻撃範囲外）は処理しない
-                _petrification.CreatePetrificationArea();
-                return;
 
             case (int)SkillType.Boss:       // ボスのスキルの場合
 
@@ -236,10 +214,6 @@ public class MonsterSkill_KH : MonoBehaviour
 
         switch (SkillTypeNum)
         {
-            case (int)SkillType.HighSpeedAssault:      // 高速突撃の場合
-
-                _highSpeedAssault.enabled = false;
-                return;
 
             case (int)SkillType.WeaponAttack:          // 武器を使った攻撃などの場合
                                                        
@@ -254,11 +228,6 @@ public class MonsterSkill_KH : MonoBehaviour
             case (int)SkillType.Fly:                   // 飛ぶスキルの場合
 
                 _flySkill.enabled = false;
-                return;
-
-            case (int)SkillType.Petrification:         // 石化の場合
-
-                _petrification.enabled = false;
                 return;
 
             case (int)SkillType.Boss:       // ボスのスキルの場合
