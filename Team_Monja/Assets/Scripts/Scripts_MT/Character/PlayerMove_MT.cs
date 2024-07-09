@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class PlayerMove_MT : MonoBehaviour
 {
-    private float moveSpeed = 5f;  // 移動速度
-    private float maxSpeed = 10f;  // 最大速度
+    private float moveSpeed = 10f;  // 移動速度
+    private float maxSpeed = 20f;  // 最大速度
     private float slopeForce = 10f; // 坂を登る力
     private float groundCheckDistance = 0.1f; // 地面チェック距離
 

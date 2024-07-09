@@ -25,7 +25,7 @@ public class ChangeCharacter_MT : MonoBehaviour
 
         changeIcon = _canvas.GetComponentInChildren<ChangeIcon_MT>();
         statusManagerPlayer = GetComponent<StatusManager_MT>();
-        closestEnemyFinder = GetComponent<ClosestEnemyFinder_MT>();
+        closestEnemyFinder = GameObject.FindWithTag("PlayerManager").GetComponent<ClosestEnemyFinder_MT>();
         enemyHP = GetComponentInChildren<EnemyHP_MT>();
 
         GameObject nearTrigger = GameObject.FindWithTag("NearTrigger");

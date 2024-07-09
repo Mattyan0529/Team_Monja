@@ -7,7 +7,6 @@ public class PlayerSkill_KH : MonoBehaviour
     GameObject _coolTimeUIObj = default;
 
     private MonsterSkill_KH _myMonsterSkill = default;
-    private PlayerMove_MT _playerMove = default;
     private CoolTimeUI _coolTimeUI = default;
 
     private WeaponAttack_KH _weaponAttack = default;
@@ -38,7 +37,6 @@ public class PlayerSkill_KH : MonoBehaviour
     private void Awake()
     {
         _myMonsterSkill = GetComponent<MonsterSkill_KH>();
-        _playerMove = GameObject.FindWithTag("PlayerManager").GetComponent<PlayerMove_MT>();
         _characterAnim = GetComponent<CharacterAnim_MT>();
     }
 
@@ -88,7 +86,6 @@ public class PlayerSkill_KH : MonoBehaviour
         if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss"))
         {
             _myMonsterSkill.enabled = true;
-            _playerMove.enabled = false;
 
             if (GetComponent<NormalAttack_KH>())
             {
@@ -131,12 +128,12 @@ public class PlayerSkill_KH : MonoBehaviour
     /// </summary>
     private void CallSkill()
     {
-        if ((Input.GetMouseButtonDown(0) || lefttrigger > 0.3f && _skillNum == (int)MonsterSkill_KH.SkillType.Fly && _flySkill.IsFlying))
+        if (((Input.GetMouseButtonDown(0) || lefttrigger > 0.3f) && _skillNum == (int)MonsterSkill_KH.SkillType.Fly && _flySkill.IsFlying))
         {
             _isUseSkill = false;
             _flySkill.StopFly();
         }
-        else if ((Input.GetMouseButtonDown(0) || lefttrigger > 0.3f && _canUseSkill))
+        else if (((Input.GetMouseButtonDown(0) || lefttrigger > 0.3f) && _canUseSkill))
         {
             if (_normalAttack != null && _normalAttack.IsAttack) return;
             if (_playerGuard != null && _playerGuard.IsGuard) return;

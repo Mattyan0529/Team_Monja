@@ -16,43 +16,42 @@ public class KillEnemy_MT : MonoBehaviour
 
     private void Start()
     {
-        _closestEnemyFinder = GetComponent<ClosestEnemyFinder_MT>();
+        _closestEnemyFinder = GameObject.FindWithTag("PlayerManager").GetComponent<ClosestEnemyFinder_MT>();
         _gameEndCamera = GameObject.FindWithTag("CameraPos").GetComponent<GameEndCamera_MT>();
-
-        GameObject nearTrigger = GameObject.FindWithTag("NearTrigger");
-        _enemyTriggerManager = nearTrigger.GetComponent<EnemyTriggerManager_MT>();
+        _enemyTriggerManager = GameObject.FindWithTag("NearTrigger").GetComponent<EnemyTriggerManager_MT>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (_enemyTriggerManager.objectsInTrigger != null)
+        if (_enemyTriggerManager.objectsInTrigger == null)
         {
-            // プレイヤーの周りの敵を取得
-            Collider closestEnemy = _closestEnemyFinder.GetClosestObject(_enemyTriggerManager.objectsInTrigger, transform);
+            return;
+        }
+        // プレイヤーの周りの敵を取得
+        Collider closestEnemy = _closestEnemyFinder.GetClosestObject(_enemyTriggerManager.objectsInTrigger, transform);
 
-            // 近くの敵が存在する場合
-            if (closestEnemy != null)
+        // 近くの敵が存在する場合
+        if (closestEnemy != null)
+        {
+            // 敵のStatusManager_MTコンポーネントを取得
+            StatusManager_MT enemyStatus = closestEnemy.GetComponent<StatusManager_MT>();
+
+            // 近くの敵がボスであり、HPが0以下の場合
+            if (enemyStatus != null && closestEnemy.CompareTag("Boss") && enemyStatus.HP <= 0)
             {
-                // 敵のStatusManager_MTコンポーネントを取得
-                StatusManager_MT enemyStatus = closestEnemy.GetComponent<StatusManager_MT>();
-
-                // 近くの敵がボスであり、HPが0以下の場合
-                if (enemyStatus != null && closestEnemy.CompareTag("Boss") && enemyStatus.HP <= 0)
+                if (_coroutineSwitch)
                 {
-                    if (_coroutineSwitch)
-                    {
-                        // ボスが死んだときの処理
-                        StartCoroutine(_gameEndCamera.GameClearCoroutine());
-                        _coroutineSwitch = false;
-                    }
-
+                    // ボスが死んだときの処理
+                    StartCoroutine(_gameEndCamera.GameClearCoroutine());
+                    _coroutineSwitch = false;
                 }
+
             }
         }
 
 
-       
+
     }
 
 }

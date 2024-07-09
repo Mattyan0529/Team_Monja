@@ -18,7 +18,7 @@ public class EatEnemy_MT : MonoBehaviour
     private void Start()
     {
         statusManagerPlayer = GetComponent<StatusManager_MT>();
-        closestEnemyFinder = GetComponent<ClosestEnemyFinder_MT>();
+        closestEnemyFinder = GameObject.FindWithTag("PlayerManager").GetComponent<ClosestEnemyFinder_MT>();
 
         // í«ãLÅFñk
         _soundEffectManagement = _residentScript.GetComponent<SoundEffectManagement_KH>();

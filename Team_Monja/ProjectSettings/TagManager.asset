@@ -10,6 +10,7 @@ TagManager:
   - NearTrigger
   - Missile
   - CameraPos
+  - PlayerManager
   layers:
   - Default
   - TransparentFX
