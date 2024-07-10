@@ -17,16 +17,10 @@ public class EatEnemy_MT : MonoBehaviour
 
     private void Start()
     {
-        statusManagerPlayer = GetComponent<StatusManager_MT>();
+        SetPlayer();
+
         closestEnemyFinder = GameObject.FindWithTag("PlayerManager").GetComponent<ClosestEnemyFinder_MT>();
-
-        // 追記：北
         _soundEffectManagement = _residentScript.GetComponent<SoundEffectManagement_KH>();
-
-        if (closestEnemyFinder == null)
-        {
-            Debug.LogError("ClosestEnemyFinder_MT is not assigned.");
-        }
     }
 
     public void RemoveClosestObject(List<Collider> objectsInTrigger, Transform referencePoint)
@@ -70,11 +64,6 @@ public class EatEnemy_MT : MonoBehaviour
                 //食べてMaxHPが増えた分だけ回復
                 statusManagerPlayer.HealHP(statusManagerPlayer.MaxHP - currentMaxHP);
 
-                // 追記：北
-                if (_audioSource == null)
-                {
-                    _audioSource = GetComponentInChildren<AudioSource>();
-                }
                 _soundEffectManagement.PlayEatSound(_audioSource);
             }
             else
@@ -82,5 +71,10 @@ public class EatEnemy_MT : MonoBehaviour
                 Debug.LogError("一番近い敵が死んでいないか、StatusManager_MTを持っていない。");
             }
         }
+    }
+    public void SetPlayer()
+    {
+        statusManagerPlayer = GameObject.FindWithTag("Player").GetComponent<StatusManager_MT>();
+        _audioSource = GameObject.FindWithTag("Player").GetComponent<AudioSource>();
     }
 }

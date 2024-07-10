@@ -71,8 +71,12 @@ public class StatusManager_MT : MonoBehaviour
         _moveSliderBoss = canvasObjBoss.GetComponentInChildren<MoveSlider_MT>();
 
 
-        // 倍率を適用
-        ApplyMultipliers();
+        // プレイヤー以外だったら倍率を適用（別のところで設定するため
+        if (!CompareTag("Player"))
+        {
+            ApplyMultipliers();
+        }
+    
 
         // 現在のHPを最大HPに設定
         HP = MaxHP;

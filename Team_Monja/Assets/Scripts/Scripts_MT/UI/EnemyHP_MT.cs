@@ -13,14 +13,18 @@ public class EnemyHP_MT : MonoBehaviour
 
     private Transform _childObj;
 
-    // Start is called before the first frame update
+    private void Awake()
+    {//エラーが出るからしかたないね
+        _childObj = transform.GetChild(0);
+        _moveSlider = GetComponentInChildren<MoveSlider_MT>();
+    }
     void Start()
     {
         _canvas = GetComponent<Canvas>();
         _statusManager = GetComponentInParent<StatusManager_MT>();
         _collider = GetComponentInParent<Collider>();
-        _moveSlider = GetComponentInChildren<MoveSlider_MT>();
-        _childObj = transform.GetChild(0);
+
+
 
         SetPlayerArea(); // プレイヤーとそのコンポーネントを取得
         TagCheck(); // タグに基づいてCanvasの初期状態を設定

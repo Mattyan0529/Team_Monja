@@ -11,9 +11,7 @@ public class EatOrChangeController_MT : MonoBehaviour
     {
         eatEnemy = GetComponent<EatEnemy_MT>();
         changeCharacter = GetComponent<ChangeCharacter_MT>();
-
-        GameObject _nearTrigger = GameObject.FindWithTag("NearTrigger");
-        enemyTriggerManager = _nearTrigger.GetComponent<EnemyTriggerManager_MT>();
+        enemyTriggerManager = GameObject.FindWithTag("NearTrigger").GetComponent<EnemyTriggerManager_MT>();
     }
 
     void Update()
@@ -28,6 +26,7 @@ public class EatOrChangeController_MT : MonoBehaviour
             ChangeTagClosestObject();
         }
     }
+
 
     // 最も近いオブジェクトを食べるメソッド
     private void RemoveClosestObject()

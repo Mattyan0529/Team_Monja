@@ -47,46 +47,19 @@ public class CharacterComponentManager_MT : MonoBehaviour
         {
             if (this.gameObject.CompareTag("Player"))
             {
-
-                EnablePlayerComponents();
-        
                 //キャラクターがプレイヤーになったときの処理
                 if (statusManager != null)
                 {
-                    cameraManager = GameObject.FindWithTag("CameraPos").GetComponent<CameraManager_MT>();
-                    cameraManager.FindPlayer();
                     enemyTriggerManager.SetToPlayer();
 
                     statusManager.ApplyMultipliers();
-                    statusManager.HealHP(9999999);
+                    
                     enemyHP.TagCheck();
                     enemyHP.SetPlayerArea();
 
                 }
             }
-            else if (this.gameObject.CompareTag("Enemy")|| this.gameObject.CompareTag("Boss"))
-            {
-                DisablePlayerComponents();
-            }
             _currentTag = this.gameObject.tag;
         }
-    }
-
-    void EnablePlayerComponents()
-    {
-        eatEnemy.enabled = true;
-        eatOrChangeController.enabled = true;
-        closestEnemyFinder.enabled = true;
-        changeCharacter.enabled = true;
-        killEnemy.enabled = true;
-    }
-
-    void DisablePlayerComponents()
-    {
-        eatEnemy.enabled = false;
-        eatOrChangeController.enabled = false;
-        closestEnemyFinder.enabled = false;
-        changeCharacter.enabled = false;
-        killEnemy.enabled = false;
     }
 }

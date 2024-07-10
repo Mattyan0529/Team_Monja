@@ -25,9 +25,10 @@ public class GameEndCamera_MT : MonoBehaviour
 
     private void Start()
     {
+        SetPlayer();
         _cameraManager = GameObject.FindWithTag("CameraPos").GetComponent<CameraManager_MT>();
-        _statusManagerPlayer = GameObject.FindWithTag("Player").GetComponent<StatusManager_MT>();
-        _statusManagerBoss = GameObject.FindWithTag("Boss").GetComponent<StatusManager_MT>();
+        //ボスが完成したら下の行のコメント消す
+      //  _statusManagerBoss = GameObject.FindWithTag("Boss").GetComponent<StatusManager_MT>();
     }
 
     private void Update()
@@ -47,46 +48,54 @@ public class GameEndCamera_MT : MonoBehaviour
         Debug.Log("resetgameover" + this.gameObject);
     }
 
+    public void SetPlayer()
+    {
+        _statusManagerPlayer = GameObject.FindWithTag("Player").GetComponent<StatusManager_MT>();
+    }
+
     public IEnumerator GameOverCoroutine()
     {
         _isCoroutineActive = true;
-
-        //何秒待つのか
-        float slowTime = 1.75f;
-
-        //カメラの位置を設定
-        _deadCameraPosition = new Vector3(0, 6, 0);
-        //カメラの向きを設定
-        _deadCameraRotation = new Vector3(90, 180, 0);
-
-        //カメラ操作をできなくする
-        _cameraManager.enabled = false;
-
-        // 親オブジェクトが設定されているか確認
-        if (_canvasPlayer != null)
+        if(CompareTag("Player"))
         {
-            // 親オブジェクトの全ての子オブジェクトを取得
-            foreach (Transform child in _canvasPlayer.transform)
+            //何秒待つのか
+            float slowTime = 1.75f;
+
+            //カメラの位置を設定
+            _deadCameraPosition = new Vector3(0, 6, 0);
+            //カメラの向きを設定
+            _deadCameraRotation = new Vector3(90, 180, 0);
+
+            //カメラ操作をできなくする
+            _cameraManager.enabled = false;
+
+            // 親オブジェクトが設定されているか確認
+            if (_canvasPlayer != null)
             {
-                // 子オブジェクトを非アクティブにする
-                child.gameObject.SetActive(false);
+                // 親オブジェクトの全ての子オブジェクトを取得
+                foreach (Transform child in _canvasPlayer.transform)
+                {
+                    // 子オブジェクトを非アクティブにする
+                    child.gameObject.SetActive(false);
+                }
             }
+
+            //スローモーション開始
+            Time.timeScale = _slowTimeScale;
+
+            yield return new WaitForSeconds(slowTime);
+
+            //死んだときのカメラを調整
+            transform.localPosition = _deadCameraPosition;
+            transform.localRotation = Quaternion.Euler(_deadCameraRotation);
+
+            //時間停止
+            Time.timeScale = 0;
+
+            //ゲームオーバーの画像を出す
+            _gameOverImage.SetActive(true);
+
         }
-
-        //スローモーション開始
-        Time.timeScale = _slowTimeScale;
-
-        yield return new WaitForSeconds(slowTime);
-
-        //死んだときのカメラを調整
-        transform.localPosition = _deadCameraPosition;
-        transform.localRotation = Quaternion.Euler(_deadCameraRotation);
-
-        //時間停止
-        Time.timeScale = 0;
-
-        //ゲームオーバーの画像を出す
-        _gameOverImage.SetActive(true);
 
         _isCoroutineActive = false;
     }

@@ -62,7 +62,7 @@ public class PlayerMove_MT : MonoBehaviour
         if (movement.magnitude > 0)
         {
             Quaternion targetRotation = Quaternion.LookRotation(movement);
-            _playerObj.transform.rotation = Quaternion.Slerp(_playerObj.transform.rotation, targetRotation, 0.15f);
+            _playerObj.transform.rotation = Quaternion.Slerp(_playerObj.transform.rotation, targetRotation, 0.5f); // ï‚ä‘ÇÃë¨ìxÇë¨Ç≠Ç∑ÇÈ
         }
 
         // ë¨ìxÇÃêßå¿

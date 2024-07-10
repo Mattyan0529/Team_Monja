@@ -9,34 +9,21 @@ public class ChangeCharacter_MT : MonoBehaviour
     private MonsterSkill_KH _monsterSkill = default;
 
     [SerializeField] private int _IconNum = default;
-    [SerializeField] private GameObject _canvas = default;
+    [SerializeField] private GameObject _canvasPlayer = default;
 
     private ChangeIcon_MT changeIcon;
     private StatusManager_MT statusManagerPlayer;
     private ClosestEnemyFinder_MT closestEnemyFinder;
-    private EnemyHP_MT enemyHP;
-    private EnemyTriggerManager_MT enemyTriggerManager;
+    private GameObject _playerObj;
 
     void Start()
     {
         _soundEffectManagement = _residentScript.GetComponent<SoundEffectManagement_KH>();
-        _monsterSkill = GetComponent<MonsterSkill_KH>();
-        _audioSource = GetComponentInChildren<AudioSource>();
-
-        changeIcon = _canvas.GetComponentInChildren<ChangeIcon_MT>();
-        statusManagerPlayer = GetComponent<StatusManager_MT>();
+        changeIcon = _canvasPlayer.GetComponentInChildren<ChangeIcon_MT>();
         closestEnemyFinder = GameObject.FindWithTag("PlayerManager").GetComponent<ClosestEnemyFinder_MT>();
-        enemyHP = GetComponentInChildren<EnemyHP_MT>();
 
-        GameObject nearTrigger = GameObject.FindWithTag("NearTrigger");
-        if (nearTrigger != null)
-        {
-            enemyTriggerManager = nearTrigger.GetComponent<EnemyTriggerManager_MT>();
-        }
-        else
-        {
-            Debug.LogError("NearTrigger not found.");
-        }
+
+        SetPlayer();
     }
 
     public void ChangeTagClosestObject(List<Collider> objectsInTrigger, Transform referencePoint)
@@ -59,8 +46,10 @@ public class ChangeCharacter_MT : MonoBehaviour
 
                 closestObject.GetComponent<MonsterSkill_KH>().enabled = true;
                 _soundEffectManagement.PlayPossessionSound(_audioSource);
-
+                //一番近い死んでいる敵のタグをPlayerにする
                 closestObject.gameObject.tag = "Player";
+
+                //回転は維持
                 closestObject.gameObject.transform.rotation = transform.rotation;
 
                 CharacterAnim_MT closestObjectAnim = closestObject.GetComponent<CharacterAnim_MT>();
@@ -72,9 +61,11 @@ public class ChangeCharacter_MT : MonoBehaviour
                 {
                     Debug.LogError("CharacterAnim_MT not found on closest object.");
                 }
-
+                //タグをEnemyにする
+                _playerObj.tag = "Enemy";
+                //このキャラクターを殺す
                 statusManagerPlayer.HP = 0;
-                tag = "Enemy";
+
 
                 _monsterSkill.GameobjectTagJudge();
                 closestObject.GetComponent<MonsterSkill_KH>().GameobjectTagJudge();
@@ -85,4 +76,13 @@ public class ChangeCharacter_MT : MonoBehaviour
             }
         }
     }
+    public void SetPlayer()
+    {
+        _playerObj = GameObject.FindWithTag("Player");
+        _monsterSkill = _playerObj.GetComponent<MonsterSkill_KH>();
+        _audioSource = _playerObj.GetComponent<AudioSource>();
+        statusManagerPlayer = _playerObj.GetComponent<StatusManager_MT>();
+    }
+
+
 }
