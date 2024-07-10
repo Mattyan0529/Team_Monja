@@ -43,8 +43,8 @@ public class MenuNavigation_SM : MonoBehaviour
                 selectedObject = eventSystem.currentSelectedGameObject;
             }
 
-            // 2つ目のAudioSourceからSEを鳴らす（AudioSourceは別にどっちでもいい）：北
-            _soundEffectManagement.PlayBigSelectionSound(_audioSource[1]);
+            // 1つ目のAudioSourceからSEを鳴らす（AudioSourceは別にどっちでもいい）：北
+            _soundEffectManagement.PlayBigSelectionSound(_audioSource[0]);
         }
     }
 }

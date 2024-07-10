@@ -828,7 +828,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: Stage
-  optionPanel: {fileID: 0}
   useEnterKey: 1
   useBackspaceKey: 0
   useEscapeKey: 0
@@ -845,7 +844,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: TitleScreen
-  optionPanel: {fileID: 0}
   useEnterKey: 0
   useBackspaceKey: 1
   useEscapeKey: 0
@@ -875,7 +873,7 @@ AudioSource:
   m_GameObject: {fileID: 1554637990}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -5592616811770310153, guid: cc8f028d7199b8f478f04725a2cd8d4b, type: 2}
   m_audioClip: {fileID: 8300000, guid: e890bb1393a48064e881ed2fe9e52709, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.2
