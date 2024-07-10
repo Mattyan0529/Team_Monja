@@ -61,16 +61,6 @@ public class SlimeSkillAttack : MonoBehaviour, IDamagable
         //松本
         _characterAnim.NowAnim = "Skill";
 
-        //スキルエフェクト
-        if (_effectManager != null)
-        {
-            _effectManager.ShowSpecialAttackEffect(transform);
-        }
-        else
-        {
-            Debug.LogError("EffectManager component is not found.");
-        }
-
         // 動きを止める
         if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss"))
         {
@@ -84,6 +74,16 @@ public class SlimeSkillAttack : MonoBehaviour, IDamagable
     {
         _isAttack = true;
         _attackArea.SetActive(true);
+        //スキルエフェクト
+        if (_effectManager != null)
+        {
+            _effectManager.ShowSpecialAttackEffect(transform);
+        }
+        else
+        {
+            Debug.LogError("EffectManager component is not found.");
+        }
+
     }
 
     /// <summary>
@@ -132,7 +132,6 @@ public class SlimeSkillAttack : MonoBehaviour, IDamagable
             {
                 _playerRangeInJudge.enabled = true;
             }
-
 
             _attackArea.SetActive(false);
             _elapsedTime = 0f;

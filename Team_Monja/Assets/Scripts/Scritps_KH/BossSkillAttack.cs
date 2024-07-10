@@ -1,14 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class BossSkillAttack : MonoBehaviour
-{/*
+public class BossSkillAttack : MonoBehaviour,IDamagable
+{
     //松本
     private CharacterAnim_MT _characterAnim = default;
-
-    private LongDistanceAttack_KH _longDistanceAttack = default;
-    private WeaponAttack_KH _weaponAttack = default;
 
     // それぞれの攻撃を実行する割合
     private const int _fireSphereProbability = 1;
@@ -17,8 +12,6 @@ public class BossSkillAttack : MonoBehaviour
 
     void Start()
     {
-        _longDistanceAttack = GetComponent<LongDistanceAttack_KH>();
-        _weaponAttack = GetComponent<WeaponAttack_KH>();
         _characterAnim = GetComponent<CharacterAnim_MT>();
     }
 
@@ -30,18 +23,58 @@ public class BossSkillAttack : MonoBehaviour
         switch (skillNum)
         {
             case < _fireSphereProbability:        // 火球
-                _longDistanceAttack.GenerateBullet();
+                FireSphere();
                 _characterAnim.NowAnim = "Skill";
                 break;
             case < _fireSphereProbability + _hitProbability:        // 殴る
-                _weaponAttack.Attack();
+                HitAttack();
                 _characterAnim.NowAnim = "Attack";
                 break;
             case < _fireSphereProbability + _hitProbability + _biteProbability:       // 噛む
-                _weaponAttack.Attack();
+                BiteAttack();
                 _characterAnim.NowAnim = "Attack2";
                 break;
         }
-    }*/
+    }
+
+    private void FireSphere()
+    {
+
+    }
+
+    private void HitAttack()
+    {
+
+    }
+
+    private void BiteAttack()
+    {
+
+    }
+
+    public void HitDecision(GameObject hitObj)
+    {
+        // 相手と自分のStatusManagerが両方必要
+        StatusManager_MT targetStatusManager = hitObj.gameObject.GetComponent<StatusManager_MT>();
+        StatusManager_MT myStatusManager = GetComponent<StatusManager_MT>();
+
+        HitPointCalculation(myStatusManager, targetStatusManager);
+    }
+
+    /// <summary>
+    /// ダメージ計算
+    /// </summary>
+    public void HitPointCalculation(StatusManager_MT myStatus, StatusManager_MT targetStatus)
+    {
+        int myAttackPower = myStatus.Strength;        // 自分の攻撃力をgetしてくる
+        int targetDefensePower = targetStatus.Defense;        // 相手の防御力をgetしてくる
+        int targetHitPoint = targetStatus.HP;        // 相手のHPをgetしてくる
+
+        if (myAttackPower < targetDefensePower) return;        // 防御力のほうが高かったら0ダメージ
+
+        int damage = targetHitPoint - (myAttackPower - targetDefensePower);
+        //_createDamageImage.InstantiateDamageImage(gameObject, targetStatus.gameObject, myAttackPower - targetDefensePower);
+        //_writeHitPoint.UpdateHitPoint(targetStatus, damage);      // targetStatusのHPを更新
+    }
 }
 

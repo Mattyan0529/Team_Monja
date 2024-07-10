@@ -119,7 +119,10 @@ public class EvillMageSkillAttack : MonoBehaviour,IDamagable
 
     private void OnDisable()
     {
-        _bulletHitDecision.DisableBullet();
+        if (_bulletHitDecision != null)
+        {
+            _bulletHitDecision.DisableBullet();
+        }
         _isShot = false;
     }
 }
