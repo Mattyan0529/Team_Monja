@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class SceneSwitcher_SM : MonoBehaviour
 {
     [SerializeField] private string sceneName; // 遷移するシーンの名前
-    [SerializeField] private GameObject optionPanel; // オプション画面のUIパネル
     [SerializeField] private bool useEnterKey; // エンターキーでシーンを遷移するかどうか
     [SerializeField] private bool useBackspaceKey; // バックスペースキーでシーンを遷移するかどうか
     [SerializeField] private bool useEscapeKey; // エスケープキーでオプション画面を表示するかどうか
