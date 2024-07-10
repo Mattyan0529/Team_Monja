@@ -797,6 +797,7 @@ GameObject:
   - component: {fileID: 390213841}
   - component: {fileID: 390213840}
   - component: {fileID: 390213843}
+  - component: {fileID: 390213844}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -867,6 +868,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioObj: {fileID: 894444425}
+--- !u!114 &390213844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 390213839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b508c02b92c2cc4c9b632d94c537076, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: cc8f028d7199b8f478f04725a2cd8d4b, type: 2}
+  BGMSlider: {fileID: 558719109}
+  SESlider: {fileID: 1858846437}
+  VOICESlider: {fileID: 1990910014}
 --- !u!1 &422461998
 GameObject:
   m_ObjectHideFlags: 0
@@ -1406,13 +1423,25 @@ MonoBehaviour:
   m_FillRect: {fileID: 1514320464}
   m_HandleRect: {fileID: 292518876}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
+  m_MinValue: -80
+  m_MaxValue: 0
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 390213844}
+        m_TargetAssemblyTypeName: AudioChange_SM, Assembly-CSharp
+        m_MethodName: SetBGM
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &558719110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3626,13 +3655,25 @@ MonoBehaviour:
   m_FillRect: {fileID: 2076218211}
   m_HandleRect: {fileID: 422461999}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
+  m_MinValue: -80
+  m_MaxValue: 0
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 390213844}
+        m_TargetAssemblyTypeName: AudioChange_SM, Assembly-CSharp
+        m_MethodName: SetSE
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1858846438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4102,13 +4143,25 @@ MonoBehaviour:
   m_FillRect: {fileID: 1901315841}
   m_HandleRect: {fileID: 271895304}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
+  m_MinValue: -80
+  m_MaxValue: 0
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 390213844}
+        m_TargetAssemblyTypeName: AudioChange_SM, Assembly-CSharp
+        m_MethodName: SetVOICE
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1990910015
 MonoBehaviour:
   m_ObjectHideFlags: 0
