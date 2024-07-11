@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class EnemyHP_MT : MonoBehaviour
 {
@@ -10,13 +11,16 @@ public class EnemyHP_MT : MonoBehaviour
     private MoveSlider_MT _moveSlider;
     private StatusManager_MT _statusManager;
     private EnemyTriggerManager_MT _enemyTriggerManager;
+    private TextMeshProUGUI  _text;
 
-    private Transform _childObj;
+    private List<Transform> _childObjects = new List<Transform>();
 
     private void Awake()
     {//エラーが出るからしかたないね
-        _childObj = transform.GetChild(0);
+        GetAllChild();
         _moveSlider = GetComponentInChildren<MoveSlider_MT>();
+        _text = GetComponentInChildren<TextMeshProUGUI>();
+        
     }
     void Start()
     {
@@ -24,18 +28,18 @@ public class EnemyHP_MT : MonoBehaviour
         _statusManager = GetComponentInParent<StatusManager_MT>();
         _collider = GetComponentInParent<Collider>();
 
+        _text.text = this.transform.parent.name;
 
-
-        SetPlayerArea(); // プレイヤーとそのコンポーネントを取得
-        TagCheck(); // タグに基づいてCanvasの初期状態を設定
+        SetPlayerArea();
+        TagCheck(); 
     }
 
-    // Update is called once per frame
+
     void Update()
     {
-        LookCamera(); // Canvasをカメラに向ける
-        SetSlider(); // スライダーの値を設定
-        NearEnemyCheck(); // 敵が近くにいる場合にCanvasを表示する
+        LookCamera(); 
+        SetSlider();
+        NearEnemyCheck();
     }
 
 
@@ -56,16 +60,29 @@ public class EnemyHP_MT : MonoBehaviour
     // 敵でなければHPバーを非アクティブにする
     public void TagCheck()
     {
+
         if (!this.transform.parent.CompareTag("Enemy"))
         {
-           _childObj.gameObject.SetActive(false);
+            foreach (Transform child in _childObjects)
+            {
+                child.gameObject.SetActive(false);
+            }
+        }
+    }
+
+    //子オブジェクトをすべて検索する
+    private void GetAllChild()
+    {
+        foreach (Transform child in transform)
+        {
+            _childObjects.Add(child);
         }
     }
 
     // Canvasをメインカメラの方向に向ける
     private void LookCamera()
     {
-        _canvas.transform.rotation = GameObject.FindWithTag("CameraPos").transform.rotation;
+        _canvas.transform.rotation = Camera.main.transform.rotation;
     }
 
     // スライダーの値を設定する
@@ -78,15 +95,23 @@ public class EnemyHP_MT : MonoBehaviour
     // 敵が近くにいたらHPバーを表示する
     private void NearEnemyCheck()
     {
-        if (this.transform.parent.CompareTag("Enemy"))
+        if (this.transform.parent.CompareTag("Enemy") || _enemyTriggerManager != null)
         {
             if (_enemyTriggerManager.objectsInTrigger.Contains(_collider))
             {
-                _childObj.gameObject.SetActive(true);
+                foreach (Transform child in _childObjects)
+                {
+                    child.gameObject.SetActive(true);
+                }
+                
             }
             else
             {
-                _childObj.gameObject.SetActive(false);
+                foreach (Transform child in _childObjects)
+                {
+                   child.gameObject.SetActive(false);
+                }
+                
             }
         }
     }

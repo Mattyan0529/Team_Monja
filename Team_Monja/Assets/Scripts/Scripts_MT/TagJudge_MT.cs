@@ -25,7 +25,6 @@ public class TagJudge_MT : MonoBehaviour
     void Update()
     {
         ChangeTagJudge();
-        Debug.Log("tag = " + _playerObj.tag);
     }
 
 
@@ -37,12 +36,10 @@ public class TagJudge_MT : MonoBehaviour
         if (_playerObj.tag != _currentTag)
         {
             SetPlayer();
-            Debug.Log("tagchanged");
             return;
         }
 
         _currentTag = _playerObj.tag;
-        Debug.Log("currentTag = " + _currentTag);
     }
 
 
