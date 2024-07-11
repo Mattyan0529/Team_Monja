@@ -84,7 +84,6 @@ public class RandomWayPointBetweenMove : MonoBehaviour
         int nextPointsIndex = Random.Range(0, MovableWayPoint.Length - 1);
 
         _targetWayPoint = MovableWayPoint[nextPointsIndex].transform;
-        Debug.Log(_targetWayPoint);
         _nowEnemyState = EnemyState.InMove;
     }
 
