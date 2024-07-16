@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PauseDirector_KH : MonoBehaviour
 {
+    [SerializeField] private GameObject pauseCanvas; // ポーズ時に表示するキャンバスの参照
     private bool _isPause = false;
 
     void Update()
@@ -22,6 +23,7 @@ public class PauseDirector_KH : MonoBehaviour
             if (!_isPause)
             {
                 Pause();
+
             }
             // ポーズ状態解除
             else if (_isPause)
@@ -36,11 +38,19 @@ public class PauseDirector_KH : MonoBehaviour
     {
         Time.timeScale = 0f;
         _isPause = true;
+        if (pauseCanvas != null)
+        {
+            pauseCanvas.SetActive(true); // ポーズキャンバスを表示
+        }
     }
 
     private void CancellationPause()
     {
         Time.timeScale = 1f;
         _isPause = false;
+        if (pauseCanvas != null)
+        {
+            pauseCanvas.SetActive(false); // ポーズキャンバスを非表示
+        }
     }
 }
