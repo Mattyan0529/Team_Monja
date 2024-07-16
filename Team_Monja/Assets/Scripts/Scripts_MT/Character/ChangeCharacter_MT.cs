@@ -70,7 +70,10 @@ public class ChangeCharacter_MT : MonoBehaviour
                 _monsterSkill.GameobjectTagJudge();
                 closestObject.GetComponent<MonsterSkill_KH>().GameobjectTagJudge();
             }
-
+            else
+            {
+                Debug.LogError("Closest enemy is either not dead or does not have StatusManager_MT.");
+            }
         }
     }
     public void SetPlayer()
