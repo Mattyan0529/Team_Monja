@@ -5,8 +5,6 @@ public class EvillMageSkillAttack : MonoBehaviour,IDamagable
     [SerializeField]
     private GameObject _residentScript;
 
-
-
     private float _bulletSpeed = 50f;
 
     private float _addSpownPos = 1f;     // ’e‚ğ¶¬‚·‚é‚Æ‚«‚Éy‚É‘«‚·’l
