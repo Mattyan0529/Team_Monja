@@ -15,9 +15,12 @@ public class CharacterDeadDecision_MT : MonoBehaviour
     private PlayerSkill_KH _playerSkill = default;
     private NormalAttack_KH _normalAttack = default;
     private PlayerGuard_KH _playerGuard = default;
+    private KillCount_MT _killCount;
 
     private bool _isAlive = true;
     private bool _coroutineSwitch = true;
+    private bool _oneTimeSwitch = true;
+
 
 
     void Start()
@@ -25,6 +28,8 @@ public class CharacterDeadDecision_MT : MonoBehaviour
         _statusManager = GetComponent<StatusManager_MT>();
         _characterAnim = GetComponent<CharacterAnim_MT>();
         _gameEndCamera = GameObject.FindWithTag("CameraPos").GetComponent<GameEndCamera_MT>();
+        _killCount = GameObject.FindWithTag("PlayerManager").GetComponent<KillCount_MT>();
+
         // í«ãLÅFñk
         _monsterRandomWalk = GetComponent<MonsterRandomWalk_KH>();
         _monsterSkill = GetComponent<MonsterSkill_KH>();
@@ -64,7 +69,7 @@ public class CharacterDeadDecision_MT : MonoBehaviour
     {
         if (_statusManager.HP <= 0)
         {
-           
+            CallOnDeathOneTime();
             return true;
 
         }
@@ -98,5 +103,15 @@ public class CharacterDeadDecision_MT : MonoBehaviour
         _isAlive = false; 
     }
 
-   
+   //éÄÇÒÇæÇ∆Ç´Ç…àÍìxÇæÇØåƒÇ‘
+   private void CallOnDeathOneTime()
+    {
+        if (_oneTimeSwitch)
+        {
+            _killCount.KillCountUP(_statusManager._name.ToString());
+            _oneTimeSwitch = false;
+        }
+    }
+
+
 }
