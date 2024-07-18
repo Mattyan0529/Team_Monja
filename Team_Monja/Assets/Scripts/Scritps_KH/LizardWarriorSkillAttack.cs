@@ -66,10 +66,6 @@ public class LizardWarriorSkillAttack : MonoBehaviour,IDamagable
         {
             _effectManager.ShowSpecialAttackEffect(transform);
         }
-        else
-        {
-            Debug.LogError("EffectManager component is not found.");
-        }
 
         // “®‚«‚ðŽ~‚ß‚é
         if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss"))

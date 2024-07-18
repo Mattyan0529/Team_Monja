@@ -79,10 +79,7 @@ public class SlimeSkillAttack : MonoBehaviour, IDamagable
         {
             _effectManager.ShowSpecialAttackEffect(transform);
         }
-        else
-        {
-            Debug.LogError("EffectManager component is not found.");
-        }
+
 
     }
 
