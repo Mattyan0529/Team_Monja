@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class WayPoint : MonoBehaviour
 {
-    private float _gizmosSize = 0.3f;
+    private float _gizmosSize = 1f;
 
     [SerializeField]
     private GameObject _followArea = default;

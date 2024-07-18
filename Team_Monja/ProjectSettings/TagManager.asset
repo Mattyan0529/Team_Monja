@@ -11,6 +11,7 @@ TagManager:
   - Missile
   - CameraPos
   - PlayerManager
+  - WayPoint
   layers:
   - Default
   - TransparentFX

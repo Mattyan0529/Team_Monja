@@ -21,11 +21,12 @@ public class MonsterSkill_KH : MonoBehaviour
     private float _maxTimeSpacing = 4f;
     private float _minTimeSpacing = 2f;
 
-    private float _followAreaSize = 15f;
+    private float _followAreaSize = 60f;
 
     private PlayerSkill_KH _playerSkill = default;
     private PlayerManager_KH _playerManager = default;
     private MonsterRandomWalk_KH _monsterRandomWalk = default;
+    private EnemyMove _enemyMove = default;
     private SkillSpriteChange_KH _skillSpriteChange = default;
     private SkillSpriteChange_KH _normalAttackSpriteChange = default;
     private IDamagable _skillInterface = default;
@@ -38,16 +39,12 @@ public class MonsterSkill_KH : MonoBehaviour
 
     private int _skillNum = 6;
 
-    /// <summary>
-    /// スキルの大まかなタイプ
-    /// このタイプごとにスクリプトにまとめてるよ
-    /// </summary>
-
 
     void Awake()
     {
         _playerSkill = GetComponent<PlayerSkill_KH>();
         _monsterRandomWalk = GetComponent<MonsterRandomWalk_KH>();
+        _enemyMove = GetComponent<EnemyMove>();
         _playerManager = _residentScript.GetComponent<PlayerManager_KH>();
 
         if (GetComponent<NormalAttack_KH>())
@@ -108,6 +105,7 @@ public class MonsterSkill_KH : MonoBehaviour
             }
 
             _monsterRandomWalk.enabled = false;
+            _enemyMove.enabled = false;
             this.enabled = false;
         }
     }

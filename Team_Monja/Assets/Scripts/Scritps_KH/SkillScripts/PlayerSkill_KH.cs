@@ -7,6 +7,7 @@ public class PlayerSkill_KH : MonoBehaviour
     GameObject _coolTimeUIObj = default;
 
     private MonsterSkill_KH _myMonsterSkill = default;
+    private EnemyMove _enemyMove = default;
     private CoolTimeUI _coolTimeUI = default;
 
     private IDamagable _skillInterface = default;
@@ -35,6 +36,7 @@ public class PlayerSkill_KH : MonoBehaviour
     private void Awake()
     {
         _myMonsterSkill = GetComponent<MonsterSkill_KH>();
+        _enemyMove = GetComponent<EnemyMove>();
         _characterAnim = GetComponent<CharacterAnim_MT>();
     }
 
@@ -84,6 +86,7 @@ public class PlayerSkill_KH : MonoBehaviour
         if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss"))
         {
             _myMonsterSkill.enabled = true;
+            _enemyMove.enabled = true;
 
             if (GetComponent<NormalAttack_KH>())
             {

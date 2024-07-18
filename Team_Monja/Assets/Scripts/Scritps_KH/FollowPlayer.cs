@@ -1,18 +1,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FollowPlayer : MonoBehaviour
+public class FollowPlayer : MonoBehaviour,IFollowable
 {
-    private Transform _followArea = default;
+    private GameObject _followArea = default;
     private Transform _player = default;
     private Transform _targetWayPoint = default;
+    private Transform[] _wayPoints = default;
+    private int[,] _nextWayPointTable = default;
 
     private NearPlayerWayPointManager _nearPlayerWayPointManager = default;
+    private SearchWayPointTwoDimensionalArray _searchWayPointTwoDimensionalArray = default;
 
     void Start()
     {
         SearchPlayer();
+
         _nearPlayerWayPointManager = _followArea.gameObject.GetComponent<NearPlayerWayPointManager>();
+        _searchWayPointTwoDimensionalArray = 
+            _followArea.gameObject.GetComponent<SearchWayPointTwoDimensionalArray>();
+    }
+
+    private void Update()
+    {
+        if (SearchWayPointNearPlayer() == null) return;
+        _searchWayPointTwoDimensionalArray.TargetWayPoint = SearchWayPointNearPlayer();
     }
 
     /// <summary>
@@ -52,20 +64,43 @@ public class FollowPlayer : MonoBehaviour
     private void SearchPlayer()
     {
         _player = GameObject.FindGameObjectWithTag("Player").transform;
-        _followArea = _player.transform.Find("FollowArea");
+        _followArea = _player.transform.Find("NearPlayerArea").gameObject;
     }
 
     /// <summary>
-    /// 敵とプレイヤー追従範囲の衝突を検知
+    /// ノードテーブル内を探索して、次のWayPointを返す
     /// </summary>
-    private void OnTriggerStay(Collider other)
+    public Transform SearchTargetWayPoint(Transform myWayPoint)
     {
-        if (other.gameObject.transform != _followArea) return;
-        
-        Transform targetWayPoint = SearchWayPointNearPlayer();
+        _wayPoints = _searchWayPointTwoDimensionalArray.WayPoints;
+        _nextWayPointTable = _searchWayPointTwoDimensionalArray.NextWayPointTable;
 
-        if (targetWayPoint == null) return;
+        int playerIndex = 0;
+        int myIndex = 0;
 
-        Debug.Log(targetWayPoint);
+        // wayPoints内のプレイヤーに近いWayPointの添え字を探す
+        for (int i = 0; i < _wayPoints.Length; i++)
+        {
+            if (_targetWayPoint == _wayPoints[i])
+            {
+                // ノードテーブルは2列目からなので+1
+                playerIndex = i + 1;
+            }
+
+            if (myWayPoint == _wayPoints[i])
+            {
+                // ノードテーブルは2行目からなので+1
+                myIndex = i + 1;
+            }
+        }
+
+        int nextWayPointIndex = _nextWayPointTable[myIndex, playerIndex];
+
+        if (nextWayPointIndex == 0) return null; 
+
+        // 配列は0オリジンだがノードテーブルは1オリジンなので-1する
+        Transform nextWayPoint = _wayPoints[nextWayPointIndex - 1];
+
+        return nextWayPoint;
     }
 }
