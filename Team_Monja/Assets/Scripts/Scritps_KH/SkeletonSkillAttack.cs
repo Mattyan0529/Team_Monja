@@ -17,8 +17,7 @@ public class SkeletonSkillAttack : MonoBehaviour, IDamagable
     private WriteHitPoint_KH _writeHitPoint = default;
     private SoundEffectManagement_KH _soundEffectManagement = default;
     private AudioSource _audioSource = default;
-    private MonsterRandomWalk_KH _monsterRandomWalk = default;
-    private PlayerRangeInJudge_KH _playerRangeInJudge = default;
+    private ChangeEnemyMoveType _changeEnemyMoveType = default;
     private PlayerMove_MT _playerMove = default;
     private CreateDamageImage_KH _createDamageImage = default;
     private PlayerSkill_KH _playerSkill = default;
@@ -30,8 +29,7 @@ public class SkeletonSkillAttack : MonoBehaviour, IDamagable
 
     private void Awake()
     {
-        _monsterRandomWalk = GetComponent<MonsterRandomWalk_KH>();
-        _playerRangeInJudge = GetComponent<PlayerRangeInJudge_KH>();
+        _changeEnemyMoveType = GetComponent<ChangeEnemyMoveType>();
         _playerMove = GetComponent<PlayerMove_MT>();
     }
 
@@ -56,7 +54,9 @@ public class SkeletonSkillAttack : MonoBehaviour, IDamagable
 
     public void SpecialAttack()
     {
-        if (_monsterRandomWalk.enabled) return;     // ランダム移動中（プレイヤーが攻撃範囲外）は処理しない
+        // 敵のランダム移動中（プレイヤーが攻撃範囲外）は処理しない
+        if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss") &&
+            _changeEnemyMoveType.NowState == ChangeEnemyMoveType.EnemyMoveState.InRandomMove) return;
 
         //松本
         _characterAnim.NowAnim = "Skill";
@@ -67,11 +67,10 @@ public class SkeletonSkillAttack : MonoBehaviour, IDamagable
             _effectManager.ShowSpecialAttackEffect(transform);
         }
 
-
         // 動きを止める
         if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss"))
         {
-            _playerRangeInJudge.enabled = false;
+            _changeEnemyMoveType.NowState = ChangeEnemyMoveType.EnemyMoveState.InAttack;
         }
 
         _soundEffectManagement.PlayStrongPunchSound(_audioSource);
@@ -127,7 +126,7 @@ public class SkeletonSkillAttack : MonoBehaviour, IDamagable
             // 動きを再開する
             if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss"))
             {
-                _playerRangeInJudge.enabled = true;
+                _changeEnemyMoveType.NowState = ChangeEnemyMoveType.EnemyMoveState.InFollow;
             }
             if (gameObject.CompareTag("Player"))
             {

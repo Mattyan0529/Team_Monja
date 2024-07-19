@@ -10,7 +10,7 @@ public class EnemyMove : MonoBehaviour
 
     private float _shortestDistance = default;
     private float _followStopDistance = 0.5f;
-    private float _speed = 4f;
+    private float _speed = 5f;
 
     private ChangeEnemyMoveType _changeEnemyMoveType = default;
 

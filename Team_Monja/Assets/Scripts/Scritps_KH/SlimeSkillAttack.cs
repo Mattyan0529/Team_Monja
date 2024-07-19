@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class SlimeSkillAttack : MonoBehaviour, IDamagable
@@ -17,11 +18,10 @@ public class SlimeSkillAttack : MonoBehaviour, IDamagable
     private WriteHitPoint_KH _writeHitPoint = default;
     private SoundEffectManagement_KH _soundEffectManagement = default;
     private AudioSource _audioSource = default;
-    private MonsterRandomWalk_KH _monsterRandomWalk = default;
-    private PlayerRangeInJudge_KH _playerRangeInJudge = default;
     private PlayerMove_MT _playerMove = default;
     private CreateDamageImage_KH _createDamageImage = default;
     private PlayerSkill_KH _playerSkill = default;
+    private ChangeEnemyMoveType _changeEnemyMoveType = default;
 
     private bool _isAttack = false;
 
@@ -30,8 +30,6 @@ public class SlimeSkillAttack : MonoBehaviour, IDamagable
 
     private void Awake()
     {
-        _monsterRandomWalk = GetComponent<MonsterRandomWalk_KH>();
-        _playerRangeInJudge = GetComponent<PlayerRangeInJudge_KH>();
         _playerMove = GetComponent<PlayerMove_MT>();
     }
 
@@ -43,6 +41,7 @@ public class SlimeSkillAttack : MonoBehaviour, IDamagable
         _characterAnim = GetComponent<CharacterAnim_MT>();
         _audioSource = GetComponent<AudioSource>();
         _playerSkill = GetComponent<PlayerSkill_KH>();
+        _changeEnemyMoveType = GetComponent<ChangeEnemyMoveType>();
 
         // 子オブジェクトの中からAttackAreaを取得
         _attackArea = transform.Find("AttackArea").gameObject;
@@ -56,7 +55,9 @@ public class SlimeSkillAttack : MonoBehaviour, IDamagable
 
     public void SpecialAttack()
     {
-        if (_monsterRandomWalk.enabled) return;     // ランダム移動中（プレイヤーが攻撃範囲外）は処理しない
+        // 敵のランダム移動中（プレイヤーが攻撃範囲外）は処理しない
+        if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss") &&
+            _changeEnemyMoveType.NowState == ChangeEnemyMoveType.EnemyMoveState.InRandomMove) return;
 
         //松本
         _characterAnim.NowAnim = "Skill";
@@ -64,7 +65,7 @@ public class SlimeSkillAttack : MonoBehaviour, IDamagable
         // 動きを止める
         if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss"))
         {
-            _playerRangeInJudge.enabled = false;
+            _changeEnemyMoveType.NowState = ChangeEnemyMoveType.EnemyMoveState.InAttack;
         }
 
         _soundEffectManagement.PlayStrongPunchSound(_audioSource);
@@ -79,8 +80,6 @@ public class SlimeSkillAttack : MonoBehaviour, IDamagable
         {
             _effectManager.ShowSpecialAttackEffect(transform);
         }
-
-
     }
 
     /// <summary>
@@ -104,9 +103,15 @@ public class SlimeSkillAttack : MonoBehaviour, IDamagable
         int targetDefensePower = targetStatus.Defense;        // 相手の防御力をgetしてくる
         int targetHitPoint = targetStatus.HP;        // 相手のHPをgetしてくる
 
-        if (myAttackPower < targetDefensePower) return;        // 防御力のほうが高かったら0ダメージ
-
         int damage = targetHitPoint - (myAttackPower - targetDefensePower);
+
+        if (myAttackPower < targetDefensePower)
+        {
+            // 防御力のほうが高い場合はダメージを1とする
+            int smallestDamage = 1;
+            damage = smallestDamage;
+        }
+
         _createDamageImage.InstantiateDamageImage(gameObject, targetStatus.gameObject, myAttackPower - targetDefensePower);
         _writeHitPoint.UpdateHitPoint(targetStatus, damage);      // targetStatusのHPを更新
     }
@@ -127,7 +132,7 @@ public class SlimeSkillAttack : MonoBehaviour, IDamagable
             // 動きを再開する
             if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss"))
             {
-                _playerRangeInJudge.enabled = true;
+                _changeEnemyMoveType.NowState = ChangeEnemyMoveType.EnemyMoveState.InFollow;
             }
 
             _attackArea.SetActive(false);

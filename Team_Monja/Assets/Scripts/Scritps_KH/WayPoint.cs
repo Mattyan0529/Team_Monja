@@ -5,7 +5,7 @@ public class WayPoint : MonoBehaviour
     private float _gizmosSize = 1f;
 
     [SerializeField]
-    private GameObject _followArea = default;
+    private GameObject _nearPlayerArea = default;
 
     [SerializeField]
     private GameObject[] _nextPoints = default;
@@ -19,7 +19,7 @@ public class WayPoint : MonoBehaviour
 
     private void Start()
     {
-        _nearPlayerWayPointManager = _followArea.GetComponent<NearPlayerWayPointManager>();
+        _nearPlayerWayPointManager = _nearPlayerArea.GetComponent<NearPlayerWayPointManager>();
     }
 
     /// <summary>
@@ -36,7 +36,7 @@ public class WayPoint : MonoBehaviour
     /// </summary>
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject != _followArea) return;
+        if (other.gameObject != _nearPlayerArea) return;
         _nearPlayerWayPointManager.AddNearPlayerWayPoint(gameObject);
     }
 
@@ -45,7 +45,7 @@ public class WayPoint : MonoBehaviour
     /// </summary>
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject != _followArea) return;
+        if (other.gameObject != _nearPlayerArea) return;
         _nearPlayerWayPointManager.RemoveNearPlayerWayPoint(gameObject);
     }
 }

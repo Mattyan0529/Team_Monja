@@ -5,7 +5,7 @@ public class MonsterSkill_KH : MonoBehaviour
     [SerializeField]
     private GameObject _residentScript;
     [SerializeField]
-    private GameObject _followArea;
+    private GameObject _nearPlayerArea;
     [SerializeField]
     private Sprite _skillIcon = default;
     [SerializeField]
@@ -21,7 +21,7 @@ public class MonsterSkill_KH : MonoBehaviour
     private float _maxTimeSpacing = 4f;
     private float _minTimeSpacing = 2f;
 
-    private float _followAreaSize = 60f;
+    private float _nearPlayerAreaSize = 70f;
 
     private PlayerSkill_KH _playerSkill = default;
     private PlayerManager_KH _playerManager = default;
@@ -89,8 +89,8 @@ public class MonsterSkill_KH : MonoBehaviour
         if (gameObject.CompareTag("Player"))
         {
             _playerManager.Player = gameObject;     // プレイヤー更新
-            _followArea.transform.localScale = gameObject.transform.localScale * _followAreaSize;
-            _followArea.transform.SetParent(gameObject.transform);
+            _nearPlayerArea.transform.localScale = gameObject.transform.localScale * _nearPlayerAreaSize;
+            _nearPlayerArea.transform.SetParent(gameObject.transform);
             _playerSkill.enabled = true;
             _skillSpriteChange.ChangeSprite(_skillIcon);
             _normalAttackSpriteChange.ChangeSprite(_normalAttackIcon);
@@ -129,8 +129,7 @@ public class MonsterSkill_KH : MonoBehaviour
         // 規定時間に達していた場合
         if (_elapsedTime > _updateTime)
         {
-            RandomCallSkill();      // スキル発動
-            _characterAnim.NowAnim = "Skill";   
+            RandomCallSkill();      // スキル発動  
             _elapsedTime = 0f;
         }
     }

@@ -55,7 +55,7 @@ public class ChangeEnemyMoveType : MonoBehaviour
                 break; 
 
             case EnemyMoveState.InAttack:
-                nextWayPoint = _followPlayer.SearchTargetWayPoint(myWayPoint);
+
                 break;
         }
 
