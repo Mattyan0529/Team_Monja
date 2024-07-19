@@ -29,6 +29,7 @@ public class MonsterSkill_KH : MonoBehaviour
     private EnemyMove _enemyMove = default;
     private SkillSpriteChange_KH _skillSpriteChange = default;
     private SkillSpriteChange_KH _normalAttackSpriteChange = default;
+    private ChangeEnemyMoveType _changeEnemyMoveType = default;
     private IDamagable _skillInterface = default;
     //èºñ{
     private CharacterAnim_MT _characterAnim;
@@ -46,6 +47,7 @@ public class MonsterSkill_KH : MonoBehaviour
         _monsterRandomWalk = GetComponent<MonsterRandomWalk_KH>();
         _enemyMove = GetComponent<EnemyMove>();
         _playerManager = _residentScript.GetComponent<PlayerManager_KH>();
+        _changeEnemyMoveType = GetComponent<ChangeEnemyMoveType>();
 
         if (GetComponent<NormalAttack_KH>())
         {
@@ -123,6 +125,8 @@ public class MonsterSkill_KH : MonoBehaviour
     /// </summary>
     private void UpdateTime()
     {
+        if (_changeEnemyMoveType.NowState != ChangeEnemyMoveType.EnemyMoveState.InAttack) return;
+
         // éûä‘â¡éZ
         _elapsedTime += Time.deltaTime;
 

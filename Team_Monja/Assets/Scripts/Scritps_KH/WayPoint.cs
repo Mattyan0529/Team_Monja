@@ -37,6 +37,7 @@ public class WayPoint : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject != _nearPlayerArea) return;
+        if (!transform.parent.CompareTag("WayPoint")) return;
         _nearPlayerWayPointManager.AddNearPlayerWayPoint(gameObject);
     }
 
@@ -46,6 +47,7 @@ public class WayPoint : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject != _nearPlayerArea) return;
+        if (!transform.parent.CompareTag("WayPoint")) return;
         _nearPlayerWayPointManager.RemoveNearPlayerWayPoint(gameObject);
     }
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class FollowPlayer : MonoBehaviour,IFollowable
 {
-    private GameObject _followArea = default;
+    private GameObject _nearPlayerArea = default;
     private Transform _player = default;
     private Transform _targetWayPoint = default;
     private Transform[] _wayPoints = default;
@@ -16,9 +16,9 @@ public class FollowPlayer : MonoBehaviour,IFollowable
     {
         SearchPlayer();
 
-        _nearPlayerWayPointManager = _followArea.gameObject.GetComponent<NearPlayerWayPointManager>();
-        _searchWayPointTwoDimensionalArray = 
-            _followArea.gameObject.GetComponent<SearchWayPointTwoDimensionalArray>();
+        _nearPlayerWayPointManager = _nearPlayerArea.gameObject.GetComponent<NearPlayerWayPointManager>();
+        _searchWayPointTwoDimensionalArray =
+            _nearPlayerArea.gameObject.GetComponent<SearchWayPointTwoDimensionalArray>();
     }
 
     private void Update()
@@ -55,7 +55,6 @@ public class FollowPlayer : MonoBehaviour,IFollowable
                 nearestWayPoint = wayPoint;
             }
         }
-
         _targetWayPoint = nearestWayPoint;
 
         return _targetWayPoint;
@@ -64,7 +63,7 @@ public class FollowPlayer : MonoBehaviour,IFollowable
     private void SearchPlayer()
     {
         _player = GameObject.FindGameObjectWithTag("Player").transform;
-        _followArea = _player.transform.Find("NearPlayerArea").gameObject;
+        _nearPlayerArea = _player.transform.Find("NearPlayerArea").gameObject;
     }
 
     /// <summary>
@@ -81,13 +80,13 @@ public class FollowPlayer : MonoBehaviour,IFollowable
         // wayPoints内のプレイヤーに近いWayPointの添え字を探す
         for (int i = 0; i < _wayPoints.Length; i++)
         {
-            if (_targetWayPoint == _wayPoints[i])
+            if (_targetWayPoint.gameObject.name == _wayPoints[i].gameObject.name)
             {
                 // ノードテーブルは2列目からなので+1
                 playerIndex = i + 1;
             }
 
-            if (myWayPoint == _wayPoints[i])
+            if (myWayPoint.gameObject.name == _wayPoints[i].gameObject.name)
             {
                 // ノードテーブルは2行目からなので+1
                 myIndex = i + 1;

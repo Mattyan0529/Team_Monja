@@ -14,7 +14,7 @@ public class RandomWayPointBetweenMove : MonoBehaviour, IFollowable
     /// </summary>
     public Transform SearchTargetWayPoint(Transform myWayPoint)
     {
-                WayPoint wayPoint;
+        WayPoint wayPoint;
         GameObject[] MovableWayPoint;
 
         // ŒÄ‚Ño‚µŒ³‚ªMiniWayPoint‚Å‚Í‚È‚¢ê‡

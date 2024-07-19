@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class EnemyMove : MonoBehaviour
 {
@@ -33,28 +34,7 @@ public class EnemyMove : MonoBehaviour
     {
         _changeEnemyMoveType = GetComponent<ChangeEnemyMoveType>();
 
-        // WayPointひとつずつと現在地を比べ、いちばん近いWayPointをtargetとする
-        foreach (Transform child in _wayPoints.transform)
-        {
-            // nullの時はとりあえず今のWayPointを入れる
-            if (_targetWayPoint == null)
-            {
-                _targetWayPoint = child;
-                _shortestDistance = Vector3.Distance
-                    (_targetWayPoint.transform.position, gameObject.transform.position);
-            }
-
-            // このWayPointと現在地の距離
-            float thisWayPointDistance = Vector3.Distance
-                (child.transform.position, gameObject.transform.position);
-
-            if (Mathf.Abs(_shortestDistance) > Mathf.Abs(thisWayPointDistance))
-            {
-                _targetWayPoint = child;
-                _shortestDistance = Vector3.Distance
-                    (_targetWayPoint.transform.position, gameObject.transform.position);
-            }
-        }
+        SearchNearMainWayPoint();
 
         _nowEnemyState = EnemyState.InMove;
     }
@@ -79,6 +59,13 @@ public class EnemyMove : MonoBehaviour
         // 到着したので、目的地を現在地に変更
         _currentWayPoint = _targetWayPoint;
 
+        if(_changeEnemyMoveType.NowState == ChangeEnemyMoveType.EnemyMoveState.InFollow
+            && !_currentWayPoint.transform.parent.CompareTag("WayPoint"))
+        {
+            SearchNearMainWayPoint();
+            _nowEnemyState = EnemyState.InMove;
+        }
+
         if (_changeEnemyMoveType.EnemyMove(_currentWayPoint) == null) return;
 
         _targetWayPoint = _changeEnemyMoveType.EnemyMove(_currentWayPoint);
@@ -102,10 +89,40 @@ public class EnemyMove : MonoBehaviour
         Vector3 nowPos = new Vector3(transform.position.x, 0f, transform.position.z);
         Vector3 targetPos = new Vector3(_targetWayPoint.transform.position.x, 0f, _targetWayPoint.transform.position.z);
 
+
         // ある程度近くなったら次の目的地へ
         if (Vector3.Distance(nowPos, targetPos) < _followStopDistance)
         {
             _nowEnemyState = EnemyState.InSearch;
+        }
+    }
+
+    private void SearchNearMainWayPoint()
+    {
+        bool isFirst = true;
+
+        // WayPointひとつずつと現在地を比べ、いちばん近いWayPointをtargetとする
+        foreach (Transform child in _wayPoints.transform)
+        {
+            // 最初はとりあえず今のWayPointを入れる
+            if (isFirst)
+            {
+                _targetWayPoint = child;
+                _shortestDistance = Vector3.Distance
+                    (_targetWayPoint.transform.position, gameObject.transform.position);
+                isFirst = false;
+            }
+
+            // このWayPointと現在地の距離
+            float thisWayPointDistance = Vector3.Distance
+                (child.transform.position, gameObject.transform.position);
+
+            if (Mathf.Abs(_shortestDistance) > Mathf.Abs(thisWayPointDistance))
+            {
+                _targetWayPoint = child;
+                _shortestDistance = Vector3.Distance
+                    (_targetWayPoint.transform.position, gameObject.transform.position);
+            }
         }
     }
 }

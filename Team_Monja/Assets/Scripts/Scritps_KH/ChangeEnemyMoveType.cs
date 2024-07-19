@@ -40,6 +40,7 @@ public class ChangeEnemyMoveType : MonoBehaviour
         _followPlayer = GetComponent<FollowPlayer>();
     }
 
+
     public Transform EnemyMove(Transform myWayPoint)
     {
         Transform nextWayPoint = default;
@@ -55,7 +56,7 @@ public class ChangeEnemyMoveType : MonoBehaviour
                 break; 
 
             case EnemyMoveState.InAttack:
-
+                nextWayPoint = _followPlayer.SearchTargetWayPoint(myWayPoint);
                 break;
         }
 
