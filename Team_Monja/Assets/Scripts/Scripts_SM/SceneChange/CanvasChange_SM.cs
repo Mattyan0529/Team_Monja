@@ -46,7 +46,7 @@ public class CanvasChange_SM : MonoBehaviour
         {
             ToggleOptions();
         }
-
+        //エンターキーが押されたら
         if (_useEnterKey && Input.GetKeyDown(KeyCode.Return))
         {
             ToggleOptions();
