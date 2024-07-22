@@ -12,6 +12,12 @@ public class FollowPlayer : MonoBehaviour,IFollowable
     private NearPlayerWayPointManager _nearPlayerWayPointManager = default;
     private SearchWayPointTwoDimensionalArray _searchWayPointTwoDimensionalArray = default;
 
+    public Transform TargetWayPoint
+    {
+        get { return _targetWayPoint; }
+        set { _targetWayPoint = value; }
+    }
+
     void Start()
     {
         SearchPlayer();
@@ -32,7 +38,6 @@ public class FollowPlayer : MonoBehaviour,IFollowable
     /// </summary>
     private Transform SearchWayPointNearPlayer()
     {
-        GameObject player = GameObject.FindWithTag("Player");
         List<Transform> _nearPlayerWayPoints = _nearPlayerWayPointManager.NearPlayerWayPoint;
 
         if (_nearPlayerWayPoints.Count == 0)
@@ -77,7 +82,7 @@ public class FollowPlayer : MonoBehaviour,IFollowable
         _wayPoints = _searchWayPointTwoDimensionalArray.WayPoints;
         _nextWayPointTable = _searchWayPointTwoDimensionalArray.NextWayPointTable;
 
-        int playerIndex = 0;
+        int targetIndex = 0;
         int myIndex = 0;
 
         // wayPoints内のプレイヤーに近いWayPointの添え字を探す
@@ -86,7 +91,7 @@ public class FollowPlayer : MonoBehaviour,IFollowable
             if (_targetWayPoint.gameObject.name == _wayPoints[i].gameObject.name)
             {
                 // ノードテーブルは2列目からなので+1
-                playerIndex = i + 1;
+                targetIndex = i + 1;
             }
 
             if (myWayPoint.gameObject.name == _wayPoints[i].gameObject.name)
@@ -96,7 +101,7 @@ public class FollowPlayer : MonoBehaviour,IFollowable
             }
         }
 
-        int nextWayPointIndex = _nextWayPointTable[myIndex, playerIndex];
+        int nextWayPointIndex = _nextWayPointTable[myIndex, targetIndex];
 
         if (nextWayPointIndex == 0) return null; 
 
