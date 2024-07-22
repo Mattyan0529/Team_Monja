@@ -60,6 +60,9 @@ public class FollowPlayer : MonoBehaviour,IFollowable
         return _targetWayPoint;
     }
 
+    /// <summary>
+    /// プレイヤーが変わったときに変数の中身を変更する
+    /// </summary>
     private void SearchPlayer()
     {
         _player = GameObject.FindGameObjectWithTag("Player").transform;

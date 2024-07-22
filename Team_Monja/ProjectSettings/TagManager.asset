@@ -12,6 +12,7 @@ TagManager:
   - CameraPos
   - PlayerManager
   - WayPoint
+  - MiniWayPoint
   layers:
   - Default
   - TransparentFX

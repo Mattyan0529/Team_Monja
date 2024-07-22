@@ -17,7 +17,7 @@ public class RandomWayPointBetweenMove : MonoBehaviour, IFollowable
         WayPoint wayPoint;
         GameObject[] MovableWayPoint;
 
-        // 呼び出し元がMiniWayPointではない場合
+        // 呼び出し元がMiniWayPointではない場合（追従からランダム移動に戻るとき）
         if (myWayPoint.transform.parent.CompareTag("WayPoint"))
         {
             Transform miniWayPoint = _changeEnemyMoveType.MiniWayPoint.transform;

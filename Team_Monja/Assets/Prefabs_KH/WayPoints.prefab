@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 558590338285456398}
   m_Layer: 0
   m_Name: A3
-  m_TagString: Untagged
+  m_TagString: WayPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26,8 +26,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 611826902946236042}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 48.8, y: 3.58, z: 49.1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 48.799988, y: 3.58, z: 49.099976}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f4f8460f6f42c946b7ba31f8c314227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _followArea: {fileID: 0}
+  _nearPlayerArea: {fileID: 0}
   _nextPoints:
   - {fileID: 0}
 --- !u!65 &558590338285456398
@@ -82,7 +82,7 @@ GameObject:
   - component: {fileID: 3459796248242966936}
   m_Layer: 0
   m_Name: D1
-  m_TagString: Untagged
+  m_TagString: WayPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -114,7 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f4f8460f6f42c946b7ba31f8c314227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _followArea: {fileID: 0}
+  _nearPlayerArea: {fileID: 0}
   _nextPoints:
   - {fileID: 0}
 --- !u!65 &3459796248242966936
@@ -151,7 +151,7 @@ GameObject:
   - component: {fileID: 7410965455465990239}
   m_Layer: 0
   m_Name: A1
-  m_TagString: Untagged
+  m_TagString: WayPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -164,8 +164,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1024467841288971016}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20.1, y: 2.66, z: -31.5}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 20.099976, y: 2.6599998, z: -31.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -183,7 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f4f8460f6f42c946b7ba31f8c314227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _followArea: {fileID: 0}
+  _nearPlayerArea: {fileID: 0}
   _nextPoints:
   - {fileID: 0}
 --- !u!65 &7410965455465990239
@@ -220,7 +220,7 @@ GameObject:
   - component: {fileID: 4826208375088022442}
   m_Layer: 0
   m_Name: B6
-  m_TagString: Untagged
+  m_TagString: WayPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -252,7 +252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f4f8460f6f42c946b7ba31f8c314227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _followArea: {fileID: 0}
+  _nearPlayerArea: {fileID: 0}
   _nextPoints:
   - {fileID: 0}
 --- !u!65 &4826208375088022442
@@ -289,7 +289,7 @@ GameObject:
   - component: {fileID: 5915444156879049265}
   m_Layer: 0
   m_Name: C7
-  m_TagString: Untagged
+  m_TagString: WayPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -321,7 +321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f4f8460f6f42c946b7ba31f8c314227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _followArea: {fileID: 0}
+  _nearPlayerArea: {fileID: 0}
   _nextPoints:
   - {fileID: 0}
 --- !u!65 &5915444156879049265
@@ -358,7 +358,7 @@ GameObject:
   - component: {fileID: 6017374390225530218}
   m_Layer: 0
   m_Name: B2
-  m_TagString: Untagged
+  m_TagString: WayPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -390,7 +390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f4f8460f6f42c946b7ba31f8c314227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _followArea: {fileID: 0}
+  _nearPlayerArea: {fileID: 0}
   _nextPoints:
   - {fileID: 0}
 --- !u!65 &6017374390225530218
@@ -427,7 +427,7 @@ GameObject:
   - component: {fileID: 6643388479420228738}
   m_Layer: 0
   m_Name: C2
-  m_TagString: Untagged
+  m_TagString: WayPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -459,7 +459,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f4f8460f6f42c946b7ba31f8c314227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _followArea: {fileID: 0}
+  _nearPlayerArea: {fileID: 0}
   _nextPoints:
   - {fileID: 0}
 --- !u!65 &6643388479420228738
@@ -496,7 +496,7 @@ GameObject:
   - component: {fileID: 5940453792767027704}
   m_Layer: 0
   m_Name: A10
-  m_TagString: Untagged
+  m_TagString: WayPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -509,8 +509,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3600727776552566293}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 91.09, y: 17.6, z: 214.7}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 91.09003, y: 17.6, z: 214.70001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -528,7 +528,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f4f8460f6f42c946b7ba31f8c314227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _followArea: {fileID: 0}
+  _nearPlayerArea: {fileID: 0}
   _nextPoints:
   - {fileID: 0}
 --- !u!65 &5940453792767027704
@@ -565,7 +565,7 @@ GameObject:
   - component: {fileID: 2032782409788094651}
   m_Layer: 0
   m_Name: C3
-  m_TagString: Untagged
+  m_TagString: WayPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -597,7 +597,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f4f8460f6f42c946b7ba31f8c314227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _followArea: {fileID: 0}
+  _nearPlayerArea: {fileID: 0}
   _nextPoints:
   - {fileID: 0}
 --- !u!65 &2032782409788094651
@@ -634,7 +634,7 @@ GameObject:
   - component: {fileID: 5598397160978232502}
   m_Layer: 0
   m_Name: C6
-  m_TagString: Untagged
+  m_TagString: WayPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -666,7 +666,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f4f8460f6f42c946b7ba31f8c314227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _followArea: {fileID: 0}
+  _nearPlayerArea: {fileID: 0}
   _nextPoints:
   - {fileID: 0}
 --- !u!65 &5598397160978232502
@@ -703,7 +703,7 @@ GameObject:
   - component: {fileID: 6195938297333590592}
   m_Layer: 0
   m_Name: D3
-  m_TagString: Untagged
+  m_TagString: WayPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -735,7 +735,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f4f8460f6f42c946b7ba31f8c314227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _followArea: {fileID: 0}
+  _nearPlayerArea: {fileID: 0}
   _nextPoints:
   - {fileID: 0}
 --- !u!65 &6195938297333590592
@@ -772,7 +772,7 @@ GameObject:
   - component: {fileID: 3610539590916001918}
   m_Layer: 0
   m_Name: D2
-  m_TagString: Untagged
+  m_TagString: WayPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -804,7 +804,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f4f8460f6f42c946b7ba31f8c314227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _followArea: {fileID: 0}
+  _nearPlayerArea: {fileID: 0}
   _nextPoints:
   - {fileID: 0}
 --- !u!65 &3610539590916001918
@@ -841,7 +841,7 @@ GameObject:
   - component: {fileID: 5469162759941328842}
   m_Layer: 0
   m_Name: B1
-  m_TagString: Untagged
+  m_TagString: WayPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -873,7 +873,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f4f8460f6f42c946b7ba31f8c314227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _followArea: {fileID: 0}
+  _nearPlayerArea: {fileID: 0}
   _nextPoints:
   - {fileID: 0}
 --- !u!65 &5469162759941328842
@@ -910,7 +910,7 @@ GameObject:
   - component: {fileID: 2652109000764825499}
   m_Layer: 0
   m_Name: A5
-  m_TagString: Untagged
+  m_TagString: WayPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -923,8 +923,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5738403690711187748}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 82.1, y: 2.8, z: 103.6}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 82.099976, y: 2.8000002, z: 103.600006}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -942,7 +942,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f4f8460f6f42c946b7ba31f8c314227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _followArea: {fileID: 0}
+  _nearPlayerArea: {fileID: 0}
   _nextPoints:
   - {fileID: 0}
 --- !u!65 &2652109000764825499
@@ -979,7 +979,7 @@ GameObject:
   - component: {fileID: 1674714308452677962}
   m_Layer: 0
   m_Name: D6
-  m_TagString: Untagged
+  m_TagString: WayPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1011,7 +1011,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f4f8460f6f42c946b7ba31f8c314227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _followArea: {fileID: 0}
+  _nearPlayerArea: {fileID: 0}
   _nextPoints:
   - {fileID: 0}
 --- !u!65 &1674714308452677962
@@ -1048,7 +1048,7 @@ GameObject:
   - component: {fileID: 435932565345544958}
   m_Layer: 0
   m_Name: D4
-  m_TagString: Untagged
+  m_TagString: WayPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1080,7 +1080,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f4f8460f6f42c946b7ba31f8c314227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _followArea: {fileID: 0}
+  _nearPlayerArea: {fileID: 0}
   _nextPoints:
   - {fileID: 0}
 --- !u!65 &435932565345544958
@@ -1117,7 +1117,7 @@ GameObject:
   - component: {fileID: 4720409805821280789}
   m_Layer: 0
   m_Name: A8
-  m_TagString: Untagged
+  m_TagString: WayPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1130,8 +1130,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6636678696272449200}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 96.81, y: 0.92, z: 168.8}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 96.81, y: 0.9200001, z: 168.79999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1149,7 +1149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f4f8460f6f42c946b7ba31f8c314227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _followArea: {fileID: 0}
+  _nearPlayerArea: {fileID: 0}
   _nextPoints:
   - {fileID: 0}
 --- !u!65 &4720409805821280789
@@ -1186,7 +1186,7 @@ GameObject:
   - component: {fileID: 3683758837021191777}
   m_Layer: 0
   m_Name: B4
-  m_TagString: Untagged
+  m_TagString: WayPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1218,7 +1218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f4f8460f6f42c946b7ba31f8c314227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _followArea: {fileID: 0}
+  _nearPlayerArea: {fileID: 0}
   _nextPoints:
   - {fileID: 0}
 --- !u!65 &3683758837021191777
@@ -1255,7 +1255,7 @@ GameObject:
   - component: {fileID: 3165875046427531558}
   m_Layer: 0
   m_Name: A6
-  m_TagString: Untagged
+  m_TagString: WayPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1268,8 +1268,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6907783676357837272}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 98.7, y: 2, z: 137.9}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 98.70001, y: 2, z: 137.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1287,7 +1287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f4f8460f6f42c946b7ba31f8c314227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _followArea: {fileID: 0}
+  _nearPlayerArea: {fileID: 0}
   _nextPoints:
   - {fileID: 0}
 --- !u!65 &3165875046427531558
@@ -1322,7 +1322,7 @@ GameObject:
   - component: {fileID: 277602966461360707}
   m_Layer: 0
   m_Name: WayPoints
-  m_TagString: Untagged
+  m_TagString: WayPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1384,7 +1384,7 @@ GameObject:
   - component: {fileID: 3616363237367447030}
   m_Layer: 0
   m_Name: D5
-  m_TagString: Untagged
+  m_TagString: WayPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1416,7 +1416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f4f8460f6f42c946b7ba31f8c314227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _followArea: {fileID: 0}
+  _nearPlayerArea: {fileID: 0}
   _nextPoints:
   - {fileID: 0}
 --- !u!65 &3616363237367447030
@@ -1453,7 +1453,7 @@ GameObject:
   - component: {fileID: 3899555585202289992}
   m_Layer: 0
   m_Name: C1
-  m_TagString: Untagged
+  m_TagString: WayPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1485,7 +1485,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f4f8460f6f42c946b7ba31f8c314227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _followArea: {fileID: 0}
+  _nearPlayerArea: {fileID: 0}
   _nextPoints:
   - {fileID: 0}
 --- !u!65 &3899555585202289992
@@ -1522,7 +1522,7 @@ GameObject:
   - component: {fileID: 863157765253470423}
   m_Layer: 0
   m_Name: B3
-  m_TagString: Untagged
+  m_TagString: WayPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1554,7 +1554,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f4f8460f6f42c946b7ba31f8c314227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _followArea: {fileID: 0}
+  _nearPlayerArea: {fileID: 0}
   _nextPoints:
   - {fileID: 0}
 --- !u!65 &863157765253470423
@@ -1591,7 +1591,7 @@ GameObject:
   - component: {fileID: 4242840011399496852}
   m_Layer: 0
   m_Name: C5
-  m_TagString: Untagged
+  m_TagString: WayPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1623,7 +1623,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f4f8460f6f42c946b7ba31f8c314227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _followArea: {fileID: 0}
+  _nearPlayerArea: {fileID: 0}
   _nextPoints:
   - {fileID: 0}
 --- !u!65 &4242840011399496852
@@ -1660,7 +1660,7 @@ GameObject:
   - component: {fileID: 3784202736772985822}
   m_Layer: 0
   m_Name: A4
-  m_TagString: Untagged
+  m_TagString: WayPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1673,8 +1673,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8167165332140496290}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 48.8, y: 3.27, z: 70}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 48.799988, y: 3.27, z: 70}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1692,7 +1692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f4f8460f6f42c946b7ba31f8c314227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _followArea: {fileID: 0}
+  _nearPlayerArea: {fileID: 0}
   _nextPoints:
   - {fileID: 0}
 --- !u!65 &3784202736772985822
@@ -1729,7 +1729,7 @@ GameObject:
   - component: {fileID: 7225535059402674666}
   m_Layer: 0
   m_Name: A9
-  m_TagString: Untagged
+  m_TagString: WayPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1742,8 +1742,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8382260798403238354}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 94.49, y: 7.3, z: 187.4}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 94.48999, y: 7.3, z: 187.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1761,7 +1761,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f4f8460f6f42c946b7ba31f8c314227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _followArea: {fileID: 0}
+  _nearPlayerArea: {fileID: 0}
   _nextPoints:
   - {fileID: 0}
 --- !u!65 &7225535059402674666
@@ -1798,7 +1798,7 @@ GameObject:
   - component: {fileID: 8546365664882011336}
   m_Layer: 0
   m_Name: A2
-  m_TagString: Untagged
+  m_TagString: WayPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1811,8 +1811,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8406671025597777001}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 53.9, y: 3.04, z: 5.5}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 53.900024, y: 3.04, z: 5.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1830,7 +1830,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f4f8460f6f42c946b7ba31f8c314227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _followArea: {fileID: 0}
+  _nearPlayerArea: {fileID: 0}
   _nextPoints:
   - {fileID: 0}
 --- !u!65 &8546365664882011336
@@ -1867,7 +1867,7 @@ GameObject:
   - component: {fileID: 7062563503637346398}
   m_Layer: 0
   m_Name: B5
-  m_TagString: Untagged
+  m_TagString: WayPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1899,7 +1899,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f4f8460f6f42c946b7ba31f8c314227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _followArea: {fileID: 0}
+  _nearPlayerArea: {fileID: 0}
   _nextPoints:
   - {fileID: 0}
 --- !u!65 &7062563503637346398
@@ -1936,7 +1936,7 @@ GameObject:
   - component: {fileID: 4526260580926705252}
   m_Layer: 0
   m_Name: A7
-  m_TagString: Untagged
+  m_TagString: WayPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1949,8 +1949,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8901246469706111832}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 112.4, y: 1.65, z: 149.7}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 112.400024, y: 1.6500001, z: 149.70001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1968,7 +1968,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f4f8460f6f42c946b7ba31f8c314227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _followArea: {fileID: 0}
+  _nearPlayerArea: {fileID: 0}
   _nextPoints:
   - {fileID: 0}
 --- !u!65 &4526260580926705252
@@ -2005,7 +2005,7 @@ GameObject:
   - component: {fileID: 3593697297371952109}
   m_Layer: 0
   m_Name: C4
-  m_TagString: Untagged
+  m_TagString: WayPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2037,7 +2037,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f4f8460f6f42c946b7ba31f8c314227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _followArea: {fileID: 0}
+  _nearPlayerArea: {fileID: 0}
   _nextPoints:
   - {fileID: 0}
 --- !u!65 &3593697297371952109
