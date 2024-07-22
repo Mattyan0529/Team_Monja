@@ -67,12 +67,6 @@ public class OrcSkillAttack : MonoBehaviour, IDamagable
             _effectManager.ShowSpecialAttackEffect(transform);
         }
 
-        // “®‚«‚ğ~‚ß‚é
-        if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss"))
-        {
-            _changeEnemyMoveType.NowState = ChangeEnemyMoveType.EnemyMoveState.InAttack;
-        }
-
         _soundEffectManagement.PlayStrongPunchSound(_audioSource);
     }
 
@@ -123,12 +117,6 @@ public class OrcSkillAttack : MonoBehaviour, IDamagable
         // ‹K’èŠÔ‚É’B‚µ‚Ä‚¢‚½ê‡
         if (_elapsedTime > _deleteTime)
         {
-            // “®‚«‚ğÄŠJ‚·‚é
-            if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss"))
-            {
-                _changeEnemyMoveType.NowState = ChangeEnemyMoveType.EnemyMoveState.InFollow;
-            }
-
             _attackArea.SetActive(false);
             _elapsedTime = 0f;
             _isAttack = false;

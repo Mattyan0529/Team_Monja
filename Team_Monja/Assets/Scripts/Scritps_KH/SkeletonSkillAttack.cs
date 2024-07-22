@@ -67,12 +67,6 @@ public class SkeletonSkillAttack : MonoBehaviour, IDamagable
             _effectManager.ShowSpecialAttackEffect(transform);
         }
 
-        // “®‚«‚ğ~‚ß‚é
-        if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss"))
-        {
-            _changeEnemyMoveType.NowState = ChangeEnemyMoveType.EnemyMoveState.InAttack;
-        }
-
         _soundEffectManagement.PlayStrongPunchSound(_audioSource);
     }
 
@@ -123,11 +117,7 @@ public class SkeletonSkillAttack : MonoBehaviour, IDamagable
         // ‹K’èŠÔ‚É’B‚µ‚Ä‚¢‚½ê‡
         if (_elapsedTime > _deleteTime)
         {
-            // “®‚«‚ğÄŠJ‚·‚é
-            if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss"))
-            {
-                _changeEnemyMoveType.NowState = ChangeEnemyMoveType.EnemyMoveState.InFollow;
-            }
+
             if (gameObject.CompareTag("Player"))
             {
                 _playerMove.enabled = true;

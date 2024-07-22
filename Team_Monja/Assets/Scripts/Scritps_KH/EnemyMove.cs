@@ -45,7 +45,7 @@ public class EnemyMove : MonoBehaviour
         {
             NextWayPointSearch();
         }
-        else if (_nowEnemyState == EnemyState.InMove)
+        else if (_nowEnemyState == EnemyState.InMove && _changeEnemyMoveType.IsMove == true)
         {
             MoveToTargetWayPoint();
         }
@@ -59,7 +59,7 @@ public class EnemyMove : MonoBehaviour
         // 到着したので、目的地を現在地に変更
         _currentWayPoint = _targetWayPoint;
 
-        if(_changeEnemyMoveType.NowState == ChangeEnemyMoveType.EnemyMoveState.InFollow
+        if (_changeEnemyMoveType.NowState == ChangeEnemyMoveType.EnemyMoveState.InFollow
             && !_currentWayPoint.transform.parent.CompareTag("WayPoint"))
         {
             SearchNearMainWayPoint();
@@ -71,6 +71,7 @@ public class EnemyMove : MonoBehaviour
         _targetWayPoint = _changeEnemyMoveType.EnemyMove(_currentWayPoint);
 
         _nowEnemyState = EnemyState.InMove;
+
     }
 
     /// <summary>

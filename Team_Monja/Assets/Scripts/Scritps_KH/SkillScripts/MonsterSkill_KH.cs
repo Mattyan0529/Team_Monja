@@ -18,8 +18,8 @@ public class MonsterSkill_KH : MonoBehaviour
     private float _updateTime = 0f;    // âΩïbÇ®Ç´Ç…ÉXÉLÉãÇåƒÇ—èoÇ∑Ç©
     private float _elapsedTime = default;
 
-    private float _maxTimeSpacing = 4f;
-    private float _minTimeSpacing = 2f;
+    private float _maxTimeSpacing = 2f;
+    private float _minTimeSpacing = 1f;
 
     private float _nearPlayerAreaSize = 70f;
 
@@ -27,6 +27,7 @@ public class MonsterSkill_KH : MonoBehaviour
     private PlayerManager_KH _playerManager = default;
     private MonsterRandomWalk_KH _monsterRandomWalk = default;
     private EnemyMove _enemyMove = default;
+    private AttackAreaJudge _attackAreaJudge = default;
     private SkillSpriteChange_KH _skillSpriteChange = default;
     private SkillSpriteChange_KH _normalAttackSpriteChange = default;
     private ChangeEnemyMoveType _changeEnemyMoveType = default;
@@ -46,6 +47,7 @@ public class MonsterSkill_KH : MonoBehaviour
         _playerSkill = GetComponent<PlayerSkill_KH>();
         _monsterRandomWalk = GetComponent<MonsterRandomWalk_KH>();
         _enemyMove = GetComponent<EnemyMove>();
+        _attackAreaJudge = GetComponent<AttackAreaJudge>();
         _playerManager = _residentScript.GetComponent<PlayerManager_KH>();
         _changeEnemyMoveType = GetComponent<ChangeEnemyMoveType>();
 
@@ -108,6 +110,7 @@ public class MonsterSkill_KH : MonoBehaviour
 
             _monsterRandomWalk.enabled = false;
             _enemyMove.enabled = false;
+            _attackAreaJudge.enabled = false;
             this.enabled = false;
         }
     }

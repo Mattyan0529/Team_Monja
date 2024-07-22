@@ -8,6 +8,7 @@ public class PlayerSkill_KH : MonoBehaviour
 
     private MonsterSkill_KH _myMonsterSkill = default;
     private EnemyMove _enemyMove = default;
+    private AttackAreaJudge _attackAreaJudge = default;
     private CoolTimeUI _coolTimeUI = default;
 
     private IDamagable _skillInterface = default;
@@ -37,6 +38,7 @@ public class PlayerSkill_KH : MonoBehaviour
     {
         _myMonsterSkill = GetComponent<MonsterSkill_KH>();
         _enemyMove = GetComponent<EnemyMove>();
+        _attackAreaJudge = GetComponent<AttackAreaJudge>();
         _characterAnim = GetComponent<CharacterAnim_MT>();
     }
 
@@ -87,6 +89,7 @@ public class PlayerSkill_KH : MonoBehaviour
         {
             _myMonsterSkill.enabled = true;
             _enemyMove.enabled = true;
+            _attackAreaJudge.enabled = true;
 
             if (GetComponent<NormalAttack_KH>())
             {

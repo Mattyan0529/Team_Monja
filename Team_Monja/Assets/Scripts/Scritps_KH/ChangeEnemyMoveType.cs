@@ -8,10 +8,16 @@ public class ChangeEnemyMoveType : MonoBehaviour
 
     private RandomWayPointBetweenMove _randomMove = default;
     private FollowPlayer _followPlayer = default;
+    private bool _isMove = true;
 
     public GameObject MiniWayPoint
     {
         get { return _miniWayPoint; }
+    }
+
+    public bool IsMove
+    {
+        get { return _isMove; }
     }
 
     public enum EnemyMoveState
@@ -40,7 +46,6 @@ public class ChangeEnemyMoveType : MonoBehaviour
         _followPlayer = GetComponent<FollowPlayer>();
     }
 
-
     public Transform EnemyMove(Transform myWayPoint)
     {
         Transform nextWayPoint = default;
@@ -48,15 +53,17 @@ public class ChangeEnemyMoveType : MonoBehaviour
         switch (_nowState)
         {
             case EnemyMoveState.InRandomMove:
+                _isMove = true;
                 nextWayPoint = _randomMove.SearchTargetWayPoint(myWayPoint);
                 break;
 
             case EnemyMoveState.InFollow:
+                _isMove = true;
                 nextWayPoint = _followPlayer.SearchTargetWayPoint(myWayPoint);
                 break; 
 
             case EnemyMoveState.InAttack:
-                nextWayPoint = _followPlayer.SearchTargetWayPoint(myWayPoint);
+                _isMove = false;
                 break;
         }
 

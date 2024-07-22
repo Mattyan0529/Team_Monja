@@ -54,9 +54,7 @@ public class MushroomSkillAttack : MonoBehaviour,IDamagable
 
     public void SpecialAttack()
     {
-        // 敵のランダム移動中（プレイヤーが攻撃範囲外）は処理しない
-        if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss") &&
-            _changeEnemyMoveType.NowState == ChangeEnemyMoveType.EnemyMoveState.InRandomMove) return;
+        Debug.Log("スキル発動！");
 
         //松本
         _characterAnim.NowAnim = "Skill";
@@ -65,13 +63,6 @@ public class MushroomSkillAttack : MonoBehaviour,IDamagable
         if (_effectManager != null)
         {
             _effectManager.ShowSpecialAttackEffect(transform);
-        }
-
-
-        // 動きを止める
-        if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss"))
-        {
-            _changeEnemyMoveType.NowState = ChangeEnemyMoveType.EnemyMoveState.InAttack;
         }
 
         _soundEffectManagement.PlayStrongPunchSound(_audioSource);
@@ -127,12 +118,6 @@ public class MushroomSkillAttack : MonoBehaviour,IDamagable
         // 規定時間に達していた場合
         if (_elapsedTime > _deleteTime)
         {
-            // 動きを再開する
-            if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss"))
-            {
-                _changeEnemyMoveType.NowState = ChangeEnemyMoveType.EnemyMoveState.InFollow;
-            }
-
             _attackArea.SetActive(false);
             _elapsedTime = 0f;
             _isAttack = false;
