@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BossSkillAttack : MonoBehaviour,IDamagable
+public class BossSkillAttack : MonoBehaviour, IDamagable
 {
     //¼–{
     private CharacterAnim_MT _characterAnim = default;
@@ -28,14 +28,14 @@ public class BossSkillAttack : MonoBehaviour,IDamagable
     private bool _isShot = false;
 
     private float _bulletSpeed = 50f;
-    private float _addSpownPos = 1f;     // ï¿½eï¿½ğ¶ï¿½ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½ï¿½yï¿½É‘ï¿½ï¿½ï¿½ï¿½l
+    private float _addSpownPos = 1f;     // ’e‚ğ¶¬‚·‚é‚Æ‚«‚Éy‚É‘«‚·’l
 
     #endregion
 
     #region HitAttack
 
     [SerializeField]
-    private EffectManager _effectManager; // EffectManagerï¿½ÌQï¿½Æ‚ï¿½Ç‰ï¿½
+    private EffectManager _effectManager; // EffectManager‚ÌQÆ‚ğ’Ç‰Á
 
     private MonsterRandomWalk_KH _monsterRandomWalk = default;
     private PlayerRangeInJudge_KH _playerRangeInJudge = default;
@@ -62,7 +62,7 @@ public class BossSkillAttack : MonoBehaviour,IDamagable
 
         #region FireSphere
 
-        // ï¿½qï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½ï¿½Bulletï¿½ï¿½æ“¾
+        // qƒIƒuƒWƒFƒNƒg‚©‚çBullet‚ğæ“¾
         _bullet = transform.Find("Bullet").gameObject;
         _bulletHitDecision = _bullet.GetComponent<BulletHitDecision_KH>();
 
@@ -70,9 +70,9 @@ public class BossSkillAttack : MonoBehaviour,IDamagable
 
         #region HitAttack
 
-        
 
-        // ï¿½qï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½Ì’ï¿½ï¿½ï¿½ï¿½ï¿½AttackAreaï¿½ï¿½æ“¾
+
+        // qƒIƒuƒWƒFƒNƒg‚Ì’†‚©‚çAttackArea‚ğæ“¾
         _attackArea = transform.Find("AttackArea").gameObject;
         _attackArea.SetActive(false);
 
@@ -110,9 +110,9 @@ public class BossSkillAttack : MonoBehaviour,IDamagable
 
     private void FireSphere()
     {
-        if (_isShot) return;      // ï¿½dï¿½ï¿½ï¿½ÅUï¿½ï¿½ï¿½Í‚ï¿½ï¿½È‚ï¿½
+        if (_isShot) return;      // d•¡‚ÅUŒ‚‚Í‚µ‚È‚¢
 
-        // ï¿½ï¿½ï¿½xï¿½ï¿½tï¿½ï¿½ï¿½ï¿½
+        // ‘¬“x‚ğ•t‚¯‚é
         _bullet.transform.position = new Vector3(transform.position.x, transform.position.y + _addSpownPos, transform.position.z);
         Rigidbody rigidbody = _bullet.GetComponent<Rigidbody>();
         rigidbody.velocity = transform.forward * _bulletSpeed;
@@ -123,7 +123,7 @@ public class BossSkillAttack : MonoBehaviour,IDamagable
         {
             _audioSource = GetComponentInChildren<AudioSource>();
         }
-        // SEï¿½ï¿½Â‚ç‚·
+        // SE‚ğ–Â‚ç‚·
         _soundEffectManagement.PlayLongDistanceAttackSound(_audioSource);
 
         _isShot = true;
@@ -131,15 +131,15 @@ public class BossSkillAttack : MonoBehaviour,IDamagable
 
     private void HitAttack()
     {
-        if (_monsterRandomWalk.enabled) return;     // ï¿½ï¿½ï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½Ú“ï¿½ï¿½ï¿½ï¿½iï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Uï¿½ï¿½ï¿½ÍˆÍŠOï¿½jï¿½Íï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½
+        if (_monsterRandomWalk.enabled) return;     // ƒ‰ƒ“ƒ_ƒ€ˆÚ“®’†iƒvƒŒƒCƒ„[‚ªUŒ‚”ÍˆÍŠOj‚Íˆ—‚µ‚È‚¢
 
-        //ï¿½Xï¿½Lï¿½ï¿½ï¿½Gï¿½tï¿½Fï¿½Nï¿½g
+        //ƒXƒLƒ‹ƒGƒtƒFƒNƒg
         if (_effectManager != null)
         {
             _effectManager.ShowSpecialAttackEffect(transform);
         }
 
-        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½~ï¿½ß‚ï¿½
+        // “®‚«‚ğ~‚ß‚é
         if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss"))
         {
             _playerRangeInJudge.enabled = false;
@@ -150,15 +150,15 @@ public class BossSkillAttack : MonoBehaviour,IDamagable
 
     private void BiteAttack()
     {
-        if (_monsterRandomWalk.enabled) return;     // ï¿½ï¿½ï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½Ú“ï¿½ï¿½ï¿½ï¿½iï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Uï¿½ï¿½ï¿½ÍˆÍŠOï¿½jï¿½Íï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½
+        if (_monsterRandomWalk.enabled) return;     // ƒ‰ƒ“ƒ_ƒ€ˆÚ“®’†iƒvƒŒƒCƒ„[‚ªUŒ‚”ÍˆÍŠOj‚Íˆ—‚µ‚È‚¢
 
-        //ï¿½Xï¿½Lï¿½ï¿½ï¿½Gï¿½tï¿½Fï¿½Nï¿½g
+        //ƒXƒLƒ‹ƒGƒtƒFƒNƒg
         if (_effectManager != null)
         {
             _effectManager.ShowSpecialAttackEffect(transform);
         }
 
-        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½~ï¿½ß‚ï¿½
+        // “®‚«‚ğ~‚ß‚é
         if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss"))
         {
             _playerRangeInJudge.enabled = false;
@@ -203,5 +203,48 @@ public class BossSkillAttack : MonoBehaviour,IDamagable
         //_createDamageImage.InstantiateDamageImage(gameObject, targetStatus.gameObject, myAttackPower - targetDefensePower);
         //_writeHitPoint.UpdateHitPoint(targetStatus, damage);      // targetStatus‚ÌHP‚ğXV
     }
-}
 
+    /// <summary>
+    /// ˆê’èŠÔŒã’e‚ğíœ‚·‚é
+    /// </summary>
+    private void UpdateSphereTime()
+    {
+        if (!_isShot) return;     // UŒ‚’†ˆÈŠO‚Íˆ—‚ğs‚í‚È‚¢
+        // ŠÔ‰ÁZ
+        _elapsedTime += Time.deltaTime;
+
+        // ‹K’èŠÔ‚É’B‚µ‚Ä‚¢‚½ê‡
+        if (_elapsedTime > _sphereDeleteTime)
+        {
+            _bulletHitDecision.DisableBullet();
+            _bullet.transform.SetParent(gameObject.transform);
+            _elapsedTime = 0f;
+            _isShot = false;
+        }
+    }
+
+    /// <summary>
+    /// ˆê’èŠÔŒãUŒ‚”ÍˆÍ‚ğíœ‚·‚é
+    /// </summary>
+    private void UpdateHitTime()
+    {
+        if (!_isAttack) return;     // UŒ‚’†ˆÈŠO‚Íˆ—‚ğs‚í‚È‚¢
+
+        // ŠÔ‰ÁZ
+        _elapsedTime += Time.deltaTime;
+
+        // ‹K’èŠÔ‚É’B‚µ‚Ä‚¢‚½ê‡
+        if (_elapsedTime > _hitAttackDeleteTime)
+        {
+            // “®‚«‚ğÄŠJ‚·‚é
+            if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss"))
+            {
+                _playerRangeInJudge.enabled = true;
+            }
+
+            _attackArea.SetActive(false);
+            _elapsedTime = 0f;
+            _isAttack = false;
+        }
+    }
+}
