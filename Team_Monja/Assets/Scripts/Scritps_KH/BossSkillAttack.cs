@@ -39,17 +39,73 @@ public class BossSkillAttack : MonoBehaviour,IDamagable
 
     private void FireSphere()
     {
+        if (_isShot) return;      // �d���ōU���͂��Ȃ�
 
+        // ���x��t����
+        _bullet.transform.position = new Vector3(transform.position.x, transform.position.y + _addSpownPos, transform.position.z);
+        Rigidbody rigidbody = _bullet.GetComponent<Rigidbody>();
+        rigidbody.velocity = transform.forward * _bulletSpeed;
+        _bullet.transform.SetParent(null);
+        _bulletHitDecision.ActivateBullet();
+
+        if (_audioSource == null)
+        {
+            _audioSource = GetComponentInChildren<AudioSource>();
+        }
+        // SE��炷
+        _soundEffectManagement.PlayLongDistanceAttackSound(_audioSource);
+
+        _isShot = true;
     }
 
     private void HitAttack()
     {
+        if (_monsterRandomWalk.enabled) return;     // �����_���ړ����i�v���C���[���U���͈͊O�j�͏������Ȃ�
 
+        //�X�L���G�t�F�N�g
+        if (_effectManager != null)
+        {
+            _effectManager.ShowSpecialAttackEffect(transform);
+        }
+
+        // ������~�߂�
+        if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss"))
+        {
+            _playerRangeInJudge.enabled = false;
+        }
+
+        _soundEffectManagement.PlayStrongPunchSound(_audioSource);
     }
 
     private void BiteAttack()
     {
+        if (_monsterRandomWalk.enabled) return;     // �����_���ړ����i�v���C���[���U���͈͊O�j�͏������Ȃ�
 
+        //�X�L���G�t�F�N�g
+        if (_effectManager != null)
+        {
+            _effectManager.ShowSpecialAttackEffect(transform);
+        }
+
+        // ������~�߂�
+        if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss"))
+        {
+            _playerRangeInJudge.enabled = false;
+        }
+
+        _soundEffectManagement.PlayStrongPunchSound(_audioSource);
+    }
+
+    private void CreateBossAttackArea()
+    {
+        _isAttack = true;
+        _attackArea.SetActive(true);
+    }
+
+    public void FireSphereCancel()
+    {
+        _isShot = false;
+        _bullet.transform.SetParent(gameObject.transform);
     }
 
     public void HitDecision(GameObject hitObj)
