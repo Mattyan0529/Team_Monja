@@ -1,14 +1,9 @@
 using NUnit.Framework.Constraints;
 using UnityEngine;
 using UnityEngine.UI;
+
 public class StatusManager_MT : MonoBehaviour
 {
-    [Header("名前を選択してください")]
-    public NameList _name;  //列挙型の値を格納する変数
-    
-    [Space]
-  
-
     // 基礎値
     [SerializeField] private int _baseHP = 10; // インスペクターで設定可能
     [SerializeField] private int _baseStrength = 5; // インスペクターで設定可能
@@ -45,12 +40,11 @@ public class StatusManager_MT : MonoBehaviour
     private BossStatusHP_MT _bossStatusHP;
 
 
-
     //canvas
     [SerializeField] private GameObject canvasObjPlayer;
     [SerializeField] private GameObject canvasObjBoss   ;
 
-    // ステータスのインスタンス
+    // ステータスのプロパティ
     public int MaxHP { get { return _maxHP; } private set { _maxHP = value; } }
     public int HP { get { return _hp; } set { _hp = value; } }
     public int Strength { get { return _str; } private set { _str = value; } }
@@ -58,12 +52,6 @@ public class StatusManager_MT : MonoBehaviour
     public int PlusHP { get { return _plusStatHP; } set { _plusStatHP = value; } }
     public int PlusStrength { get { return _plusStatStrength; } set { _plusStatStrength = value; } }
     public int PlusDefense { get { return _plusStatDefense; } set { _plusStatDefense = value; } }
-
-    //列挙型の定義
-    public enum NameList
-    {
-        EvilMage, LizardWarrior, Mushroom, Orc, Skeleton, Slime, Boss
-    }
 
     private void Awake()
     {
@@ -81,7 +69,8 @@ public class StatusManager_MT : MonoBehaviour
         //canvasBossから取得
         _bossStatusHP = canvasObjBoss.GetComponentInChildren<BossStatusHP_MT>();
         _moveSliderBoss = canvasObjBoss.GetComponentInChildren<MoveSlider_MT>();
-      
+
+
         // プレイヤー以外だったら倍率を適用（別のところで設定するため
         if (!CompareTag("Player"))
         {

@@ -2,23 +2,27 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class OptionButton_SM : MonoBehaviour
+public class CanvasChange_SM : MonoBehaviour
 {
-    // オプション画面のキャンバスを参照するための変数
+    // 表示するキャンバスを参照するための変数
     [SerializeField]
-    private GameObject ScreenToDisplay;
+    private GameObject _ScreenToDisplay;
 
-    // 元のキャンバスを参照するための変数
+    // 非表示にするキャンバスを参照するための変数
     [SerializeField]
-    private GameObject ScreenToDelete;
+    private GameObject _ScreenToDelete;
 
     // ボタンを参照するための変数
     [SerializeField]
-    private Button toggleButton;
+    private Button _toggleButton;
 
     // インスペクターでエスケープキーとボタンの切り替えを行うための変数
     [SerializeField]
-    private bool useEscapeKey = true;
+    private bool _useEscapeKey = true;
+
+    //エンターキーとボタンの切り替えを行うための変数
+    [SerializeField]
+    private bool _useEnterKey = true;
 
     // 新しいキャンバスが表示されたときに最初に選択されるボタン
     [SerializeField]
@@ -29,16 +33,21 @@ public class OptionButton_SM : MonoBehaviour
     void Start()
     {
         // ボタンのクリックイベントにメソッドを登録する
-        if (toggleButton != null && !useEscapeKey)
+        if (_toggleButton != null && !_useEscapeKey)
         {
-            toggleButton.onClick.AddListener(ToggleOptions);
+            _toggleButton.onClick.AddListener(ToggleOptions);
         }
     }
 
     void Update()
     {
         // エスケープキーが押されたら
-        if (useEscapeKey && Input.GetKeyDown(KeyCode.Escape))
+        if (_useEscapeKey && Input.GetKeyDown(KeyCode.Escape))
+        {
+            ToggleOptions();
+        }
+
+        if (_useEnterKey && Input.GetKeyDown(KeyCode.Return))
         {
             ToggleOptions();
         }
@@ -47,9 +56,9 @@ public class OptionButton_SM : MonoBehaviour
     // オプション画面の表示/非表示を切り替えるメソッド
     void ToggleOptions()
     {
-        if (ScreenToDisplay != null && ScreenToDelete != null)
+        if (_ScreenToDisplay != null && _ScreenToDelete != null)
         {
-            bool isOptionsActive = ScreenToDisplay.activeSelf;
+            bool isOptionsActive = _ScreenToDisplay.activeSelf;
 
             // 現在選択されているオブジェクトを保持する
             if (!isOptionsActive)
@@ -61,10 +70,10 @@ public class OptionButton_SM : MonoBehaviour
             }
 
             // オプション画面を切り替える
-            ScreenToDisplay.SetActive(!isOptionsActive);
+            _ScreenToDisplay.SetActive(!isOptionsActive);
 
             // 元のキャンバスの表示/非表示を切り替える
-            ScreenToDelete.SetActive(isOptionsActive);
+            _ScreenToDelete.SetActive(isOptionsActive);
 
             // オプション画面を表示したら、最初の選択ボタンを設定する
             if (!isOptionsActive && firstSelectedButton != null)
