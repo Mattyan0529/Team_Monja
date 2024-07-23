@@ -85,7 +85,16 @@ public class FollowPlayer : MonoBehaviour,IFollowable
     public Transform SearchTargetWayPoint(Transform myWayPoint)
     {
         _wayPoints = _searchWayPointTwoDimensionalArray.WayPoints;
-        _nextWayPointTable = _searchWayPointTwoDimensionalArray.NextWayPointTable;
+
+        if (gameObject.CompareTag("Enemy"))
+        {
+            _nextWayPointTable = _searchWayPointTwoDimensionalArray.NextWayPointTable;
+        }
+        else if(gameObject.CompareTag("Boss"))
+        {
+            _nextWayPointTable = _searchWayPointTwoDimensionalArray.BossWayPointTable;
+        }
+        
 
         int targetIndex = 0;
         int myIndex = 0;

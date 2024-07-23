@@ -48,9 +48,36 @@ public class SearchWayPointTwoDimensionalArray : MonoBehaviour
      // 自分の場所
     };
 
+    /// <summary>
+    /// ノードテーブル 添え字として使うときは1を引く
+    /// </summary>
+    int[,] _bossWayPointTable = new int[13, 13]
+    {
+        {0,1,2,3,4,5,6,7,8,9,10,11,12}, // 列 行き先
+        {1,0,2,2,4,5,4,4,4,4,4,4,4},
+        {2,1,0,3,4,5,6,5,5,5,5,5,5},
+        {3,2,2,0,2,5,6,5,5,6,5,5,6},
+        {4,1,2,2,0,5,5,7,8,8,7,8,8},
+        {5,1,2,3,4,0,6,7,8,9,7,8,9},
+        {6,2,2,3,5,5,0,8,8,9,8,8,9},
+        {7,4,5,5,4,5,5,0,8,8,9,10,10},
+        {8,4,5,6,4,5,6,7,0,9,10,11,12},
+        {9,5,5,6,5,5,6,8,8,0,11,11,12},
+        {10,7,7,7,7,7,7,7,8,8,0,11,11},
+        {11,8,8,8,8,8,8,7,8,9,10,0,12},
+        {12,9,9,9,9,9,9,8,9,9,11,11,0},   
+     // 行
+     // 自分の場所
+    };
+
     public int[,] NextWayPointTable
     {
         get { return _nextWayPointTable; }
+    }
+
+    public int[,] BossWayPointTable
+    {
+        get { return _bossWayPointTable; }
     }
 
     public Transform TargetWayPoint
