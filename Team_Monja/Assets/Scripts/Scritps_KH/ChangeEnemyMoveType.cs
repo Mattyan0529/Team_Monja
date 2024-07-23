@@ -18,6 +18,7 @@ public class ChangeEnemyMoveType : MonoBehaviour
     public bool IsMove
     {
         get { return _isMove; }
+        set { _isMove = value; }
     }
 
     public enum EnemyMoveState
@@ -64,6 +65,7 @@ public class ChangeEnemyMoveType : MonoBehaviour
 
             case EnemyMoveState.InAttack:
                 _isMove = false;
+                nextWayPoint = _followPlayer.SearchTargetWayPoint(myWayPoint);
                 break;
         }
 

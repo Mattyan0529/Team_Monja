@@ -15,10 +15,7 @@ public class AttackAreaJudge : MonoBehaviour
 
     private void Update()
     {
-        if(_changeEnemyMoveType.NowState == ChangeEnemyMoveType.EnemyMoveState.InFollow)
-        {
-            PlayerInAttackAreaJudge();
-        }
+        PlayerInAttackAreaJudge();
     }
 
     private void PlayerInAttackAreaJudge()
@@ -31,12 +28,14 @@ public class AttackAreaJudge : MonoBehaviour
 
         // Mathf.Pow(_rangeHaveAttackArea, 2)は_rangeHaveAttackAreaの2乗
         // 既定値よりプレイヤーが近かったら
-        if (Vector3.SqrMagnitude(playerPos - myPos) < Mathf.Pow(_rangeHaveAttackArea, 2)
-            && _changeEnemyMoveType.NowState == ChangeEnemyMoveType.EnemyMoveState.InFollow)
+        if (Vector3.SqrMagnitude(playerPos - myPos) < Mathf.Pow(_rangeHaveAttackArea, 2) &&
+            _changeEnemyMoveType.NowState == ChangeEnemyMoveType.EnemyMoveState.InFollow)
         {
             _changeEnemyMoveType.NowState = ChangeEnemyMoveType.EnemyMoveState.InAttack;
         }
-        else if(_changeEnemyMoveType.NowState == ChangeEnemyMoveType.EnemyMoveState.InAttack)
+        // プレイヤーが既定値外で、攻撃状態の時
+        else if (Vector3.SqrMagnitude(playerPos - myPos) > Mathf.Pow(_rangeHaveAttackArea, 2) &&
+            _changeEnemyMoveType.NowState == ChangeEnemyMoveType.EnemyMoveState.InAttack)
         {
             _changeEnemyMoveType.NowState = ChangeEnemyMoveType.EnemyMoveState.InFollow;
         }

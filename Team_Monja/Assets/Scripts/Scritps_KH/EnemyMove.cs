@@ -45,13 +45,13 @@ public class EnemyMove : MonoBehaviour
 
     void Update()
     {
-        if (_nowEnemyState == EnemyState.InSearch)
-        {
-            NextWayPointSearch();
-        }
-        else if (_nowEnemyState == EnemyState.InMove && _changeEnemyMoveType.IsMove == true)
+        if (_nowEnemyState == EnemyState.InMove && _changeEnemyMoveType.IsMove == true)
         {
             MoveToTargetWayPoint();
+        }
+        else
+        {
+            NextWayPointSearch();
         }
 
         // MiniWayPointの高さを対応するキャラクターの高さにする
@@ -87,6 +87,12 @@ public class EnemyMove : MonoBehaviour
     /// </summary>
     private void MoveToTargetWayPoint()
     {
+        if (_changeEnemyMoveType.NowState == ChangeEnemyMoveType.EnemyMoveState.InAttack)
+        {
+            _changeEnemyMoveType.IsMove = false;
+            return;
+        }
+
         gameObject.transform.position = Vector3.MoveTowards
             (gameObject.transform.position, _targetWayPoint.transform.position, _speed * Time.deltaTime);
 

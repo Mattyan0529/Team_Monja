@@ -14,7 +14,7 @@ public class FollowAreaJudge : MonoBehaviour
     {
         _player = GameObject.FindGameObjectWithTag("Player");
         if (other.gameObject != _player) return;
-        if (_changeEnemyMoveType.NowState == ChangeEnemyMoveType.EnemyMoveState.InAttack) return;
+        if (_changeEnemyMoveType.NowState != ChangeEnemyMoveType.EnemyMoveState.InRandomMove) return;
 
         _changeEnemyMoveType.NowState = ChangeEnemyMoveType.EnemyMoveState.InFollow;
     }
@@ -23,6 +23,7 @@ public class FollowAreaJudge : MonoBehaviour
     {
         _player = GameObject.FindGameObjectWithTag("Player");
         if (other.gameObject != _player) return;
+        if (_changeEnemyMoveType.NowState != ChangeEnemyMoveType.EnemyMoveState.InFollow) return;
 
         _changeEnemyMoveType.NowState = ChangeEnemyMoveType.EnemyMoveState.InRandomMove;
     }
