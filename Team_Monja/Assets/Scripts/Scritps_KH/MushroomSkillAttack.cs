@@ -54,11 +54,6 @@ public class MushroomSkillAttack : MonoBehaviour,IDamagable
 
     public void SpecialAttack()
     {
-        Debug.Log("スキル発動！");
-
-        //松本
-        _characterAnim.NowAnim = "Skill";
-
         //スキルエフェクト
         if (_effectManager != null)
         {

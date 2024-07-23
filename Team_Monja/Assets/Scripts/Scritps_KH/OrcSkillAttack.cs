@@ -54,13 +54,6 @@ public class OrcSkillAttack : MonoBehaviour, IDamagable
 
     public void SpecialAttack()
     {
-        // 敵のランダム移動中（プレイヤーが攻撃範囲外）は処理しない
-        if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss") &&
-            _changeEnemyMoveType.NowState == ChangeEnemyMoveType.EnemyMoveState.InRandomMove) return;
-
-        //松本
-        _characterAnim.NowAnim = "Skill";
-
         //スキルエフェクト
         if (_effectManager != null)
         {

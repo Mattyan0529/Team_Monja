@@ -9,12 +9,11 @@ public class CharacterDeadDecision_MT : MonoBehaviour
     private GameEndCamera_MT _gameEndCamera;
 
     // í«ãLÅFñk
-    private MonsterRandomWalk_KH _monsterRandomWalk = default;
     private MonsterSkill_KH _monsterSkill = default;
-    private PlayerRangeInJudge_KH _playerRangeInJudge = default;
     private PlayerSkill_KH _playerSkill = default;
     private NormalAttack_KH _normalAttack = default;
     private PlayerGuard_KH _playerGuard = default;
+    private EnemyMove _enemyMove = default;
 
     private bool _isAlive = true;
     private bool _coroutineSwitch = true;
@@ -26,12 +25,11 @@ public class CharacterDeadDecision_MT : MonoBehaviour
         _characterAnim = GetComponent<CharacterAnim_MT>();
         _gameEndCamera = GameObject.FindWithTag("CameraPos").GetComponent<GameEndCamera_MT>();
         // í«ãLÅFñk
-        _monsterRandomWalk = GetComponent<MonsterRandomWalk_KH>();
         _monsterSkill = GetComponent<MonsterSkill_KH>();
-        _playerRangeInJudge = GetComponent<PlayerRangeInJudge_KH>();
         _playerSkill = GetComponent<PlayerSkill_KH>();
         _normalAttack = GetComponent<NormalAttack_KH>();
         _playerGuard = GetComponent<PlayerGuard_KH>();
+        _enemyMove = GetComponent<EnemyMove>();
 
     }
 
@@ -80,8 +78,7 @@ public class CharacterDeadDecision_MT : MonoBehaviour
     /// </summary>
     private void EnemyStop()
     {
-        _playerRangeInJudge.enabled = false;
-        _monsterRandomWalk.enabled = false;
+        _enemyMove.enabled = false;
         _monsterSkill.enabled = false;
         _playerSkill.enabled = false;
         if(_normalAttack != null)

@@ -55,13 +55,6 @@ public class SlimeSkillAttack : MonoBehaviour, IDamagable
 
     public void SpecialAttack()
     {
-        // 敵のランダム移動中（プレイヤーが攻撃範囲外）は処理しない
-        if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss") &&
-            _changeEnemyMoveType.NowState == ChangeEnemyMoveType.EnemyMoveState.InRandomMove) return;
-
-        //松本
-        _characterAnim.NowAnim = "Skill";
-
         _soundEffectManagement.PlayStrongPunchSound(_audioSource);
     }
 

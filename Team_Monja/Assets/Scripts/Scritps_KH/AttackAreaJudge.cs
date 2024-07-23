@@ -35,12 +35,10 @@ public class AttackAreaJudge : MonoBehaviour
             && _changeEnemyMoveType.NowState == ChangeEnemyMoveType.EnemyMoveState.InFollow)
         {
             _changeEnemyMoveType.NowState = ChangeEnemyMoveType.EnemyMoveState.InAttack;
-            Debug.Log("çUåÇíÜÇæÇÊ");
         }
         else if(_changeEnemyMoveType.NowState == ChangeEnemyMoveType.EnemyMoveState.InAttack)
         {
             _changeEnemyMoveType.NowState = ChangeEnemyMoveType.EnemyMoveState.InFollow;
-            Debug.Log("í«è]Ç…ñﬂÇÈÇÊ");
         }
 
     }

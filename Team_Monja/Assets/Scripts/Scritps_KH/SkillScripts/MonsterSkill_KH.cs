@@ -146,6 +146,9 @@ public class MonsterSkill_KH : MonoBehaviour
     /// </summary>
     private void RandomCallSkill()
     {
+        //èºñ{
+        _characterAnim.NowAnim = "Skill";
+
         _skillInterface.SpecialAttack();
     }
 }
