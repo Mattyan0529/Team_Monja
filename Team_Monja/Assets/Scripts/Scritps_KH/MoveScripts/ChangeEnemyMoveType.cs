@@ -66,9 +66,18 @@ public class ChangeEnemyMoveType : MonoBehaviour
             case EnemyMoveState.InAttack:
                 _isMove = false;
                 nextWayPoint = _followPlayer.SearchTargetWayPoint(myWayPoint);
+                LookAtPlayer();
                 break;
         }
 
         return nextWayPoint;
+    }
+
+    private void LookAtPlayer()
+    {
+        // –Ú“I’n‚Ì•ûŒü‚ÉŒü‚­‚æ‚¤‚ÉC³(‰ñ“]‚ÍY²‚Ì‚İ)
+        Vector3 directionVector = _followPlayer.Player.position - gameObject.transform.position;
+        Quaternion directionQuaternion = Quaternion.LookRotation(directionVector, Vector3.up);
+        gameObject.transform.rotation = Quaternion.Euler(0f, directionQuaternion.eulerAngles.y, 0f);
     }
 }

@@ -37,19 +37,11 @@ public class BossSkillAttack : MonoBehaviour, IDamagable
     [SerializeField]
     private EffectManager _effectManager; // EffectManagerの参照を追加
 
-    private MonsterRandomWalk_KH _monsterRandomWalk = default;
-    private PlayerRangeInJudge_KH _playerRangeInJudge = default;
-
     private bool _isAttack = false;
     private GameObject _attackArea;
 
     #endregion
 
-    private void Awake()
-    {
-        _monsterRandomWalk = GetComponent<MonsterRandomWalk_KH>();
-        _playerRangeInJudge = GetComponent<PlayerRangeInJudge_KH>();
-    }
 
     void Start()
     {
@@ -131,7 +123,6 @@ public class BossSkillAttack : MonoBehaviour, IDamagable
 
     private void HitAttack()
     {
-        if (_monsterRandomWalk.enabled) return;     // ランダム移動中（プレイヤーが攻撃範囲外）は処理しない
 
         //スキルエフェクト
         if (_effectManager != null)
@@ -142,7 +133,7 @@ public class BossSkillAttack : MonoBehaviour, IDamagable
         // 動きを止める
         if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss"))
         {
-            _playerRangeInJudge.enabled = false;
+            
         }
 
         _soundEffectManagement.PlayStrongPunchSound(_audioSource);
@@ -150,8 +141,6 @@ public class BossSkillAttack : MonoBehaviour, IDamagable
 
     private void BiteAttack()
     {
-        if (_monsterRandomWalk.enabled) return;     // ランダム移動中（プレイヤーが攻撃範囲外）は処理しない
-
         //スキルエフェクト
         if (_effectManager != null)
         {
@@ -161,7 +150,7 @@ public class BossSkillAttack : MonoBehaviour, IDamagable
         // 動きを止める
         if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss"))
         {
-            _playerRangeInJudge.enabled = false;
+            
         }
 
         _soundEffectManagement.PlayStrongPunchSound(_audioSource);
@@ -247,7 +236,7 @@ public class BossSkillAttack : MonoBehaviour, IDamagable
             // 動きを再開する
             if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss"))
             {
-                _playerRangeInJudge.enabled = true;
+                
             }
 
             _attackArea.SetActive(false);

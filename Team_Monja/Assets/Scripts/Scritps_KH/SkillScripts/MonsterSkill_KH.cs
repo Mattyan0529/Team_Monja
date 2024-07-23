@@ -25,7 +25,6 @@ public class MonsterSkill_KH : MonoBehaviour
 
     private PlayerSkill_KH _playerSkill = default;
     private PlayerManager_KH _playerManager = default;
-    private MonsterRandomWalk_KH _monsterRandomWalk = default;
     private EnemyMove _enemyMove = default;
     private AttackAreaJudge _attackAreaJudge = default;
     private SkillSpriteChange_KH _skillSpriteChange = default;
@@ -45,7 +44,6 @@ public class MonsterSkill_KH : MonoBehaviour
     void Awake()
     {
         _playerSkill = GetComponent<PlayerSkill_KH>();
-        _monsterRandomWalk = GetComponent<MonsterRandomWalk_KH>();
         _enemyMove = GetComponent<EnemyMove>();
         _attackAreaJudge = GetComponent<AttackAreaJudge>();
         _playerManager = _residentScript.GetComponent<PlayerManager_KH>();
@@ -108,7 +106,6 @@ public class MonsterSkill_KH : MonoBehaviour
                 _playerGuard.enabled = true;
             }
 
-            _monsterRandomWalk.enabled = false;
             _enemyMove.enabled = false;
             _attackAreaJudge.enabled = false;
             this.enabled = false;

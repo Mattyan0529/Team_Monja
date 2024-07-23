@@ -18,6 +18,11 @@ public class FollowPlayer : MonoBehaviour,IFollowable
         set { _targetWayPoint = value; }
     }
 
+    public Transform Player
+    {
+        get { return _player; }
+    }
+
     void Start()
     {
         SearchPlayer();
