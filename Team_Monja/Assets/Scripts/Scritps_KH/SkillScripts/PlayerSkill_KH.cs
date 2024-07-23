@@ -119,6 +119,9 @@ public class PlayerSkill_KH : MonoBehaviour
             if (_normalAttack != null && _normalAttack.IsAttack) return;
             if (_playerGuard != null && _playerGuard.IsGuard) return;
 
+            //èºñ{
+            _characterAnim.NowAnim = "Skill";
+
             _isUseSkill = true;
             _skillInterface.SpecialAttack();
             _canUseSkill = false;

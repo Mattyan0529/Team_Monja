@@ -90,7 +90,7 @@ public class SlimeSkillAttack : MonoBehaviour, IDamagable
         int targetDefensePower = targetStatus.Defense;        // 相手の防御力をgetしてくる
         int targetHitPoint = targetStatus.HP;        // 相手のHPをgetしてくる
 
-        int damage = targetHitPoint - (myAttackPower - targetDefensePower);
+        int damage = myAttackPower - targetDefensePower;
 
         if (myAttackPower < targetDefensePower)
         {
@@ -99,8 +99,10 @@ public class SlimeSkillAttack : MonoBehaviour, IDamagable
             damage = smallestDamage;
         }
 
-        _createDamageImage.InstantiateDamageImage(gameObject, targetStatus.gameObject, myAttackPower - targetDefensePower);
-        _writeHitPoint.UpdateHitPoint(targetStatus, damage);      // targetStatusのHPを更新
+        int hitPointAfterDamage = targetHitPoint - damage;
+
+        _createDamageImage.InstantiateDamageImage(gameObject, targetStatus.gameObject, damage);
+        _writeHitPoint.UpdateHitPoint(targetStatus, hitPointAfterDamage);      // targetStatusのHPを更新
     }
 
     /// <summary>

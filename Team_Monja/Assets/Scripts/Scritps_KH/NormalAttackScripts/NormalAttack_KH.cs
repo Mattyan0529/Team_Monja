@@ -107,11 +107,19 @@ public class NormalAttack_KH : MonoBehaviour
         int targetDefensePower = targetStatus.Defense;        // 相手の防御力をgetしてくる
         int targetHitPoint = targetStatus.HP;        // 相手のHPをgetしてくる
 
-        if (myAttackPower < targetDefensePower) return;        // 防御力のほうが高かったら0ダメージ
+        int damage = myAttackPower - targetDefensePower;
 
-        int damage = targetHitPoint - (myAttackPower - targetDefensePower);
-        _createDamageImage.InstantiateDamageImage(gameObject, targetStatus.gameObject, myAttackPower - targetDefensePower);
-        _writeHitPoint.UpdateHitPoint(targetStatus, damage);      // targetStatusのHPを更新  
+        if (myAttackPower < targetDefensePower)
+        {
+            // 防御力のほうが高い場合はダメージを1とする
+            int smallestDamage = 1;
+            damage = smallestDamage;
+        }
+
+        int hitPointAfterDamage = targetHitPoint - damage;
+
+        _createDamageImage.InstantiateDamageImage(gameObject, targetStatus.gameObject, damage);
+        _writeHitPoint.UpdateHitPoint(targetStatus, hitPointAfterDamage);      // targetStatusのHPを更新
     }
 
     /// <summary>

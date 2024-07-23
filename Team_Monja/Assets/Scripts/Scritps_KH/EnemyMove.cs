@@ -1,5 +1,6 @@
 using UnityEngine;
 using static UnityEditor.Experimental.GraphView.GraphView;
+using static UnityEditor.PlayerSettings;
 
 public class EnemyMove : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class EnemyMove : MonoBehaviour
 
     private Transform _currentWayPoint = default;
     private Transform _targetWayPoint = default;
+
+    private GameObject _miniWayPoint = default;
 
     private float _shortestDistance = default;
     private float _followStopDistance = 0.5f;
@@ -33,6 +36,7 @@ public class EnemyMove : MonoBehaviour
     void Start()
     {
         _changeEnemyMoveType = GetComponent<ChangeEnemyMoveType>();
+        _miniWayPoint = _changeEnemyMoveType.MiniWayPoint;
 
         SearchNearMainWayPoint();
 
@@ -49,6 +53,10 @@ public class EnemyMove : MonoBehaviour
         {
             MoveToTargetWayPoint();
         }
+
+        // MiniWayPointの高さを対応するキャラクターの高さにする
+        _miniWayPoint.transform.position = new Vector3(_miniWayPoint.transform.position.x, transform.position.y, 
+            _miniWayPoint.transform.position.z);
     }
 
     /// <summary>
@@ -90,9 +98,8 @@ public class EnemyMove : MonoBehaviour
         Vector3 nowPos = new Vector3(transform.position.x, 0f, transform.position.z);
         Vector3 targetPos = new Vector3(_targetWayPoint.transform.position.x, 0f, _targetWayPoint.transform.position.z);
 
-
         // ある程度近くなったら次の目的地へ
-        if (Vector3.Distance(nowPos, targetPos) < _followStopDistance)
+        if (Vector3.SqrMagnitude(targetPos - nowPos) < Mathf.Pow(_followStopDistance, 2))
         {
             _nowEnemyState = EnemyState.InSearch;
         }
