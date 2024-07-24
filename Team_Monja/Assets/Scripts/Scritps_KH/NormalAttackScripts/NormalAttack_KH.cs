@@ -91,6 +91,8 @@ public class NormalAttack_KH : MonoBehaviour
     /// </summary>
     public void HitDecision(GameObject hitObj)
     {
+        if (!_isAttack) return;
+
         // ‘ŠŽè‚ÆŽ©•ª‚ÌStatusManager‚ª—¼•û•K—v
         StatusManager_MT targetStatusManager = hitObj.gameObject.GetComponent<StatusManager_MT>();
         StatusManager_MT myStatusManager = GetComponent<StatusManager_MT>();
