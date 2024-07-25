@@ -51,6 +51,7 @@ public class BossSkillAttack : MonoBehaviour, IDamagable
         _writeHitPoint = _residentScript.GetComponent<WriteHitPoint_KH>();
         _createDamageImage = _residentScript.GetComponent<CreateDamageImage_KH>();
         _soundEffectManagement = _residentScript.GetComponent<SoundEffectManagement_KH>();
+        _audioSource = GetComponent<AudioSource>();
 
         #region FireSphere
 
@@ -111,10 +112,6 @@ public class BossSkillAttack : MonoBehaviour, IDamagable
         _bullet.transform.SetParent(null);
         _bulletHitDecision.ActivateBullet();
 
-        if (_audioSource == null)
-        {
-            _audioSource = GetComponentInChildren<AudioSource>();
-        }
         // SEを鳴らす
         _soundEffectManagement.PlayLongDistanceAttackSound(_audioSource);
 
@@ -123,17 +120,10 @@ public class BossSkillAttack : MonoBehaviour, IDamagable
 
     private void HitAttack()
     {
-
         //スキルエフェクト
         if (_effectManager != null)
         {
             _effectManager.ShowSpecialAttackEffect(transform);
-        }
-
-        // 動きを止める
-        if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss"))
-        {
-            
         }
 
         _soundEffectManagement.PlayStrongPunchSound(_audioSource);
@@ -145,12 +135,6 @@ public class BossSkillAttack : MonoBehaviour, IDamagable
         if (_effectManager != null)
         {
             _effectManager.ShowSpecialAttackEffect(transform);
-        }
-
-        // 動きを止める
-        if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss"))
-        {
-            
         }
 
         _soundEffectManagement.PlayStrongPunchSound(_audioSource);
@@ -197,8 +181,8 @@ public class BossSkillAttack : MonoBehaviour, IDamagable
 
         int hitPointAfterDamage = targetHitPoint - damage;
 
-        //_createDamageImage.InstantiateDamageImage(gameObject, targetStatus.gameObject, damage);
-        //_writeHitPoint.UpdateHitPoint(targetStatus, hitPointAfterDamage);      // targetStatusのHPを更新
+        _createDamageImage.InstantiateDamageImage(gameObject, targetStatus.gameObject, damage);
+        _writeHitPoint.UpdateHitPoint(targetStatus, hitPointAfterDamage);      // targetStatusのHPを更新
     }
 
     /// <summary>

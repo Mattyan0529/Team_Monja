@@ -75,12 +75,6 @@ public class MonsterSkill_KH : MonoBehaviour
     {
         GameobjectTagJudge();
         UpdateTime();
-
-        // 乗り移りが発生したらタグを変更（Mが押されたが乗り移りが発生しなかったときも処理が走ってしまう）
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            GameobjectTagJudge();
-        }
     }
 
     /// <summary>

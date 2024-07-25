@@ -61,18 +61,12 @@ public class PlayerSkill_KH : MonoBehaviour
         float lefttrigger = Input.GetAxis("skill");
 
 
-        GameobjectTagJudge();
+        GameObjectTagJudge();
     }
 
     void Update()
     {
         CallSkill();
-
-        // 乗り移りが発生したらタグを変更（Mが押されたが乗り移りが発生しなかったときも処理が走ってしまう）
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            GameobjectTagJudge();
-        }
 
         if (!_canUseSkill)
         {
@@ -83,7 +77,7 @@ public class PlayerSkill_KH : MonoBehaviour
     /// <summary>
     /// 始まった時点でEnemyだったら自動でEnemy状態にする
     /// </summary>
-    public void GameobjectTagJudge()
+    public void GameObjectTagJudge()
     {
         if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss"))
         {

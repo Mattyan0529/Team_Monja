@@ -1,7 +1,4 @@
-using System.Runtime.CompilerServices;
-using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class RandomWayPointBetweenMove : MonoBehaviour, IFollowable
 {
@@ -25,6 +22,8 @@ public class RandomWayPointBetweenMove : MonoBehaviour, IFollowable
         WayPoint wayPoint;
         GameObject[] MovableWayPoint;
         Transform nextWayPoint;
+
+        Debug.Log(myWayPoint);
 
         // 呼び出し元がMiniWayPointではない場合（追従からランダム移動に戻るとき）
         if (myWayPoint.transform.parent.CompareTag("WayPoint"))

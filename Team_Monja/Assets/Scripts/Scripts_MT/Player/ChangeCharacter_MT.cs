@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ChangeCharacter_MT : MonoBehaviour
@@ -7,6 +8,7 @@ public class ChangeCharacter_MT : MonoBehaviour
     private AudioSource _audioSource = default;
     private SoundEffectManagement_KH _soundEffectManagement = default;
     private MonsterSkill_KH _monsterSkill = default;
+    private PlayerSkill_KH _playerSkill = default;
 
     [SerializeField] private int _IconNum = default;
     [SerializeField] private GameObject _canvasPlayer = default;
@@ -68,6 +70,7 @@ public class ChangeCharacter_MT : MonoBehaviour
 
 
                 _monsterSkill.GameobjectTagJudge();
+                _playerSkill.GameObjectTagJudge();
                 closestObject.GetComponent<MonsterSkill_KH>().GameobjectTagJudge();
             }
             else
@@ -80,6 +83,7 @@ public class ChangeCharacter_MT : MonoBehaviour
     {
         _playerObj = GameObject.FindWithTag("Player");
         _monsterSkill = _playerObj.GetComponent<MonsterSkill_KH>();
+        _playerSkill = _playerObj.GetComponent<PlayerSkill_KH>();
         _audioSource = _playerObj.GetComponent<AudioSource>();
         statusManagerPlayer = _playerObj.GetComponent<StatusManager_MT>();
     }
