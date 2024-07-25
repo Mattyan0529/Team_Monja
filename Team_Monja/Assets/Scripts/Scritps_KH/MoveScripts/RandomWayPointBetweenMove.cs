@@ -23,8 +23,6 @@ public class RandomWayPointBetweenMove : MonoBehaviour, IFollowable
         GameObject[] MovableWayPoint;
         Transform nextWayPoint;
 
-        Debug.Log(myWayPoint);
-
         // 呼び出し元がMiniWayPointではない場合（追従からランダム移動に戻るとき）
         if (myWayPoint.transform.parent.CompareTag("WayPoint"))
         {
