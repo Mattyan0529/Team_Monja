@@ -6,12 +6,14 @@ public class RandomWayPointBetweenMove : MonoBehaviour, IFollowable
     private FollowPlayer _followPlayer = default;
     private GameObject _wayPoint = default;
     private Transform _target = default;
+    private EnemyMove _enemyMove = default;
 
     private void Start()
     {
         _changeEnemyMoveType = GetComponent<ChangeEnemyMoveType>();
         _followPlayer = GetComponent<FollowPlayer>();
-        _wayPoint = GameObject.FindGameObjectWithTag("WayPoint");
+        _enemyMove = GetComponent<EnemyMove>();
+        _wayPoint = _enemyMove.WayPoint;
     }
 
     /// <summary>

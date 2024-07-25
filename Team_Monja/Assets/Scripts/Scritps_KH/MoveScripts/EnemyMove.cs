@@ -31,6 +31,11 @@ public class EnemyMove : MonoBehaviour
         InMove
     }
 
+    public GameObject WayPoint
+    {
+        get { return _wayPoints; }
+    }
+
     void Start()
     {
         _changeEnemyMoveType = GetComponent<ChangeEnemyMoveType>();
@@ -77,7 +82,6 @@ public class EnemyMove : MonoBehaviour
         _targetWayPoint = _changeEnemyMoveType.EnemyMove(_currentWayPoint);
 
         _nowEnemyState = EnemyState.InMove;
-
     }
 
     /// <summary>
