@@ -59,6 +59,7 @@ public class NormalAttack_KH : MonoBehaviour
             _characterAnim.NowAnim = "Attack";
 
             _coolTimeUI.StartCoolTime();
+            _canUseNormalAttack = false;
         }
     }
 
@@ -69,7 +70,6 @@ public class NormalAttack_KH : MonoBehaviour
     {
         _attackArea.SetActive(true);
         _isAttack = true;
-        _canUseNormalAttack = false;
 
         // 通常攻撃エフェクトを表示
         _effectManager.ShowNormalAttackEffect(transform);
