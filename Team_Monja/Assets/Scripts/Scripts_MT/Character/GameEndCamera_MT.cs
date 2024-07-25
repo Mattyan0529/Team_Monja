@@ -55,50 +55,47 @@ public class GameEndCamera_MT : MonoBehaviour
 
     public IEnumerator GameOverCoroutine()
     {
+        Debug.Log("GameOverCoroutine started");
         _isCoroutineActive = true;
-        if(CompareTag("Player"))
-        {
-            //何秒待つのか
+
+   
             float slowTime = 1.75f;
 
-            //カメラの位置を設定
             _deadCameraPosition = new Vector3(0, 6, 0);
-            //カメラの向きを設定
             _deadCameraRotation = new Vector3(90, 180, 0);
 
-            //カメラ操作をできなくする
             _cameraManager.enabled = false;
+            Debug.Log("Camera disabled");
 
-            // 親オブジェクトが設定されているか確認
             if (_canvasPlayer != null)
             {
-                // 親オブジェクトの全ての子オブジェクトを取得
                 foreach (Transform child in _canvasPlayer.transform)
                 {
-                    // 子オブジェクトを非アクティブにする
                     child.gameObject.SetActive(false);
+                    Debug.Log("Child " + child.name + " deactivated");
                 }
             }
 
-            //スローモーション開始
             Time.timeScale = _slowTimeScale;
+            Debug.Log("Time scale set to " + Time.timeScale);
 
             yield return new WaitForSeconds(slowTime);
 
-            //死んだときのカメラを調整
             transform.localPosition = _deadCameraPosition;
             transform.localRotation = Quaternion.Euler(_deadCameraRotation);
+            Debug.Log("Camera position and rotation set");
 
-            //時間停止
             Time.timeScale = 0;
+            Debug.Log("Time scale set to 0");
 
-            //ゲームオーバーの画像を出す
             _gameOverImage.SetActive(true);
+            Debug.Log("Game over image activated");
 
-        }
 
         _isCoroutineActive = false;
+        Debug.Log("GameOverCoroutine finished");
     }
+
     public IEnumerator GameClearCoroutine()
     {
         _isCoroutineActive = true;

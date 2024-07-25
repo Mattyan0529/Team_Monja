@@ -40,12 +40,9 @@ public class CharacterDeadDecision_MT : MonoBehaviour
             //プレイヤーなら死んだときにスローモーションにする
             if(CompareTag("Player") && _coroutineSwitch)
             {
-                if(this.gameObject == GameObject.FindWithTag("Player"))
-                {
+                
                     StartCoroutine(_gameEndCamera.GameOverCoroutine());
                     _coroutineSwitch = false;
-                }
-
             }
             if (_isAlive)
             {
