@@ -28,7 +28,7 @@ public class GameEndCamera_MT : MonoBehaviour
         SetPlayer();
         _cameraManager = GameObject.FindWithTag("CameraPos").GetComponent<CameraManager_MT>();
         //ボスが完成したら下の行のコメント消す
-      //  _statusManagerBoss = GameObject.FindWithTag("Boss").GetComponent<StatusManager_MT>();
+      _statusManagerBoss = GameObject.FindWithTag("Boss").GetComponent<StatusManager_MT>();
     }
 
     private void Update()
