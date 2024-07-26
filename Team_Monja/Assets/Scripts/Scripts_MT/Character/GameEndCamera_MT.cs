@@ -28,16 +28,16 @@ public class GameEndCamera_MT : MonoBehaviour
         SetPlayer();
         _cameraManager = GameObject.FindWithTag("CameraPos").GetComponent<CameraManager_MT>();
         //ボスが完成したら下の行のコメント消す
-      _statusManagerBoss = GameObject.FindWithTag("Boss").GetComponent<StatusManager_MT>();
+        _statusManagerBoss = GameObject.FindWithTag("Boss").GetComponent<StatusManager_MT>();
     }
 
     private void Update()
     {
         //誤動作防止
-        if (_statusManagerPlayer.HP > 0 && _isCoroutineActive  && !_isGameClear)
+        if (_statusManagerPlayer.HP > 0 && _isCoroutineActive && !_isGameClear)
         {
             ResetGameOverCorouine();
-        }  
+        }
     }
 
     private void ResetGameOverCorouine()
@@ -58,38 +58,38 @@ public class GameEndCamera_MT : MonoBehaviour
         Debug.Log("GameOverCoroutine started");
         _isCoroutineActive = true;
 
-   
-            float slowTime = 1.75f;
 
-            _deadCameraPosition = new Vector3(0, 6, 0);
-            _deadCameraRotation = new Vector3(90, 180, 0);
+        float slowTime = 1.75f;
 
-            _cameraManager.enabled = false;
-            Debug.Log("Camera disabled");
+        _deadCameraPosition = new Vector3(0, 6, 0);
+        _deadCameraRotation = new Vector3(90, 180, 0);
 
-            if (_canvasPlayer != null)
+        _cameraManager.enabled = false;
+        Debug.Log("Camera disabled");
+
+        if (_canvasPlayer != null)
+        {
+            foreach (Transform child in _canvasPlayer.transform)
             {
-                foreach (Transform child in _canvasPlayer.transform)
-                {
-                    child.gameObject.SetActive(false);
-                    Debug.Log("Child " + child.name + " deactivated");
-                }
+                child.gameObject.SetActive(false);
+                Debug.Log("Child " + child.name + " deactivated");
             }
+        }
 
-            Time.timeScale = _slowTimeScale;
-            Debug.Log("Time scale set to " + Time.timeScale);
+        Time.timeScale = _slowTimeScale;
+        Debug.Log("Time scale set to " + Time.timeScale);
 
-            yield return new WaitForSeconds(slowTime);
+        yield return new WaitForSeconds(slowTime);
 
-            transform.localPosition = _deadCameraPosition;
-            transform.localRotation = Quaternion.Euler(_deadCameraRotation);
-            Debug.Log("Camera position and rotation set");
+        Camera.main.transform.localPosition = _deadCameraPosition;
+        Camera.main.transform.localRotation = Quaternion.Euler(_deadCameraRotation);
+        Debug.Log("Camera position and rotation set");
 
-            Time.timeScale = 0;
-            Debug.Log("Time scale set to 0");
+        Time.timeScale = 0;
+        Debug.Log("Time scale set to 0");
 
-            _gameOverImage.SetActive(true);
-            Debug.Log("Game over image activated");
+        _gameOverImage.SetActive(true);
+        Debug.Log("Game over image activated");
 
 
         _isCoroutineActive = false;
