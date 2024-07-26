@@ -18,7 +18,7 @@ public class CharacterAnim_MT : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         AnimSwitch();
     }

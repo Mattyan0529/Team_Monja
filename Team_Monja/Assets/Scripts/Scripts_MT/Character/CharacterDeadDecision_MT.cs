@@ -33,7 +33,7 @@ public class CharacterDeadDecision_MT : MonoBehaviour
 
     }
 
-    void Update()
+    void LateUpdate()
     {
         if (IsDeadDecision())
         {

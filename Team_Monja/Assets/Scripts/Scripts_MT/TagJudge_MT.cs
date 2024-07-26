@@ -51,10 +51,6 @@ public class TagJudge_MT : MonoBehaviour
     {
         _playerObj = GameObject.FindWithTag("Player");
 
-        _playerObj.GetComponent<StatusManager_MT>().ApplyMultipliers();
-        _playerObj.GetComponent<StatusManager_MT>().HealHP(999999);
-        _playerObj.GetComponentInChildren<EnemyHP_MT>().TagCheck();
-        _playerObj.GetComponentInChildren<EnemyHP_MT>().SetPlayerArea();
 
         _playerManager.GetComponent<PlayerMove_MT>().SetPlayer();
         _playerManager.GetComponent<EatEnemy_MT>().SetPlayer();
@@ -63,6 +59,12 @@ public class TagJudge_MT : MonoBehaviour
         _cameraObj.GetComponent<GameEndCamera_MT>().SetPlayer();
         _cameraObj.GetComponent<CameraManager_MT>().FindPlayer();
         _closeObjectArea.GetComponent<EnemyTriggerManager_MT>().SetToPlayer();
+
+
+        _playerObj.GetComponent<StatusManager_MT>().ApplyMultipliers();
+        _playerObj.GetComponent<StatusManager_MT>().HealHP(999999);
+        _playerObj.GetComponentInChildren<EnemyHP_MT>().TagCheck();
+        _playerObj.GetComponentInChildren<EnemyHP_MT>().SetPlayerArea();
 
     }
 
