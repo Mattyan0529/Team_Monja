@@ -8,6 +8,10 @@ public class FollowAreaJudge : MonoBehaviour
     void Start()
     {
         _changeEnemyMoveType = gameObject.GetComponentInParent<ChangeEnemyMoveType>();
+        if (gameObject.transform.parent.CompareTag("Boss"))
+        {
+            gameObject.transform.parent = null;
+        }
     }
 
     private void OnTriggerEnter(Collider other)

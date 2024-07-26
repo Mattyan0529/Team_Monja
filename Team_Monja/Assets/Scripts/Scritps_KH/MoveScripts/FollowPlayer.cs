@@ -11,6 +11,7 @@ public class FollowPlayer : MonoBehaviour,IFollowable
 
     private NearPlayerWayPointManager _nearPlayerWayPointManager = default;
     private SearchWayPointTwoDimensionalArray _searchWayPointTwoDimensionalArray = default;
+    private EnemyMove _enemyMove;
 
     public Transform TargetWayPoint
     {
@@ -30,6 +31,7 @@ public class FollowPlayer : MonoBehaviour,IFollowable
         _nearPlayerWayPointManager = _nearPlayerArea.gameObject.GetComponent<NearPlayerWayPointManager>();
         _searchWayPointTwoDimensionalArray =
             _nearPlayerArea.gameObject.GetComponent<SearchWayPointTwoDimensionalArray>();
+        _enemyMove = GetComponent<EnemyMove>();
     }
 
     private void Update()
@@ -84,7 +86,13 @@ public class FollowPlayer : MonoBehaviour,IFollowable
     /// </summary>
     public Transform SearchTargetWayPoint(Transform myWayPoint)
     {
-        _wayPoints = _searchWayPointTwoDimensionalArray.WayPoints;
+        GameObject wayPoint = _enemyMove.WayPoint;
+        _wayPoints = new Transform[wayPoint.transform.childCount];
+        
+        for(int i = 0; i < wayPoint.transform.childCount; i++)
+        {
+            _wayPoints[i] = wayPoint.transform.GetChild(i).transform;
+        }
 
         if (gameObject.CompareTag("Enemy"))
         {
@@ -117,7 +125,7 @@ public class FollowPlayer : MonoBehaviour,IFollowable
 
         int nextWayPointIndex = _nextWayPointTable[myIndex, targetIndex];
 
-        if (nextWayPointIndex == 0) return null; 
+        if (nextWayPointIndex == 0) return null;
 
         // 配列は0オリジンだがノードテーブルは1オリジンなので-1する
         Transform nextWayPoint = _wayPoints[nextWayPointIndex - 1];
