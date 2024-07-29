@@ -55,7 +55,7 @@ public class SlimeSkillAttack : MonoBehaviour, IDamagable
 
     public void SpecialAttack()
     {
-        _soundEffectManagement.PlayStrongPunchSound(_audioSource);
+        _soundEffectManagement.PlaySlimeSound(_audioSource);
     }
 
     private void CreateAttackArea()

@@ -26,6 +26,8 @@ public class NormalAttack_KH : MonoBehaviour
     private WriteHitPoint_KH _writeHitPoint = default;
     private CoolTimeUI _coolTimeUI = default;
     private CreateDamageImage_KH _createDamageImage = default;
+    private SoundEffectManagement_KH _soundEffectManagement = default;
+    private AudioSource _audioSource = default;
     //松本
     private CharacterAnim_MT _characterAnim = default;
 
@@ -40,6 +42,8 @@ public class NormalAttack_KH : MonoBehaviour
         _characterAnim = GetComponent<CharacterAnim_MT>();
         _coolTimeUI = _coolTimeUIObj.GetComponent<CoolTimeUI>();
         _createDamageImage = _residentScript.GetComponent<CreateDamageImage_KH>();
+        _soundEffectManagement = _residentScript.GetComponent<SoundEffectManagement_KH>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -73,6 +77,8 @@ public class NormalAttack_KH : MonoBehaviour
 
         // 通常攻撃エフェクトを表示
         _effectManager.ShowNormalAttackEffect(transform);
+
+        _soundEffectManagement.PlayStrongPunchSound(_audioSource);
     }
 
     /// <summary>
