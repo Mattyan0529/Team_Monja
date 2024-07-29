@@ -71,6 +71,7 @@ public class EnemyMove : MonoBehaviour
         // 到着したので、目的地を現在地に変更
         _currentWayPoint = _targetWayPoint;
 
+        // メインのWayPointではないところからFollowが呼び出されたらメインのWayPointに行く
         if (_changeEnemyMoveType.NowState == ChangeEnemyMoveType.EnemyMoveState.InFollow
             && !_currentWayPoint.transform.parent.CompareTag("WayPoint"))
         {

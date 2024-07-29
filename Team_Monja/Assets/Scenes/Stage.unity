@@ -3538,11 +3538,11 @@ PrefabInstance:
     - target: {fileID: -3996903725352662931, guid: 1f623e66310c12d46b1b992dc2a2dc4e, type: 3}
       propertyPath: normalAttackObjectPool
       value: 
-      objectReference: {fileID: 1798231897}
+      objectReference: {fileID: 2111488219}
     - target: {fileID: -3996903725352662931, guid: 1f623e66310c12d46b1b992dc2a2dc4e, type: 3}
       propertyPath: specialAttackObjectPool
       value: 
-      objectReference: {fileID: 2111488219}
+      objectReference: {fileID: 1798231897}
     - target: {fileID: -93825470260679817, guid: 1f623e66310c12d46b1b992dc2a2dc4e, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -5547,7 +5547,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5891620367398019596, guid: 5aa9f9c4b966a644cba9858bba174c45, type: 3}
       insertIndex: -1
       addedObject: {fileID: 68650894}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5098316742856002591, guid: 5aa9f9c4b966a644cba9858bba174c45, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 588812137}
   m_SourcePrefab: {fileID: 100100000, guid: 5aa9f9c4b966a644cba9858bba174c45, type: 3}
 --- !u!4 &138859067 stripped
 Transform:
@@ -9281,11 +9284,11 @@ PrefabInstance:
     - target: {fileID: -3996903725352662931, guid: 1f623e66310c12d46b1b992dc2a2dc4e, type: 3}
       propertyPath: normalAttackObjectPool
       value: 
-      objectReference: {fileID: 1798231897}
+      objectReference: {fileID: 2111488219}
     - target: {fileID: -3996903725352662931, guid: 1f623e66310c12d46b1b992dc2a2dc4e, type: 3}
       propertyPath: specialAttackObjectPool
       value: 
-      objectReference: {fileID: 2111488219}
+      objectReference: {fileID: 1798231897}
     - target: {fileID: 518025258292780782, guid: 1f623e66310c12d46b1b992dc2a2dc4e, type: 3}
       propertyPath: _residentScript
       value: 
@@ -9805,6 +9808,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35819a8f8106f3b4198e2ca6fc9c77b6, type: 3}
+--- !u!1 &276125336 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3600727776552566293, guid: ddbba76e08694f14bbd4a500561ceb0b, type: 3}
+  m_PrefabInstance: {fileID: 7689814680289216322}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &278986762
 GameObject:
   m_ObjectHideFlags: 0
@@ -10989,6 +10997,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000012647527992, guid: dffc3e6b366597c4988d6935d7bf4617, type: 3}
   m_PrefabInstance: {fileID: 300513573}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &300606206 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5098316742856002591, guid: 5aa9f9c4b966a644cba9858bba174c45, type: 3}
+  m_PrefabInstance: {fileID: 136792230}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &301976132
 GameObject:
@@ -18778,7 +18791,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8729089006552939036, guid: 5aa9f9c4b966a644cba9858bba174c45, type: 3}
   m_PrefabInstance: {fileID: 136792230}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 300606206}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 70b20e71c00346341bb4b5d132914a11, type: 3}
@@ -18789,6 +18802,19 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5891620367398019596, guid: 5aa9f9c4b966a644cba9858bba174c45, type: 3}
   m_PrefabInstance: {fileID: 136792230}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &588812137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 300606206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f234e40ceeaf2544c97b8e2af2ac2d51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _targetWayPoint: {fileID: 276125336}
 --- !u!1001 &589819005
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20326,11 +20352,11 @@ PrefabInstance:
     - target: {fileID: -3996903725352662931, guid: 1f623e66310c12d46b1b992dc2a2dc4e, type: 3}
       propertyPath: normalAttackObjectPool
       value: 
-      objectReference: {fileID: 1798231897}
+      objectReference: {fileID: 2111488219}
     - target: {fileID: -3996903725352662931, guid: 1f623e66310c12d46b1b992dc2a2dc4e, type: 3}
       propertyPath: specialAttackObjectPool
       value: 
-      objectReference: {fileID: 2111488219}
+      objectReference: {fileID: 1798231897}
     - target: {fileID: -93825470260679817, guid: 1f623e66310c12d46b1b992dc2a2dc4e, type: 3}
       propertyPath: m_Enabled
       value: 0
