@@ -30,6 +30,7 @@ public class MonsterSkill_KH : MonoBehaviour
     private SkillSpriteChange_KH _skillSpriteChange = default;
     private SkillSpriteChange_KH _normalAttackSpriteChange = default;
     private ChangeEnemyMoveType _changeEnemyMoveType = default;
+    private NearPlayerWayPointManager _nearPlayerWayPointManager = default;
     private IDamagable _skillInterface = default;
     //松本
     private CharacterAnim_MT _characterAnim;
@@ -66,6 +67,7 @@ public class MonsterSkill_KH : MonoBehaviour
 
         _skillSpriteChange = _skillSpriteObj.GetComponent<SkillSpriteChange_KH>();
         _normalAttackSpriteChange = _normalAttackSpriteObj.GetComponent<SkillSpriteChange_KH>();
+        _nearPlayerWayPointManager = _nearPlayerArea.GetComponent<NearPlayerWayPointManager>();
         GameobjectTagJudge();
         _updateTime = Random.Range(_minTimeSpacing, _maxTimeSpacing);
         _skillInterface = GetComponent<IDamagable>();
@@ -85,6 +87,7 @@ public class MonsterSkill_KH : MonoBehaviour
         if (gameObject.CompareTag("Player"))
         {
             _playerManager.Player = gameObject;     // プレイヤー更新
+            _nearPlayerWayPointManager.ClearNearPlayerWayPoint();
             _nearPlayerArea.transform.localScale = gameObject.transform.localScale * _nearPlayerAreaSize;
             _nearPlayerArea.transform.SetParent(gameObject.transform);
             _playerSkill.enabled = true;

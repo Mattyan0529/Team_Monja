@@ -28,4 +28,12 @@ public class NearPlayerWayPointManager : MonoBehaviour
     {
         _nearPlayerWayPoints.Remove(removeWayPoint.transform);
     }
+
+    /// <summary>
+    /// ƒŠƒXƒg‚Ì—v‘f‚ğ‚·‚×‚Äíœ‚·‚é
+    /// </summary>
+    public void ClearNearPlayerWayPoint()
+    {
+        _nearPlayerWayPoints.Clear();
+    }
 }
