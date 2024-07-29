@@ -14,6 +14,8 @@ public class CharacterDeadDecision_MT : MonoBehaviour
     private NormalAttack_KH _normalAttack = default;
     private PlayerGuard_KH _playerGuard = default;
     private EnemyMove _enemyMove = default;
+    private GameObject _tagJudgeObj = default;
+    private TagJudge_MT _tagJudge = default;
 
     private bool _isAlive = true;
     private bool _coroutineSwitch = true;
@@ -30,6 +32,8 @@ public class CharacterDeadDecision_MT : MonoBehaviour
         _normalAttack = GetComponent<NormalAttack_KH>();
         _playerGuard = GetComponent<PlayerGuard_KH>();
         _enemyMove = GetComponent<EnemyMove>();
+        _tagJudgeObj = GameObject.FindGameObjectWithTag("TagJudge");
+        _tagJudge = _tagJudgeObj.GetComponent<TagJudge_MT>();
 
     }
 
@@ -57,6 +61,8 @@ public class CharacterDeadDecision_MT : MonoBehaviour
     /// <returns></returns>
     public bool IsDeadDecision()
     {
+        _tagJudge.ChangeTagJudge();
+
         if (_statusManager.HP <= 0)
         {
            
