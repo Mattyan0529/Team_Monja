@@ -17,7 +17,6 @@ public class LizardWarriorSkillAttack : MonoBehaviour,IDamagable
     private WriteHitPoint_KH _writeHitPoint = default;
     private SoundEffectManagement_KH _soundEffectManagement = default;
     private AudioSource _audioSource = default;
-    private PlayerMove_MT _playerMove = default;
     private CreateDamageImage_KH _createDamageImage = default;
     private PlayerSkill_KH _playerSkill = default;
     private ChangeEnemyMoveType _changeEnemyMoveType = default;
@@ -30,7 +29,6 @@ public class LizardWarriorSkillAttack : MonoBehaviour,IDamagable
     private void Awake()
     {
         _changeEnemyMoveType = GetComponent<ChangeEnemyMoveType>();
-        _playerMove = GetComponent<PlayerMove_MT>();
     }
 
     void Start()
@@ -118,11 +116,6 @@ public class LizardWarriorSkillAttack : MonoBehaviour,IDamagable
         // ‹K’èŽžŠÔ‚É’B‚µ‚Ä‚¢‚½ê‡
         if (_elapsedTime > _deleteTime)
         {
-            if (gameObject.CompareTag("Player"))
-            {
-                _playerMove.enabled = true;
-            }
-
             _attackArea.SetActive(false);
             _elapsedTime = 0f;
             _isAttack = false;

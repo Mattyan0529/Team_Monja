@@ -29,7 +29,8 @@ public class MenuNavigation_SM : MonoBehaviour
     {
         // 矢印キーの入力をチェック
         if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow) ||
-            Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
+            Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow) ||
+            Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S))
         {
             // 現在選択されているオブジェクトがnullの場合
             if (eventSystem.currentSelectedGameObject == null)

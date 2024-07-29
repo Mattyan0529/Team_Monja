@@ -18,7 +18,6 @@ public class SkeletonSkillAttack : MonoBehaviour, IDamagable
     private SoundEffectManagement_KH _soundEffectManagement = default;
     private AudioSource _audioSource = default;
     private ChangeEnemyMoveType _changeEnemyMoveType = default;
-    private PlayerMove_MT _playerMove = default;
     private CreateDamageImage_KH _createDamageImage = default;
     private PlayerSkill_KH _playerSkill = default;
 
@@ -30,7 +29,6 @@ public class SkeletonSkillAttack : MonoBehaviour, IDamagable
     private void Awake()
     {
         _changeEnemyMoveType = GetComponent<ChangeEnemyMoveType>();
-        _playerMove = GetComponent<PlayerMove_MT>();
     }
 
     void Start()
@@ -54,6 +52,11 @@ public class SkeletonSkillAttack : MonoBehaviour, IDamagable
 
     public void SpecialAttack()
     {
+
+    }
+
+    private void CreateAttackArea()
+    {
         //スキルエフェクト
         if (_effectManager != null)
         {
@@ -61,10 +64,6 @@ public class SkeletonSkillAttack : MonoBehaviour, IDamagable
         }
 
         _soundEffectManagement.PlayStrongPunchSound(_audioSource);
-    }
-
-    private void CreateAttackArea()
-    {
         _isAttack = true;
         _attackArea.SetActive(true);
     }
@@ -118,12 +117,6 @@ public class SkeletonSkillAttack : MonoBehaviour, IDamagable
         // 規定時間に達していた場合
         if (_elapsedTime > _deleteTime)
         {
-
-            if (gameObject.CompareTag("Player"))
-            {
-                _playerMove.enabled = true;
-            }
-
             _attackArea.SetActive(false);
             _elapsedTime = 0f;
             _isAttack = false;
