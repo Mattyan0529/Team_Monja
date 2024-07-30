@@ -18,8 +18,8 @@ public class MonsterSkill_KH : MonoBehaviour
     private float _updateTime = 0f;    // ‰½•b‚¨‚«‚ÉƒXƒLƒ‹‚ğŒÄ‚Ño‚·‚©
     private float _elapsedTime = default;
 
-    private float _maxTimeSpacing = 2f;
-    private float _minTimeSpacing = 1f;
+    private float _maxTimeSpacing = 3f;
+    private float _minTimeSpacing = 2f;
 
     private float _nearPlayerAreaSize = 70f;
 
