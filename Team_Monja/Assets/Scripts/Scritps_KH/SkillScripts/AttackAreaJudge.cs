@@ -5,6 +5,7 @@ public class AttackAreaJudge : MonoBehaviour
     private ChangeEnemyMoveType _changeEnemyMoveType = default;
     private GameObject _player = default;
 
+    [SerializeField]
     private float _rangeHaveAttackArea = 3f;
 
     void Start()

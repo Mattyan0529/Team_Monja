@@ -89,14 +89,17 @@ public class BossSkillAttack : MonoBehaviour, IDamagable
             case < _fireSphereProbability:        // ‰Î‹…
                 FireSphere();
                 _characterAnim.NowAnim = "Skill";
+                Debug.Log("‰Î‹…");
                 break;
             case < _fireSphereProbability + _hitProbability:        // ‰£‚é
                 HitAttack();
                 _characterAnim.NowAnim = "Attack";
+                Debug.Log("‰£‚é");
                 break;
             case < _fireSphereProbability + _hitProbability + _biteProbability:       // Šš‚Þ
                 BiteAttack();
                 _characterAnim.NowAnim = "Attack2";
+                Debug.Log("Šš‚Þ");
                 break;
         }
     }
