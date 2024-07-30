@@ -74785,6 +74785,14 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 5742683976120414797, guid: ddbba76e08694f14bbd4a500561ceb0b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 77.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5742683976120414797, guid: ddbba76e08694f14bbd4a500561ceb0b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 110
+      objectReference: {fileID: 0}
     - target: {fileID: 6120213054066610526, guid: ddbba76e08694f14bbd4a500561ceb0b, type: 3}
       propertyPath: _nearPlayerArea
       value: 
@@ -74933,6 +74941,14 @@ PrefabInstance:
       propertyPath: '_nextPoints.Array.data[0]'
       value: 
       objectReference: {fileID: 2762217183871623253}
+    - target: {fileID: 8632545697811073521, guid: ddbba76e08694f14bbd4a500561ceb0b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 81.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8632545697811073521, guid: ddbba76e08694f14bbd4a500561ceb0b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 77.2
+      objectReference: {fileID: 0}
     - target: {fileID: 8736012892632785469, guid: ddbba76e08694f14bbd4a500561ceb0b, type: 3}
       propertyPath: m_TagString
       value: Untagged
