@@ -19,6 +19,7 @@ public class PullPlayerToBoss : MonoBehaviour
     private float _shortestDistance = default;
 
     private bool _isSearch = true;
+    private bool _isFirst = true;
 
     void Start()
     {
@@ -27,12 +28,18 @@ public class PullPlayerToBoss : MonoBehaviour
         _searchWayPointTwoDimensionalArray =
             _nearPlayerArea.gameObject.GetComponent<SearchWayPointTwoDimensionalArray>();
         _enemyMove = GetComponent<EnemyMove>();
-        PlayerToMainWayPoint();
     }
 
     private void Update()
     {
-        PullPlayer();
+        if (_isFirst)
+        {
+            PlayerToMainWayPoint();
+        }
+        else
+        {
+            PullPlayer();
+        }
     }
 
     /// <summary>
@@ -41,6 +48,7 @@ public class PullPlayerToBoss : MonoBehaviour
     public void PlayerToMainWayPoint()
     {
         SearchNearMainWayPoint();
+        _isFirst = false;
     }
 
     /// <summary>

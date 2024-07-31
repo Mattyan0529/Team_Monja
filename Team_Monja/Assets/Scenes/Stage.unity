@@ -74693,6 +74693,10 @@ PrefabInstance:
       propertyPath: '_nextPoints.Array.data[0]'
       value: 
       objectReference: {fileID: 2762217183871623253}
+    - target: {fileID: 3009176827638864723, guid: ddbba76e08694f14bbd4a500561ceb0b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 99.7
+      objectReference: {fileID: 0}
     - target: {fileID: 3250797065749676091, guid: ddbba76e08694f14bbd4a500561ceb0b, type: 3}
       propertyPath: m_TagString
       value: Untagged
@@ -74756,6 +74760,14 @@ PrefabInstance:
     - target: {fileID: 4737942432277144110, guid: ddbba76e08694f14bbd4a500561ceb0b, type: 3}
       propertyPath: m_TagString
       value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858859100646553002, guid: ddbba76e08694f14bbd4a500561ceb0b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 100.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858859100646553002, guid: ddbba76e08694f14bbd4a500561ceb0b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 135.87
       objectReference: {fileID: 0}
     - target: {fileID: 5040024584221204151, guid: ddbba76e08694f14bbd4a500561ceb0b, type: 3}
       propertyPath: m_TagString
