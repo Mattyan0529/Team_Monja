@@ -8,7 +8,7 @@ public class CreateDamageImage_KH : MonoBehaviour
 
     private TextMeshPro _textMeshPro = default;
 
-    private float _createAddY = 2.5f;
+    private float _createAddY = 3f;
 
     private void Start()
     {
@@ -22,7 +22,8 @@ public class CreateDamageImage_KH : MonoBehaviour
         if (target.GetComponent<CharacterDeadDecision_MT>().IsDeadDecision()) return;
 
         Vector3 position = new Vector3
-            (player.transform.position.x, player.transform.position.y + _createAddY, player.transform.position.z);
+            (target.transform.position.x, target.transform.position.y + _createAddY * target.transform.localScale.y,
+            target.transform.position.z);
 
         _textMeshPro.text = damage.ToString();
         _damageImage.transform.position = position;

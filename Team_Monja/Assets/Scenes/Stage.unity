@@ -55290,6 +55290,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4206179989418125081, guid: 1803a233cb9f0b5489ab15afdf1c3b12, type: 3}
+      propertyPath: m_fontStyle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4206179989418125081, guid: 1803a233cb9f0b5489ab15afdf1c3b12, type: 3}
       propertyPath: m_fontColor.a
       value: 1
       objectReference: {fileID: 0}
@@ -55306,8 +55310,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4206179989418125081, guid: 1803a233cb9f0b5489ab15afdf1c3b12, type: 3}
+      propertyPath: m_fontSizeMin
+      value: 57.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 4206179989418125081, guid: 1803a233cb9f0b5489ab15afdf1c3b12, type: 3}
+      propertyPath: m_lineSpacing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4206179989418125081, guid: 1803a233cb9f0b5489ab15afdf1c3b12, type: 3}
       propertyPath: m_fontSizeBase
       value: 52.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 4206179989418125081, guid: 1803a233cb9f0b5489ab15afdf1c3b12, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4206179989418125081, guid: 1803a233cb9f0b5489ab15afdf1c3b12, type: 3}
       propertyPath: m_fontColor32.rgba
