@@ -74867,6 +74867,14 @@ PrefabInstance:
       propertyPath: '_nextPoints.Array.data[0]'
       value: 
       objectReference: {fileID: 2762217183871623253}
+    - target: {fileID: 2254724477530166316, guid: ddbba76e08694f14bbd4a500561ceb0b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 57.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2254724477530166316, guid: ddbba76e08694f14bbd4a500561ceb0b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 79.2
+      objectReference: {fileID: 0}
     - target: {fileID: 2792354692100794911, guid: ddbba76e08694f14bbd4a500561ceb0b, type: 3}
       propertyPath: _nearPlayerArea
       value: 
