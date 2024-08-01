@@ -121,6 +121,7 @@ public class MushroomSkillAttack : MonoBehaviour,IDamagable
         // ‹K’èŽžŠÔ‚É’B‚µ‚Ä‚¢‚½ê‡
         if (_elapsedTime > _deleteTime)
         {
+            _characterAnim.NowAnim = "Idle";
             _attackArea.SetActive(false);
             _elapsedTime = 0f;
             _isAttack = false;

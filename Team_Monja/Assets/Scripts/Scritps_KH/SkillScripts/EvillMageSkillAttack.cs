@@ -18,6 +18,7 @@ public class EvillMageSkillAttack : MonoBehaviour,IDamagable
     private AudioSource _audioSource = default;
     private CreateDamageImage_KH _createDamageImage = default;
     private PlayerSkill_KH _playerSkill = default;
+    private CharacterAnim_MT _characterAnim = default;
 
     private float _deleteTime = 2f;
     private float _elapsedTime = 0f;
@@ -30,6 +31,7 @@ public class EvillMageSkillAttack : MonoBehaviour,IDamagable
         _createDamageImage = _residentScript.GetComponent<CreateDamageImage_KH>();
         _soundEffectManagement = _residentScript.GetComponent<SoundEffectManagement_KH>();
         _playerSkill = GetComponent<PlayerSkill_KH>();
+        _characterAnim = GetComponent<CharacterAnim_MT>();
 
         // 子オブジェクトからBulletを取得
         _bullet = transform.Find("Bullet").gameObject;
@@ -117,6 +119,7 @@ public class EvillMageSkillAttack : MonoBehaviour,IDamagable
         // 規定時間に達していた場合
         if (_elapsedTime > _deleteTime)
         {
+            _characterAnim.NowAnim = "Idle";
             _bulletHitDecision.DisableBullet();
             _bullet.transform.SetParent(gameObject.transform);
             _elapsedTime = 0f;

@@ -226,6 +226,7 @@ public class BossSkillAttack : MonoBehaviour, IDamagable
                 
             }
 
+            _characterAnim.NowAnim = "Idle";
             _attackArea.SetActive(false);
             _elapsedTime = 0f;
             _isAttack = false;
