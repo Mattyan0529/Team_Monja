@@ -85,7 +85,7 @@ public class GameEndCamera_MT : MonoBehaviour
         Camera.main.transform.localRotation = Quaternion.Euler(_deadCameraRotation);
         Debug.Log("Camera position and rotation set");
 
-        Time.timeScale = 0;
+        Time.timeScale = 0.0001f;
         Debug.Log("Time scale set to 0");
 
         _gameOverImage.SetActive(true);

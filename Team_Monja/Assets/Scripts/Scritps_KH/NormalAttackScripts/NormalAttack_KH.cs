@@ -55,7 +55,7 @@ public class NormalAttack_KH : MonoBehaviour
 
     private void AttackInputManager()
     {
-        if (Input.GetMouseButtonDown(1) || Input.GetButtonDown("attack"))
+        if (Input.GetMouseButtonDown(1) || Input.GetAxis("attack") > 0)
         {
             if (!_canUseNormalAttack) return;
 

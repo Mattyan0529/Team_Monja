@@ -26,7 +26,7 @@ public class BossGate_MT : MonoBehaviour
         if (other.gameObject.CompareTag("Player") )
         {
             _pressF.SetActive(true);
-            if(Input.GetKeyDown(KeyCode.F))
+            if (Input.GetKeyDown(KeyCode.F) || Input.GetAxis("Submit") > 0)
             {
                 _collider.isTrigger = true;
                 _canvasBoss.enabled = true;

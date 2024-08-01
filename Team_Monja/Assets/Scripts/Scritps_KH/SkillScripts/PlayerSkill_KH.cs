@@ -58,8 +58,6 @@ public class PlayerSkill_KH : MonoBehaviour
         _coolTimeUI = _coolTimeUIObj.GetComponent<CoolTimeUI>();
         _skillInterface = GetComponent<IDamagable>();
 
-        float lefttrigger = Input.GetAxis("skill");
-
 
         GameObjectTagJudge();
     }
@@ -67,6 +65,8 @@ public class PlayerSkill_KH : MonoBehaviour
     void Update()
     {
         CallSkill();
+
+        lefttrigger = Input.GetAxis("skill");
 
         if (!_canUseSkill)
         {

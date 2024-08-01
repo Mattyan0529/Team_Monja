@@ -32,12 +32,12 @@ public class SceneSwitcher_SM : MonoBehaviour
     // キーボード入力をチェックするメソッド
     private void CheckKeyboardInput()
     {
-        if (useLeghtMouse && Input.GetMouseButtonDown(0))
+        if (useLeghtMouse && (Input.GetMouseButtonDown(0) || Input.GetAxis("Submit") > 0))
         {
             LoadScene();
         }
 
-        if (useBackspaceKey && Input.GetKeyDown(KeyCode.Backspace))
+        if (useBackspaceKey && (Input.GetKeyDown(KeyCode.Backspace) || Input.GetAxis("Cancel") > 0))
         {
             LoadScene();
         }
