@@ -19,6 +19,7 @@ public class EvillMageSkillAttack : MonoBehaviour,IDamagable
     private CreateDamageImage_KH _createDamageImage = default;
     private PlayerSkill_KH _playerSkill = default;
     private CharacterAnim_MT _characterAnim = default;
+    private ChangeEnemyMoveType _changeEnemyMoveType = default;
 
     private float _deleteTime = 2f;
     private float _elapsedTime = 0f;
@@ -32,6 +33,8 @@ public class EvillMageSkillAttack : MonoBehaviour,IDamagable
         _soundEffectManagement = _residentScript.GetComponent<SoundEffectManagement_KH>();
         _playerSkill = GetComponent<PlayerSkill_KH>();
         _characterAnim = GetComponent<CharacterAnim_MT>();
+        _audioSource = GetComponent<AudioSource>();
+        _changeEnemyMoveType = GetComponent<ChangeEnemyMoveType>();
 
         // 子オブジェクトからBulletを取得
         _bullet = transform.Find("Bullet").gameObject;
@@ -57,10 +60,8 @@ public class EvillMageSkillAttack : MonoBehaviour,IDamagable
         _bullet.transform.SetParent(null);
         _bulletHitDecision.ActivateBullet();
 
-        if (_audioSource == null)
-        {
-            _audioSource = GetComponentInChildren<AudioSource>();
-        }
+        _changeEnemyMoveType.IsMove = false;
+
         // SEを鳴らす
         _soundEffectManagement.PlayLongDistanceAttackSound(_audioSource);
 
@@ -123,6 +124,7 @@ public class EvillMageSkillAttack : MonoBehaviour,IDamagable
             _bulletHitDecision.DisableBullet();
             _bullet.transform.SetParent(gameObject.transform);
             _elapsedTime = 0f;
+            _changeEnemyMoveType.IsMove = true;
             _isShot = false;
             _playerSkill.IsUseSkill = false;
         }

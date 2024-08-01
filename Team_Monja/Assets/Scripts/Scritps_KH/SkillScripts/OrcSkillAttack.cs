@@ -60,6 +60,7 @@ public class OrcSkillAttack : MonoBehaviour, IDamagable
             _effectManager.ShowSpecialAttackEffect(transform);
         }
 
+        _changeEnemyMoveType.IsMove = false;
         _soundEffectManagement.PlayStrongPunchSound(_audioSource);
     }
 
@@ -121,6 +122,7 @@ public class OrcSkillAttack : MonoBehaviour, IDamagable
             _characterAnim.NowAnim = "Idle";
             _attackArea.SetActive(false);
             _elapsedTime = 0f;
+            _changeEnemyMoveType.IsMove = true;
             _isAttack = false;
             _playerSkill.IsUseSkill = false;
         }

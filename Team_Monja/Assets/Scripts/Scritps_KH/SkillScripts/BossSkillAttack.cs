@@ -18,6 +18,7 @@ public class BossSkillAttack : MonoBehaviour, IDamagable
     private SoundEffectManagement_KH _soundEffectManagement = default;
     private WriteHitPoint_KH _writeHitPoint = default;
     private CreateDamageImage_KH _createDamageImage = default;
+    private ChangeEnemyMoveType _changeEnemyMoveType = default;
 
     private GameObject _residentScript;
 
@@ -52,6 +53,7 @@ public class BossSkillAttack : MonoBehaviour, IDamagable
         _createDamageImage = _residentScript.GetComponent<CreateDamageImage_KH>();
         _soundEffectManagement = _residentScript.GetComponent<SoundEffectManagement_KH>();
         _audioSource = GetComponent<AudioSource>();
+        _changeEnemyMoveType = GetComponent<ChangeEnemyMoveType>();
 
         #region FireSphere
 
@@ -115,6 +117,8 @@ public class BossSkillAttack : MonoBehaviour, IDamagable
         _bullet.transform.SetParent(null);
         _bulletHitDecision.ActivateBullet();
 
+        _changeEnemyMoveType.IsMove = false;
+
         // SEÇñ¬ÇÁÇ∑
         _soundEffectManagement.PlayLongDistanceAttackSound(_audioSource);
 
@@ -129,6 +133,8 @@ public class BossSkillAttack : MonoBehaviour, IDamagable
             _effectManager.ShowSpecialAttackEffect(transform);
         }
 
+        _changeEnemyMoveType.IsMove = false;
+
         _soundEffectManagement.PlayStrongPunchSound(_audioSource);
     }
 
@@ -139,6 +145,8 @@ public class BossSkillAttack : MonoBehaviour, IDamagable
         {
             _effectManager.ShowSpecialAttackEffect(transform);
         }
+
+        _changeEnemyMoveType.IsMove = false;
 
         _soundEffectManagement.PlayStrongPunchSound(_audioSource);
     }
@@ -203,6 +211,7 @@ public class BossSkillAttack : MonoBehaviour, IDamagable
             _bulletHitDecision.DisableBullet();
             _bullet.transform.SetParent(gameObject.transform);
             _elapsedTime = 0f;
+            _changeEnemyMoveType.IsMove = true;
             _isShot = false;
         }
     }
@@ -220,15 +229,10 @@ public class BossSkillAttack : MonoBehaviour, IDamagable
         // ãKíËéûä‘Ç…íBÇµÇƒÇ¢ÇΩèÍçá
         if (_elapsedTime > _hitAttackDeleteTime)
         {
-            // ìÆÇ´ÇçƒäJÇ∑ÇÈ
-            if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss"))
-            {
-                
-            }
-
             _characterAnim.NowAnim = "Idle";
             _attackArea.SetActive(false);
             _elapsedTime = 0f;
+            _changeEnemyMoveType.IsMove = true;
             _isAttack = false;
         }
     }

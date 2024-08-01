@@ -52,7 +52,7 @@ public class SkeletonSkillAttack : MonoBehaviour, IDamagable
 
     public void SpecialAttack()
     {
-
+        _changeEnemyMoveType.IsMove = false;
     }
 
     private void CreateAttackArea()
@@ -120,6 +120,7 @@ public class SkeletonSkillAttack : MonoBehaviour, IDamagable
             _characterAnim.NowAnim = "Idle";
             _attackArea.SetActive(false);
             _elapsedTime = 0f;
+            _changeEnemyMoveType.IsMove = true;
             _isAttack = false;
             _playerSkill.IsUseSkill = false;
         }
