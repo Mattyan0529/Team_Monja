@@ -6,11 +6,13 @@ public class DefenseStatusUI_MT : MonoBehaviour
 {
     TextMeshProUGUI _textMeshProUGUI;
     float _currentDefense;  // float 型に変更
+    [SerializeField]
+    int _initialValue;//初期値
 
     private void Start()
     {
         _textMeshProUGUI = GetComponent<TextMeshProUGUI>();
-        _currentDefense = 0;  // 初期値を設定
+        _currentDefense = _initialValue;  // 初期値を設定
         UpdateText();  // 初期表示を設定
     }
 

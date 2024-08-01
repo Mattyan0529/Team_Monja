@@ -828,7 +828,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: Stage
-  useEnterKey: 1
+  useLeghtMouse: 1
   useBackspaceKey: 0
   useEscapeKey: 0
 --- !u!114 &1375969090
@@ -844,7 +844,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: TitleScreen
-  useEnterKey: 0
+  useLeghtMouse: 0
   useBackspaceKey: 1
   useEscapeKey: 0
 --- !u!1 &1554637990

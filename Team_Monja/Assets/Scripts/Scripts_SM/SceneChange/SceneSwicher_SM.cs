@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class SceneSwitcher_SM : MonoBehaviour
 {
     [SerializeField] private string sceneName; // 遷移するシーンの名前
-    [SerializeField] private bool useEnterKey; // エンターキーでシーンを遷移するかどうか
+    [SerializeField] private bool useLeghtMouse; // エンターキーでシーンを遷移するかどうか
     [SerializeField] private bool useBackspaceKey; // バックスペースキーでシーンを遷移するかどうか
     [SerializeField] private bool useEscapeKey; // エスケープキーでオプション画面を表示するかどうか
 
@@ -32,7 +32,7 @@ public class SceneSwitcher_SM : MonoBehaviour
     // キーボード入力をチェックするメソッド
     private void CheckKeyboardInput()
     {
-        if (useEnterKey && Input.GetKeyDown(KeyCode.Return))
+        if (useLeghtMouse && Input.GetMouseButtonDown(0))
         {
             LoadScene();
         }
