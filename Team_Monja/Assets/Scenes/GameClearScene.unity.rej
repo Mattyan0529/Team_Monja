@@ -1,0 +1,23 @@
+diff a/Team_Monja/Assets/Scenes/GameClearScene.unity b/Team_Monja/Assets/Scenes/GameClearScene.unity	(rejected hunks)
+@@ -600,14 +600,15 @@
+   m_GameObject: {fileID: 525200680}
+   m_Enabled: 1
+   m_EditorHideFlags: 0
+-  m_Script: {fileID: 11500000, guid: b31c5641aa98f284a8a7345181deda49, type: 3}
++  m_Script: {fileID: 11500000, guid: 7a34c84414040ff489bb0a532aa51c71, type: 3}
+   m_Name: 
+   m_EditorClassIdentifier: 
+-  sceneName: TitleScreen
+-  optionPanel: {fileID: 0}
+-  useEnterKey: 1
+-  useBackspaceKey: 0
+-  useEscapeKey: 0
++  _ScreenToDisplay: {fileID: 1584888053}
++  _ScreenToDelete: {fileID: 525200680}
++  _toggleButton: {fileID: 0}
++  _useEscapeKey: 0
++  _useEnterKey: 1
++  firstSelectedButton: {fileID: 0}
+ --- !u!1 &544971943
+ GameObject:
+   m_ObjectHideFlags: 0
