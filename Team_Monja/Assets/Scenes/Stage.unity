@@ -32713,7 +32713,7 @@ PrefabInstance:
       objectReference: {fileID: 1215322689}
     - target: {fileID: 7857058309518472230, guid: 17485335a95713c4682d99e0e056ac39, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -721.3
+      value: -714.3
       objectReference: {fileID: 0}
     - target: {fileID: 7857058309518472230, guid: 17485335a95713c4682d99e0e056ac39, type: 3}
       propertyPath: m_LocalPosition.y
@@ -74823,6 +74823,14 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 982886152199839236, guid: ddbba76e08694f14bbd4a500561ceb0b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 104.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 982886152199839236, guid: ddbba76e08694f14bbd4a500561ceb0b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 153.2
+      objectReference: {fileID: 0}
     - target: {fileID: 1024467841288971016, guid: ddbba76e08694f14bbd4a500561ceb0b, type: 3}
       propertyPath: m_TagString
       value: Untagged
@@ -74961,11 +74969,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4858859100646553002, guid: ddbba76e08694f14bbd4a500561ceb0b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 100.58
+      value: 96.2
       objectReference: {fileID: 0}
     - target: {fileID: 4858859100646553002, guid: ddbba76e08694f14bbd4a500561ceb0b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 135.87
+      value: 139.4
       objectReference: {fileID: 0}
     - target: {fileID: 5040024584221204151, guid: ddbba76e08694f14bbd4a500561ceb0b, type: 3}
       propertyPath: m_TagString
@@ -75157,7 +75165,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8632545697811073521, guid: ddbba76e08694f14bbd4a500561ceb0b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 77.2
+      value: 74.4
       objectReference: {fileID: 0}
     - target: {fileID: 8736012892632785469, guid: ddbba76e08694f14bbd4a500561ceb0b, type: 3}
       propertyPath: m_TagString
