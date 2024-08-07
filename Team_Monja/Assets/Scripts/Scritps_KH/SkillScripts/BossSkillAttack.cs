@@ -38,11 +38,11 @@ public class BossSkillAttack : MonoBehaviour, IDamagable
     private GameObject _nearPlayerAttackRange = default;
     private GameObject _farPlayerAttackRange = default;
 
-    float _minimumNearPlayerAttackRange = 0.5f;
-    float _maximumNearPlayerAttackRange = 2f;
+    float _minimumNearPlayerAttackRange = -10f;
+    float _maximumNearPlayerAttackRange = 10f;
 
-    float _minimumFarPlayerAttackRange = 2f;
-    float _maximumFarPlayerAttackRange = 4f;
+    float _minimumFarPlayerAttackRange = -30f;
+    float _maximumFarPlayerAttackRange = 30f;
 
     #endregion
 
@@ -134,6 +134,27 @@ public class BossSkillAttack : MonoBehaviour, IDamagable
     {
         if (_isShot) return;      // 重複で攻撃はしない
 
+        // プレイヤー直下の攻撃範囲の位置決定
+        _attackRangeImage[0].transform.position = new Vector3
+            (_player.transform.position.x, _imagePositionY, _player.transform.position.z);
+        _underPlayerAttackRange.transform.position = _player.transform.position;
+
+        // プレイヤーから近い攻撃範囲の位置決定
+        float nearPlayerX = Random.Range(_minimumNearPlayerAttackRange, _maximumNearPlayerAttackRange);
+        float nearPlayerZ = Random.Range(_minimumNearPlayerAttackRange, _maximumNearPlayerAttackRange);
+        Vector3 nearPlayerPos = new Vector3
+            (_player.transform.position.x + nearPlayerX, _player.transform.position.y, _player.transform.position.z + nearPlayerZ);
+        _attackRangeImage[1].transform.position = new Vector3(nearPlayerPos.x, _imagePositionY, nearPlayerPos.z);
+        _nearPlayerAttackRange.transform.position = nearPlayerPos;
+
+        // プレイヤーから遠い攻撃範囲の位置決定
+        float farPlayerX = Random.Range(_minimumFarPlayerAttackRange, _maximumFarPlayerAttackRange);
+        float farPlayerZ = Random.Range(_minimumFarPlayerAttackRange, _maximumFarPlayerAttackRange);
+        Vector3 farPlayerPos = new Vector3
+            (_player.transform.position.x + farPlayerX, _player.transform.position.y, _player.transform.position.z + farPlayerZ);
+        _attackRangeImage[2].transform.position = new Vector3(farPlayerPos.x, _imagePositionY, farPlayerPos.z);
+        _farPlayerAttackRange.transform.position = farPlayerPos;
+
         _characterAnim.NowAnim = "Skill";
 
         _changeEnemyMoveType.IsMove = false;
@@ -162,26 +183,6 @@ public class BossSkillAttack : MonoBehaviour, IDamagable
     private void BiteAttack()
     {
         _characterAnim.NowAnim = "Attack2";
-
-        // プレイヤー直下の攻撃範囲の位置決定
-        _underPlayerAttackRange.transform.position = _player.transform.position;
-        _attackRangeImage[0].transform.position = new Vector3
-            (_player.transform.position.x, _imagePositionY, _player.transform.position.z);
-
-        // プレイヤーから近い攻撃範囲の位置決定
-        float nearPlayerX = Random.Range(_minimumNearPlayerAttackRange, _maximumNearPlayerAttackRange);
-        float nearPlayerZ = Random.Range(_minimumNearPlayerAttackRange, _maximumNearPlayerAttackRange);
-        Vector3 nearPlayerPos = new Vector3(nearPlayerX, _player.transform.position.y, nearPlayerZ);
-        _nearPlayerAttackRange.transform.position = nearPlayerPos;
-        _attackRangeImage[1].transform.position = new Vector3(nearPlayerPos.x, _imagePositionY, nearPlayerPos.z);
-
-        // プレイヤーから遠い攻撃範囲の位置決定
-        float farPlayerX = Random.Range(_minimumFarPlayerAttackRange, _maximumFarPlayerAttackRange);
-        float farPlayerZ = Random.Range(_minimumFarPlayerAttackRange, _maximumFarPlayerAttackRange);
-        Vector3 farPlayerPos = new Vector3(farPlayerX, _player.transform.position.y, farPlayerZ);
-        _farPlayerAttackRange.transform.position = farPlayerPos;
-        _attackRangeImage[2].transform.position = new Vector3(farPlayerPos.x, _imagePositionY, farPlayerPos.z);
-
 
         //スキルエフェクト
         if (_effectManager != null)
@@ -244,7 +245,7 @@ public class BossSkillAttack : MonoBehaviour, IDamagable
     }
 
     /// <summary>
-    /// 一定時間後弾を削除する
+    /// 一定時間後範囲を削除する
     /// </summary>
     private void UpdateFireTime()
     {
