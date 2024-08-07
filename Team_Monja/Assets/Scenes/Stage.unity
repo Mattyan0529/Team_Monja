@@ -74168,9 +74168,17 @@ PrefabInstance:
       propertyPath: _residentScript
       value: 
       objectReference: {fileID: 1487418206}
+    - target: {fileID: 7939061426093638973, guid: 8c046e64a3ac98e46aa677d308420fcf, type: 3}
+      propertyPath: _initialValue
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 8078129549869729267, guid: 8c046e64a3ac98e46aa677d308420fcf, type: 3}
       propertyPath: m_fontStyle
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8820739134428022575, guid: 8c046e64a3ac98e46aa677d308420fcf, type: 3}
+      propertyPath: _initialValue
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
