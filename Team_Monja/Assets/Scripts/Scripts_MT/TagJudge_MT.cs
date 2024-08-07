@@ -10,6 +10,8 @@ public class TagJudge_MT : MonoBehaviour
     private GameObject _cameraObj;
     [SerializeField]
     private GameObject _closeObjectArea;
+    [SerializeField]
+    private GameObject _MiniMapIcon;
 
     private GameObject _playerObj;
 
@@ -66,6 +68,8 @@ public class TagJudge_MT : MonoBehaviour
         _playerObj.GetComponentInChildren<EnemyHP_MT>().TagCheck();
         _playerObj.GetComponentInChildren<EnemyHP_MT>().SetPlayerArea();
 
+
+        _MiniMapIcon.GetComponent<PlayerMinimapIconSet>().SetPlayer();
     }
 
 }

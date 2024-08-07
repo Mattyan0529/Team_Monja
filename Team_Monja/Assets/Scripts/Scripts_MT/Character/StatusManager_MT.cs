@@ -47,7 +47,7 @@ public class StatusManager_MT : MonoBehaviour
     // ステータスのプロパティ
     public int MaxHP { get { return _maxHP; } private set { _maxHP = value; } }
     public int HP { get { return _hp; } set { _hp = value; } }
-    public int Strength { get { return _str; } set { _str = value; } }
+    public int Strength { get { return _str; }  set { _str = value; } }
     public int Defense { get { return _def; } set { _def = value; } }
     public int PlusHP { get { return _plusStatHP; } set { _plusStatHP = value; } }
     public int PlusStrength { get { return _plusStatStrength; } set { _plusStatStrength = value; } }
