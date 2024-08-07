@@ -3,7 +3,9 @@ using UnityEngine;
 public class AttackAreaJudge : MonoBehaviour
 {
     private ChangeEnemyMoveType _changeEnemyMoveType = default;
+    private PlayerManager_KH _playerManager = default;
     private GameObject _player = default;
+    private GameObject _residentScript = default;
 
     [SerializeField]
     private float _rangeHaveAttackArea = 3f;
@@ -11,11 +13,14 @@ public class AttackAreaJudge : MonoBehaviour
     void Start()
     {
         _changeEnemyMoveType = gameObject.GetComponentInParent<ChangeEnemyMoveType>();
-        _player = GameObject.FindGameObjectWithTag("Player");
+        _residentScript = GameObject.Find("ResidentScripts");
+        _playerManager = _residentScript.GetComponent<PlayerManager_KH>();
+        _player = _playerManager.Player;
     }
 
     private void Update()
     {
+        _player = _playerManager.Player;
         PlayerInAttackAreaJudge();
     }
 
@@ -40,6 +45,5 @@ public class AttackAreaJudge : MonoBehaviour
         {
             _changeEnemyMoveType.NowState = ChangeEnemyMoveType.EnemyMoveState.InFollow;
         }
-
     }
 }

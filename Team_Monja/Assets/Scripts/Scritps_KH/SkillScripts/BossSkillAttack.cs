@@ -1,35 +1,48 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BossSkillAttack : MonoBehaviour, IDamagable
 {
+    [SerializeField]
+    private float _rangeHaveAttackArea = 7f;
+
+    [SerializeField]
+    private GameObject[] _attackRangeImage = default;
+
     //松本
     private CharacterAnim_MT _characterAnim = default;
-
-    // それぞれの攻撃を実行する割合
-    private const int _fireSphereProbability = 1;
-    private const int _hitProbability = 4;
-    private const int _biteProbability = 5;
 
     private float _sphereDeleteTime = 2f;
     private float _hitAttackDeleteTime = 0.5f;
     private float _elapsedTime = 0f;
+
+    private float _imagePositionY = 18.34f;
 
     private AudioSource _audioSource = default;
     private SoundEffectManagement_KH _soundEffectManagement = default;
     private WriteHitPoint_KH _writeHitPoint = default;
     private CreateDamageImage_KH _createDamageImage = default;
     private ChangeEnemyMoveType _changeEnemyMoveType = default;
+    private PlayerManager_KH _playerManager = default;
 
-    private GameObject _residentScript;
+    private GameObject _player = default;
+    private GameObject _residentScript = default;
 
     #region FireSphere
 
-    private GameObject _bullet = default;
-    private BulletHitDecision_KH _bulletHitDecision = default;
     private bool _isShot = false;
 
-    private float _bulletSpeed = 50f;
-    private float _addSpownPos = 1f;     // 弾を生成するときにyに足す値
+    private GameObject[] _fireAttackAreas;
+
+    private GameObject _underPlayerAttackRange = default;
+    private GameObject _nearPlayerAttackRange = default;
+    private GameObject _farPlayerAttackRange = default;
+
+    float _minimumNearPlayerAttackRange = 0.5f;
+    float _maximumNearPlayerAttackRange = 2f;
+
+    float _minimumFarPlayerAttackRange = 2f;
+    float _maximumFarPlayerAttackRange = 4f;
 
     #endregion
 
@@ -54,21 +67,26 @@ public class BossSkillAttack : MonoBehaviour, IDamagable
         _soundEffectManagement = _residentScript.GetComponent<SoundEffectManagement_KH>();
         _audioSource = GetComponent<AudioSource>();
         _changeEnemyMoveType = GetComponent<ChangeEnemyMoveType>();
+        _playerManager = _residentScript.GetComponent<PlayerManager_KH>();
+        _player = _playerManager.Player;
 
-        #region FireSphere
+        #region FireAttack
 
-        // 子オブジェクトからBulletを取得
-        _bullet = transform.Find("Bullet").gameObject;
-        _bulletHitDecision = _bullet.GetComponent<BulletHitDecision_KH>();
+        _fireAttackAreas = GameObject.FindGameObjectsWithTag("FireAttackArea");
+        _underPlayerAttackRange = _fireAttackAreas[0];
+        _nearPlayerAttackRange = _fireAttackAreas[1];
+        _farPlayerAttackRange = _fireAttackAreas[2];
+
+        _underPlayerAttackRange.SetActive(false);
+        _nearPlayerAttackRange.SetActive(false);
+        _farPlayerAttackRange.SetActive(false);
 
         #endregion
 
         #region HitAttack
 
-
-
-        // 子オブジェクトの中からAttackAreaを取得
-        _attackArea = transform.Find("AttackArea").gameObject;
+        // HitAttackAreaを取得
+        _attackArea = GameObject.FindGameObjectWithTag("HitAttackArea");
         _attackArea.SetActive(false);
 
         #endregion
@@ -76,33 +94,39 @@ public class BossSkillAttack : MonoBehaviour, IDamagable
 
     private void Update()
     {
-        UpdateSphereTime();
+        UpdateFireTime();
         UpdateHitTime();
-
     }
 
     public void SpecialAttack()
     {
-        // 1から10までの乱数
-        int skillNum = Random.Range(0, _fireSphereProbability + _hitProbability + _biteProbability);
+        RangeMeasurementWithPlayer();
+    }
 
-        switch (skillNum)
+    /// <summary>
+    /// プレイヤーとの距離を測定し、それに適した攻撃をする
+    /// </summary>
+    private void RangeMeasurementWithPlayer()
+    {
+        // プレイヤー更新
+        _player = _playerManager.Player;
+
+        Vector3 playerPos = _player.transform.position;
+        Vector3 myPos = gameObject.transform.position;
+
+        playerPos.y = 0f;
+        myPos.y = 0f;
+
+        // Mathf.Pow(_rangeHaveAttackArea, 2)は_rangeHaveAttackAreaの2乗
+        // 既定値よりプレイヤーが近かったら
+        if (Vector3.SqrMagnitude(playerPos - myPos) < Mathf.Pow(_rangeHaveAttackArea, 2))
         {
-            case < _fireSphereProbability:        // 火球
-                FireSphere();
-                _characterAnim.NowAnim = "Skill";
-                Debug.Log("火球");
-                break;
-            case < _fireSphereProbability + _hitProbability:        // 殴る
-                HitAttack();
-                _characterAnim.NowAnim = "Attack";
-                Debug.Log("殴る");
-                break;
-            case < _fireSphereProbability + _hitProbability + _biteProbability:       // 噛む
-                BiteAttack();
-                _characterAnim.NowAnim = "Attack2";
-                Debug.Log("噛む");
-                break;
+            HitAttack();
+        }
+        // プレイヤーが既定値外の時
+        else if (Vector3.SqrMagnitude(playerPos - myPos) > Mathf.Pow(_rangeHaveAttackArea, 2))
+        {
+            FireSphere();
         }
     }
 
@@ -110,12 +134,7 @@ public class BossSkillAttack : MonoBehaviour, IDamagable
     {
         if (_isShot) return;      // 重複で攻撃はしない
 
-        // 速度を付ける
-        _bullet.transform.position = new Vector3(transform.position.x, transform.position.y + _addSpownPos, transform.position.z);
-        Rigidbody rigidbody = _bullet.GetComponent<Rigidbody>();
-        rigidbody.velocity = transform.forward * _bulletSpeed;
-        _bullet.transform.SetParent(null);
-        _bulletHitDecision.ActivateBullet();
+        _characterAnim.NowAnim = "Skill";
 
         _changeEnemyMoveType.IsMove = false;
 
@@ -127,6 +146,8 @@ public class BossSkillAttack : MonoBehaviour, IDamagable
 
     private void HitAttack()
     {
+        _characterAnim.NowAnim = "Attack";
+
         //スキルエフェクト
         if (_effectManager != null)
         {
@@ -140,6 +161,28 @@ public class BossSkillAttack : MonoBehaviour, IDamagable
 
     private void BiteAttack()
     {
+        _characterAnim.NowAnim = "Attack2";
+
+        // プレイヤー直下の攻撃範囲の位置決定
+        _underPlayerAttackRange.transform.position = _player.transform.position;
+        _attackRangeImage[0].transform.position = new Vector3
+            (_player.transform.position.x, _imagePositionY, _player.transform.position.z);
+
+        // プレイヤーから近い攻撃範囲の位置決定
+        float nearPlayerX = Random.Range(_minimumNearPlayerAttackRange, _maximumNearPlayerAttackRange);
+        float nearPlayerZ = Random.Range(_minimumNearPlayerAttackRange, _maximumNearPlayerAttackRange);
+        Vector3 nearPlayerPos = new Vector3(nearPlayerX, _player.transform.position.y, nearPlayerZ);
+        _nearPlayerAttackRange.transform.position = nearPlayerPos;
+        _attackRangeImage[1].transform.position = new Vector3(nearPlayerPos.x, _imagePositionY, nearPlayerPos.z);
+
+        // プレイヤーから遠い攻撃範囲の位置決定
+        float farPlayerX = Random.Range(_minimumFarPlayerAttackRange, _maximumFarPlayerAttackRange);
+        float farPlayerZ = Random.Range(_minimumFarPlayerAttackRange, _maximumFarPlayerAttackRange);
+        Vector3 farPlayerPos = new Vector3(farPlayerX, _player.transform.position.y, farPlayerZ);
+        _farPlayerAttackRange.transform.position = farPlayerPos;
+        _attackRangeImage[2].transform.position = new Vector3(farPlayerPos.x, _imagePositionY, farPlayerPos.z);
+
+
         //スキルエフェクト
         if (_effectManager != null)
         {
@@ -151,16 +194,20 @@ public class BossSkillAttack : MonoBehaviour, IDamagable
         _soundEffectManagement.PlayStrongPunchSound(_audioSource);
     }
 
-    private void CreateBossAttackArea()
+    private void CreateHitAttackArea()
     {
         _isAttack = true;
         _attackArea.SetActive(true);
     }
 
-    public void FireSphereCancel()
+    private void CreateFireAttackArea()
     {
-        _isShot = false;
-        _bullet.transform.SetParent(gameObject.transform);
+        _isShot = true;
+
+        // 攻撃範囲有効化
+        _underPlayerAttackRange.SetActive(true);
+        _nearPlayerAttackRange.SetActive(true);
+        _farPlayerAttackRange.SetActive(true);
     }
 
     public void HitDecision(GameObject hitObj)
@@ -199,7 +246,7 @@ public class BossSkillAttack : MonoBehaviour, IDamagable
     /// <summary>
     /// 一定時間後弾を削除する
     /// </summary>
-    private void UpdateSphereTime()
+    private void UpdateFireTime()
     {
         if (!_isShot) return;     // 攻撃中以外は処理を行わない
         // 時間加算
@@ -208,8 +255,10 @@ public class BossSkillAttack : MonoBehaviour, IDamagable
         // 規定時間に達していた場合
         if (_elapsedTime > _sphereDeleteTime)
         {
-            _bulletHitDecision.DisableBullet();
-            _bullet.transform.SetParent(gameObject.transform);
+            _characterAnim.NowAnim = "Idle";
+            _underPlayerAttackRange.SetActive(false);
+            _nearPlayerAttackRange.SetActive(false);
+            _farPlayerAttackRange.SetActive(false);
             _elapsedTime = 0f;
             _changeEnemyMoveType.IsMove = true;
             _isShot = false;
