@@ -126,6 +126,11 @@ public class SuccubusSkillAttack : MonoBehaviour, IDamagable
 
     private void ResetStatus()
     {
+        if (_statEachSkillTimes == null)
+        {
+            return;
+        }
+
         List<StatusManager_MT> list = _statEachSkillTimes[0];
 
         for (int i = 0; i < list.Count; i++)
