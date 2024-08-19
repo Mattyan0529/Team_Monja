@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PullPlayerToBoss : MonoBehaviour
+public class DragPlayerToBoss : MonoBehaviour
 {
     [SerializeField]
     private GameObject _targetWayPoint = default;
@@ -18,8 +18,17 @@ public class PullPlayerToBoss : MonoBehaviour
     private float _followStopDistance = 0.5f;
     private float _shortestDistance = default;
 
+    // 今移動している状態ならfalse 移動が終わり探索待ちかどうか
     private bool _isSearch = true;
+    // メインのウェイポイントに届けるためのフラグ（最初の一回の探索かどうか）
     private bool _isFirst = true;
+    // プレイヤーを引きずる状態かどうか
+    private bool _isdrag = false;
+
+    public bool IsDrag
+    {
+        set { _isdrag = value; }
+    }
 
     void Start()
     {
@@ -32,13 +41,15 @@ public class PullPlayerToBoss : MonoBehaviour
 
     private void Update()
     {
+        if (!_isdrag) return;
+
         if (_isFirst)
         {
             PlayerToMainWayPoint();
         }
         else
         {
-            PullPlayer();
+            DragPlayer();
         }
     }
 
@@ -54,7 +65,7 @@ public class PullPlayerToBoss : MonoBehaviour
     /// <summary>
     /// PlayerToMainWayPointを先に呼び出してから
     /// </summary>
-    public void PullPlayer()
+    public void DragPlayer()
     {
         if (_isSearch)
         {
