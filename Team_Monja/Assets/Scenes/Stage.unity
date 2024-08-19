@@ -5377,6 +5377,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1487418206}
     - target: {fileID: -4654486797633921792, guid: 5aa9f9c4b966a644cba9858bba174c45, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4654486797633921792, guid: 5aa9f9c4b966a644cba9858bba174c45, type: 3}
       propertyPath: _targetWayPoint
       value: 
       objectReference: {fileID: 276125336}
@@ -17312,7 +17316,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &440911419
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17352,7 +17356,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u306A\u3093\u304B\u3044\u308D\u3044\u308D\u8A00\u3046\u3088\uFF5E"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: de01ecb66dfe2a14ea156773825ee779, type: 2}
   m_sharedMaterial: {fileID: 4533000957291601755, guid: de01ecb66dfe2a14ea156773825ee779, type: 2}
