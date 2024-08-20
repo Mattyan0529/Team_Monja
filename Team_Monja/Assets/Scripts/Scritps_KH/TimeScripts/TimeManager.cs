@@ -65,6 +65,7 @@ public class TimeManager : MonoBehaviour
 
     private void DisplayWord()
     {
+        if (_wordNumber > _wordScriptableObject.Length - 1) return;
         _textMeshProUGUI.text = _wordScriptableObject[_wordNumber].Word;
         _wordNumber++;
     }
