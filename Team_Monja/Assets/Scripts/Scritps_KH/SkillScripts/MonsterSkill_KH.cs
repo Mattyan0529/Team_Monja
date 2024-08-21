@@ -21,7 +21,7 @@ public class MonsterSkill_KH : MonoBehaviour
     private float _maxTimeSpacing = 2f;
     private float _minTimeSpacing = 1f;
 
-    private float _nearPlayerAreaSize = 70f;
+    private float _nearPlayerAreaSize = 120f;
 
     private PlayerSkill_KH _playerSkill = default;
     private PlayerManager_KH _playerManager = default;

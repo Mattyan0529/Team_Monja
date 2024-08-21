@@ -49,6 +49,7 @@ public class FollowPlayer : MonoBehaviour,IFollowable
 
         if (_nearPlayerWayPoints.Count == 0)
         {
+            Debug.Log("_nearPlayerWayPoints.Count‚ª0‚¾‚æ");
             return null;
         }
 
@@ -68,7 +69,6 @@ public class FollowPlayer : MonoBehaviour,IFollowable
             }
         }
         _targetWayPoint = nearestWayPoint;
-
         return _targetWayPoint;
     }
 
@@ -86,6 +86,7 @@ public class FollowPlayer : MonoBehaviour,IFollowable
     /// </summary>
     public Transform SearchTargetWayPoint(Transform myWayPoint)
     {
+        Debug.Log(_targetWayPoint.gameObject.name);
         GameObject wayPoint = _enemyMove.WayPoint;
         _wayPoints = new Transform[wayPoint.transform.childCount];
         
@@ -106,8 +107,6 @@ public class FollowPlayer : MonoBehaviour,IFollowable
         int targetIndex = 0;
         int myIndex = 0;
 
-        Debug.Log(_targetWayPoint.gameObject.name);
-        Debug.Log(myWayPoint.gameObject.name);
         // wayPoints“à‚ÌƒvƒŒƒCƒ„[‚É‹ß‚¢WayPoint‚Ì“Y‚¦š‚ğ’T‚·
         for (int i = 0; i < _wayPoints.Length; i++)
         {
