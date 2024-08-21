@@ -63,7 +63,9 @@ public class SuccubusSkillAttack : MonoBehaviour, IDamagable
     }
 
     public void SpecialAttack()
-    {
+    {  //èºñ{
+        _characterAnim.NowAnim = "Skill";
+
         _changeEnemyMoveType.IsMove = false;
         _soundEffectManagement.PlaySlimeSound(_audioSource);
         Invoke("ResetStatus", _skillResetTime);
@@ -131,7 +133,9 @@ public class SuccubusSkillAttack : MonoBehaviour, IDamagable
             return;
         }
 
-        List<StatusManager_MT> list = _statEachSkillTimes[0];
+        List<StatusManager_MT> list = new List<StatusManager_MT>();
+        if (_statEachSkillTimes.Count == 0) return;
+        list = _statEachSkillTimes[0];
 
         for (int i = 0; i < list.Count; i++)
         {

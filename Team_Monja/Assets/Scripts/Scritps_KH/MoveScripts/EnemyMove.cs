@@ -15,6 +15,8 @@ public class EnemyMove : MonoBehaviour
 
     private ChangeEnemyMoveType _changeEnemyMoveType = default;
 
+    private CharacterAnim_MT _characterAnim = default;
+
     private EnemyState _nowEnemyState = EnemyState.InSearch;
 
     private enum EnemyState
@@ -38,6 +40,7 @@ public class EnemyMove : MonoBehaviour
     void Start()
     {
         _changeEnemyMoveType = GetComponent<ChangeEnemyMoveType>();
+        _characterAnim = GetComponent<CharacterAnim_MT>();
         _miniWayPoint = _changeEnemyMoveType.MiniWayPoint;
 
         SearchNearMainWayPoint();
@@ -50,6 +53,7 @@ public class EnemyMove : MonoBehaviour
         if (_nowEnemyState == EnemyState.InMove && _changeEnemyMoveType.IsMove == true)
         {
             MoveToTargetWayPoint();
+            _characterAnim.NowAnim = "Move";
         }
         else
         {

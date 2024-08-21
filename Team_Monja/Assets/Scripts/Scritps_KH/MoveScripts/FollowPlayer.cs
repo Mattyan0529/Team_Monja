@@ -102,11 +102,12 @@ public class FollowPlayer : MonoBehaviour,IFollowable
         {
             _nextWayPointTable = _searchWayPointTwoDimensionalArray.BossWayPointTable;
         }
-        
 
         int targetIndex = 0;
         int myIndex = 0;
 
+        Debug.Log(_targetWayPoint.gameObject.name);
+        Debug.Log(myWayPoint.gameObject.name);
         // wayPoints内のプレイヤーに近いWayPointの添え字を探す
         for (int i = 0; i < _wayPoints.Length; i++)
         {
@@ -124,12 +125,10 @@ public class FollowPlayer : MonoBehaviour,IFollowable
         }
 
         int nextWayPointIndex = _nextWayPointTable[myIndex, targetIndex];
-
         if (nextWayPointIndex == 0) return null;
 
         // 配列は0オリジンだがノードテーブルは1オリジンなので-1する
         Transform nextWayPoint = _wayPoints[nextWayPointIndex - 1];
-
         return nextWayPoint;
     }
 }

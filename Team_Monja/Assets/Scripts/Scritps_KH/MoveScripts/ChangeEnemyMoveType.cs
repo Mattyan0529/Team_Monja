@@ -146,7 +146,6 @@ public class ChangeEnemyMoveType : MonoBehaviour
                 LookAtPlayer();
                 break;
         }
-        Debug.Log(gameObject.name + nextWayPoint);
         return nextWayPoint;
     }
 

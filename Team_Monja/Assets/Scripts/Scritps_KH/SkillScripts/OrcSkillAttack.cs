@@ -53,7 +53,9 @@ public class OrcSkillAttack : MonoBehaviour, IDamagable
     }
 
     public void SpecialAttack()
-    {
+    {  //松本
+        _characterAnim.NowAnim = "Skill";
+
         //スキルエフェクト
         if (_effectManager != null)
         {
