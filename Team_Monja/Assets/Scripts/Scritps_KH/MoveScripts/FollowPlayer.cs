@@ -78,7 +78,7 @@ public class FollowPlayer : MonoBehaviour,IFollowable
     private void SearchPlayer()
     {
         _player = GameObject.FindGameObjectWithTag("Player").transform;
-        _nearPlayerArea = _player.transform.Find("NearPlayerArea").gameObject;
+        _nearPlayerArea = GameObject.FindGameObjectWithTag("NearPlayerArea");
     }
 
     /// <summary>
@@ -86,7 +86,6 @@ public class FollowPlayer : MonoBehaviour,IFollowable
     /// </summary>
     public Transform SearchTargetWayPoint(Transform myWayPoint)
     {
-        Debug.Log(_targetWayPoint.gameObject.name);
         GameObject wayPoint = _enemyMove.WayPoint;
         _wayPoints = new Transform[wayPoint.transform.childCount];
         

@@ -33,7 +33,7 @@ public class DragPlayerToBoss : MonoBehaviour
     void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
-        _nearPlayerArea = _player.transform.Find("NearPlayerArea").gameObject;
+        _nearPlayerArea = GameObject.FindGameObjectWithTag("NearPlayerArea");
         _searchWayPointTwoDimensionalArray =
             _nearPlayerArea.gameObject.GetComponent<SearchWayPointTwoDimensionalArray>();
         _enemyMove = GetComponent<EnemyMove>();

@@ -89,7 +89,6 @@ public class MonsterSkill_KH : MonoBehaviour
             _playerManager.Player = gameObject;     // プレイヤー更新
             _nearPlayerWayPointManager.ClearNearPlayerWayPoint();
             _nearPlayerArea.transform.localScale = gameObject.transform.localScale * _nearPlayerAreaSize;
-            _nearPlayerArea.transform.SetParent(gameObject.transform);
             _playerSkill.enabled = true;
             _skillSpriteChange.ChangeSprite(_skillIcon);
             _normalAttackSpriteChange.ChangeSprite(_normalAttackIcon);
