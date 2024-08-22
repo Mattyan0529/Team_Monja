@@ -12,8 +12,10 @@ public class EnemyMove : MonoBehaviour
 
     private float _shortestDistance = default;
     private float _followStopDistance = 0.5f;
+    private float _followShortDistance = 15f;
 
     private ChangeEnemyMoveType _changeEnemyMoveType = default;
+    private PlayerManager_KH _playerManager = default;
 
     private CharacterAnim_MT _characterAnim = default;
 
@@ -29,7 +31,12 @@ public class EnemyMove : MonoBehaviour
         /// <summary>
         /// 目的地に移動中
         /// </summary>
-        InMove
+        InMove,
+
+        /// <summary>
+        /// 近距離のためウェイポイントを使わずに追従
+        /// </summary>
+        InShortDistanceFollowUp
     }
 
     public GameObject WayPoint
@@ -40,6 +47,7 @@ public class EnemyMove : MonoBehaviour
     void Start()
     {
         _changeEnemyMoveType = GetComponent<ChangeEnemyMoveType>();
+        _playerManager = GameObject.FindGameObjectWithTag("ResidentScripts").GetComponent<PlayerManager_KH>();
         _characterAnim = GetComponent<CharacterAnim_MT>();
         _miniWayPoint = _changeEnemyMoveType.MiniWayPoint;
 
@@ -54,11 +62,18 @@ public class EnemyMove : MonoBehaviour
         {
             MoveToTargetWayPoint();
             _characterAnim.NowAnim = "Move";
+            JudgeShortDistance();
+        }
+        else if (_nowEnemyState == EnemyState.InShortDistanceFollowUp)
+        {
+            FreeFollowUp();
+            JudgeShortDistance();
         }
         else
         {
             NextWayPointSearch();
         }
+
 
         // MiniWayPointの高さを対応するキャラクターの高さにする
         _miniWayPoint.transform.position = new Vector3(_miniWayPoint.transform.position.x, transform.position.y, 
@@ -144,6 +159,50 @@ public class EnemyMove : MonoBehaviour
                 _shortestDistance = Vector3.Distance
                     (_targetWayPoint.transform.position, gameObject.transform.position);
             }
+        }
+    }
+
+    /// <summary>
+    /// ウェイポイントを使わずに追従
+    /// </summary>
+    private void FreeFollowUp()
+    {
+        GameObject player = _playerManager.Player;
+
+        Vector3 nowPos = new Vector3(transform.position.x, 0f, transform.position.z);
+        Vector3 playerPos = new Vector3(player.transform.position.x, 0f, player.transform.position.z);
+
+        // プレイヤーと近い場合は追従をやめる
+        if (Vector3.SqrMagnitude(playerPos - nowPos) < Mathf.Pow(_followStopDistance, 2)) return;
+
+        // プレイヤーに向かって進む
+        gameObject.transform.position = Vector3.MoveTowards
+            (gameObject.transform.position, player.transform.position, _changeEnemyMoveType.NowSpeed * Time.deltaTime);
+
+        // 目的地の方向に向くように修正(回転はY軸のみ)
+        Vector3 directionVector = _targetWayPoint.position - gameObject.transform.position;
+        Quaternion directionQuaternion = Quaternion.LookRotation(directionVector, Vector3.up);
+        directionQuaternion = Quaternion.Slerp(transform.rotation, directionQuaternion, Time.deltaTime * _changeEnemyMoveType.NowRotationSpeed);
+        gameObject.transform.rotation = Quaternion.Euler(0f, directionQuaternion.eulerAngles.y, 0f);
+    }
+
+    private void JudgeShortDistance()
+    {
+        GameObject player = _playerManager.Player;
+
+        Vector3 nowPos = new Vector3(transform.position.x, 0f, transform.position.z);
+        Vector3 playerPos = new Vector3(player.transform.position.x, 0f, player.transform.position.z);
+
+        if (Vector3.SqrMagnitude(playerPos - nowPos) < Mathf.Pow(_followShortDistance, 2) &&
+            _nowEnemyState == EnemyState.InMove)
+        {
+            _nowEnemyState = EnemyState.InShortDistanceFollowUp;
+        }
+        else if(Vector3.SqrMagnitude(playerPos - nowPos) > Mathf.Pow(_followShortDistance, 2) &&
+            _nowEnemyState == EnemyState.InShortDistanceFollowUp)
+        {
+            SearchNearMainWayPoint();
+            _nowEnemyState = EnemyState.InMove;
         }
     }
 }

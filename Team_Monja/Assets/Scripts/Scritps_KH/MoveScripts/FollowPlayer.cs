@@ -49,7 +49,6 @@ public class FollowPlayer : MonoBehaviour,IFollowable
 
         if (_nearPlayerWayPoints.Count == 0)
         {
-            Debug.Log("_nearPlayerWayPoints.Count‚ª0‚¾‚æ");
             return null;
         }
 
