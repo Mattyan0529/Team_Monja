@@ -8356,6 +8356,7 @@ MonoBehaviour:
   _cameraObj: {fileID: 1023871285}
   _closeObjectArea: {fileID: 5791746596101412552}
   _MiniMapIcon: {fileID: 1733324727796374301, guid: c12a1a345f5af4d44890469263aba1a2, type: 3}
+  _damonHand: {fileID: 0}
 --- !u!4 &219791714
 Transform:
   m_ObjectHideFlags: 0
@@ -18911,6 +18912,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a5ce8f793b6d7244aad676f1d72f0679, type: 2}
   - {fileID: 11400000, guid: ffac77e046e07664b9253a14054c0e15, type: 2}
   - {fileID: 11400000, guid: 23cb95cfc978bf34c90f24a2088ede0c, type: 2}
+  _damonHand: {fileID: 0}
 --- !u!4 &442358953 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000011427189252, guid: f3ca55d6fd8e590479a3ec1a06dd4960, type: 3}
@@ -79377,6 +79379,10 @@ PrefabInstance:
       propertyPath: _residentScript
       value: 
       objectReference: {fileID: 1487418206}
+    - target: {fileID: 6811477788606864401, guid: 8c046e64a3ac98e46aa677d308420fcf, type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7939061426093638973, guid: 8c046e64a3ac98e46aa677d308420fcf, type: 3}
       propertyPath: _initialValue
       value: 14
