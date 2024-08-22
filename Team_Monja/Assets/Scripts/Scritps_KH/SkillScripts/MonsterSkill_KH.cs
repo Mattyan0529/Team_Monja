@@ -16,7 +16,7 @@ public class MonsterSkill_KH : MonoBehaviour
     private GameObject _normalAttackSpriteObj = default;
 
     private float _updateTime = 0f;    // ‰½•b‚¨‚«‚ÉƒXƒLƒ‹‚ğŒÄ‚Ño‚·‚©
-    private float _elapsedTime = default;
+    private float _elapsedTime = 3f;
 
     private float _maxTimeSpacing = 2f;
     private float _minTimeSpacing = 1f;
@@ -139,7 +139,6 @@ public class MonsterSkill_KH : MonoBehaviour
     /// </summary>
     private void RandomCallSkill()
     {
-      
         _skillInterface.SpecialAttack();
     }
 }

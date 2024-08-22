@@ -11,8 +11,8 @@ public class EnemyMove : MonoBehaviour
     private GameObject _miniWayPoint = default;
 
     private float _shortestDistance = default;
-    private float _followStopDistance = 0.5f;
-    private float _followShortDistance = 15f;
+    private float _followStopDistance = 2f;
+    private float _followShortDistance = 9f;
 
     private ChangeEnemyMoveType _changeEnemyMoveType = default;
     private PlayerManager_KH _playerManager = default;
@@ -180,7 +180,7 @@ public class EnemyMove : MonoBehaviour
             (gameObject.transform.position, player.transform.position, _changeEnemyMoveType.NowSpeed * Time.deltaTime);
 
         // ñ⁄ìIínÇÃï˚å¸Ç…å¸Ç≠ÇÊÇ§Ç…èCê≥(âÒì]ÇÕYé≤ÇÃÇ›)
-        Vector3 directionVector = _targetWayPoint.position - gameObject.transform.position;
+        Vector3 directionVector = player.transform.position - gameObject.transform.position;
         Quaternion directionQuaternion = Quaternion.LookRotation(directionVector, Vector3.up);
         directionQuaternion = Quaternion.Slerp(transform.rotation, directionQuaternion, Time.deltaTime * _changeEnemyMoveType.NowRotationSpeed);
         gameObject.transform.rotation = Quaternion.Euler(0f, directionQuaternion.eulerAngles.y, 0f);

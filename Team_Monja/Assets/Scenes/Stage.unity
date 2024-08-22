@@ -7714,6 +7714,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: mushroom (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 6959083712217193980, guid: 6d7e27d1fa6c8364a90ed6d65b9da65d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7228209161371104161, guid: 6d7e27d1fa6c8364a90ed6d65b9da65d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -77.569595
@@ -9639,6 +9643,10 @@ PrefabInstance:
     - target: {fileID: 6959083712217193980, guid: 6d7e27d1fa6c8364a90ed6d65b9da65d, type: 3}
       propertyPath: m_Name
       value: mushroom (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6959083712217193980, guid: 6d7e27d1fa6c8364a90ed6d65b9da65d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7228209161371104161, guid: 6d7e27d1fa6c8364a90ed6d65b9da65d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -20993,6 +21001,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: mushroom (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6959083712217193980, guid: 6d7e27d1fa6c8364a90ed6d65b9da65d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7228209161371104161, guid: 6d7e27d1fa6c8364a90ed6d65b9da65d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -77.569595
@@ -30211,6 +30223,10 @@ PrefabInstance:
     - target: {fileID: 6959083712217193980, guid: 6d7e27d1fa6c8364a90ed6d65b9da65d, type: 3}
       propertyPath: m_Name
       value: mushroom (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6959083712217193980, guid: 6d7e27d1fa6c8364a90ed6d65b9da65d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7228209161371104161, guid: 6d7e27d1fa6c8364a90ed6d65b9da65d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -62077,6 +62093,10 @@ PrefabInstance:
       value: slime (1)
       objectReference: {fileID: 0}
     - target: {fileID: 9147440167593248652, guid: e0290d7003f414c4286f037868bc63d9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9147440167593248652, guid: e0290d7003f414c4286f037868bc63d9, type: 3}
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
@@ -76052,6 +76072,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: mushroom (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 6959083712217193980, guid: 6d7e27d1fa6c8364a90ed6d65b9da65d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7228209161371104161, guid: 6d7e27d1fa6c8364a90ed6d65b9da65d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -77.569595
@@ -81316,6 +81340,10 @@ PrefabInstance:
     - target: {fileID: 9147440167593248652, guid: e0290d7003f414c4286f037868bc63d9, type: 3}
       propertyPath: m_Name
       value: slime
+      objectReference: {fileID: 0}
+    - target: {fileID: 9147440167593248652, guid: e0290d7003f414c4286f037868bc63d9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9147440167593248652, guid: e0290d7003f414c4286f037868bc63d9, type: 3}
       propertyPath: m_TagString
