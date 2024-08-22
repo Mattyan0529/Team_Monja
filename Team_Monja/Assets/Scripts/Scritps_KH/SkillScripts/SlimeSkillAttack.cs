@@ -54,7 +54,9 @@ public class SlimeSkillAttack : MonoBehaviour, IDamagable
     }
 
     public void SpecialAttack()
-    {
+    {  //èºñ{
+        _characterAnim.NowAnim = "Skill";
+
         _changeEnemyMoveType.IsMove = false;
         _soundEffectManagement.PlaySlimeSound(_audioSource);
     }

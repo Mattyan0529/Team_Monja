@@ -16,12 +16,12 @@ public class MonsterSkill_KH : MonoBehaviour
     private GameObject _normalAttackSpriteObj = default;
 
     private float _updateTime = 0f;    // 何秒おきにスキルを呼び出すか
-    private float _elapsedTime = default;
+    private float _elapsedTime = 3f;
 
     private float _maxTimeSpacing = 2f;
     private float _minTimeSpacing = 1f;
 
-    private float _nearPlayerAreaSize = 70f;
+    private float _nearPlayerAreaSize = 120f;
 
     private PlayerSkill_KH _playerSkill = default;
     private PlayerManager_KH _playerManager = default;
@@ -89,7 +89,6 @@ public class MonsterSkill_KH : MonoBehaviour
             _playerManager.Player = gameObject;     // プレイヤー更新
             _nearPlayerWayPointManager.ClearNearPlayerWayPoint();
             _nearPlayerArea.transform.localScale = gameObject.transform.localScale * _nearPlayerAreaSize;
-            _nearPlayerArea.transform.SetParent(gameObject.transform);
             _playerSkill.enabled = true;
             _skillSpriteChange.ChangeSprite(_skillIcon);
             _normalAttackSpriteChange.ChangeSprite(_normalAttackIcon);
@@ -140,9 +139,6 @@ public class MonsterSkill_KH : MonoBehaviour
     /// </summary>
     private void RandomCallSkill()
     {
-        //松本
-        _characterAnim.NowAnim = "Skill";
-
         _skillInterface.SpecialAttack();
     }
 }

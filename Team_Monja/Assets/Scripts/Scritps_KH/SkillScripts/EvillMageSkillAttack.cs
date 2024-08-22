@@ -53,6 +53,10 @@ public class EvillMageSkillAttack : MonoBehaviour,IDamagable
     {
         if (_isShot) return;      // 重複で攻撃はしない
 
+        //松本
+        _characterAnim.NowAnim = "Skill";
+
+
         // 速度を付ける
         _bullet.transform.position = new Vector3(transform.position.x, transform.position.y + _addSpownPos, transform.position.z);
         Rigidbody rigidbody = _bullet.GetComponent<Rigidbody>();

@@ -51,7 +51,9 @@ public class SkeletonSkillAttack : MonoBehaviour, IDamagable
     }
 
     public void SpecialAttack()
-    {
+    {  //èºñ{
+        _characterAnim.NowAnim = "Skill";
+
         _changeEnemyMoveType.IsMove = false;
     }
 

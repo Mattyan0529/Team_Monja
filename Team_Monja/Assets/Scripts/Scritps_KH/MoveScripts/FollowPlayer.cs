@@ -68,7 +68,6 @@ public class FollowPlayer : MonoBehaviour,IFollowable
             }
         }
         _targetWayPoint = nearestWayPoint;
-
         return _targetWayPoint;
     }
 
@@ -78,7 +77,7 @@ public class FollowPlayer : MonoBehaviour,IFollowable
     private void SearchPlayer()
     {
         _player = GameObject.FindGameObjectWithTag("Player").transform;
-        _nearPlayerArea = _player.transform.Find("NearPlayerArea").gameObject;
+        _nearPlayerArea = GameObject.FindGameObjectWithTag("NearPlayerArea");
     }
 
     /// <summary>
@@ -102,7 +101,6 @@ public class FollowPlayer : MonoBehaviour,IFollowable
         {
             _nextWayPointTable = _searchWayPointTwoDimensionalArray.BossWayPointTable;
         }
-        
 
         int targetIndex = 0;
         int myIndex = 0;
@@ -124,12 +122,10 @@ public class FollowPlayer : MonoBehaviour,IFollowable
         }
 
         int nextWayPointIndex = _nextWayPointTable[myIndex, targetIndex];
-
         if (nextWayPointIndex == 0) return null;
 
         // 配列は0オリジンだがノードテーブルは1オリジンなので-1する
         Transform nextWayPoint = _wayPoints[nextWayPointIndex - 1];
-
         return nextWayPoint;
     }
 }
