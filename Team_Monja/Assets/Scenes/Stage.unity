@@ -18362,7 +18362,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8728786893880298435, guid: 21b4309f493fe794c9e6c0af289c41bc, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: ResidentScripts
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -22741,7 +22741,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6324967899855214841, guid: a0d5608823045b7428814878af535d56, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -28834,15 +28835,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5592684477818089013, guid: 69223be10d25b514997cc3d8deeb851f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 76.8
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 5592684477818089013, guid: 69223be10d25b514997cc3d8deeb851f, type: 3}
       propertyPath: m_LocalScale.y
-      value: 76.8
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 5592684477818089013, guid: 69223be10d25b514997cc3d8deeb851f, type: 3}
       propertyPath: m_LocalScale.z
-      value: 76.8
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 5592684477818089013, guid: 69223be10d25b514997cc3d8deeb851f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -28886,6 +28887,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6691153361564253248, guid: 69223be10d25b514997cc3d8deeb851f, type: 3}
       propertyPath: m_Name
+      value: NearPlayerArea
+      objectReference: {fileID: 0}
+    - target: {fileID: 6691153361564253248, guid: 69223be10d25b514997cc3d8deeb851f, type: 3}
+      propertyPath: m_TagString
       value: NearPlayerArea
       objectReference: {fileID: 0}
     m_RemovedComponents: []

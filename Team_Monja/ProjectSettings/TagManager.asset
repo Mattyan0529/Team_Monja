@@ -16,6 +16,8 @@ TagManager:
   - TagJudge
   - HitAttackArea
   - FireAttackArea
+  - ResidentScripts
+  - NearPlayerArea
   layers:
   - Default
   - TransparentFX
