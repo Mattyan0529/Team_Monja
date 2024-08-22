@@ -13,25 +13,33 @@ public class TimeManager : MonoBehaviour
     // 表示された言葉が非表示になるまでの時間
     private float _timeHideWord = 10f;
     // プレイヤーを引きずり始める時間
-    private float _timeDragPlayer = 150f;
-
-    private GameObject _player = default;
+    private float _timeDragPlayer = 1f;
 
     private TextMeshProUGUI _textMeshProUGUI = default;
     private DragPlayerToBoss _dragPlayerToBoss = default;
+    private Animator _handAnimator = default;
 
     [SerializeField]
     private WordScriptableObject[] _wordScriptableObject = default;
+
+    [SerializeField]
+    private GameObject _damonHand = default;
 
     int _wordNumber = 0;
 
     void Start()
     {
         _textMeshProUGUI = GetComponent<TextMeshProUGUI>();
+        _handAnimator = _damonHand.GetComponent<Animator>();
+        Debug.Log(_handAnimator);
     }
 
-    void Update()
+    void LateUpdate()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            PullPlayer();
+        }
         UpdateTime();
     }
 
@@ -77,8 +85,8 @@ public class TimeManager : MonoBehaviour
 
     private void PullPlayer()
     {
-        _player = GameObject.FindGameObjectWithTag("Player");
-        _dragPlayerToBoss = _player.GetComponent<DragPlayerToBoss>();
+        _damonHand.SetActive(true);
+        _dragPlayerToBoss = _damonHand.GetComponent<DragPlayerToBoss>();
         _dragPlayerToBoss.IsDrag = true;
         this.enabled = false;
     }

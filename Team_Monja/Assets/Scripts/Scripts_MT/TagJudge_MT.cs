@@ -12,6 +12,8 @@ public class TagJudge_MT : MonoBehaviour
     private GameObject _closeObjectArea;
     [SerializeField]
     private GameObject _MiniMapIcon;
+    [SerializeField]
+    private GameObject _damonHand;
 
     private GameObject _playerObj;
 
@@ -70,6 +72,8 @@ public class TagJudge_MT : MonoBehaviour
 
 
         _MiniMapIcon.GetComponent<PlayerMinimapIconSet>().SetPlayer();
+
+        _damonHand.GetComponent<DamonHandPos>().SetPlayer();
     }
 
 }
