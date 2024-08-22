@@ -58,7 +58,7 @@ public class TimeManager : MonoBehaviour
         }
 
         // Œ¾—t‚ð•ÏX‚µ‚Ä•\Ž¦‚·‚éê‡
-         else if (_elapsedTime > _timeStageProgress)
+         else if (_elapsedTime > _timeStageProgress && _textMeshProUGUI.text == null)
         {
             DisplayWord();
             _elapsedTime = 0f;
