@@ -16,11 +16,6 @@ public class WordDisplay : MonoBehaviour
         _textMeshProUGUI = GetComponent<TextMeshProUGUI>();
     }
 
-    void Update()
-    {
-        
-    }
-
     public void WriteText(string word)
     {
         _textMeshProUGUI.text = word;
@@ -32,5 +27,4 @@ public class WordDisplay : MonoBehaviour
         _textMeshProUGUI.text = null;
         _isWordDisplay = false;
     }
-
 }

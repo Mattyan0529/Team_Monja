@@ -18772,6 +18772,7 @@ GameObject:
   - component: {fileID: 440911421}
   - component: {fileID: 440911420}
   - component: {fileID: 440911422}
+  - component: {fileID: 440911423}
   m_Layer: 5
   m_Name: WhisperingWords
   m_TagString: Untagged
@@ -18913,6 +18914,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ffac77e046e07664b9253a14054c0e15, type: 2}
   - {fileID: 11400000, guid: 23cb95cfc978bf34c90f24a2088ede0c, type: 2}
   _damonHand: {fileID: 1960410548}
+--- !u!114 &440911423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440911418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27a4b2d351afb3e499c1d0bd4bb094c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &442358953 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000011427189252, guid: f3ca55d6fd8e590479a3ec1a06dd4960, type: 3}
@@ -26607,7 +26620,7 @@ PrefabInstance:
       objectReference: {fileID: 9218685380262997447}
     - target: {fileID: 6636533487943595202, guid: e0290d7003f414c4286f037868bc63d9, type: 3}
       propertyPath: _baseStrength
-      value: 100
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6636533487943595202, guid: e0290d7003f414c4286f037868bc63d9, type: 3}
       propertyPath: canvasObjBoss
@@ -62540,7 +62553,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1563652601341504688, guid: 12f878e2c1d7a304bb9f07735232a1fe, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1892390654092960094, guid: 12f878e2c1d7a304bb9f07735232a1fe, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
