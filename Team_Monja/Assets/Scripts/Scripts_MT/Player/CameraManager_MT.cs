@@ -6,10 +6,12 @@ public class CameraManager_MT : MonoBehaviour
     private Camera playerCamera;
     private GameObject playerObj;
     private Transform playerTransform;
+    private CapsuleCollider playerCollider;
 
     private float mouseSensitivity = 100.0f; // マウス感度
     private bool _InWall = false; // カメラが壁の中に入っているか
     private Vector3 shakeOffset = Vector3.zero; // 揺れのオフセット
+    private Vector3 cameraPos;//カメラの初期位置
 
     private void Awake()
     {
@@ -19,9 +21,13 @@ public class CameraManager_MT : MonoBehaviour
     void Start()
     {
         playerCamera = Camera.main.GetComponent<Camera>();
+        playerCollider = playerObj.GetComponent<CapsuleCollider>();
 
         // カーソルをロックして画面中央に固定
         Cursor.lockState = CursorLockMode.Locked;
+
+        cameraPos =playerObj.transform.position;
+        Debug.Log(cameraPos);
     }
 
     // Update is called once per frame
@@ -29,6 +35,8 @@ public class CameraManager_MT : MonoBehaviour
     {
         CameraMove();
         CameraTransparent();
+
+        cameraPos = playerObj.transform.position;
 
         //カメラ振動のサンプル
         //if (Input.GetKeyDown(KeyCode.Space))
@@ -40,6 +48,7 @@ public class CameraManager_MT : MonoBehaviour
     private void LateUpdate()
     {
         PlayerFollowing();
+        PositionCalculator();
     }
 
     /// <summary>
@@ -66,6 +75,14 @@ public class CameraManager_MT : MonoBehaviour
             // 追従後、揺れのオフセットを適用
             transform.position += shakeOffset;
         }
+    }
+
+    /// <summary>
+    /// キャラクターに応じてカメラの高さを変える
+    /// </summary>
+    private void PositionCalculator()
+    {
+        transform.position = cameraPos + (Vector3.up * playerCollider.height);
     }
 
     /// <summary>
