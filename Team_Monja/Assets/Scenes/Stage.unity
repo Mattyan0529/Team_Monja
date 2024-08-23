@@ -4773,6 +4773,10 @@ PrefabInstance:
       propertyPath: _gameOverImage
       value: 
       objectReference: {fileID: 399947556}
+    - target: {fileID: 7113024517230918194, guid: 1f623e66310c12d46b1b992dc2a2dc4e, type: 3}
+      propertyPath: _whisperingWords
+      value: 
+      objectReference: {fileID: 440911418}
     - target: {fileID: 7343056053289802896, guid: 1f623e66310c12d46b1b992dc2a2dc4e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.020829756
@@ -6807,6 +6811,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8773859476432750282, guid: 0aa53df690273fd42b41bc3c8aabd34c, type: 3}
+      propertyPath: _whisperingWords
+      value: 
+      objectReference: {fileID: 440911418}
     - target: {fileID: 9092206394066655407, guid: 0aa53df690273fd42b41bc3c8aabd34c, type: 3}
       propertyPath: normalAttackObjectPool
       value: 
@@ -7858,6 +7866,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -179.99998
       objectReference: {fileID: 0}
+    - target: {fileID: 8530058306979291326, guid: 6d7e27d1fa6c8364a90ed6d65b9da65d, type: 3}
+      propertyPath: _whisperingWords
+      value: 
+      objectReference: {fileID: 440911418}
     - target: {fileID: 8766078354495709545, guid: 6d7e27d1fa6c8364a90ed6d65b9da65d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0.00000017202447
@@ -9789,6 +9801,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -179.99998
       objectReference: {fileID: 0}
+    - target: {fileID: 8530058306979291326, guid: 6d7e27d1fa6c8364a90ed6d65b9da65d, type: 3}
+      propertyPath: _whisperingWords
+      value: 
+      objectReference: {fileID: 440911418}
     - target: {fileID: 8766078354495709545, guid: 6d7e27d1fa6c8364a90ed6d65b9da65d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0.00000017202447
@@ -10562,6 +10578,10 @@ PrefabInstance:
       propertyPath: _normalAttackSpriteObj
       value: 
       objectReference: {fileID: 1215322689}
+    - target: {fileID: 7113024517230918194, guid: 1f623e66310c12d46b1b992dc2a2dc4e, type: 3}
+      propertyPath: _whisperingWords
+      value: 
+      objectReference: {fileID: 440911418}
     - target: {fileID: 7573158641683521268, guid: 1f623e66310c12d46b1b992dc2a2dc4e, type: 3}
       propertyPath: m_Name
       value: Skeleton
@@ -14007,6 +14027,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 179.98985
       objectReference: {fileID: 0}
+    - target: {fileID: 2712224564974299178, guid: 4c75be3e2ac059445bdf7deafc34ecfe, type: 3}
+      propertyPath: _whisperingWords
+      value: 
+      objectReference: {fileID: 440911418}
     - target: {fileID: 2722859093667788523, guid: 4c75be3e2ac059445bdf7deafc34ecfe, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 1.2025675
@@ -21173,6 +21197,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -179.99998
       objectReference: {fileID: 0}
+    - target: {fileID: 8530058306979291326, guid: 6d7e27d1fa6c8364a90ed6d65b9da65d, type: 3}
+      propertyPath: _whisperingWords
+      value: 
+      objectReference: {fileID: 440911418}
     - target: {fileID: 8766078354495709545, guid: 6d7e27d1fa6c8364a90ed6d65b9da65d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0.00000017202447
@@ -25566,6 +25594,10 @@ PrefabInstance:
       propertyPath: _gameOverImage
       value: 
       objectReference: {fileID: 399947556}
+    - target: {fileID: 7113024517230918194, guid: 1f623e66310c12d46b1b992dc2a2dc4e, type: 3}
+      propertyPath: _whisperingWords
+      value: 
+      objectReference: {fileID: 440911418}
     - target: {fileID: 7343056053289802896, guid: 1f623e66310c12d46b1b992dc2a2dc4e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.020829756
@@ -26627,6 +26659,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 1.7489869e-11
       objectReference: {fileID: 0}
+    - target: {fileID: 6375217106993164662, guid: e0290d7003f414c4286f037868bc63d9, type: 3}
+      propertyPath: _whisperingWords
+      value: 
+      objectReference: {fileID: 440911418}
     - target: {fileID: 6636533487943595202, guid: e0290d7003f414c4286f037868bc63d9, type: 3}
       propertyPath: _damageImage
       value: 
@@ -30396,6 +30432,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -179.99998
       objectReference: {fileID: 0}
+    - target: {fileID: 8530058306979291326, guid: 6d7e27d1fa6c8364a90ed6d65b9da65d, type: 3}
+      propertyPath: _whisperingWords
+      value: 
+      objectReference: {fileID: 440911418}
     - target: {fileID: 8766078354495709545, guid: 6d7e27d1fa6c8364a90ed6d65b9da65d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0.00000017202447
@@ -37081,6 +37121,10 @@ PrefabInstance:
       propertyPath: _residentScript
       value: 
       objectReference: {fileID: 1487418206}
+    - target: {fileID: 815713179241878486, guid: 17485335a95713c4682d99e0e056ac39, type: 3}
+      propertyPath: _whisperingWords
+      value: 
+      objectReference: {fileID: 440911418}
     - target: {fileID: 1091154286987573817, guid: 17485335a95713c4682d99e0e056ac39, type: 3}
       propertyPath: _targetWayPoint
       value: 
@@ -39196,6 +39240,10 @@ PrefabInstance:
       propertyPath: _residentScript
       value: 
       objectReference: {fileID: 1487418206}
+    - target: {fileID: 1332142722907078650, guid: 7c1dea6fec1928f488396cd4f0f97001, type: 3}
+      propertyPath: _whisperingWords
+      value: 
+      objectReference: {fileID: 440911418}
     - target: {fileID: 2933964004390894604, guid: 7c1dea6fec1928f488396cd4f0f97001, type: 3}
       propertyPath: m_Name
       value: Orc
@@ -62060,6 +62108,10 @@ PrefabInstance:
       propertyPath: _targetWayPoint
       value: 
       objectReference: {fileID: 276125336}
+    - target: {fileID: 6375217106993164662, guid: e0290d7003f414c4286f037868bc63d9, type: 3}
+      propertyPath: _whisperingWords
+      value: 
+      objectReference: {fileID: 440911418}
     - target: {fileID: 6636533487943595202, guid: e0290d7003f414c4286f037868bc63d9, type: 3}
       propertyPath: _damageImage
       value: 
@@ -67351,6 +67403,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 10.40096
       objectReference: {fileID: 0}
+    - target: {fileID: 2875527310281370568, guid: 773120201f25fb445972a6083bb0ec5b, type: 3}
+      propertyPath: _whisperingWords
+      value: 
+      objectReference: {fileID: 440911418}
     - target: {fileID: 2951463418916763567, guid: 773120201f25fb445972a6083bb0ec5b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -0.16119719
@@ -76534,6 +76590,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -179.99998
       objectReference: {fileID: 0}
+    - target: {fileID: 8530058306979291326, guid: 6d7e27d1fa6c8364a90ed6d65b9da65d, type: 3}
+      propertyPath: _whisperingWords
+      value: 
+      objectReference: {fileID: 440911418}
     - target: {fileID: 8766078354495709545, guid: 6d7e27d1fa6c8364a90ed6d65b9da65d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0.00000017202447
@@ -80714,6 +80774,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -179.99998
       objectReference: {fileID: 0}
+    - target: {fileID: 8530058306979291326, guid: 6d7e27d1fa6c8364a90ed6d65b9da65d, type: 3}
+      propertyPath: _whisperingWords
+      value: 
+      objectReference: {fileID: 440911418}
     - target: {fileID: 8766078354495709545, guid: 6d7e27d1fa6c8364a90ed6d65b9da65d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0.00000017202447
@@ -81603,6 +81667,10 @@ PrefabInstance:
       propertyPath: _targetWayPoint
       value: 
       objectReference: {fileID: 276125336}
+    - target: {fileID: 6375217106993164662, guid: e0290d7003f414c4286f037868bc63d9, type: 3}
+      propertyPath: _whisperingWords
+      value: 
+      objectReference: {fileID: 440911418}
     - target: {fileID: 6636533487943595202, guid: e0290d7003f414c4286f037868bc63d9, type: 3}
       propertyPath: _damageImage
       value: 
