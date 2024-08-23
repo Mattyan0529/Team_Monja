@@ -9,6 +9,8 @@ public class CharacterDeadDecision_MT : MonoBehaviour
     private GameEndCamera_MT _gameEndCamera;
 
     // í«ãLÅFñk
+    [SerializeField]
+    private GameObject _whisperingWords = default;
     private MonsterSkill_KH _monsterSkill = default;
     private PlayerSkill_KH _playerSkill = default;
     private NormalAttack_KH _normalAttack = default;
@@ -16,6 +18,7 @@ public class CharacterDeadDecision_MT : MonoBehaviour
     private EnemyMove _enemyMove = default;
     private GameObject _tagJudgeObj = default;
     private TagJudge_MT _tagJudge = default;
+    private DisplayWordInEvent _displayWordInEvent = default;
 
     private bool _isAlive = true;
     private bool _coroutineSwitch = true;
@@ -34,6 +37,7 @@ public class CharacterDeadDecision_MT : MonoBehaviour
         _enemyMove = GetComponent<EnemyMove>();
         _tagJudgeObj = GameObject.FindGameObjectWithTag("TagJudge");
         _tagJudge = _tagJudgeObj.GetComponent<TagJudge_MT>();
+        _displayWordInEvent = _whisperingWords.GetComponent<DisplayWordInEvent>();
 
     }
 
@@ -65,7 +69,9 @@ public class CharacterDeadDecision_MT : MonoBehaviour
 
         if (_statusManager.HP <= 0)
         {
-           
+            // í«ãLÅFñk
+            _displayWordInEvent.KillEnemyForFirstTime();
+
             return true;
 
         }

@@ -35,10 +35,6 @@ public class TimeManager : MonoBehaviour
 
     void LateUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            PullPlayer();
-        }
         UpdateTime();
     }
 
@@ -49,6 +45,8 @@ public class TimeManager : MonoBehaviour
     {
         _elapsedTime += Time.deltaTime;
         _elapsedTimeTotalGame += Time.deltaTime;
+
+        Debug.Log(_elapsedTimeTotalGame);
 
         // ƒvƒŒƒCƒ„[‚ðˆø‚«‚¸‚éê‡
         if(_elapsedTimeTotalGame > _timeDragPlayer)
