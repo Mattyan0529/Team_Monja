@@ -15,7 +15,7 @@ public class NormalAttack_KH : MonoBehaviour
     private float _deleteTime = 0.2f;
     private float _elapsedTime = 0f;
 
-    private float _coolTime = 0.5f;    // ’ÊíUŒ‚‚ğ”­“®‚µ‚Ä‚©‚çŸ‚É”­“®‚Å‚«‚é‚æ‚¤‚É‚È‚é‚Ü‚Å‚ÌŠÔ
+    private float _coolTime = 1f;    // ’ÊíUŒ‚‚ğ”­“®‚µ‚Ä‚©‚çŸ‚É”­“®‚Å‚«‚é‚æ‚¤‚É‚È‚é‚Ü‚Å‚ÌŠÔ
     private float _coolTimeElapsedTime = 0f;
 
     [SerializeField]
@@ -117,7 +117,7 @@ public class NormalAttack_KH : MonoBehaviour
 
         int damage = myAttackPower - targetDefensePower;
 
-        if (myAttackPower < targetDefensePower)
+        if (myAttackPower <= targetDefensePower)
         {
             // –hŒä—Í‚Ì‚Ù‚¤‚ª‚‚¢ê‡‚Íƒ_ƒ[ƒW‚ğ1‚Æ‚·‚é
             int smallestDamage = 1;

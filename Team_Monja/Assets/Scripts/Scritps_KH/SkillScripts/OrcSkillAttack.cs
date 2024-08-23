@@ -95,7 +95,7 @@ public class OrcSkillAttack : MonoBehaviour, IDamagable
 
         int damage = myAttackPower - targetDefensePower;
 
-        if (myAttackPower < targetDefensePower)
+        if (myAttackPower <= targetDefensePower)
         {
             // –hŒä—Í‚Ì‚Ù‚¤‚ª‚‚¢ê‡‚Íƒ_ƒ[ƒW‚ð1‚Æ‚·‚é
             int smallestDamage = 1;

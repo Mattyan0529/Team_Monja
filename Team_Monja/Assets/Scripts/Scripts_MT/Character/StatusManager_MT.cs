@@ -38,6 +38,7 @@ public class StatusManager_MT : MonoBehaviour
     private DefenseStatusUI_MT _defenseStatusUI;
     private HPStatusUI_MT _hpStatusUI;
     private BossStatusHP_MT _bossStatusHP;
+    private CameraManager_MT _cameraManager;
 
 
     //canvas
@@ -69,7 +70,8 @@ public class StatusManager_MT : MonoBehaviour
         //canvasBossから取得
         _bossStatusHP = canvasObjBoss.GetComponentInChildren<BossStatusHP_MT>();
         _moveSliderBoss = canvasObjBoss.GetComponentInChildren<MoveSlider_MT>();
-
+        //MainCameraから取得
+        _cameraManager = Camera.main.GetComponentInParent<CameraManager_MT>();
 
         // プレイヤー以外だったら倍率を適用（別のところで設定するため
         if (!CompareTag("Player"))
@@ -97,6 +99,7 @@ public class StatusManager_MT : MonoBehaviour
         //ダメージと回復の画面効果の色を透明に
         _damageImage.color = Color.clear;
 
+        
     }
 
     private void Update()
@@ -194,11 +197,15 @@ public class StatusManager_MT : MonoBehaviour
     }
 
     /// <summary>
-    /// ダメージを受けたときに画面を赤くする
+    /// ダメージを受けたとき
     /// </summary>
     private void ChangeDamageImage()
     {
+        //画面を赤く
         _damageImage.color = new Color(0.7f, 0, 0, 0.7f);
+        //カメラを揺らす
+        StartCoroutine(_cameraManager.CameraShake(0.3f, 0.5f));
+
     }
 
 
