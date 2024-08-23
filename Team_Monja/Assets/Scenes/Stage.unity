@@ -18773,6 +18773,7 @@ GameObject:
   - component: {fileID: 440911420}
   - component: {fileID: 440911422}
   - component: {fileID: 440911423}
+  - component: {fileID: 440911424}
   m_Layer: 5
   m_Name: WhisperingWords
   m_TagString: Untagged
@@ -18924,6 +18925,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 27a4b2d351afb3e499c1d0bd4bb094c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &440911424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440911418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5cef2a602ba5304b8412e971d2d5709, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &442358953 stripped
