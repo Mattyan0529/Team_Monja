@@ -35,10 +35,6 @@ public class TimeManager : MonoBehaviour
 
     void LateUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            PullPlayer();
-        }
         UpdateTime();
     }
 
