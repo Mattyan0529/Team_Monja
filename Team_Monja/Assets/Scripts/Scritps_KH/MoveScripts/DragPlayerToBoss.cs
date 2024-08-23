@@ -27,11 +27,6 @@ public class DragPlayerToBoss : MonoBehaviour
     // ƒvƒŒƒCƒ„[‚ğˆø‚«‚¸‚éó‘Ô‚©‚Ç‚¤‚©
     private bool _isdrag = false;
 
-    public bool IsDrag
-    {
-        set { _isdrag = value; }
-    }
-
     void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
@@ -57,6 +52,11 @@ public class DragPlayerToBoss : MonoBehaviour
         {
             DragPlayer();
         }
+    }
+
+    private void IsDragTrue()
+    {
+        _isdrag = true;
     }
 
     /// <summary>

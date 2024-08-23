@@ -15,7 +15,6 @@ public class TimeManager : MonoBehaviour
     // プレイヤーを引きずり始める時間
     private float _timeDragPlayer = 1f;
 
-    private DragPlayerToBoss _dragPlayerToBoss = default;
     private Animator _handAnimator = default;
     private WordDisplay _wordDisplay = default;
 
@@ -81,8 +80,6 @@ public class TimeManager : MonoBehaviour
     private void PullPlayer()
     {
         _damonHand.SetActive(true);
-        _dragPlayerToBoss = _damonHand.GetComponent<DragPlayerToBoss>();
-        _dragPlayerToBoss.IsDrag = true;
         this.enabled = false;
     }
 }
