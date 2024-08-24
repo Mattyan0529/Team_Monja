@@ -132,11 +132,13 @@ public class BossSkillAttack : MonoBehaviour, IDamagable
 
     private void FireSphere()
     {
-        if (_isShot) return;      // 重複で攻撃はしない
+        // 重複で攻撃はしない
+        if (_isShot) return;   
 
         // プレイヤー直下の攻撃範囲の位置決定
         _attackRangeImage[0].transform.position = new Vector3
             (_player.transform.position.x, _imagePositionY, _player.transform.position.z);
+        _attackRangeImage[0].SetActive(true);
         _underPlayerAttackRange.transform.position = _player.transform.position;
 
         // プレイヤーから近い攻撃範囲の位置決定
@@ -145,6 +147,7 @@ public class BossSkillAttack : MonoBehaviour, IDamagable
         Vector3 nearPlayerPos = new Vector3
             (_player.transform.position.x + nearPlayerX, _player.transform.position.y, _player.transform.position.z + nearPlayerZ);
         _attackRangeImage[1].transform.position = new Vector3(nearPlayerPos.x, _imagePositionY, nearPlayerPos.z);
+        _attackRangeImage[1].SetActive(true);
         _nearPlayerAttackRange.transform.position = nearPlayerPos;
 
         // プレイヤーから遠い攻撃範囲の位置決定
@@ -153,7 +156,13 @@ public class BossSkillAttack : MonoBehaviour, IDamagable
         Vector3 farPlayerPos = new Vector3
             (_player.transform.position.x + farPlayerX, _player.transform.position.y, _player.transform.position.z + farPlayerZ);
         _attackRangeImage[2].transform.position = new Vector3(farPlayerPos.x, _imagePositionY, farPlayerPos.z);
+        _attackRangeImage[2].SetActive(true);
         _farPlayerAttackRange.transform.position = farPlayerPos;
+
+        // ボスの動きに合わせて火が動かないように
+        _underPlayerAttackRange.transform.parent = null;
+        _nearPlayerAttackRange.transform.parent = null;
+        _farPlayerAttackRange.transform.parent = null;
 
         _characterAnim.NowAnim = "Skill";
 
@@ -260,6 +269,15 @@ public class BossSkillAttack : MonoBehaviour, IDamagable
             _underPlayerAttackRange.SetActive(false);
             _nearPlayerAttackRange.SetActive(false);
             _farPlayerAttackRange.SetActive(false);
+
+            _underPlayerAttackRange.transform.parent = gameObject.transform;
+            _nearPlayerAttackRange.transform.parent = gameObject.transform;
+            _farPlayerAttackRange.transform.parent = gameObject.transform;
+
+            _attackRangeImage[0].SetActive(true);
+            _attackRangeImage[1].SetActive(true);
+            _attackRangeImage[2].SetActive(true);
+
             _elapsedTime = 0f;
             _changeEnemyMoveType.IsMove = true;
             _isShot = false;

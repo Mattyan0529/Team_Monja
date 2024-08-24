@@ -9,7 +9,7 @@ public class TimeManager : MonoBehaviour
     private float _elapsedTimeTotalGame = 0f;
 
     // 次の言葉が出るまでの時間
-    private float _timeStageProgress = 20f;
+    private float _timeStageProgress = 15f;
     // 表示された言葉が非表示になるまでの時間
     private float _timeHideWord = 10f;
     // プレイヤーを引きずり始める時間
@@ -45,8 +45,6 @@ public class TimeManager : MonoBehaviour
     {
         _elapsedTime += Time.deltaTime;
         _elapsedTimeTotalGame += Time.deltaTime;
-
-        Debug.Log(_elapsedTimeTotalGame);
 
         // プレイヤーを引きずる場合
         if(_elapsedTimeTotalGame > _timeDragPlayer)

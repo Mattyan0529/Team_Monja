@@ -15,7 +15,7 @@ public class DisplayWordInEvent : MonoBehaviour
     {
         if (_isDisplay && !_wordDisplay.IsWordDisplay)
         {
-            _wordDisplay.WriteText("‰‚ß‚Ä“G‚ğ“|‚µ‚½I");
+            _wordDisplay.WriteText("“|‚µ‚½“G‚ÍE‚ÅH‚×‚éAQ‚Åæ‚èˆÚ‚ê‚é‚æI");
             _isDisplay = false;
         }
     }

@@ -64,10 +64,11 @@ public class EnemyMove : MonoBehaviour
             _characterAnim.NowAnim = "Move";
             JudgeShortDistance();
         }
-        else if (_nowEnemyState == EnemyState.InShortDistanceFollowUp)
+        else if (_nowEnemyState == EnemyState.InShortDistanceFollowUp && _changeEnemyMoveType.IsMove == true)
         {
             FreeFollowUp();
             JudgeShortDistance();
+            _characterAnim.NowAnim = "Move";
         }
         else
         {
