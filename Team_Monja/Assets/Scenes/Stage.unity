@@ -18770,6 +18770,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3151356549173752883, guid: 21b4309f493fe794c9e6c0af289c41bc, type: 3}
+      propertyPath: _camera
+      value: 
+      objectReference: {fileID: 1023871285}
+    - target: {fileID: 3151356549173752883, guid: 21b4309f493fe794c9e6c0af289c41bc, type: 3}
       propertyPath: _canvasObj
       value: 
       objectReference: {fileID: 2142497733628807514}
@@ -19350,6 +19354,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a5ce8f793b6d7244aad676f1d72f0679, type: 2}
   - {fileID: 11400000, guid: ffac77e046e07664b9253a14054c0e15, type: 2}
   - {fileID: 11400000, guid: 23cb95cfc978bf34c90f24a2088ede0c, type: 2}
+  - {fileID: 11400000, guid: 08959ebe45442f345b6e8e27a615f907, type: 2}
   _damonHand: {fileID: 1960410548}
 --- !u!114 &440911423
 MonoBehaviour:
