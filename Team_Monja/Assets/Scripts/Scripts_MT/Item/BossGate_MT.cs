@@ -19,6 +19,15 @@ public class BossGate_MT : MonoBehaviour
         _collider = _gateObj.GetComponent<Collider>();
     }
 
+    /// <summary>
+    /// ƒ{ƒX•”‰®‚É“ü‚ê‚é‚æ‚¤‚É‚È‚é
+    /// </summary>
+    public void OpenGate()
+    {
+        _collider.isTrigger = true;
+        _canvasBoss.enabled = true;
+        _pressF.SetActive(false);
+    }
 
     private void OnTriggerStay(Collider other)
     {
@@ -28,9 +37,7 @@ public class BossGate_MT : MonoBehaviour
             _pressF.SetActive(true);
             if (Input.GetKeyDown(KeyCode.F) || Input.GetAxis("Submit") > 0)
             {
-                _collider.isTrigger = true;
-                _canvasBoss.enabled = true;
-                _pressF.SetActive(false);
+                OpenGate();
             }
         }
     }
