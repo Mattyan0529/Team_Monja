@@ -1,7 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class BossSkillAttack : MonoBehaviour, IDamagable
+public class BossSkillAttack_KH : MonoBehaviour, IDamagable_KH
 {
     [SerializeField]
     private float _rangeHaveAttackArea = 7f;
@@ -22,7 +22,7 @@ public class BossSkillAttack : MonoBehaviour, IDamagable
     private SoundEffectManagement_KH _soundEffectManagement = default;
     private WriteHitPoint_KH _writeHitPoint = default;
     private CreateDamageImage_KH _createDamageImage = default;
-    private ChangeEnemyMoveType _changeEnemyMoveType = default;
+    private ChangeEnemyMoveType_KH _changeEnemyMoveType = default;
     private PlayerManager_KH _playerManager = default;
 
     private GameObject _player = default;
@@ -66,7 +66,7 @@ public class BossSkillAttack : MonoBehaviour, IDamagable
         _createDamageImage = _residentScript.GetComponent<CreateDamageImage_KH>();
         _soundEffectManagement = _residentScript.GetComponent<SoundEffectManagement_KH>();
         _audioSource = GetComponent<AudioSource>();
-        _changeEnemyMoveType = GetComponent<ChangeEnemyMoveType>();
+        _changeEnemyMoveType = GetComponent<ChangeEnemyMoveType_KH>();
         _playerManager = _residentScript.GetComponent<PlayerManager_KH>();
         _player = _playerManager.Player;
 

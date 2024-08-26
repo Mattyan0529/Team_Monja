@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyMove : MonoBehaviour
+public class EnemyMove_KH : MonoBehaviour
 {
     [SerializeField]
     private GameObject _wayPoints = default;
@@ -14,7 +14,7 @@ public class EnemyMove : MonoBehaviour
     private float _followStopDistance = 2f;
     private float _followShortDistance = 9f;
 
-    private ChangeEnemyMoveType _changeEnemyMoveType = default;
+    private ChangeEnemyMoveType_KH _changeEnemyMoveType = default;
     private PlayerManager_KH _playerManager = default;
 
     private CharacterAnim_MT _characterAnim = default;
@@ -46,7 +46,7 @@ public class EnemyMove : MonoBehaviour
 
     void Start()
     {
-        _changeEnemyMoveType = GetComponent<ChangeEnemyMoveType>();
+        _changeEnemyMoveType = GetComponent<ChangeEnemyMoveType_KH>();
         _playerManager = GameObject.FindGameObjectWithTag("ResidentScripts").GetComponent<PlayerManager_KH>();
         _characterAnim = GetComponent<CharacterAnim_MT>();
         _miniWayPoint = _changeEnemyMoveType.MiniWayPoint;
@@ -90,7 +90,7 @@ public class EnemyMove : MonoBehaviour
         _currentWayPoint = _targetWayPoint;
 
         // メインのWayPointではないところからFollowが呼び出されたらメインのWayPointに行く
-        if (_changeEnemyMoveType.NowState == ChangeEnemyMoveType.EnemyMoveState.InFollow
+        if (_changeEnemyMoveType.NowState == ChangeEnemyMoveType_KH.EnemyMoveState.InFollow
             && !_currentWayPoint.transform.parent.CompareTag("WayPoint"))
         {
             SearchNearMainWayPoint();
@@ -109,7 +109,7 @@ public class EnemyMove : MonoBehaviour
     /// </summary>
     private void MoveToTargetWayPoint()
     {
-        if (_changeEnemyMoveType.NowState == ChangeEnemyMoveType.EnemyMoveState.InAttack)
+        if (_changeEnemyMoveType.NowState == ChangeEnemyMoveType_KH.EnemyMoveState.InAttack)
         {
             _changeEnemyMoveType.IsMove = false;
             return;

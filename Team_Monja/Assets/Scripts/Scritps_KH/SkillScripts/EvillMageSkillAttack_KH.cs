@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EvillMageSkillAttack : MonoBehaviour,IDamagable
+public class EvillMageSkillAttack_KH : MonoBehaviour, IDamagable_KH
 {
     [SerializeField]
     private GameObject _residentScript;
@@ -19,7 +19,7 @@ public class EvillMageSkillAttack : MonoBehaviour,IDamagable
     private CreateDamageImage_KH _createDamageImage = default;
     private PlayerSkill_KH _playerSkill = default;
     private CharacterAnim_MT _characterAnim = default;
-    private ChangeEnemyMoveType _changeEnemyMoveType = default;
+    private ChangeEnemyMoveType_KH _changeEnemyMoveType = default;
 
     private float _deleteTime = 2f;
     private float _elapsedTime = 0f;
@@ -34,7 +34,7 @@ public class EvillMageSkillAttack : MonoBehaviour,IDamagable
         _playerSkill = GetComponent<PlayerSkill_KH>();
         _characterAnim = GetComponent<CharacterAnim_MT>();
         _audioSource = GetComponent<AudioSource>();
-        _changeEnemyMoveType = GetComponent<ChangeEnemyMoveType>();
+        _changeEnemyMoveType = GetComponent<ChangeEnemyMoveType_KH>();
 
         // 子オブジェクトからBulletを取得
         _bullet = transform.Find("Bullet").gameObject;

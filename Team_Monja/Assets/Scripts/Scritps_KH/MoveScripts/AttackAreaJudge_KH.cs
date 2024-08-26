@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class AttackAreaJudge : MonoBehaviour
+public class AttackAreaJudge_KH : MonoBehaviour
 {
-    private ChangeEnemyMoveType _changeEnemyMoveType = default;
+    private ChangeEnemyMoveType_KH _changeEnemyMoveType = default;
     private PlayerManager_KH _playerManager = default;
     private GameObject _player = default;
     private GameObject _residentScript = default;
@@ -12,7 +12,7 @@ public class AttackAreaJudge : MonoBehaviour
 
     void Start()
     {
-        _changeEnemyMoveType = gameObject.GetComponentInParent<ChangeEnemyMoveType>();
+        _changeEnemyMoveType = gameObject.GetComponentInParent<ChangeEnemyMoveType_KH>();
         _residentScript = GameObject.Find("ResidentScripts");
         _playerManager = _residentScript.GetComponent<PlayerManager_KH>();
         _player = _playerManager.Player;
@@ -35,15 +35,15 @@ public class AttackAreaJudge : MonoBehaviour
         // Mathf.Pow(_rangeHaveAttackArea, 2)は_rangeHaveAttackAreaの2乗
         // 既定値よりプレイヤーが近かったら
         if (Vector3.SqrMagnitude(playerPos - myPos) < Mathf.Pow(_rangeHaveAttackArea, 2) &&
-            _changeEnemyMoveType.NowState == ChangeEnemyMoveType.EnemyMoveState.InFollow)
+            _changeEnemyMoveType.NowState == ChangeEnemyMoveType_KH.EnemyMoveState.InFollow)
         {
-            _changeEnemyMoveType.NowState = ChangeEnemyMoveType.EnemyMoveState.InAttack;
+            _changeEnemyMoveType.NowState = ChangeEnemyMoveType_KH.EnemyMoveState.InAttack;
         }
         // プレイヤーが既定値外で、攻撃状態の時
         else if (Vector3.SqrMagnitude(playerPos - myPos) > Mathf.Pow(_rangeHaveAttackArea, 2) &&
-            _changeEnemyMoveType.NowState == ChangeEnemyMoveType.EnemyMoveState.InAttack)
+            _changeEnemyMoveType.NowState == ChangeEnemyMoveType_KH.EnemyMoveState.InAttack)
         {
-            _changeEnemyMoveType.NowState = ChangeEnemyMoveType.EnemyMoveState.InFollow;
+            _changeEnemyMoveType.NowState = ChangeEnemyMoveType_KH.EnemyMoveState.InFollow;
         }
     }
 }

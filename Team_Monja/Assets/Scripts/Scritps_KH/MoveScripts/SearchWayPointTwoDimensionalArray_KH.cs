@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SearchWayPointTwoDimensionalArray : MonoBehaviour
+public class SearchWayPointTwoDimensionalArray_KH : MonoBehaviour
 {
     [SerializeField]
     private GameObject _wayPoint = default;

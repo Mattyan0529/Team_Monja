@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FollowPlayer : MonoBehaviour,IFollowable
+public class FollowPlayer_KH : MonoBehaviour, IFollowable_KH
 {
     private GameObject _nearPlayerArea = default;
     private Transform _player = default;
@@ -9,9 +9,9 @@ public class FollowPlayer : MonoBehaviour,IFollowable
     private Transform[] _wayPoints = default;
     private int[,] _nextWayPointTable = default;
 
-    private NearPlayerWayPointManager _nearPlayerWayPointManager = default;
-    private SearchWayPointTwoDimensionalArray _searchWayPointTwoDimensionalArray = default;
-    private EnemyMove _enemyMove;
+    private NearPlayerWayPointManager_KH _nearPlayerWayPointManager = default;
+    private SearchWayPointTwoDimensionalArray_KH _searchWayPointTwoDimensionalArray = default;
+    private EnemyMove_KH _enemyMove;
 
     public Transform TargetWayPoint
     {
@@ -28,10 +28,10 @@ public class FollowPlayer : MonoBehaviour,IFollowable
     {
         SearchPlayer();
 
-        _nearPlayerWayPointManager = _nearPlayerArea.gameObject.GetComponent<NearPlayerWayPointManager>();
+        _nearPlayerWayPointManager = _nearPlayerArea.gameObject.GetComponent<NearPlayerWayPointManager_KH>();
         _searchWayPointTwoDimensionalArray =
-            _nearPlayerArea.gameObject.GetComponent<SearchWayPointTwoDimensionalArray>();
-        _enemyMove = GetComponent<EnemyMove>();
+            _nearPlayerArea.gameObject.GetComponent<SearchWayPointTwoDimensionalArray_KH>();
+        _enemyMove = GetComponent<EnemyMove_KH>();
     }
 
     private void Update()

@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class WeaponHitDecision_KH : MonoBehaviour
 {
-    private IDamagable _skillInterface = default;
+    private IDamagable_KH _skillInterface = default;
     private bool _isBoss = false;
 
     void Awake()
     {
-        _skillInterface = transform.parent.gameObject.GetComponent<IDamagable>();
+        _skillInterface = transform.parent.gameObject.GetComponent<IDamagable_KH>();
 
         if (gameObject.transform.parent.CompareTag("Boss"))
         {

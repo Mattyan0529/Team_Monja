@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 
-public class NearPlayerWayPointManager : MonoBehaviour
+public class NearPlayerWayPointManager_KH : MonoBehaviour
 {
     private List<Transform> _nearPlayerWayPoints = new List<Transform>();
     private GameObject _residentScript = default;

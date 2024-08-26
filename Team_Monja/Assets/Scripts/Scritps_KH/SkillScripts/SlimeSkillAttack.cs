@@ -1,7 +1,7 @@
 using JetBrains.Annotations;
 using UnityEngine;
 
-public class SlimeSkillAttack : MonoBehaviour, IDamagable
+public class SlimeSkillAttack : MonoBehaviour, IDamagable_KH
 {
     [SerializeField]
     private GameObject _residentScript;
@@ -21,7 +21,7 @@ public class SlimeSkillAttack : MonoBehaviour, IDamagable
     private PlayerMove_MT _playerMove = default;
     private CreateDamageImage_KH _createDamageImage = default;
     private PlayerSkill_KH _playerSkill = default;
-    private ChangeEnemyMoveType _changeEnemyMoveType = default;
+    private ChangeEnemyMoveType_KH _changeEnemyMoveType = default;
 
     private bool _isAttack = false;
 
@@ -41,7 +41,7 @@ public class SlimeSkillAttack : MonoBehaviour, IDamagable
         _characterAnim = GetComponent<CharacterAnim_MT>();
         _audioSource = GetComponent<AudioSource>();
         _playerSkill = GetComponent<PlayerSkill_KH>();
-        _changeEnemyMoveType = GetComponent<ChangeEnemyMoveType>();
+        _changeEnemyMoveType = GetComponent<ChangeEnemyMoveType_KH>();
 
         // 子オブジェクトの中からAttackAreaを取得
         _attackArea = transform.Find("AttackArea").gameObject;

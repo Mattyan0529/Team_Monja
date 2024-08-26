@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-public interface IDamagable
+public interface IDamagable_KH
 {
     void SpecialAttack();
     void HitDecision(GameObject hitObj);

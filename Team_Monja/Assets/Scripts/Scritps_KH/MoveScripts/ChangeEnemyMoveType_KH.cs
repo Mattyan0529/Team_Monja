@@ -1,7 +1,7 @@
 using System.Net.Sockets;
 using UnityEngine;
 
-public class ChangeEnemyMoveType : MonoBehaviour
+public class ChangeEnemyMoveType_KH : MonoBehaviour
 {
     [SerializeField]
     private GameObject _miniWayPoint = default;
@@ -15,8 +15,8 @@ public class ChangeEnemyMoveType : MonoBehaviour
     [SerializeField]
     private float _maxRotationSpeed = 8f;
 
-    private RandomWayPointBetweenMove _randomMove = default;
-    private FollowPlayer _followPlayer = default;
+    private RandomWayPointBetweenMove_KH _randomMove = default;
+    private FollowPlayer_KH _followPlayer = default;
 
     private Transform _targetPoint = default;
 
@@ -112,8 +112,8 @@ public class ChangeEnemyMoveType : MonoBehaviour
 
     private void Start()
     {
-        _randomMove = GetComponent<RandomWayPointBetweenMove>();
-        _followPlayer = GetComponent<FollowPlayer>();
+        _randomMove = GetComponent<RandomWayPointBetweenMove_KH>();
+        _followPlayer = GetComponent<FollowPlayer_KH>();
     }
 
     private void Update()

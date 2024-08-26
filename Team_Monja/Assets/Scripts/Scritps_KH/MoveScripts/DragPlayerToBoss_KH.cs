@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class DragPlayerToBoss : MonoBehaviour
+public class DragPlayerToBoss_KH : MonoBehaviour
 {
     [SerializeField]
     private GameObject _targetWayPoint = default;
@@ -12,8 +12,8 @@ public class DragPlayerToBoss : MonoBehaviour
     private Transform _nextWayPoint = default;
     private Transform _currentWayPoint = default;
 
-    private SearchWayPointTwoDimensionalArray _searchWayPointTwoDimensionalArray = default;
-    private EnemyMove _enemyMove;
+    private SearchWayPointTwoDimensionalArray_KH _searchWayPointTwoDimensionalArray = default;
+    private EnemyMove_KH _enemyMove;
     private PlayerManager_KH _playerManager = default;
 
     private float _speed = 100f;
@@ -35,8 +35,8 @@ public class DragPlayerToBoss : MonoBehaviour
 
         _nearPlayerArea = GameObject.FindGameObjectWithTag("NearPlayerArea");
         _searchWayPointTwoDimensionalArray =
-            _nearPlayerArea.gameObject.GetComponent<SearchWayPointTwoDimensionalArray>();
-        _enemyMove = _player.GetComponent<EnemyMove>();
+            _nearPlayerArea.gameObject.GetComponent<SearchWayPointTwoDimensionalArray_KH>();
+        _enemyMove = _player.GetComponent<EnemyMove_KH>();
     }
 
     private void Update()
