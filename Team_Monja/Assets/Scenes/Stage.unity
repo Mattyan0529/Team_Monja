@@ -6709,7 +6709,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8499376774845849375, guid: 0aa53df690273fd42b41bc3c8aabd34c, type: 3}
       propertyPath: _rangeHaveAttackArea
-      value: 4
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: -5345421659133749941, guid: 0aa53df690273fd42b41bc3c8aabd34c, type: 3}
       propertyPath: _coolTimeUIObj
