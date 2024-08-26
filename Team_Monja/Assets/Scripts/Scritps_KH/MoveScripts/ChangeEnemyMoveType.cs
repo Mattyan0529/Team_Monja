@@ -10,6 +10,9 @@ public class ChangeEnemyMoveType : MonoBehaviour
     private float _maxSpeed = 8f;
 
     [SerializeField]
+    private float _randomMoveSpeed = 1f;
+
+    [SerializeField]
     private float _maxRotationSpeed = 8f;
 
     private RandomWayPointBetweenMove _randomMove = default;
@@ -130,18 +133,21 @@ public class ChangeEnemyMoveType : MonoBehaviour
         {
             case EnemyMoveState.InRandomMove:
                 _isMove = true;
+                _nowSpeed = _randomMoveSpeed;
                 nextWayPoint = _randomMove.SearchTargetWayPoint(myWayPoint);
                 _targetPoint = nextWayPoint;
                 break;
 
             case EnemyMoveState.InFollow:
                 _isMove = true;
+                _nowSpeed = _maxSpeed;
                 nextWayPoint = _followPlayer.SearchTargetWayPoint(myWayPoint);
                 _targetPoint = _followPlayer.Player;
                 break; 
 
             case EnemyMoveState.InAttack:
                 _isMove = false;
+                _nowSpeed = _maxSpeed;
                 nextWayPoint = _followPlayer.SearchTargetWayPoint(myWayPoint);
                 LookAtPlayer();
                 break;
