@@ -17,7 +17,7 @@ public class DragPlayerToBoss : MonoBehaviour
     private PlayerManager_KH _playerManager = default;
 
     private float _speed = 100f;
-    private float _followStopDistance = 0.5f;
+    private float _followStopDistance = 0.1f;
     private float _shortestDistance = default;
 
     // 今移動している状態ならfalse 移動が終わり探索待ちかどうか
@@ -192,7 +192,6 @@ public class DragPlayerToBoss : MonoBehaviour
             _currentWayPoint = _nextWayPoint;
             _isSearch = true;
         }
-
     }
 
     // 指定時間待ってからオブジェクトを非アクティブにするコルーチン

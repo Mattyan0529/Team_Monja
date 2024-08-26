@@ -21,6 +21,7 @@ public class ChangeEnemyMoveType : MonoBehaviour
     private Transform _targetPoint = default;
 
     private float _nowSpeed = 8f;
+    private float _speedAfterCalculation = default;
     private float _nowRotationSpeed = 8f;
 
     private float _slowToNormalSwitchDistance = 3f;
@@ -147,7 +148,7 @@ public class ChangeEnemyMoveType : MonoBehaviour
 
             case EnemyMoveState.InAttack:
                 _isMove = false;
-                _nowSpeed = _maxSpeed;
+
                 nextWayPoint = _followPlayer.SearchTargetWayPoint(myWayPoint);
                 LookAtPlayer();
                 break;
@@ -192,6 +193,6 @@ public class ChangeEnemyMoveType : MonoBehaviour
             _deceleration = Deceleration.slow;
         }
 
-        _nowSpeed = _maxSpeed / NowDeceleration;
+        _speedAfterCalculation = _nowSpeed / NowDeceleration;
     }
 }
