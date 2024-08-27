@@ -9,6 +9,8 @@ public class SceneSwitcher_SM : MonoBehaviour
     [SerializeField] private bool useBackspaceKey; // バックスペースキーでシーンを遷移するかどうか
     [SerializeField] private bool useEscapeKey; // エスケープキーでオプション画面を表示するかどうか
 
+    private bool GetAxisZero = false;//SubmitのGetAxisが0になったかどうか
+
     void Start()
     {
         SetupButtonListener();
@@ -32,12 +34,20 @@ public class SceneSwitcher_SM : MonoBehaviour
     // キーボード入力をチェックするメソッド
     private void CheckKeyboardInput()
     {
-        if (useLeghtMouse && (Input.GetMouseButtonDown(0)/* || Input.GetAxis("Submit") > 0*/))
+        if (Input.GetAxis("Submit") == 0)
+        {
+            GetAxisZero = true;
+            print(GetAxisZero);
+        }
+
+
+
+        if (useLeghtMouse && (Input.GetMouseButtonDown(0) || Input.GetAxis("Submit") > 0 && GetAxisZero))
         {
             LoadScene();
         }
 
-        if (useBackspaceKey && (Input.GetKeyDown(KeyCode.Backspace) || Input.GetAxis("Cancel") > 0))
+        if (useBackspaceKey && (Input.GetKeyDown(KeyCode.Backspace) || Input.GetAxis("Cancel") > 0 && GetAxisZero))
         {
             LoadScene();
         }
