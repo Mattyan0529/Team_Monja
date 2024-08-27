@@ -25,13 +25,13 @@ public class MonsterSkill_KH : MonoBehaviour
 
     private PlayerSkill_KH _playerSkill = default;
     private PlayerManager_KH _playerManager = default;
-    private EnemyMove_KH _enemyMove = default;
-    private AttackAreaJudge_KH _attackAreaJudge = default;
+    private EnemyMove _enemyMove = default;
+    private AttackAreaJudge _attackAreaJudge = default;
     private SkillSpriteChange_KH _skillSpriteChange = default;
     private SkillSpriteChange_KH _normalAttackSpriteChange = default;
-    private ChangeEnemyMoveType_KH _changeEnemyMoveType = default;
-    private NearPlayerWayPointManager_KH _nearPlayerWayPointManager = default;
-    private IDamagable_KH _skillInterface = default;
+    private ChangeEnemyMoveType _changeEnemyMoveType = default;
+    private NearPlayerWayPointManager _nearPlayerWayPointManager = default;
+    private IDamagable _skillInterface = default;
     //èºñ{
     private CharacterAnim_MT _characterAnim;
 
@@ -45,10 +45,10 @@ public class MonsterSkill_KH : MonoBehaviour
     void Awake()
     {
         _playerSkill = GetComponent<PlayerSkill_KH>();
-        _enemyMove = GetComponent<EnemyMove_KH>();
-        _attackAreaJudge = GetComponent<AttackAreaJudge_KH>();
+        _enemyMove = GetComponent<EnemyMove>();
+        _attackAreaJudge = GetComponent<AttackAreaJudge>();
         _playerManager = _residentScript.GetComponent<PlayerManager_KH>();
-        _changeEnemyMoveType = GetComponent<ChangeEnemyMoveType_KH>();
+        _changeEnemyMoveType = GetComponent<ChangeEnemyMoveType>();
 
         if (GetComponent<NormalAttack_KH>())
         {
@@ -67,10 +67,10 @@ public class MonsterSkill_KH : MonoBehaviour
 
         _skillSpriteChange = _skillSpriteObj.GetComponent<SkillSpriteChange_KH>();
         _normalAttackSpriteChange = _normalAttackSpriteObj.GetComponent<SkillSpriteChange_KH>();
-        _nearPlayerWayPointManager = _nearPlayerArea.GetComponent<NearPlayerWayPointManager_KH>();
+        _nearPlayerWayPointManager = _nearPlayerArea.GetComponent<NearPlayerWayPointManager>();
         GameobjectTagJudge();
         _updateTime = Random.Range(_minTimeSpacing, _maxTimeSpacing);
-        _skillInterface = GetComponent<IDamagable_KH>();
+        _skillInterface = GetComponent<IDamagable>();
     }
 
     void Update()
@@ -121,7 +121,7 @@ public class MonsterSkill_KH : MonoBehaviour
     /// </summary>
     private void UpdateTime()
     {
-        if (_changeEnemyMoveType.NowState != ChangeEnemyMoveType_KH.EnemyMoveState.InAttack) return;
+        if (_changeEnemyMoveType.NowState != ChangeEnemyMoveType.EnemyMoveState.InAttack) return;
 
         // éûä‘â¡éZ
         _elapsedTime += Time.deltaTime;

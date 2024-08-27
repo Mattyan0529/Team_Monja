@@ -17,15 +17,12 @@ public class TimeManager : MonoBehaviour
 
     private Animator _handAnimator = default;
     private WordDisplay _wordDisplay = default;
-    private BossGate_MT _bossGate = default;
 
     [SerializeField]
     private WordScriptableObject[] _wordScriptableObject = default;
 
     [SerializeField]
-    private GameObject _damonHand = default;  
-    [SerializeField]
-    private GameObject _bossGateObj = default;
+    private GameObject _damonHand = default;
 
     int _wordNumber = 0;
 
@@ -33,7 +30,6 @@ public class TimeManager : MonoBehaviour
     {
         _wordDisplay = GetComponent<WordDisplay>();
         _handAnimator = _damonHand.GetComponent<Animator>();
-        _bossGate = _bossGateObj.GetComponent<BossGate_MT>();
         Debug.Log(_handAnimator);
     }
 
@@ -50,11 +46,10 @@ public class TimeManager : MonoBehaviour
         _elapsedTime += Time.deltaTime;
         _elapsedTimeTotalGame += Time.deltaTime;
 
-        // 時間切れの処理
+        // プレイヤーを引きずる場合
         if(_elapsedTimeTotalGame > _timeDragPlayer)
         {
             PullPlayer();
-            _bossGate.OpenGate();
         }
 
         // 言葉を変更して表示する場合

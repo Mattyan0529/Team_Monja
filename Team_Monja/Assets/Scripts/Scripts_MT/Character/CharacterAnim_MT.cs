@@ -8,7 +8,6 @@ public class CharacterAnim_MT : MonoBehaviour
 
 
     private string _nowAnim = default;
-    private string _currentAnim = default;
 
     public string NowAnim { get { return _nowAnim; } set { _nowAnim = value; } }
 
@@ -21,13 +20,7 @@ public class CharacterAnim_MT : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (NowAnim != _currentAnim)
-        {
-            AnimSwitch();
-        }
-
-        
-        _currentAnim = NowAnim;
+        AnimSwitch();
     }
 
     private void AnimSwitch()
@@ -35,11 +28,11 @@ public class CharacterAnim_MT : MonoBehaviour
         switch (NowAnim)
         {
             case "Idle":
-                animator.SetBool("Idle", true);
+                animator.SetBool("Idle",true);
                 animator.SetBool("Move", false);
                 break;
             case "Move":
-                animator.SetBool("Move", true);
+                animator.SetBool("Move",true);
                 animator.SetBool("Idle", false);
                 break;
             case "Attack":
@@ -55,13 +48,11 @@ public class CharacterAnim_MT : MonoBehaviour
                 animator.SetTrigger("GotDamage");
                 break;
             case "Die":
-                animator.SetTrigger("Die");
                 animator.SetBool("Die", true);
                 animator.SetBool("Idle", false);
                 animator.SetBool("Move", false);
                 break;
-            case "Revive":
-                animator.SetTrigger("Revive");
+            case "NewCharacter":
                 animator.SetBool("Idle", false);
                 animator.SetBool("Move", false);
                 animator.SetBool("Die", false);

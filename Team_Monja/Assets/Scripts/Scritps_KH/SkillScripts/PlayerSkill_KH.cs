@@ -7,11 +7,11 @@ public class PlayerSkill_KH : MonoBehaviour
     GameObject _coolTimeUIObj = default;
 
     private MonsterSkill_KH _myMonsterSkill = default;
-    private EnemyMove_KH _enemyMove = default;
-    private AttackAreaJudge_KH _attackAreaJudge = default;
+    private EnemyMove _enemyMove = default;
+    private AttackAreaJudge _attackAreaJudge = default;
     private CoolTimeUI _coolTimeUI = default;
 
-    private IDamagable_KH _skillInterface = default;
+    private IDamagable _skillInterface = default;
 
     private NormalAttack_KH _normalAttack = default;
     private PlayerGuard_KH _playerGuard = default;
@@ -37,8 +37,8 @@ public class PlayerSkill_KH : MonoBehaviour
     private void Awake()
     {
         _myMonsterSkill = GetComponent<MonsterSkill_KH>();
-        _enemyMove = GetComponent<EnemyMove_KH>();
-        _attackAreaJudge = GetComponent<AttackAreaJudge_KH>();
+        _enemyMove = GetComponent<EnemyMove>();
+        _attackAreaJudge = GetComponent<AttackAreaJudge>();
         _characterAnim = GetComponent<CharacterAnim_MT>();
     }
 
@@ -56,7 +56,7 @@ public class PlayerSkill_KH : MonoBehaviour
         }
 
         _coolTimeUI = _coolTimeUIObj.GetComponent<CoolTimeUI>();
-        _skillInterface = GetComponent<IDamagable_KH>();
+        _skillInterface = GetComponent<IDamagable>();
 
 
         GameObjectTagJudge();

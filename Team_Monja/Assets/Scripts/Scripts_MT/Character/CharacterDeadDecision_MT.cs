@@ -15,7 +15,7 @@ public class CharacterDeadDecision_MT : MonoBehaviour
     private PlayerSkill_KH _playerSkill = default;
     private NormalAttack_KH _normalAttack = default;
     private PlayerGuard_KH _playerGuard = default;
-    private EnemyMove_KH _enemyMove = default;
+    private EnemyMove _enemyMove = default;
     private GameObject _tagJudgeObj = default;
     private TagJudge_MT _tagJudge = default;
     private DisplayWordInEvent _displayWordInEvent = default;
@@ -34,7 +34,7 @@ public class CharacterDeadDecision_MT : MonoBehaviour
         _playerSkill = GetComponent<PlayerSkill_KH>();
         _normalAttack = GetComponent<NormalAttack_KH>();
         _playerGuard = GetComponent<PlayerGuard_KH>();
-        _enemyMove = GetComponent<EnemyMove_KH>();
+        _enemyMove = GetComponent<EnemyMove>();
         _tagJudgeObj = GameObject.FindGameObjectWithTag("TagJudge");
         _tagJudge = _tagJudgeObj.GetComponent<TagJudge_MT>();
         _displayWordInEvent = _whisperingWords.GetComponent<DisplayWordInEvent>();

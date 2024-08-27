@@ -38,13 +38,17 @@ public class CameraManager_MT : MonoBehaviour
 
         cameraPos = playerObj.transform.position;
 
-      
+        //カメラ振動のサンプル
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    StartCoroutine(CameraShake(0.3f, 0.5f));
+        //}
     }
 
     private void LateUpdate()
     {
         PlayerFollowing();
-      
+        PositionCalculator();
     }
 
     /// <summary>
@@ -86,8 +90,6 @@ public class CameraManager_MT : MonoBehaviour
     /// </summary>
     private void CameraMove()
     {
-        //高さ調整
-        PositionCalculator();
         // マウスの移動量を取得
         float mouseX = Input.GetAxis("Horizontal2") * mouseSensitivity * Time.deltaTime
          + Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BulletHitDecision_KH : MonoBehaviour
 {
-    private IDamagable_KH _skillInterface = default;
+    private IDamagable _skillInterface = default;
     private MeshRenderer _bulletRenderer = default;
     private SphereCollider _bulletCollider = default;
     private Rigidbody _bulletRigidbody = default;
@@ -35,7 +35,7 @@ public class BulletHitDecision_KH : MonoBehaviour
         }
 
         // LongDistanceAttack_KHÇÃéÊìæ
-        _skillInterface = _parent.GetComponent<IDamagable_KH>();
+        _skillInterface = _parent.GetComponent<IDamagable>();
         if (_skillInterface == null)
         {
             Debug.LogError("LongDistanceAttack_KHÇ™å©Ç¬Ç©ÇËÇ‹ÇπÇÒÇ≈ÇµÇΩÅB", this);

@@ -1,48 +1,44 @@
 using UnityEngine;
 
-public class SkeletonSkillAttack : MonoBehaviour, IDamagable
+public class EvillMageSkillAttack : MonoBehaviour,IDamagable
 {
     [SerializeField]
     private GameObject _residentScript;
 
-    [SerializeField]
-    private EffectManager _effectManager; // EffectManagerの参照を追加
 
 
-    private float _deleteTime = 0.5f;
-    private float _elapsedTime = 0f;
+    private float _bulletSpeed = 50f;
 
-    private GameObject _attackArea;
+    private float _addSpownPos = 1f;     // 弾を生成するときにyに足す値
 
+    private GameObject _bullet = default;
     private WriteHitPoint_KH _writeHitPoint = default;
+    private BulletHitDecision_KH _bulletHitDecision = default;
     private SoundEffectManagement_KH _soundEffectManagement = default;
     private AudioSource _audioSource = default;
-    private ChangeEnemyMoveType _changeEnemyMoveType = default;
     private CreateDamageImage_KH _createDamageImage = default;
     private PlayerSkill_KH _playerSkill = default;
-
-    private bool _isAttack = false;
-
-    //松本
     private CharacterAnim_MT _characterAnim = default;
+    private ChangeEnemyMoveType _changeEnemyMoveType = default;
 
-    private void Awake()
-    {
-        _changeEnemyMoveType = GetComponent<ChangeEnemyMoveType>();
-    }
+    private float _deleteTime = 2f;
+    private float _elapsedTime = 0f;
+
+    private bool _isShot = false;
 
     void Start()
     {
         _writeHitPoint = _residentScript.GetComponent<WriteHitPoint_KH>();
-        _soundEffectManagement = _residentScript.GetComponent<SoundEffectManagement_KH>();
         _createDamageImage = _residentScript.GetComponent<CreateDamageImage_KH>();
+        _soundEffectManagement = _residentScript.GetComponent<SoundEffectManagement_KH>();
+        _playerSkill = GetComponent<PlayerSkill_KH>();
         _characterAnim = GetComponent<CharacterAnim_MT>();
         _audioSource = GetComponent<AudioSource>();
-        _playerSkill = GetComponent<PlayerSkill_KH>();
+        _changeEnemyMoveType = GetComponent<ChangeEnemyMoveType>();
 
-        // 子オブジェクトの中からAttackAreaを取得
-        _attackArea = transform.Find("AttackArea").gameObject;
-        _attackArea.SetActive(false);
+        // 子オブジェクトからBulletを取得
+        _bullet = transform.Find("Bullet").gameObject;
+        _bulletHitDecision = _bullet.GetComponent<BulletHitDecision_KH>();
     }
 
     void Update()
@@ -50,29 +46,31 @@ public class SkeletonSkillAttack : MonoBehaviour, IDamagable
         UpdateTime();
     }
 
+    /// <summary>
+    /// 遠距離の弾を生成する
+    /// </summary>
     public void SpecialAttack()
-    {  //松本
+    {
+        if (_isShot) return;      // 重複で攻撃はしない
+
+        //松本
         _characterAnim.NowAnim = "Skill";
 
+
+        // 速度を付ける
+        _bullet.transform.position = new Vector3(transform.position.x, transform.position.y + _addSpownPos, transform.position.z);
+        Rigidbody rigidbody = _bullet.GetComponent<Rigidbody>();
+        rigidbody.velocity = transform.forward * _bulletSpeed;
+        _bullet.transform.SetParent(null);
+        _bulletHitDecision.ActivateBullet();
+
         _changeEnemyMoveType.IsMove = false;
-    }
 
-    private void CreateAttackArea()
-    {
-        //スキルエフェクト
-        if (_effectManager != null)
-        {
-            _effectManager.ShowSpecialAttackEffect(transform);
-        }
+        // SEを鳴らす
+        _soundEffectManagement.PlayLongDistanceAttackSound(_audioSource);
 
-        _soundEffectManagement.PlayStrongPunchSound(_audioSource);
-        _isAttack = true;
-        _attackArea.SetActive(true);
-    }
+        _isShot = true;
 
-    private void StopAnimation()
-    {
-        _characterAnim.NowAnim = "Idle";
     }
 
     /// <summary>
@@ -80,6 +78,9 @@ public class SkeletonSkillAttack : MonoBehaviour, IDamagable
     /// </summary>
     public void HitDecision(GameObject hitObj)
     {
+        _isShot = false;
+        _bullet.transform.SetParent(gameObject.transform);
+
         // 相手と自分のStatusManagerが両方必要
         StatusManager_MT targetStatusManager = hitObj.gameObject.GetComponent<StatusManager_MT>();
         StatusManager_MT myStatusManager = GetComponent<StatusManager_MT>();
@@ -98,7 +99,7 @@ public class SkeletonSkillAttack : MonoBehaviour, IDamagable
 
         int damage = myAttackPower - targetDefensePower;
 
-        if (myAttackPower < targetDefensePower)
+        if (myAttackPower <= targetDefensePower)
         {
             // 防御力のほうが高い場合はダメージを1とする
             int smallestDamage = 1;
@@ -112,24 +113,34 @@ public class SkeletonSkillAttack : MonoBehaviour, IDamagable
     }
 
     /// <summary>
-    /// 一定時間後攻撃範囲を削除する
+    /// 一定時間後弾を削除する
     /// </summary>
     private void UpdateTime()
     {
-        if (!_isAttack) return;     // 攻撃中以外は処理を行わない
-
+        if (!_isShot) return;     // 攻撃中以外は処理を行わない
         // 時間加算
         _elapsedTime += Time.deltaTime;
 
         // 規定時間に達していた場合
         if (_elapsedTime > _deleteTime)
         {
-            _attackArea.SetActive(false);
+            _characterAnim.NowAnim = "Idle";
+            _bulletHitDecision.DisableBullet();
+            _bullet.transform.SetParent(gameObject.transform);
             _elapsedTime = 0f;
             _changeEnemyMoveType.IsMove = true;
-            _isAttack = false;
+            _isShot = false;
             _playerSkill.IsUseSkill = false;
         }
+    }
+
+    private void OnDisable()
+    {
+        if (_bulletHitDecision != null)
+        {
+            _bulletHitDecision.DisableBullet();
+        }
+        _isShot = false;
     }
 }
 

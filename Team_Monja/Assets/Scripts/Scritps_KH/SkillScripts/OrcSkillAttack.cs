@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class OrcSkillAttack : MonoBehaviour, IDamagable_KH
+public class OrcSkillAttack : MonoBehaviour, IDamagable
 {
     [SerializeField]
     private GameObject _residentScript;
@@ -17,7 +17,7 @@ public class OrcSkillAttack : MonoBehaviour, IDamagable_KH
     private WriteHitPoint_KH _writeHitPoint = default;
     private SoundEffectManagement_KH _soundEffectManagement = default;
     private AudioSource _audioSource = default;
-    private ChangeEnemyMoveType_KH _changeEnemyMoveType = default;
+    private ChangeEnemyMoveType _changeEnemyMoveType = default;
     private PlayerMove_MT _playerMove = default;
     private CreateDamageImage_KH _createDamageImage = default;
     private PlayerSkill_KH _playerSkill = default;
@@ -29,7 +29,7 @@ public class OrcSkillAttack : MonoBehaviour, IDamagable_KH
 
     private void Awake()
     {
-        _changeEnemyMoveType = GetComponent<ChangeEnemyMoveType_KH>();
+        _changeEnemyMoveType = GetComponent<ChangeEnemyMoveType>();
         _playerMove = GetComponent<PlayerMove_MT>();
     }
 
