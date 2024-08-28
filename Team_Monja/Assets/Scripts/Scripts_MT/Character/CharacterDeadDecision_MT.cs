@@ -18,7 +18,7 @@ public class CharacterDeadDecision_MT : MonoBehaviour
     private EnemyMove_KH _enemyMove = default;
     private GameObject _tagJudgeObj = default;
     private TagJudge_MT _tagJudge = default;
-    private DisplayWordInEvent _displayWordInEvent = default;
+    private DisplayWordInEvent_KH _displayWordInEvent = default;
 
     private bool _isAlive = true;
     private bool _coroutineSwitch = true;
@@ -37,7 +37,7 @@ public class CharacterDeadDecision_MT : MonoBehaviour
         _enemyMove = GetComponent<EnemyMove_KH>();
         _tagJudgeObj = GameObject.FindGameObjectWithTag("TagJudge");
         _tagJudge = _tagJudgeObj.GetComponent<TagJudge_MT>();
-        _displayWordInEvent = _whisperingWords.GetComponent<DisplayWordInEvent>();
+        _displayWordInEvent = _whisperingWords.GetComponent<DisplayWordInEvent_KH>();
 
     }
 

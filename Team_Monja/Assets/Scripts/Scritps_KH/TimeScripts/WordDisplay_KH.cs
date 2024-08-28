@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
 
-public class WordDisplay : MonoBehaviour
+public class WordDisplay_KH : MonoBehaviour
 {
     private TextMeshProUGUI _textMeshProUGUI = default;
     private bool _isWordDisplay = false;

@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
 
-public class TimeManager : MonoBehaviour
+public class TimeManager_KH : MonoBehaviour
 {
     // 言葉を表示するために使う経過時間（言葉が変わるたびリセット）
     private float _elapsedTime = 0f;
@@ -16,10 +16,10 @@ public class TimeManager : MonoBehaviour
     private float _timeDragPlayer = 100f;
 
     private Animator _handAnimator = default;
-    private WordDisplay _wordDisplay = default;
+    private WordDisplay_KH _wordDisplay = default;
 
     [SerializeField]
-    private WordScriptableObject[] _wordScriptableObject = default;
+    private WordScriptableObject_KH[] _wordScriptableObject = default;
 
     [SerializeField]
     private GameObject _damonHand = default;
@@ -28,7 +28,7 @@ public class TimeManager : MonoBehaviour
 
     void Start()
     {
-        _wordDisplay = GetComponent<WordDisplay>();
+        _wordDisplay = GetComponent<WordDisplay_KH>();
         _handAnimator = _damonHand.GetComponent<Animator>();
         Debug.Log(_handAnimator);
     }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SkeletonSkillAttack : MonoBehaviour, IDamagable_KH
+public class LizardWarriorSkillAttack_KH : MonoBehaviour, IDamagable_KH
 {
     [SerializeField]
     private GameObject _residentScript;
@@ -17,9 +17,9 @@ public class SkeletonSkillAttack : MonoBehaviour, IDamagable_KH
     private WriteHitPoint_KH _writeHitPoint = default;
     private SoundEffectManagement_KH _soundEffectManagement = default;
     private AudioSource _audioSource = default;
-    private ChangeEnemyMoveType_KH _changeEnemyMoveType = default;
     private CreateDamageImage_KH _createDamageImage = default;
     private PlayerSkill_KH _playerSkill = default;
+    private ChangeEnemyMoveType_KH _changeEnemyMoveType = default;
 
     private bool _isAttack = false;
 
@@ -54,25 +54,21 @@ public class SkeletonSkillAttack : MonoBehaviour, IDamagable_KH
     {  //松本
         _characterAnim.NowAnim = "Skill";
 
-        _changeEnemyMoveType.IsMove = false;
-    }
-
-    private void CreateAttackArea()
-    {
         //スキルエフェクト
         if (_effectManager != null)
         {
             _effectManager.ShowSpecialAttackEffect(transform);
         }
 
+        _changeEnemyMoveType.IsMove = false;
+
         _soundEffectManagement.PlayStrongPunchSound(_audioSource);
-        _isAttack = true;
-        _attackArea.SetActive(true);
     }
 
-    private void StopAnimation()
+    private void CreateAttackArea()
     {
-        _characterAnim.NowAnim = "Idle";
+        _isAttack = true;
+        _attackArea.SetActive(true);
     }
 
     /// <summary>
@@ -98,7 +94,7 @@ public class SkeletonSkillAttack : MonoBehaviour, IDamagable_KH
 
         int damage = myAttackPower - targetDefensePower;
 
-        if (myAttackPower < targetDefensePower)
+        if (myAttackPower <= targetDefensePower)
         {
             // 防御力のほうが高い場合はダメージを1とする
             int smallestDamage = 1;
@@ -124,6 +120,7 @@ public class SkeletonSkillAttack : MonoBehaviour, IDamagable_KH
         // 規定時間に達していた場合
         if (_elapsedTime > _deleteTime)
         {
+            _characterAnim.NowAnim = "Idle";
             _attackArea.SetActive(false);
             _elapsedTime = 0f;
             _changeEnemyMoveType.IsMove = true;

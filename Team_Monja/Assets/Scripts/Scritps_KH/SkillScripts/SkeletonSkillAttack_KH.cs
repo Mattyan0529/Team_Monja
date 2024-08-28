@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class MushroomSkillAttack : MonoBehaviour, IDamagable_KH
+public class SkeletonSkillAttack_KH : MonoBehaviour, IDamagable_KH
 {
     [SerializeField]
     private GameObject _residentScript;
@@ -56,24 +54,25 @@ public class MushroomSkillAttack : MonoBehaviour, IDamagable_KH
     {  //松本
         _characterAnim.NowAnim = "Skill";
 
+        _changeEnemyMoveType.IsMove = false;
+    }
+
+    private void CreateAttackArea()
+    {
         //スキルエフェクト
         if (_effectManager != null)
         {
             _effectManager.ShowSpecialAttackEffect(transform);
         }
 
-        _changeEnemyMoveType.IsMove = false;
-
         _soundEffectManagement.PlayStrongPunchSound(_audioSource);
-    }
-
-    /// <summary>
-    /// アニメーションから呼び出す攻撃範囲生成
-    /// </summary>
-    private void CreateAttackArea()
-    {
         _isAttack = true;
         _attackArea.SetActive(true);
+    }
+
+    private void StopAnimation()
+    {
+        _characterAnim.NowAnim = "Idle";
     }
 
     /// <summary>
@@ -99,7 +98,7 @@ public class MushroomSkillAttack : MonoBehaviour, IDamagable_KH
 
         int damage = myAttackPower - targetDefensePower;
 
-        if (myAttackPower <= targetDefensePower)
+        if (myAttackPower < targetDefensePower)
         {
             // 防御力のほうが高い場合はダメージを1とする
             int smallestDamage = 1;
@@ -125,7 +124,6 @@ public class MushroomSkillAttack : MonoBehaviour, IDamagable_KH
         // 規定時間に達していた場合
         if (_elapsedTime > _deleteTime)
         {
-            _characterAnim.NowAnim = "Idle";
             _attackArea.SetActive(false);
             _elapsedTime = 0f;
             _changeEnemyMoveType.IsMove = true;

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class OrcSkillAttack : MonoBehaviour, IDamagable_KH
+public class OrcSkillAttack_KH : MonoBehaviour, IDamagable_KH
 {
     [SerializeField]
     private GameObject _residentScript;

@@ -1,6 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class LizardWarriorSkillAttack : MonoBehaviour, IDamagable_KH
+public class MushroomSkillAttack_KH : MonoBehaviour, IDamagable_KH
 {
     [SerializeField]
     private GameObject _residentScript;
@@ -17,9 +19,9 @@ public class LizardWarriorSkillAttack : MonoBehaviour, IDamagable_KH
     private WriteHitPoint_KH _writeHitPoint = default;
     private SoundEffectManagement_KH _soundEffectManagement = default;
     private AudioSource _audioSource = default;
+    private ChangeEnemyMoveType_KH _changeEnemyMoveType = default;
     private CreateDamageImage_KH _createDamageImage = default;
     private PlayerSkill_KH _playerSkill = default;
-    private ChangeEnemyMoveType_KH _changeEnemyMoveType = default;
 
     private bool _isAttack = false;
 
@@ -65,6 +67,9 @@ public class LizardWarriorSkillAttack : MonoBehaviour, IDamagable_KH
         _soundEffectManagement.PlayStrongPunchSound(_audioSource);
     }
 
+    /// <summary>
+    /// アニメーションから呼び出す攻撃範囲生成
+    /// </summary>
     private void CreateAttackArea()
     {
         _isAttack = true;
