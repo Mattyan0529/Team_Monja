@@ -10,7 +10,7 @@ public class WayPoint : MonoBehaviour
     [SerializeField]
     private GameObject[] _nextPoints = default;
 
-    private NearPlayerWayPointManager _nearPlayerWayPointManager = default;
+    private NearPlayerWayPointManager_KH _nearPlayerWayPointManager = default;
 
     public GameObject[] NextPoints
     {
@@ -19,7 +19,7 @@ public class WayPoint : MonoBehaviour
 
     private void Start()
     {
-        _nearPlayerWayPointManager = _nearPlayerArea.GetComponent<NearPlayerWayPointManager>();
+        _nearPlayerWayPointManager = _nearPlayerArea.GetComponent<NearPlayerWayPointManager_KH>();
     }
 
     /// <summary>

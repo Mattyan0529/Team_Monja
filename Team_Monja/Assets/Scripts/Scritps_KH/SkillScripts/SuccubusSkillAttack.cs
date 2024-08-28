@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SuccubusSkillAttack : MonoBehaviour, IDamagable
+public class SuccubusSkillAttack : MonoBehaviour, IDamagable_KH
 {
     [SerializeField]
     private GameObject _residentScript;
@@ -26,7 +26,7 @@ public class SuccubusSkillAttack : MonoBehaviour, IDamagable
     private AudioSource _audioSource = default;
     private CreateDamageImage_KH _createDamageImage = default;
     private PlayerSkill_KH _playerSkill = default;
-    private ChangeEnemyMoveType _changeEnemyMoveType = default;
+    private ChangeEnemyMoveType_KH _changeEnemyMoveType = default;
 
     // スキルで減少させているステータス
     private List<StatusManager_MT> _reducedStatus;
@@ -46,7 +46,7 @@ public class SuccubusSkillAttack : MonoBehaviour, IDamagable
         _characterAnim = GetComponent<CharacterAnim_MT>();
         _audioSource = GetComponent<AudioSource>();
         _playerSkill = GetComponent<PlayerSkill_KH>();
-        _changeEnemyMoveType = GetComponent<ChangeEnemyMoveType>();
+        _changeEnemyMoveType = GetComponent<ChangeEnemyMoveType_KH>();
 
         // 子オブジェクトの中からAttackAreaを取得
         _attackArea = transform.Find("AttackArea").gameObject;

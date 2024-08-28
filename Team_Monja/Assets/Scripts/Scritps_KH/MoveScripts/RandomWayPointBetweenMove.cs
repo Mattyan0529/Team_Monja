@@ -1,18 +1,18 @@
 using UnityEngine;
 
-public class RandomWayPointBetweenMove : MonoBehaviour, IFollowable
+public class RandomWayPointBetweenMove : MonoBehaviour, IFollowable_KH
 {
-    private ChangeEnemyMoveType _changeEnemyMoveType = default;
-    private FollowPlayer _followPlayer = default;
+    private ChangeEnemyMoveType_KH _changeEnemyMoveType = default;
+    private FollowPlayer_KH _followPlayer = default;
     private GameObject _wayPoint = default;
     private Transform _target = default;
-    private EnemyMove _enemyMove = default;
+    private EnemyMove_KH _enemyMove = default;
 
     private void Start()
     {
-        _changeEnemyMoveType = GetComponent<ChangeEnemyMoveType>();
-        _followPlayer = GetComponent<FollowPlayer>();
-        _enemyMove = GetComponent<EnemyMove>();
+        _changeEnemyMoveType = GetComponent<ChangeEnemyMoveType_KH>();
+        _followPlayer = GetComponent<FollowPlayer_KH>();
+        _enemyMove = GetComponent<EnemyMove_KH>();
         _wayPoint = _enemyMove.WayPoint;
     }
 

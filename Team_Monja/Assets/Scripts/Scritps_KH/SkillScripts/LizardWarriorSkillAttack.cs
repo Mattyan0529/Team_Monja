@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class LizardWarriorSkillAttack : MonoBehaviour,IDamagable
+public class LizardWarriorSkillAttack : MonoBehaviour, IDamagable_KH
 {
     [SerializeField]
     private GameObject _residentScript;
@@ -19,7 +19,7 @@ public class LizardWarriorSkillAttack : MonoBehaviour,IDamagable
     private AudioSource _audioSource = default;
     private CreateDamageImage_KH _createDamageImage = default;
     private PlayerSkill_KH _playerSkill = default;
-    private ChangeEnemyMoveType _changeEnemyMoveType = default;
+    private ChangeEnemyMoveType_KH _changeEnemyMoveType = default;
 
     private bool _isAttack = false;
 
@@ -28,7 +28,7 @@ public class LizardWarriorSkillAttack : MonoBehaviour,IDamagable
 
     private void Awake()
     {
-        _changeEnemyMoveType = GetComponent<ChangeEnemyMoveType>();
+        _changeEnemyMoveType = GetComponent<ChangeEnemyMoveType_KH>();
     }
 
     void Start()
