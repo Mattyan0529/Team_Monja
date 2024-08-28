@@ -248,7 +248,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4940e737b91c6424d913effdd80dd8c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverColor: {r: 0.1254902, g: 0.6392157, b: 0.93333334, a: 1}
 --- !u!222 &65069952
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1247,7 +1246,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4940e737b91c6424d913effdd80dd8c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverColor: {r: 0.1254902, g: 0.6392157, b: 0.93333334, a: 1}
 --- !u!114 &1449542077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1413,7 +1411,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4940e737b91c6424d913effdd80dd8c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverColor: {r: 0.1254902, g: 0.6392157, b: 0.93333334, a: 1}
 --- !u!114 &1459805677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2253,22 +2250,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &821349030347782611
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5756322545136505558}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8666f9ebe2f430c478ff4bba4ed32f15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slider: {fileID: 2811753111104842279}
-  hoverColor: {r: 1, g: 0.0785353, b: 0.015686274, a: 1}
-  audioMixer: {fileID: 24100000, guid: cc8f028d7199b8f478f04725a2cd8d4b, type: 2}
-  parameterName: SE
 --- !u!222 &955341999866781844
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2440,7 +2421,6 @@ GameObject:
   - component: {fileID: 4475977584254353313}
   - component: {fileID: 5947003018747351297}
   - component: {fileID: 3088153922021480137}
-  - component: {fileID: 6927495222474499146}
   m_Layer: 5
   m_Name: VOICESlider
   m_TagString: Untagged
@@ -2662,7 +2642,6 @@ GameObject:
   - component: {fileID: 6348319495197655920}
   - component: {fileID: 8121619302464280024}
   - component: {fileID: 8226756080665208258}
-  - component: {fileID: 9193679329636871545}
   m_Layer: 5
   m_Name: BGMSlider
   m_TagString: Untagged
@@ -2764,10 +2743,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 1772951605371646638}
   m_HandleRect: {fileID: 4798292615600508058}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1000
+  m_MinValue: -30
+  m_MaxValue: 0
   m_WholeNumbers: 0
-  m_Value: 1000
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -2862,7 +2841,7 @@ MonoBehaviour:
   _ScreenToDelete: {fileID: 2601385098916906510}
   _toggleButton: {fileID: 9027581484471855617}
   _useEscapeKey: 0
-  _useEnterKey: 1
+  _useEnterKey: 0
   firstSelectedButton: {fileID: 1449542077}
 --- !u!224 &3076864804339483543
 RectTransform:
@@ -2931,10 +2910,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 4361241718511135399}
   m_HandleRect: {fileID: 640964436160600062}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1000
+  m_MinValue: -30
+  m_MaxValue: 0
   m_WholeNumbers: 0
-  m_Value: 394
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -3704,7 +3683,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4940e737b91c6424d913effdd80dd8c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!114 &4894422140324772191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3982,7 +3960,6 @@ GameObject:
   - component: {fileID: 3076864804339483543}
   - component: {fileID: 6905255689445259293}
   - component: {fileID: 2811753111104842279}
-  - component: {fileID: 821349030347782611}
   m_Layer: 5
   m_Name: SESlider
   m_TagString: Untagged
@@ -4316,22 +4293,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverColor: {r: 0.8396226, g: 0, b: 0.13165265, a: 1}
---- !u!114 &6927495222474499146
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1922622158209037717}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8666f9ebe2f430c478ff4bba4ed32f15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slider: {fileID: 3088153922021480137}
-  hoverColor: {r: 1, g: 0.0785353, b: 0.015686274, a: 1}
-  audioMixer: {fileID: 24100000, guid: cc8f028d7199b8f478f04725a2cd8d4b, type: 2}
-  parameterName: VOICE
 --- !u!114 &6982927955558504363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4508,10 +4469,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 5357882133110824060}
   m_HandleRect: {fileID: 1478324230671417583}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1000
+  m_MinValue: -30
+  m_MaxValue: 0
   m_WholeNumbers: 0
-  m_Value: 1000
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -4610,22 +4571,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &9193679329636871545
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2586642222917736237}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8666f9ebe2f430c478ff4bba4ed32f15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slider: {fileID: 8226756080665208258}
-  hoverColor: {r: 1, g: 0.0785353, b: 0.015686274, a: 1}
-  audioMixer: {fileID: 24100000, guid: cc8f028d7199b8f478f04725a2cd8d4b, type: 2}
-  parameterName: BGM
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
