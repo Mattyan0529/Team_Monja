@@ -46,11 +46,11 @@ public class CharacterDeadDecision_MT : MonoBehaviour
         if (IsDeadDecision())
         {
             //プレイヤーなら死んだときにスローモーションにする
-            if(CompareTag("Player") && _coroutineSwitch)
+            if (CompareTag("Player") && _coroutineSwitch)
             {
-                
-                    StartCoroutine(_gameEndCamera.GameOverCoroutine());
-                    _coroutineSwitch = false;
+
+                StartCoroutine(_gameEndCamera.GameOverCoroutine());
+                _coroutineSwitch = false;
             }
             if (_isAlive)
             {
@@ -90,19 +90,19 @@ public class CharacterDeadDecision_MT : MonoBehaviour
         _enemyMove.enabled = false;
         _monsterSkill.enabled = false;
         _playerSkill.enabled = false;
-        if(_normalAttack != null)
+        if (_normalAttack != null)
         {
             _normalAttack.enabled = false;
         }
-        if(_playerGuard != null)
+        if (_playerGuard != null)
         {
             _playerGuard.enabled = false;
         }
 
         _characterAnim.NowAnim = "Die";
 
-        _isAlive = false; 
+        _isAlive = false;
     }
 
-   
+
 }

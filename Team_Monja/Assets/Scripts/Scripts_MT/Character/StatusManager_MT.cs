@@ -43,12 +43,12 @@ public class StatusManager_MT : MonoBehaviour
 
     //canvas
     [SerializeField] private GameObject canvasObjPlayer;
-    [SerializeField] private GameObject canvasObjBoss   ;
+    [SerializeField] private GameObject canvasObjBoss;
 
     // ステータスのプロパティ
     public int MaxHP { get { return _maxHP; } private set { _maxHP = value; } }
     public int HP { get { return _hp; } set { _hp = value; } }
-    public int Strength { get { return _str; }  set { _str = value; } }
+    public int Strength { get { return _str; } set { _str = value; } }
     public int Defense { get { return _def; } set { _def = value; } }
     public int PlusHP { get { return _plusStatHP; } set { _plusStatHP = value; } }
     public int PlusStrength { get { return _plusStatStrength; } set { _plusStatStrength = value; } }
@@ -70,15 +70,16 @@ public class StatusManager_MT : MonoBehaviour
         //canvasBossから取得
         _bossStatusHP = canvasObjBoss.GetComponentInChildren<BossStatusHP_MT>();
         _moveSliderBoss = canvasObjBoss.GetComponentInChildren<MoveSlider_MT>();
-        //MainCameraから取得
+        //CameraPosから取得
         _cameraManager = Camera.main.GetComponentInParent<CameraManager_MT>();
+        Debug.Log(_cameraManager);
 
         // プレイヤー以外だったら倍率を適用（別のところで設定するため
         if (!CompareTag("Player"))
         {
             ApplyMultipliers();
         }
-    
+
 
         // 現在のHPを最大HPに設定
         HP = MaxHP;
@@ -91,7 +92,7 @@ public class StatusManager_MT : MonoBehaviour
             _moveSliderPlayer.SetMaxHP(MaxHP);
             _moveSliderPlayer.SetCurrentHP(HP);
         }
-        if(CompareTag("Boss"))
+        if (CompareTag("Boss"))
         {
             _moveSliderBoss.SetMaxHP(MaxHP);
             _moveSliderBoss.SetCurrentHP(HP);
@@ -99,7 +100,6 @@ public class StatusManager_MT : MonoBehaviour
         //ダメージと回復の画面効果の色を透明に
         _damageImage.color = Color.clear;
 
-        
     }
 
     private void Update()
@@ -120,7 +120,7 @@ public class StatusManager_MT : MonoBehaviour
             }
 
         }
-        if(CompareTag("Boss"))
+        if (CompareTag("Boss"))
         {
             //画面に表示するボスHP
             _bossStatusHP.ChangeText(HP, MaxHP);
@@ -197,15 +197,12 @@ public class StatusManager_MT : MonoBehaviour
     }
 
     /// <summary>
-    /// ダメージを受けたとき
+    /// ダメージを受けたときに画面を赤くする
     /// </summary>
     private void ChangeDamageImage()
     {
-        //画面を赤く
         _damageImage.color = new Color(0.7f, 0, 0, 0.7f);
-        //カメラを揺らす
         StartCoroutine(_cameraManager.CameraShake(0.3f, 0.5f));
-
     }
 
 

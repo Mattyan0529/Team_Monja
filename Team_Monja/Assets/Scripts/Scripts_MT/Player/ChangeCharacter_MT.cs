@@ -57,7 +57,7 @@ public class ChangeCharacter_MT : MonoBehaviour
                 CharacterAnim_MT closestObjectAnim = closestObject.GetComponent<CharacterAnim_MT>();
                 if (closestObjectAnim != null)
                 {
-                    closestObjectAnim.NowAnim = "NewCharacter";
+                    closestObjectAnim.NowAnim = "Revive";
                 }
                 else
                 {
