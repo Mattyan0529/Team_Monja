@@ -7,9 +7,11 @@ public class SceneSwitcher_SM : MonoBehaviour
     [SerializeField] private string sceneName; // 遷移するシーンの名前
     [SerializeField] private bool useLeghtMouse; // エンターキーでシーンを遷移するかどうか
     [SerializeField] private bool useBackspaceKey; // バックスペースキーでシーンを遷移するかどうか
-    [SerializeField] private bool useEscapeKey; // エスケープキーでオプション画面を表示するかどうか
+    [SerializeField] private bool isObjectActive; // 指定したオブジェクトがアクティブかどうか
+    [SerializeField] private GameObject _checkObject;//アクティブかどうかをチェックするオブジェクトがどれか
 
-    private bool GetAxisZero = false;//SubmitのGetAxisが0になったかどうか
+    private bool getAxisSubmitZero = false;//SubmitのGetAxisが0になったかどうか
+    private bool getAxisCancelZero = false;//CancelのGetAxisが0になったかどうか
 
     void Start()
     {
@@ -18,6 +20,7 @@ public class SceneSwitcher_SM : MonoBehaviour
 
     void Update()
     {
+        CheckObjectActive();
         CheckKeyboardInput();
     }
 
@@ -31,23 +34,38 @@ public class SceneSwitcher_SM : MonoBehaviour
         }
     }
 
+    //オブジェクトがアクティブかどうかを判定するメソッド
+    private void CheckObjectActive()
+    {
+        if (_checkObject == null || _checkObject.activeSelf == true)
+        {
+            isObjectActive = true;
+        }
+        else
+        {
+            isObjectActive = false;
+        }
+    }
+
     // キーボード入力をチェックするメソッド
     private void CheckKeyboardInput()
     {
-        if (Input.GetAxis("Submit") == 0)
+        if (Input.GetAxis("Submit") == 0 && isObjectActive)
         {
-            GetAxisZero = true;
-            print(GetAxisZero);
+            getAxisSubmitZero = true;
         }
 
+        if (Input.GetAxis("Cancel") == 0 && isObjectActive)
+        {
+            getAxisCancelZero = true;
+        }
 
-
-        if (useLeghtMouse && (Input.GetMouseButtonDown(0) || Input.GetAxis("Submit") > 0 && GetAxisZero))
+        if (useLeghtMouse && (Input.GetMouseButtonDown(0) || Input.GetAxis("Submit") > 0 && getAxisSubmitZero))
         {
             LoadScene();
         }
 
-        if (useBackspaceKey && (Input.GetKeyDown(KeyCode.Backspace) || Input.GetAxis("Cancel") > 0 && GetAxisZero))
+        if (useBackspaceKey && (Input.GetKeyDown(KeyCode.Backspace) || Input.GetAxis("Cancel") > 0 && getAxisCancelZero))
         {
             LoadScene();
         }
