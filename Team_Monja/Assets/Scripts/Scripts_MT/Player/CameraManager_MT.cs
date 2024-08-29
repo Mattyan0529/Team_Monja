@@ -15,13 +15,13 @@ public class CameraManager_MT : MonoBehaviour
 
     private void Awake()
     {
-        FindPlayer();
+        FindPlayer(GameObject.FindWithTag("Player"));
     }
 
     void Start()
     {
         playerCamera = Camera.main.GetComponent<Camera>();
-        playerCollider = playerObj.GetComponent<CapsuleCollider>();
+    
 
         // カーソルをロックして画面中央に固定
         Cursor.lockState = CursorLockMode.Locked;
@@ -50,9 +50,11 @@ public class CameraManager_MT : MonoBehaviour
     /// <summary>
     /// プレイヤーを取得
     /// </summary>
-    public void FindPlayer()
+    public void FindPlayer(GameObject player)
     {
-        playerObj = GameObject.FindWithTag("Player");
+        playerObj = player;
+
+        playerCollider = playerObj.GetComponent<CapsuleCollider>();
         if (playerObj != null)
         {
             playerTransform = playerObj.transform;

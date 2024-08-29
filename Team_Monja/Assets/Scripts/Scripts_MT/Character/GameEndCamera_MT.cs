@@ -25,7 +25,6 @@ public class GameEndCamera_MT : MonoBehaviour
 
     private void Start()
     {
-        SetPlayer();
         _cameraManager = GameObject.FindWithTag("CameraPos").GetComponent<CameraManager_MT>();
         //ボスが完成したら下の行のコメント消す
         _statusManagerBoss = GameObject.FindWithTag("Boss").GetComponent<StatusManager_MT>();
@@ -48,9 +47,9 @@ public class GameEndCamera_MT : MonoBehaviour
         Debug.Log("resetgameover" + this.gameObject);
     }
 
-    public void SetPlayer()
+    public void SetPlayer(GameObject player)
     {
-        _statusManagerPlayer = GameObject.FindWithTag("Player").GetComponent<StatusManager_MT>();
+        _statusManagerPlayer = player.GetComponent<StatusManager_MT>();
     }
 
     public IEnumerator GameOverCoroutine()

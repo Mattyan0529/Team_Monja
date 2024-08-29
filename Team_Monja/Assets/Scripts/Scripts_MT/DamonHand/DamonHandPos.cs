@@ -16,9 +16,9 @@ public class DamonHandPos : MonoBehaviour
         PositionCalculation();
     }
 
-    public void SetPlayer()
+    public void SetPlayer(GameObject player)
     {
-        _player = GameObject.FindWithTag("Player");
+        _player = player;
 
         _playerCollider = _player.GetComponent<CapsuleCollider>();
     }

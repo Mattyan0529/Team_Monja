@@ -20,8 +20,8 @@ public class PlayerMinimapIconSet : MonoBehaviour
     }
 
     // プレイヤーオブジェクトを取得するメソッド
-    public void SetPlayer()
+    public void SetPlayer(GameObject player)
     {
-        _player = GameObject.FindWithTag("Player");
+        _player = player;
     }
 }

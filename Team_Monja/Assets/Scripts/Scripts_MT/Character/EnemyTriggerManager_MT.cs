@@ -8,17 +8,13 @@ public class EnemyTriggerManager_MT : MonoBehaviour
 
     private GameObject _playerObj;
 
-    private void Start()
-    {
-        SetToPlayer();
-    }
 
     /// <summary>
     /// プレイヤーを探して自身を子オブジェクトにする
     /// </summary>
-    public void SetToPlayer()
+    public void SetToPlayer(GameObject player)
     {
-        _playerObj = GameObject.FindWithTag("Player");
+        _playerObj = player;
         transform.SetParent(_playerObj.transform);
         this.transform.localPosition = Vector3.zero;
     }

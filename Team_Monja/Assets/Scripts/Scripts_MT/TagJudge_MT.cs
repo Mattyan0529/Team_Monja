@@ -13,12 +13,17 @@ public class TagJudge_MT : MonoBehaviour
     [SerializeField]
     private GameObject _MiniMapIcon;
     [SerializeField]
-    private GameObject _damonHand;
+    private GameObject _damonHand; 
+    [SerializeField]
+    private GameObject _atkBar;  
+    [SerializeField]
+    private GameObject _defBar;
 
     private GameObject _playerObj;
 
     private string _currentTag; //１フレーム前のタグ
 
+   
     void Start()
     {
         SetPlayer();
@@ -60,9 +65,9 @@ public class TagJudge_MT : MonoBehaviour
         _playerManager.GetComponent<EatEnemy_MT>().SetPlayer();
         _playerManager.GetComponent<ChangeCharacter_MT>().SetPlayer();
 
-        _cameraObj.GetComponent<GameEndCamera_MT>().SetPlayer();
-        _cameraObj.GetComponent<CameraManager_MT>().FindPlayer();
-        _closeObjectArea.GetComponent<EnemyTriggerManager_MT>().SetToPlayer();
+        _cameraObj.GetComponent<GameEndCamera_MT>().SetPlayer(_playerObj);
+        _cameraObj.GetComponent<CameraManager_MT>().FindPlayer(_playerObj);
+        _closeObjectArea.GetComponent<EnemyTriggerManager_MT>().SetToPlayer(_playerObj);
 
 
         _playerObj.GetComponent<StatusManager_MT>().ApplyMultipliers();
@@ -71,9 +76,12 @@ public class TagJudge_MT : MonoBehaviour
         _playerObj.GetComponentInChildren<EnemyHP_MT>().SetPlayerArea();
 
 
-        _MiniMapIcon.GetComponent<PlayerMinimapIconSet>().SetPlayer();
+        _MiniMapIcon.GetComponent<PlayerMinimapIconSet>().SetPlayer(_playerObj);
 
-        _damonHand.GetComponent<DamonHandPos>().SetPlayer();
+        _damonHand.GetComponent<DamonHandPos>().SetPlayer(_playerObj);
+
+        _atkBar.GetComponent<StatusBar_MT>().SetPlayer(_playerObj);
+        _defBar.GetComponent<StatusBar_MT>().SetPlayer(_playerObj);
     }
 
 }
