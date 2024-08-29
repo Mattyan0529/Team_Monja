@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: BallSnow05
-  m_Shader: {fileID: 4800000, guid: e52bb9af1fde8f84e978e6e27e785bf8, type: 3}
+  m_Shader: {fileID: 4800000, guid: 06aa19b87b8aa174485b5a0ed989e1cb, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
@@ -28,6 +28,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 2800000, guid: 2dce8b3063cfa3741bd160b1d53e6ea1, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -192,6 +196,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 6a6d219720d9dc748a8320a0eead2672, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SnowBumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SnowHeight:
         m_Texture: {fileID: 2800000, guid: 829cc19f2c6d25e4fa66489a04146c13, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -202,6 +210,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
         m_Texture: {fileID: 2800000, guid: e1a7a54272ead804e8aaac2691122101, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SpecGlossMapNew:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Splat0:
@@ -333,6 +345,7 @@ Material:
     - _TransitionPower: 0.75
     - _TransitionScale: 0.65
     - _TransparencyValue: 1
+    - _USEDECAL: 0
     - _USEFOG: 1
     - _USEINTER: 0
     - _USELOW: 0
@@ -349,6 +362,7 @@ Material:
     - _WireframeThickness: 1
     - _ZWrite: 1
     m_Colors:
+    - _BaseColor: {r: 0, g: 0.65999997, b: 0.73, a: 1}
     - _BotColor: {r: 0.744129, g: 0.88841856, b: 0.929, a: 1}
     - _Color: {r: 0.851, g: 0.9461063, b: 1, a: 1}
     - _CracksStrength: {r: 0, g: 0.06, b: -0.1, a: -0.11}
