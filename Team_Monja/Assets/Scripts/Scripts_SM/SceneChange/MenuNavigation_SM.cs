@@ -9,8 +9,8 @@ public class MenuNavigation_SM : MonoBehaviour
     private SoundEffectManagement_KH _soundEffectManagement = default;
     private AudioSource[] _audioSource = default;
 
-    private EventSystem eventSystem;   // EventSystemを格納するための変数
-    private GameObject selectedObject; // 現在選択されているオブジェクトを格納するための変数
+    private EventSystem _eventSystem;   // EventSystemを格納するための変数
+    private GameObject _selectedObject; // 現在選択されているオブジェクトを格納するための変数
 
     void Start()
     {
@@ -18,11 +18,11 @@ public class MenuNavigation_SM : MonoBehaviour
         _soundEffectManagement = _audioObj.GetComponent<SoundEffectManagement_KH>();
         _audioSource = _audioObj.GetComponents<AudioSource>();
 
-        eventSystem = EventSystem.current; // 現在のEventSystemを取得
-        selectedObject = eventSystem.firstSelectedGameObject; // 最初に選択されるゲームオブジェクトを取得
+        _eventSystem = EventSystem.current; // 現在のEventSystemを取得
+        _selectedObject = _eventSystem.firstSelectedGameObject; // 最初に選択されるゲームオブジェクトを取得
 
         // 最初のボタンを明示的に選択状態にする
-        eventSystem.SetSelectedGameObject(selectedObject);
+        _eventSystem.SetSelectedGameObject(_selectedObject);
     }
 
     void Update()
@@ -33,15 +33,21 @@ public class MenuNavigation_SM : MonoBehaviour
             Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S))
         {
             // 現在選択されているオブジェクトがnullの場合
-            if (eventSystem.currentSelectedGameObject == null)
+            if (_eventSystem.currentSelectedGameObject == null)
             {
                 // 最初に選択されるオブジェクトを再度選択
-                eventSystem.SetSelectedGameObject(selectedObject);
+                _eventSystem.SetSelectedGameObject(_selectedObject);
             }
             else
             {
                 // 現在選択されているオブジェクトを更新
-                selectedObject = eventSystem.currentSelectedGameObject;
+                _selectedObject = _eventSystem.currentSelectedGameObject;
+            }
+
+            // マウスオーバー中のオブジェクトが選択されている場合、それをクリア
+            if (HoverSelectable_SM._currentHoveredObject == _selectedObject)
+            {
+                HoverSelectable_SM._currentHoveredObject = null;
             }
 
             // 1つ目のAudioSourceからSEを鳴らす（AudioSourceは別にどっちでもいい）：北
