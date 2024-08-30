@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1838693, g: 0.2287214, b: 0.3013907, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -94,7 +94,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: e149d0b854cbdb54ab5e0dbbf3498e9b, type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: f70325a2dc277fe4e999b9c4a4d3e6e7, type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -3325,7 +3325,8 @@ MonoBehaviour:
   sceneName: TitleScreen
   useLeghtMouse: 0
   useBackspaceKey: 1
-  useEscapeKey: 0
+  isObjectActive: 0
+  _checkObject: {fileID: 0}
 --- !u!4 &125453964
 Transform:
   m_ObjectHideFlags: 0
@@ -32546,6 +32547,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigCliff
       objectReference: {fileID: 0}
+    - target: {fileID: 1000013052188256, guid: 9fa980fd96e005245ab5bfc6ac684e4e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4000013186546532, guid: 9fa980fd96e005245ab5bfc6ac684e4e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -48
@@ -37095,7 +37100,8 @@ MonoBehaviour:
   sceneName: StageSelect
   useLeghtMouse: 0
   useBackspaceKey: 0
-  useEscapeKey: 0
+  isObjectActive: 0
+  _checkObject: {fileID: 0}
 --- !u!114 &1449542081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37482,7 +37488,8 @@ MonoBehaviour:
   sceneName: 
   useLeghtMouse: 0
   useBackspaceKey: 0
-  useEscapeKey: 0
+  isObjectActive: 0
+  _checkObject: {fileID: 0}
 --- !u!114 &1459805681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46900,6 +46907,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigCliffWithPlants
       objectReference: {fileID: 0}
+    - target: {fileID: 1000012115428590, guid: 3a01601a30abcca4ca0392485d23c0cf, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4000013177119412, guid: 3a01601a30abcca4ca0392485d23c0cf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 12
@@ -51300,6 +51311,10 @@ PrefabInstance:
     - target: {fileID: 1000010876330294, guid: 55ce8e060ebbb7742ba54dcc89842d76, type: 3}
       propertyPath: m_Name
       value: SnowyHillFlat
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010876330294, guid: 55ce8e060ebbb7742ba54dcc89842d76, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4000011508918566, guid: 55ce8e060ebbb7742ba54dcc89842d76, type: 3}
       propertyPath: m_LocalPosition.x
