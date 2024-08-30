@@ -89,6 +89,7 @@ public class SceneSwitcher_SM : MonoBehaviour
     private void LoadScene()
     {
         SceneManager.LoadScene(sceneName);
+        Time.timeScale = 1;
     }
 
     // ゲームを終了するメソッド
