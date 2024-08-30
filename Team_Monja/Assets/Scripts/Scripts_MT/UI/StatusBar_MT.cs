@@ -42,7 +42,9 @@ public class StatusBar_MT : MonoBehaviour
     #endregion
 
     [SerializeField]
-    private GameObject _bar;
+    private RectTransform _bar;
+    [SerializeField]
+    private RectTransform _value;
 
     private StatusManager_MT _statusManager;
     private string _useStatus;
@@ -90,13 +92,13 @@ public class StatusBar_MT : MonoBehaviour
         switch (SelectedElement)
         {
             case "ATK":
-                newLength = _statusManager.Strength * 0.1f; // ATK値に応じたバーの長さ
+                newLength = _statusManager.Strength * 75; // ATK値に応じたバーの長さ
                 break;
             case "DEF":
-                newLength = _statusManager.Defense * 0.1f; // DEF値に応じたバーの長さ
+                newLength = _statusManager.Defense * 75; // DEF値に応じたバーの長さ
                 break;
         }
-
+        Debug.Log(newLength);
         // バーの長さを調整
         AdjustBarLength(newLength);
     }
@@ -107,21 +109,46 @@ public class StatusBar_MT : MonoBehaviour
     /// <param name="newLength">新しい長さ</param>
     public void AdjustBarLength(float newLength)
     {
-        // 現在のスケールを取得
-        Vector3 barScale = _bar.transform.localScale;
+        // バーのアンカーとピボットを左端に設定（これにより左端が固定される）
+        _bar.pivot = new Vector2(0, _bar.pivot.y);
+        _bar.anchorMin = new Vector2(0, _bar.anchorMin.y);
+        _bar.anchorMax = new Vector2(0, _bar.anchorMax.y);
 
-        // スケールのXを変更
-        float previousScaleX = barScale.x;
-        barScale.x = newLength;
-        _bar.transform.localScale = barScale;
+        // 現在のバーのサイズを取得
+        Vector2 barSize = _bar.rect.size;
 
-        // スケールを変更した分だけ位置を補正（左端を固定する）
-        float adjustment = (newLength - previousScaleX) / 2;
-        _bar.transform.position -= _bar.transform.right * adjustment;
+        // 新しいサイズを設定
+        _bar.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, newLength);
 
-        // 左端を初期の位置に戻す
-        _bar.transform.position = _initialLeftEdge + _bar.transform.right * (newLength / 2);
+        // バーの右端に子オブジェクトを配置するための位置調整
+        AdjustChildPositions();
     }
+
+    /// <summary>
+    /// ステータスの値も動かす
+    /// </summary>
+    private void AdjustChildPositions()
+    {
+        // バーの幅と高さを取得
+        float barWidth = _bar.rect.width;
+        float barHeight = _bar.rect.height;
+
+        // オフセットを適用する（任意の値に変更可能）
+        float offset = -1250f;  // 右端からのオフセット距離
+
+        // _value のサイズをバーと一致させる
+        _value.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, barHeight);
+
+        // _value の新しい位置を計算（_value のアンカーが左側に設定されている前提）
+        Vector2 newPosition = new Vector2(barWidth + offset, 0);
+
+        // 新しい位置を設定
+        _value.anchoredPosition = newPosition;
+    }
+
+
+
+
 
     // プレイヤーのステータスを取得
     public void SetPlayer(GameObject player)
