@@ -49625,6 +49625,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bar: {fileID: 1240850608}
+  _value: {fileID: 0}
 --- !u!1001 &1246202032
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -71094,6 +71095,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bar: {fileID: 1008648166}
+  _value: {fileID: 0}
 --- !u!1001 &1812035013
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -84809,6 +84811,10 @@ PrefabInstance:
     - target: {fileID: 4052491756719216520, guid: 8c046e64a3ac98e46aa677d308420fcf, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 273
+      objectReference: {fileID: 0}
+    - target: {fileID: 5075979718629148222, guid: 8c046e64a3ac98e46aa677d308420fcf, type: 3}
+      propertyPath: _skillCoolTime
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5548240706975917194, guid: 8c046e64a3ac98e46aa677d308420fcf, type: 3}
       propertyPath: m_IsActive

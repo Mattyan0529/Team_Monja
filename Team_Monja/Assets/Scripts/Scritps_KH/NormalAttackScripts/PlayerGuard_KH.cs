@@ -11,7 +11,7 @@ public class PlayerGuard_KH : MonoBehaviour
     private float _deleteTime = 0.5f;
     private float _elapsedTime = 0f;
 
-    private float _coolTime = 0.5f;
+    private float _coolTime = 1f;
     private float _coolTimeElapsedTime = 0f;
 
     private CoolTimeUI _coolTimeUI = default;
