@@ -30,7 +30,7 @@ public class ChangeCharacter_MT : MonoBehaviour
 
     public void ChangeTagClosestObject(List<Collider> objectsInTrigger, Transform referencePoint)
     {
-        changeIcon.IconChange(_IconNum);
+        //changeIcon.IconChange(_IconNum);
 
         if (closestEnemyFinder == null)
         {
