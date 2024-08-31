@@ -17,7 +17,7 @@ public class SuccubusSkillAttack_KH : MonoBehaviour, IDamagable_KH
     private float _skillResetTime = 5f;
 
     // 相手のステータスを何倍にするか（１未満に設定してね）
-    private float _statDecreaseRate = 0.7f;
+    private const float _statDecreaseRate = 0.7f;
 
     private GameObject _attackArea;
 
@@ -86,6 +86,8 @@ public class SuccubusSkillAttack_KH : MonoBehaviour, IDamagable_KH
 
     public void HitDecision(GameObject hitObj)
     {
+        Debug.Log("かけた：" + hitObj);
+
         // 相手と自分のStatusManagerが両方必要
         StatusManager_MT targetStatusManager = hitObj.gameObject.GetComponent<StatusManager_MT>();
         StatusManager_MT myStatusManager = GetComponent<StatusManager_MT>();
@@ -133,9 +135,9 @@ public class SuccubusSkillAttack_KH : MonoBehaviour, IDamagable_KH
             return;
         }
 
-        List<StatusManager_MT> list = new List<StatusManager_MT>();
         if (_statEachSkillTimes.Count == 0) return;
-        list = _statEachSkillTimes[0];
+        List<StatusManager_MT> list = _statEachSkillTimes[0];
+        Debug.Log(list.Count);
 
         for (int i = 0; i < list.Count; i++)
         {
@@ -144,6 +146,7 @@ public class SuccubusSkillAttack_KH : MonoBehaviour, IDamagable_KH
 
             float defence = list[i].Defense / _statDecreaseRate;
             list[i].Defense = (int)defence;
+            Debug.Log("といた：" + i);
         }
         _statEachSkillTimes.Remove(_statEachSkillTimes[0]);
     }
@@ -162,7 +165,9 @@ public class SuccubusSkillAttack_KH : MonoBehaviour, IDamagable_KH
         if (_elapsedTime > _deleteTime)
         {
             // リストへの追加がここで締め切りなので、リストをリストへ追加する
-            _statEachSkillTimes.Add(_reducedStatus);
+            List<StatusManager_MT> list = _reducedStatus;
+            _statEachSkillTimes.Add(list);
+            _reducedStatus.Clear();
 
             _characterAnim.NowAnim = "Idle";
             _attackArea.SetActive(false);

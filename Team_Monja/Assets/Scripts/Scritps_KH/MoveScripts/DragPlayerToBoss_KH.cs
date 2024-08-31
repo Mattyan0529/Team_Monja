@@ -65,6 +65,13 @@ public class DragPlayerToBoss_KH : MonoBehaviour
     public void PlayerToMainWayPoint()
     {
         SearchNearMainWayPoint();
+
+        if(_nextWayPoint == default)
+        {
+            return;
+        }
+
+        _isSearch = false;
         _isFirst = false;
     }
 
@@ -166,8 +173,6 @@ public class DragPlayerToBoss_KH : MonoBehaviour
                     (_nextWayPoint.transform.position, _player.transform.position);
             }
         }
-
-        _isSearch = false;
     }
 
     /// <summary>
