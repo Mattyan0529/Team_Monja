@@ -9,6 +9,10 @@ public class BossSkillAttack_KH : MonoBehaviour, IDamagable_KH
     [SerializeField]
     private GameObject[] _attackRangeImage = default;
 
+    //武田
+    [SerializeField]
+    private FlameDelay_TH _FlameDelay_TH; // FlameDelay_THの参照を追加しました。
+
     //松本
     private CharacterAnim_MT _characterAnim = default;
 
@@ -172,6 +176,9 @@ public class BossSkillAttack_KH : MonoBehaviour, IDamagable_KH
         _soundEffectManagement.PlayLongDistanceAttackSound(_audioSource);
 
         _isShot = true;
+
+        //コルーチンを開始して指定時間後に処理を実行
+        _FlameDelay_TH.StartFireSphereCoroutine(_player.transform.position, nearPlayerPos, farPlayerPos, _audioSource, _soundEffectManagement, _changeEnemyMoveType, _characterAnim, _writeHitPoint, _createDamageImage);
     }
 
     private void HitAttack()
