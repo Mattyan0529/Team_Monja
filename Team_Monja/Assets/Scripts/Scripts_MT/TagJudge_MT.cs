@@ -18,6 +18,9 @@ public class TagJudge_MT : MonoBehaviour
     private GameObject _atkBar;  
     [SerializeField]
     private GameObject _defBar;
+    [SerializeField]
+    private ChangeEnemyMoveType_KH[] _characters;
+
 
     private GameObject _playerObj;
 
@@ -82,6 +85,12 @@ public class TagJudge_MT : MonoBehaviour
 
         _atkBar.GetComponent<StatusBar_MT>().SetPlayer(_playerObj);
         _defBar.GetComponent<StatusBar_MT>().SetPlayer(_playerObj);
+
+
+        foreach (ChangeEnemyMoveType_KH player in _characters)
+        {
+            player.SetPlayer(_playerObj);
+        }
     }
 
 }

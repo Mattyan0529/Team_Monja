@@ -17,6 +17,8 @@ public class ChangeEnemyMoveType_KH : MonoBehaviour
 
     private RandomWayPointBetweenMove_KH _randomMove = default;
     private FollowPlayer_KH _followPlayer = default;
+    private StatusManager_MT _playerStatusManager = default;
+    private StatusManager_MT _myStatusManager = default;
 
     private Transform _targetPoint = default;
 
@@ -28,6 +30,9 @@ public class ChangeEnemyMoveType_KH : MonoBehaviour
     private float _normalToFastSwitchDistance = 5f;
 
     private bool _isMove = true;
+
+    private GameObject _player = default;
+    private float _Speed = default;
 
     #region Property
 
@@ -114,12 +119,24 @@ public class ChangeEnemyMoveType_KH : MonoBehaviour
     {
         _randomMove = GetComponent<RandomWayPointBetweenMove_KH>();
         _followPlayer = GetComponent<FollowPlayer_KH>();
+        _myStatusManager = GetComponent<StatusManager_MT>();
     }
 
     private void Update()
     {
         CalculateSpeed();
     }
+
+    /// <summary>
+    /// プレイヤーを設定
+    /// </summary>
+    /// <param name="player"></param>
+    public void SetPlayer(GameObject player)
+    {
+        _player = player;
+        _playerStatusManager = _player.GetComponent<StatusManager_MT>();
+    }
+
 
     /// <summary>
     /// 今の状態に適した次のWayPointを探索する
@@ -134,16 +151,16 @@ public class ChangeEnemyMoveType_KH : MonoBehaviour
         {
             case EnemyMoveState.InRandomMove:
                 _isMove = true;
-                _nowSpeed = _randomMoveSpeed;
+                _nowSpeed = _randomMoveSpeed * _myStatusManager.SpeedMultiplier;
                 nextWayPoint = _randomMove.SearchTargetWayPoint(myWayPoint);
                 _targetPoint = nextWayPoint;
                 break;
 
             case EnemyMoveState.InFollow:
                 _isMove = true;
-                _nowSpeed = _maxSpeed;
+                _nowSpeed = _maxSpeed * _myStatusManager.SpeedMultiplier;
                 nextWayPoint = _followPlayer.SearchTargetWayPoint(myWayPoint);
-                _targetPoint = _followPlayer.Player;
+                _targetPoint = _player.transform;
                 break; 
 
             case EnemyMoveState.InAttack:
@@ -159,7 +176,7 @@ public class ChangeEnemyMoveType_KH : MonoBehaviour
     private void LookAtPlayer()
     {
         // 目的地の方向に向くように修正(回転はY軸のみ)
-        Vector3 directionVector = _followPlayer.Player.position - gameObject.transform.position;
+        Vector3 directionVector = _player.transform.position - gameObject.transform.position;
         Quaternion directionQuaternion = Quaternion.LookRotation(directionVector, Vector3.up);
         directionQuaternion = Quaternion.Slerp(transform.rotation, directionQuaternion, Time.deltaTime * NowRotationSpeed);
         gameObject.transform.rotation = Quaternion.Euler(0f, directionQuaternion.eulerAngles.y, 0f);
@@ -170,9 +187,9 @@ public class ChangeEnemyMoveType_KH : MonoBehaviour
     /// </summary>
     private void CalculateSpeed()
     {
-        if(_targetPoint == null)
+        if(_targetPoint == null && _player != null)
         {
-            _targetPoint = _followPlayer.Player;
+            _targetPoint = _player.transform;
         }
 
         Vector3 distance = _targetPoint.position - gameObject.transform.position;

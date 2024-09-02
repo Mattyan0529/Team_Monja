@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerMove_MT : MonoBehaviour
 {
-    private float moveSpeed = 10f;  // 移動速度を後でStatusManagerから取得する
+    private float baseMoveSpeed = 10f;  // 基本の移動速度
     private float maxSpeed = 20f;  // 最大速度
     private float slopeForce = 10f; // 坂を登る力
     private float groundCheckDistance = 0.1f; // 地面チェック距離
@@ -10,8 +10,10 @@ public class PlayerMove_MT : MonoBehaviour
     private GameObject _playerObj;
     private Rigidbody rb;
     private CharacterAnim_MT _characterAnim;
-    private StatusManager_MT _statusManager;
     private bool isGrounded;
+
+    // ステータスマネージャー
+    private StatusManager_MT _statusManager;
 
     void Start()
     {
@@ -32,8 +34,7 @@ public class PlayerMove_MT : MonoBehaviour
 
         rb = _playerObj.GetComponent<Rigidbody>();
         _characterAnim = _playerObj.GetComponent<CharacterAnim_MT>();
-        _statusManager = _playerObj.GetComponent<StatusManager_MT>();  // StatusManagerを取得する
-        moveSpeed = _statusManager.Speed;  // Speedプロパティから移動速度を設定
+        _statusManager = _playerObj.GetComponent<StatusManager_MT>(); // StatusManager_MTを取得
     }
 
     void MovePlayer()
@@ -55,8 +56,11 @@ public class PlayerMove_MT : MonoBehaviour
         Vector3 cameraForward = Camera.main.transform.forward;
         cameraForward.y = 0f; // y軸の影響を無視（水平方向のみを考慮）
 
+        // SpeedMultiplierを適用して移動速度を調整
+        float adjustedMoveSpeed = baseMoveSpeed * _statusManager.SpeedMultiplier;
+
         // カメラの前方ベクトルを基準にした移動ベクトルを計算
-        Vector3 movement = (cameraForward * moveVertical + Camera.main.transform.right * moveHorizontal).normalized * moveSpeed * Time.deltaTime;
+        Vector3 movement = (cameraForward * moveVertical + Camera.main.transform.right * moveHorizontal).normalized * adjustedMoveSpeed * Time.deltaTime;
 
         // そのままワールド座標系で移動
         rb.MovePosition(rb.position + movement);

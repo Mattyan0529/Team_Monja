@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class StatusManager_MT : MonoBehaviour
 {
     //キャラクターのスピード
-    [SerializeField] private float _speed = 10.0f;//デフォルトでは１０
+    [SerializeField] private float _speedMultiplier = 1.0f;//デフォルトでは１
 
 
     // 基礎値
@@ -57,7 +57,7 @@ public class StatusManager_MT : MonoBehaviour
     public int PlusHP { get { return _plusStatHP; } set { _plusStatHP = value; } }
     public int PlusStrength { get { return _plusStatStrength; } set { _plusStatStrength = value; } }
     public int PlusDefense { get { return _plusStatDefense; } set { _plusStatDefense = value; } }
-    public float Speed { get { return _speed; }  }
+    public float SpeedMultiplier { get { return _speedMultiplier; }  }
 
     private void Awake()
     {
