@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class MonsterSkill_KH : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject _residentScript;
+ 
     [SerializeField]
     private GameObject _nearPlayerArea;
     [SerializeField]
@@ -24,7 +23,6 @@ public class MonsterSkill_KH : MonoBehaviour
     private float _nearPlayerAreaSize = 120f;
 
     private PlayerSkill_KH _playerSkill = default;
-    private PlayerManager_KH _playerManager = default;
     private EnemyMove_KH _enemyMove = default;
     private AttackAreaJudge_KH _attackAreaJudge = default;
     private SkillSpriteChange_KH _skillSpriteChange = default;
@@ -47,7 +45,6 @@ public class MonsterSkill_KH : MonoBehaviour
         _playerSkill = GetComponent<PlayerSkill_KH>();
         _enemyMove = GetComponent<EnemyMove_KH>();
         _attackAreaJudge = GetComponent<AttackAreaJudge_KH>();
-        _playerManager = _residentScript.GetComponent<PlayerManager_KH>();
         _changeEnemyMoveType = GetComponent<ChangeEnemyMoveType_KH>();
 
         if (GetComponent<NormalAttack_KH>())
@@ -86,7 +83,6 @@ public class MonsterSkill_KH : MonoBehaviour
     {
         if (gameObject.CompareTag("Player"))
         {
-            _playerManager.Player = gameObject;     // プレイヤー更新
             _nearPlayerWayPointManager.ClearNearPlayerWayPoint();
             _nearPlayerArea.transform.localScale = gameObject.transform.localScale * _nearPlayerAreaSize;
             _playerSkill.enabled = true;

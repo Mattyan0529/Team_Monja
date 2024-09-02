@@ -11,14 +11,13 @@ GameObject:
   - component: {fileID: 1571547116366633798}
   - component: {fileID: 5518378368880914849}
   - component: {fileID: 7094876668317712158}
-  - component: {fileID: 3532986339624147555}
   - component: {fileID: 3151356549173752883}
   - component: {fileID: 7803451163115485035}
   - component: {fileID: 6419586911959911152}
   - component: {fileID: 7098807175239276808}
   m_Layer: 0
   m_Name: ResidentScripts
-  m_TagString: Untagged
+  m_TagString: ResidentScripts
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -77,25 +76,13 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1c7acb388bea62e42955adc41a4dd8f6, type: 3}
   - {fileID: 8300000, guid: 2e16923f3a9f1e44e8e81ab967530bff, type: 3}
   - {fileID: 8300000, guid: ef9a125e6d00a324ca05859bdb50ccf0, type: 3}
-  - {fileID: 8300000, guid: d27fe47225f481646804930788d9e16b, type: 3}
+  - {fileID: 8300000, guid: 865e88b4b32e7c44298c5cffdb7a80af, type: 3}
   - {fileID: 8300000, guid: e90c51fac1222bf40a306c1206fb8eef, type: 3}
   - {fileID: 8300000, guid: 9192f2c9d075d37439939e37325cce4d, type: 3}
   - {fileID: 8300000, guid: 949d8cade816239459e9d3b4afa740eb, type: 3}
   - {fileID: 8300000, guid: c4fedd785f3fa454999198a7e409355c, type: 3}
-  - {fileID: 8300000, guid: 9cd651b8138a5034b886410453483605, type: 3}
+  - {fileID: 8300000, guid: 8184ce134a4c43f48bd67b45dc1f7415, type: 3}
   - {fileID: 8300000, guid: faaf3dce2dd68094886c1c65e9f0414a, type: 3}
---- !u!114 &3532986339624147555
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8728786893880298435}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32121b818c39f524482b8c25987d0554, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3151356549173752883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,6 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a2d8de0ef1ac0441a132171945f3aaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseCanvas: {fileID: 0}
 --- !u!82 &6419586911959911152
 AudioSource:
   m_ObjectHideFlags: 0
@@ -130,7 +118,7 @@ AudioSource:
   m_GameObject: {fileID: 8728786893880298435}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -5592616811770310153, guid: cc8f028d7199b8f478f04725a2cd8d4b, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 0.15

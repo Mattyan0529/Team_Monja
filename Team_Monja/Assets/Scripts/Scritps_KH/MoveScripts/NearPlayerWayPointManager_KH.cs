@@ -5,8 +5,7 @@ using UnityEngine;
 public class NearPlayerWayPointManager_KH : MonoBehaviour
 {
     private List<Transform> _nearPlayerWayPoints = new List<Transform>();
-    private GameObject _residentScript = default;
-    private PlayerManager_KH _playerManager = default;
+    private GameObject _player;
 
     /// <summary>
     /// プレイヤーに近いWayPointのリストを参照する
@@ -16,16 +15,19 @@ public class NearPlayerWayPointManager_KH : MonoBehaviour
         get { return _nearPlayerWayPoints; }
     }
 
-    private void Start()
-    {
-        _residentScript = GameObject.FindGameObjectWithTag("ResidentScripts");
-        _playerManager = _residentScript.GetComponent<PlayerManager_KH>();
-    }
-
     private void Update()
     {
-        gameObject.transform.position = _playerManager.Player.transform.position;
+        gameObject.transform.position = _player.transform.position;
     }
+
+    /// <summary>
+    /// プレイヤーを設定
+    /// </summary>
+    public void SetPlayer(GameObject player)
+    {
+        _player = player;
+    }
+
 
     /// <summary>
     /// プレイヤーに近いWayPointを追加する

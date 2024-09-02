@@ -9,6 +9,8 @@ public class MiniMapCameraMove_KH : MonoBehaviour
 
     private PlayerManager_KH _playerManager = default;
 
+    private GameObject _player;
+
     void Start()
     {
         _playerManager = _residentScript.GetComponent<PlayerManager_KH>();
@@ -19,14 +21,22 @@ public class MiniMapCameraMove_KH : MonoBehaviour
         CameraMove();
     }
 
+   /// <summary>
+   /// プレイヤーを設定
+   /// </summary>
+   /// <param name="player"></param>
+    public void SetPlayer(GameObject player)
+    {
+        _player = player;
+    }
+
     /// <summary>
     /// カメラがプレイヤーを追従
     /// </summary>
     private void CameraMove()
     {
-        GameObject player = _playerManager.Player;
 
         gameObject.transform.position = new Vector3
-            (player.transform.position.x, transform.position.y, player.transform.position.z);
+            (_player.transform.position.x, transform.position.y, _player.transform.position.z);
     }
 }

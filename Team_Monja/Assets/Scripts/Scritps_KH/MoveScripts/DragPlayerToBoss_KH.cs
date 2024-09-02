@@ -14,7 +14,6 @@ public class DragPlayerToBoss_KH : MonoBehaviour
 
     private SearchWayPointTwoDimensionalArray_KH _searchWayPointTwoDimensionalArray = default;
     private EnemyMove_KH _enemyMove;
-    private PlayerManager_KH _playerManager = default;
 
     private float _speed = 100f;
     private float _followStopDistance = 0.1f;
@@ -29,10 +28,6 @@ public class DragPlayerToBoss_KH : MonoBehaviour
 
     void Start()
     {
-        _player = GameObject.FindGameObjectWithTag("Player");
-
-        _playerManager = GameObject.FindGameObjectWithTag("ResidentScripts").GetComponent<PlayerManager_KH>();
-
         _nearPlayerArea = GameObject.FindGameObjectWithTag("NearPlayerArea");
         _searchWayPointTwoDimensionalArray =
             _nearPlayerArea.gameObject.GetComponent<SearchWayPointTwoDimensionalArray_KH>();
@@ -42,7 +37,6 @@ public class DragPlayerToBoss_KH : MonoBehaviour
     private void Update()
     {
         if (!_isdrag) return;
-        _player = _playerManager.Player;
 
         if (_isFirst)
         {
@@ -52,6 +46,15 @@ public class DragPlayerToBoss_KH : MonoBehaviour
         {
             DragPlayer();
         }
+    }
+
+    /// <summary>
+    /// ÉvÉåÉCÉÑÅ[Çê›íË
+    /// </summary>
+    /// <param name="player"></param>
+    public void SetPlayer(GameObject player)
+    {
+        _player = player;
     }
 
     private void IsDragTrue()

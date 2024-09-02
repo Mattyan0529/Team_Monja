@@ -19,6 +19,12 @@ public class TagJudge_MT : MonoBehaviour
     [SerializeField]
     private GameObject _defBar;
     [SerializeField]
+    private GameObject _nearPlayerArea;
+    [SerializeField]
+    private GameObject _miniMapCamera;  
+    [SerializeField]
+    private GameObject _compassCenter;
+    [SerializeField,Header("シーン内の全キャラクター")]
     private GameObject[] _characters;
 
 
@@ -86,10 +92,19 @@ public class TagJudge_MT : MonoBehaviour
         _atkBar.GetComponent<StatusBar_MT>().SetPlayer(_playerObj);
         _defBar.GetComponent<StatusBar_MT>().SetPlayer(_playerObj);
 
+        _nearPlayerArea.GetComponent<NearPlayerWayPointManager_KH>().SetPlayer(_playerObj);
 
+        _miniMapCamera.GetComponent<MiniMapCameraMove_KH>().SetPlayer(_playerObj);
+
+        _compassCenter.GetComponent<MoveCompass_KH>().SetPlayer(_playerObj);
+
+        //キャラクター全員に対して行う
         foreach (GameObject character in _characters)
         {
             character.GetComponent<ChangeEnemyMoveType_KH>().SetPlayer(_playerObj);
+            character.GetComponent<AttackAreaJudge_KH>().SetPlayer(_playerObj);
+            character.GetComponent<EnemyMove_KH>().SetPlayer(_playerObj);
+            character.GetComponent<DragPlayerToBoss_KH>().SetPlayer(_playerObj);
         }
     }
 

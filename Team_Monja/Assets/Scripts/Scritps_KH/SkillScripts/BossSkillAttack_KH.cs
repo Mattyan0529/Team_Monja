@@ -27,7 +27,6 @@ public class BossSkillAttack_KH : MonoBehaviour, IDamagable_KH
     private WriteHitPoint_KH _writeHitPoint = default;
     private CreateDamageImage_KH _createDamageImage = default;
     private ChangeEnemyMoveType_KH _changeEnemyMoveType = default;
-    private PlayerManager_KH _playerManager = default;
 
     private GameObject _player = default;
     private GameObject _residentScript = default;
@@ -71,8 +70,7 @@ public class BossSkillAttack_KH : MonoBehaviour, IDamagable_KH
         _soundEffectManagement = _residentScript.GetComponent<SoundEffectManagement_KH>();
         _audioSource = GetComponent<AudioSource>();
         _changeEnemyMoveType = GetComponent<ChangeEnemyMoveType_KH>();
-        _playerManager = _residentScript.GetComponent<PlayerManager_KH>();
-        _player = _playerManager.Player;
+   
 
         #region FireAttack
 
@@ -102,6 +100,16 @@ public class BossSkillAttack_KH : MonoBehaviour, IDamagable_KH
         UpdateHitTime();
     }
 
+
+    /// <summary>
+    /// プレイヤーを設定
+    /// </summary>
+    /// <param name="player"></param>
+    public void SetPlayer(GameObject player)
+    {
+        _player = player;
+    }
+
     public void SpecialAttack()
     {
         RangeMeasurementWithPlayer();
@@ -112,9 +120,6 @@ public class BossSkillAttack_KH : MonoBehaviour, IDamagable_KH
     /// </summary>
     private void RangeMeasurementWithPlayer()
     {
-        // プレイヤー更新
-        _player = _playerManager.Player;
-
         Vector3 playerPos = _player.transform.position;
         Vector3 myPos = gameObject.transform.position;
 

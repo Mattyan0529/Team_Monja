@@ -3,7 +3,7 @@ using UnityEngine;
 public class AttackAreaJudge_KH : MonoBehaviour
 {
     private ChangeEnemyMoveType_KH _changeEnemyMoveType = default;
-    private PlayerManager_KH _playerManager = default;
+
     private GameObject _player = default;
     private GameObject _residentScript = default;
 
@@ -14,14 +14,21 @@ public class AttackAreaJudge_KH : MonoBehaviour
     {
         _changeEnemyMoveType = gameObject.GetComponentInParent<ChangeEnemyMoveType_KH>();
         _residentScript = GameObject.Find("ResidentScripts");
-        _playerManager = _residentScript.GetComponent<PlayerManager_KH>();
-        _player = _playerManager.Player;
+
     }
 
     private void Update()
     {
-        _player = _playerManager.Player;
+
         PlayerInAttackAreaJudge();
+    }
+
+    /// <summary>
+    /// ƒvƒŒƒCƒ„[‚ğİ’è
+    /// </summary>
+    public void SetPlayer(GameObject player)
+    {
+        _player = player;
     }
 
     private void PlayerInAttackAreaJudge()
