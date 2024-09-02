@@ -27,10 +27,18 @@ public class MenuNavigation_SM : MonoBehaviour
 
     void Update()
     {
-        // 矢印キーの入力をチェック
-        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow) ||
-            Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow) ||
-            Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S))
+        // GetAxisを使って入力をチェック（ゲームパッド対応）：北
+        float horizontal = Input.GetAxis("Horizontal"); // 水平方向の入力を取得
+        float vertical = Input.GetAxis("Vertical");     // 垂直方向の入力を取得
+
+        // 十字キーの入力をチェック：北
+        bool dPadUp = Input.GetKeyDown(KeyCode.UpArrow);
+        bool dPadDown = Input.GetKeyDown(KeyCode.DownArrow);
+        bool dPadLeft = Input.GetKeyDown(KeyCode.LeftArrow);
+        bool dPadRight = Input.GetKeyDown(KeyCode.RightArrow);
+
+        // 入力があった場合に処理を行う
+        if (Mathf.Abs(horizontal) > 0.1f || Mathf.Abs(vertical) > 0.1f || dPadUp || dPadDown || dPadLeft || dPadRight)
         {
             // 現在選択されているオブジェクトがnullの場合
             if (_eventSystem.currentSelectedGameObject == null)
