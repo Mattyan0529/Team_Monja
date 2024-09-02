@@ -242,6 +242,7 @@ GameObject:
   m_Component:
   - component: {fileID: 369532625}
   - component: {fileID: 369532624}
+  - component: {fileID: 369532626}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -326,6 +327,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &369532626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 369532623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1 &426609697
 GameObject:
   m_ObjectHideFlags: 0
@@ -606,7 +630,8 @@ MonoBehaviour:
   sceneName: TitleScreen
   useLeghtMouse: 1
   useBackspaceKey: 0
-  useEscapeKey: 0
+  isObjectActive: 0
+  _checkObject: {fileID: 0}
 --- !u!1 &544971943
 GameObject:
   m_ObjectHideFlags: 0
@@ -776,7 +801,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 294f9ce1529cfa540ae350e70932c8e5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bf5b444beed839a428940e7c6798df63, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -912,7 +937,8 @@ MonoBehaviour:
   sceneName: TitleScreen
   useLeghtMouse: 0
   useBackspaceKey: 0
-  useEscapeKey: 0
+  isObjectActive: 0
+  _checkObject: {fileID: 0}
 --- !u!1 &2032679737
 GameObject:
   m_ObjectHideFlags: 0

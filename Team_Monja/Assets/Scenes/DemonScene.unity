@@ -9355,10 +9355,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   texts:
-  - "\u30CD\u30AE\u30C8\u30ED\u4E3C"
-  - "\u30CD\u30AE\u591A\u3081\u3067"
-  - "\u305D\u308C\u3068\u8C46\u677F\u91A4\u3068\u30A6\u30BA\u30E9\u306E\u5375\u4E00\u3064"
-  finishedSentence: 0
+  - "\u6B7B\u3057\u305F\u8005\u304B\u3089\u306E\u4F9D\u983C\u3092\u53D7\u3051\u308B\u3068\u306F\u2026"
+  - "\u9B42\u3060\u3051\u306E\u8EAB\u3068\u306F\u8A00\u3048\u8A31\u3055\u308C\u3056\u308B\u3053\u3068\u3060"
+  - "\u2026\u2026\u2026\u2026"
+  - "\u3057\u304B\u3057\u5951\u7D04\u306F\u4EA4\u308F\u3055\u308C\u3066\u3057\u307E\u3063\u305F"
+  - "\u5951\u7D04\u306E\u529B\u306F\u81A8\u5927\u3060"
+  - "\u8CB4\u69D8\u306F\u901F\u3084\u304B\u306B\u4F9D\u983C\u3092\u9054\u6210\u3059\u308B\u306E\u3060"
+  - "\u6642\u9593\u304C\u6765\u308C\u3070\u76F4\u63A5\u79C1\u304C\u5BFE\u8C61\u307E\u3067\u9023\u308C\u3066\u884C\u3063\u3066\u3084\u308B"
+  sceneTransitionObject: {fileID: 1210501148}
 --- !u!114 &878004783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9406,8 +9410,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 28
-  m_fontSizeBase: 28
+  m_fontSize: 15
+  m_fontSizeBase: 15
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -12711,6 +12715,55 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4000014216458674, guid: 869b8decb2e7f464ead38a3ade201744, type: 3}
   m_PrefabInstance: {fileID: 1210232602}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1210501148
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1210501149}
+  - component: {fileID: 1210501150}
+  m_Layer: 0
+  m_Name: SceneChanger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1210501149
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1210501148}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -723.9971, y: 35.163494, z: -461.40335}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1210501150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1210501148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b31c5641aa98f284a8a7345181deda49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: Stage
+  useLeghtMouse: 1
+  useBackspaceKey: 0
+  isObjectActive: 0
+  _checkObject: {fileID: 0}
 --- !u!1001 &1214514927
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21578,3 +21631,4 @@ SceneRoots:
   - {fileID: 3521706051418420105}
   - {fileID: 333134787}
   - {fileID: 1768818532}
+  - {fileID: 1210501149}
