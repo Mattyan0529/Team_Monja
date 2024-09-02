@@ -75,8 +75,8 @@ public class NormalAttack_KH : MonoBehaviour
         _attackArea.SetActive(true);
         _isAttack = true;
 
-        // 通常攻撃エフェクトを表示
-        _effectManager.ShowNormalAttackEffect(transform);
+        //// 通常攻撃エフェクトを表示
+        //_effectManager.ShowNormalAttackEffect(transform);
 
         _soundEffectManagement.PlayStrongPunchSound(_audioSource);
     }
