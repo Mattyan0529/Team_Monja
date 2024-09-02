@@ -240,7 +240,8 @@ MonoBehaviour:
   sceneName: Stage
   useLeghtMouse: 1
   useBackspaceKey: 0
-  useEscapeKey: 0
+  isObjectActive: 0
+  _checkObject: {fileID: 0}
 --- !u!1 &97731017
 GameObject:
   m_ObjectHideFlags: 0
@@ -298,7 +299,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2857e48977d550d41a36aa7aea74ca96, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bf5b444beed839a428940e7c6798df63, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -977,7 +978,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2857e48977d550d41a36aa7aea74ca96, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bf5b444beed839a428940e7c6798df63, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1178,7 +1179,8 @@ MonoBehaviour:
   sceneName: Stage
   useLeghtMouse: 1
   useBackspaceKey: 0
-  useEscapeKey: 0
+  isObjectActive: 0
+  _checkObject: {fileID: 0}
 --- !u!1 &1375969086
 GameObject:
   m_ObjectHideFlags: 0
@@ -1226,7 +1228,8 @@ MonoBehaviour:
   sceneName: TitleScreen
   useLeghtMouse: 0
   useBackspaceKey: 1
-  useEscapeKey: 0
+  isObjectActive: 0
+  _checkObject: {fileID: 0}
 --- !u!1 &1554637990
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,11 +16,11 @@ public class DemonText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(text.finishedSentence == false)
+        if(text.FinishedSentence == false)
         {
             anim.SetBool("Speak",true);
         }
-        else if(text.finishedSentence == true)
+        else if(text.FinishedSentence == true)
         {
             anim.SetBool("Speak", false);
         }
