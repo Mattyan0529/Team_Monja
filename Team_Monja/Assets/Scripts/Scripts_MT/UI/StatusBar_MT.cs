@@ -81,10 +81,10 @@ public class StatusBar_MT : MonoBehaviour
         switch (SelectedElement)
         {
             case "ATK":
-                newLength = _statusManager.Strength * 75; // ATK値に応じたバーの長さ
+                newLength = _statusManager.Strength * 37.5f; // ATK値に応じたバーの長さ
                 break;
             case "DEF":
-                newLength = _statusManager.Defense * 75; // DEF値に応じたバーの長さ
+                newLength = _statusManager.Defense * 37.5f; // DEF値に応じたバーの長さ
                 break;
         }
 
