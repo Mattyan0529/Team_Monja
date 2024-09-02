@@ -104,7 +104,6 @@ public class TagJudge_MT : MonoBehaviour
             character.GetComponent<ChangeEnemyMoveType_KH>().SetPlayer(_playerObj);
             character.GetComponent<AttackAreaJudge_KH>().SetPlayer(_playerObj);
             character.GetComponent<EnemyMove_KH>().SetPlayer(_playerObj);
-            character.GetComponent<DragPlayerToBoss_KH>().SetPlayer(_playerObj);
         }
     }
 
