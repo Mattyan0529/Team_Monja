@@ -3,13 +3,9 @@ using UnityEngine;
 
 public class DamageImageManager_KH : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject _residentScript = default;
 
     [SerializeField]
     private GameObject _camera = default;
-
-    private PlayerManager_KH _playerManager = default;
 
     // ダメージの値を表示しておく時間
     private float _displayTime = 0.8f;
@@ -19,10 +15,7 @@ public class DamageImageManager_KH : MonoBehaviour
 
     private float _speed = 20f;
 
-    private void Start()
-    {
-        _playerManager = _residentScript.GetComponent<PlayerManager_KH>();
-    }
+
 
     void Update()
     {

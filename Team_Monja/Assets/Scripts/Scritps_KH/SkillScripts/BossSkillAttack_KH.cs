@@ -256,7 +256,7 @@ public class BossSkillAttack_KH : MonoBehaviour, IDamagable_KH
 
         int hitPointAfterDamage = targetHitPoint - damage;
 
-        _createDamageImage.InstantiateDamageImage(gameObject, targetStatus.gameObject, damage);
+        _createDamageImage.InstantiateDamageImage(targetStatus.gameObject, damage);
         _writeHitPoint.UpdateHitPoint(targetStatus, hitPointAfterDamage);      // targetStatus‚ÌHP‚ğXV
     }
 

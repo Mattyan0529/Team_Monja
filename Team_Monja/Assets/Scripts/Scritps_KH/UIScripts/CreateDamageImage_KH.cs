@@ -8,7 +8,9 @@ public class CreateDamageImage_KH : MonoBehaviour
 
     private TextMeshPro _textMeshPro = default;
 
-    private float _createAddY = 3f;
+    private CapsuleCollider _targetCollider;
+
+    private Vector3 _createAdd = new Vector3(0,3f,1f);
 
     private void Start()
     {
@@ -16,14 +18,15 @@ public class CreateDamageImage_KH : MonoBehaviour
         _damageImage.SetActive(false);
     }
 
-    public void InstantiateDamageImage(GameObject player, GameObject target, int damage)
+    public void InstantiateDamageImage(GameObject target, int damage)
     {
         // 死んでたらダメージを表示しない
         if (target.GetComponent<CharacterDeadDecision_MT>().IsDeadDecision()) return;
 
-        Vector3 position = new Vector3
-            (target.transform.position.x, target.transform.position.y + _createAddY * target.transform.localScale.y,
-            target.transform.position.z);
+        _targetCollider = target.GetComponent<CapsuleCollider>();
+
+
+        Vector3 position = target.transform.position  + _targetCollider.center + _createAdd;
 
         _textMeshPro.text = damage.ToString();
         _damageImage.transform.position = position;
