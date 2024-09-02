@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerMove_MT : MonoBehaviour
 {
-    private float moveSpeed = 10f;  // 移動速度
+    private float moveSpeed = 10f;  // 移動速度を後でStatusManagerから取得する
     private float maxSpeed = 20f;  // 最大速度
     private float slopeForce = 10f; // 坂を登る力
     private float groundCheckDistance = 0.1f; // 地面チェック距離
@@ -10,6 +10,7 @@ public class PlayerMove_MT : MonoBehaviour
     private GameObject _playerObj;
     private Rigidbody rb;
     private CharacterAnim_MT _characterAnim;
+    private StatusManager_MT _statusManager;
     private bool isGrounded;
 
     void Start()
@@ -31,6 +32,8 @@ public class PlayerMove_MT : MonoBehaviour
 
         rb = _playerObj.GetComponent<Rigidbody>();
         _characterAnim = _playerObj.GetComponent<CharacterAnim_MT>();
+        _statusManager = _playerObj.GetComponent<StatusManager_MT>();  // StatusManagerを取得する
+        moveSpeed = _statusManager.Speed;  // Speedプロパティから移動速度を設定
     }
 
     void MovePlayer()

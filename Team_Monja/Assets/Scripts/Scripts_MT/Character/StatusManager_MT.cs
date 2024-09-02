@@ -4,6 +4,10 @@ using UnityEngine.UI;
 
 public class StatusManager_MT : MonoBehaviour
 {
+    //キャラクターのスピード
+    [SerializeField] private float _speed = 10.0f;//デフォルトでは１０
+
+
     // 基礎値
     [SerializeField] private int _baseHP = 10; // インスペクターで設定可能
     [SerializeField] private int _baseStrength = 5; // インスペクターで設定可能
@@ -53,6 +57,7 @@ public class StatusManager_MT : MonoBehaviour
     public int PlusHP { get { return _plusStatHP; } set { _plusStatHP = value; } }
     public int PlusStrength { get { return _plusStatStrength; } set { _plusStatStrength = value; } }
     public int PlusDefense { get { return _plusStatDefense; } set { _plusStatDefense = value; } }
+    public float Speed { get { return _speed; }  }
 
     private void Awake()
     {
