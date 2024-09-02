@@ -31,7 +31,6 @@ public class DragPlayerToBoss_KH : MonoBehaviour
         _nearPlayerArea = GameObject.FindGameObjectWithTag("NearPlayerArea");
         _searchWayPointTwoDimensionalArray =
             _nearPlayerArea.gameObject.GetComponent<SearchWayPointTwoDimensionalArray_KH>();
-        _enemyMove = _player.GetComponent<EnemyMove_KH>();
     }
 
     private void Update()
@@ -55,6 +54,7 @@ public class DragPlayerToBoss_KH : MonoBehaviour
     public void SetPlayer(GameObject player)
     {
         _player = player;
+        _enemyMove = _player.GetComponent<EnemyMove_KH>();
     }
 
     private void IsDragTrue()
