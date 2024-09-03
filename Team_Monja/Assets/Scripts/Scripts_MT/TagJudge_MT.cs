@@ -88,6 +88,7 @@ public class TagJudge_MT : MonoBehaviour
         _MiniMapIcon.GetComponent<PlayerMinimapIconSet>().SetPlayer(_playerObj);
 
         _damonHand.GetComponent<DamonHandPos>().SetPlayer(_playerObj);
+        _damonHand.GetComponent<DragPlayerToBoss_KH>().SetPlayer(_playerObj);
 
         _atkBar.GetComponent<StatusBar_MT>().SetPlayer(_playerObj);
         _defBar.GetComponent<StatusBar_MT>().SetPlayer(_playerObj);
