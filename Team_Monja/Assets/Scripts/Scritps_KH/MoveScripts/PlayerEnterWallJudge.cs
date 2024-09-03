@@ -29,7 +29,6 @@ public class PlayerEnterWallJudge : MonoBehaviour
     private void RestorePositionToBackSide()
     {
         _playerRigidbody.MovePosition(_playerMove.PositionBeforeMove);
-        Debug.Log(_playerMove.PositionBeforeMove);
     }
 
     /// <summary>
