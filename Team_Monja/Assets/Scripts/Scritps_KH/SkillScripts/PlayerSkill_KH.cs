@@ -6,6 +6,7 @@ public class PlayerSkill_KH : MonoBehaviour
     [SerializeField]
     GameObject _coolTimeUIObj = default;
 
+    private PlayerMove_MT _playerMove = default;
     private MonsterSkill_KH _myMonsterSkill = default;
     private EnemyMove_KH _enemyMove = default;
     private AttackAreaJudge_KH _attackAreaJudge = default;
@@ -45,6 +46,11 @@ public class PlayerSkill_KH : MonoBehaviour
     void Start()
     {
         _skillNum = _myMonsterSkill.SkillTypeNum;
+
+        if (GameObject.FindWithTag("PlayerManager").GetComponent<PlayerMove_MT>())
+        {
+            _playerMove = GameObject.FindWithTag("PlayerManager").GetComponent<PlayerMove_MT>();
+        }
 
         if (GetComponent<NormalAttack_KH>())
         {
@@ -110,14 +116,23 @@ public class PlayerSkill_KH : MonoBehaviour
         }*/
         if (((Input.GetMouseButtonDown(0) || lefttrigger > 0.3f) && _canUseSkill))
         {
+            if(_playerMove != null)
+            {
+                _playerMove.enabled = false;
+            }
+
             if (_normalAttack != null && _normalAttack.IsAttack) return;
             if (_playerGuard != null && _playerGuard.IsGuard) return;
 
-        
             _isUseSkill = true;
             _skillInterface.SpecialAttack();
             _canUseSkill = false;
             _coolTimeUI.StartCoolTime();
+
+            if (_playerMove != null)
+            {
+                _playerMove.enabled = true;
+            }
         }
     }
 

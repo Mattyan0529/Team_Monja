@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class MonsterSkill_KH : MonoBehaviour
 {
- 
     [SerializeField]
     private GameObject _nearPlayerArea;
     [SerializeField]
@@ -125,8 +124,12 @@ public class MonsterSkill_KH : MonoBehaviour
         // 規定時間に達していた場合
         if (_elapsedTime > _updateTime)
         {
+            _enemyMove.enabled = false;
+            Debug.Log(_enemyMove);
+
             RandomCallSkill();      // スキル発動  
             _elapsedTime = 0f;
+            MoveStop();
         }
     }
 
@@ -136,5 +139,23 @@ public class MonsterSkill_KH : MonoBehaviour
     private void RandomCallSkill()
     {
         _skillInterface.SpecialAttack();
+    }
+
+    /// <summary>
+    /// スキルを使っている間止める、およびその解除の処理
+    /// </summary>
+    private void MoveStop()
+    {
+        float skillTime = _updateTime;
+
+        // 時間加算
+        _elapsedTime += Time.deltaTime;
+
+        if (_elapsedTime > skillTime)
+        {
+            _enemyMove.enabled = true;
+        }
+        else return;
+            
     }
 }
