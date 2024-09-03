@@ -13,7 +13,7 @@ public class EnemyMove_KH : MonoBehaviour
 
     private float _shortestDistance = default;
     private float _followStopDistance = 2f;
-    private float _followShortDistance = 10f;
+    private float _followShortDistance = 12f;
 
     private ChangeEnemyMoveType_KH _changeEnemyMoveType = default;
     
@@ -66,7 +66,6 @@ public class EnemyMove_KH : MonoBehaviour
         }
         else if (_nowEnemyState == EnemyState.InShortDistanceFollowUp && _changeEnemyMoveType.IsMove == true)
         {
-            Debug.Log(gameObject.name);
             FreeFollowUp();
             _characterAnim.NowAnim = "Move";
             JudgeShortDistance();
@@ -187,7 +186,7 @@ public class EnemyMove_KH : MonoBehaviour
 
         // プレイヤーに向かって進む
         gameObject.transform.position = Vector3.MoveTowards
-            (gameObject.transform.position, _player.transform.position, _changeEnemyMoveType.NowSpeed * Time.deltaTime);
+            (gameObject.transform.position, _player.transform.position, _changeEnemyMoveType.FollowSpeed * Time.deltaTime);
 
         // 目的地の方向に向くように修正(回転はY軸のみ)
         Vector3 directionVector = _player.transform.position - gameObject.transform.position;
