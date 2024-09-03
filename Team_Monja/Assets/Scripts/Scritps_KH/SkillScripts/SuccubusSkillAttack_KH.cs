@@ -86,8 +86,6 @@ public class SuccubusSkillAttack_KH : MonoBehaviour, IDamagable_KH
 
     public void HitDecision(GameObject hitObj)
     {
-        Debug.Log("かけた：" + hitObj);
-
         // 相手と自分のStatusManagerが両方必要
         StatusManager_MT targetStatusManager = hitObj.gameObject.GetComponent<StatusManager_MT>();
         StatusManager_MT myStatusManager = GetComponent<StatusManager_MT>();
@@ -136,8 +134,7 @@ public class SuccubusSkillAttack_KH : MonoBehaviour, IDamagable_KH
         }
 
         if (_statEachSkillTimes.Count == 0) return;
-        List<StatusManager_MT> list = _statEachSkillTimes[0];
-        Debug.Log(list.Count);
+        List<StatusManager_MT> list = new List<StatusManager_MT>(_statEachSkillTimes[0]);
 
         for (int i = 0; i < list.Count; i++)
         {
@@ -146,7 +143,6 @@ public class SuccubusSkillAttack_KH : MonoBehaviour, IDamagable_KH
 
             float defence = list[i].Defense / _statDecreaseRate;
             list[i].Defense = (int)defence;
-            Debug.Log("といた：" + i);
         }
         _statEachSkillTimes.Remove(_statEachSkillTimes[0]);
     }
@@ -165,7 +161,7 @@ public class SuccubusSkillAttack_KH : MonoBehaviour, IDamagable_KH
         if (_elapsedTime > _deleteTime)
         {
             // リストへの追加がここで締め切りなので、リストをリストへ追加する
-            List<StatusManager_MT> list = _reducedStatus;
+            List<StatusManager_MT> list = new List<StatusManager_MT>(_reducedStatus);
             _statEachSkillTimes.Add(list);
             _reducedStatus.Clear();
 
