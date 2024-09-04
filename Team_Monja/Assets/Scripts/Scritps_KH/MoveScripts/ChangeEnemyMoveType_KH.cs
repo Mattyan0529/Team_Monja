@@ -56,6 +56,11 @@ public class ChangeEnemyMoveType_KH : MonoBehaviour
         get { return _nowSpeed; }
     }
 
+    public float FollowSpeed
+    {
+        get { return _maxSpeed * _myStatusManager.SpeedMultiplier; }
+    }
+
     public float NowRotationSpeed
     {
         get { return _nowRotationSpeed; }
