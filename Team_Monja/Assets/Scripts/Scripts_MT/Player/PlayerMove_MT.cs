@@ -7,6 +7,9 @@ public class PlayerMove_MT : MonoBehaviour
     private float slopeForce = 10f; // 坂を登る力
     private float groundCheckDistance = 0.1f; // 地面チェック距離
 
+    // PlayerMoveで移動する前の位置：北
+    private Vector3 _positionBeforeMove = Vector3.zero;
+
     private GameObject _playerObj;
     private Rigidbody rb;
     private CharacterAnim_MT _characterAnim;
@@ -14,6 +17,11 @@ public class PlayerMove_MT : MonoBehaviour
 
     // ステータスマネージャー
     private StatusManager_MT _statusManager;
+
+    public Vector3 PositionBeforeMove
+    {
+        get { return _positionBeforeMove; }
+    }
 
     void Start()
     {
@@ -61,6 +69,9 @@ public class PlayerMove_MT : MonoBehaviour
 
         // カメラの前方ベクトルを基準にした移動ベクトルを計算
         Vector3 movement = (cameraForward * moveVertical + Camera.main.transform.right * moveHorizontal).normalized * adjustedMoveSpeed * Time.deltaTime;
+
+        // 追記：北
+        _positionBeforeMove = rb.position;
 
         // そのままワールド座標系で移動
         rb.MovePosition(rb.position + movement);

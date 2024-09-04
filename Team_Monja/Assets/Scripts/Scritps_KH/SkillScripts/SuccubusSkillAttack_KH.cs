@@ -17,7 +17,7 @@ public class SuccubusSkillAttack_KH : MonoBehaviour, IDamagable_KH
     private float _skillResetTime = 5f;
 
     // 相手のステータスを何倍にするか（１未満に設定してね）
-    private const float _statDecreaseRate = 0.7f;
+    private const float _statDecreaseRate = 0.9f;
 
     private GameObject _attackArea;
 

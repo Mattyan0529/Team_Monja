@@ -24,6 +24,8 @@ public class TagJudge_MT : MonoBehaviour
     private GameObject _miniMapCamera;  
     [SerializeField]
     private GameObject _compassCenter;
+    [SerializeField]
+    private GameObject _invisibleWall;
     [SerializeField,Header("シーン内の全キャラクター")]
     private GameObject[] _characters;
 
@@ -88,6 +90,7 @@ public class TagJudge_MT : MonoBehaviour
         _MiniMapIcon.GetComponent<PlayerMinimapIconSet>().SetPlayer(_playerObj);
 
         _damonHand.GetComponent<DamonHandPos>().SetPlayer(_playerObj);
+        _damonHand.GetComponent<DragPlayerToBoss_KH>().SetPlayer(_playerObj);
 
         _atkBar.GetComponent<StatusBar_MT>().SetPlayer(_playerObj);
         _defBar.GetComponent<StatusBar_MT>().SetPlayer(_playerObj);
@@ -97,6 +100,8 @@ public class TagJudge_MT : MonoBehaviour
         _miniMapCamera.GetComponent<MiniMapCameraMove_KH>().SetPlayer(_playerObj);
 
         _compassCenter.GetComponent<MoveCompass_KH>().SetPlayer(_playerObj);
+
+        _invisibleWall.GetComponent<PlayerEnterWallJudge>().SetPlayer(_playerObj);
 
         //キャラクター全員に対して行う
         foreach (GameObject character in _characters)
