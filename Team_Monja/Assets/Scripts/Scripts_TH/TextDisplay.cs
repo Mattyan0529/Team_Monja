@@ -61,15 +61,6 @@ public class DemonTextDisplay : MonoBehaviour
                 HandleInput();
             }
         }
-        else
-        {
-            // すべてのテキストが表示された後、シーン遷移オブジェクトを有効にする
-            if (sceneTransitionObject != null && !sceneTransitionObject.activeSelf)
-            {
-                sceneTransitionObject.SetActive(true);
-                Debug.Log("Scene transition object activated.");
-            }
-        }
     }
 
     // テキスト表示の処理を行う
@@ -106,8 +97,8 @@ public class DemonTextDisplay : MonoBehaviour
     // ユーザー入力を処理する
     void HandleInput()
     {
-        // マウスクリックを検出した場合
-        if (Input.GetMouseButtonDown(0))
+        // マウスクリックまたはXBoxコントローラーのAボタン押下を検出した場合
+        if (Input.GetMouseButtonDown(0) || Input.GetButtonDown("Submit"))
         {
             _click = true; // クリックフラグをセット
             _finishedSentence = false; // セリフが完全に表示されていないことを明示
@@ -120,7 +111,7 @@ public class DemonTextDisplay : MonoBehaviour
     {
         if (_textNumber < texts.Length - 1) // 次のセリフが存在する場合
         {
-            if (_click) // ユーザーがクリックした場合
+            if (_click) // ユーザーがクリックまたはAボタンを押した場合
             {
                 ResetForNextText(); // 次のセリフを表示する準備を行う
                 // 4番目のメッセージが表示されたときにMoveAndRotateObjectスクリプトを有効にする
@@ -133,12 +124,20 @@ public class DemonTextDisplay : MonoBehaviour
         }
         else // 最後のセリフが表示された場合
         {
-            if (_click) // ユーザーがクリックした場合
+            // 最後のセリフの表示が完了した直後にシーン遷移オブジェクトを有効にする
+            if (sceneTransitionObject != null && !sceneTransitionObject.activeSelf)
+            {
+                sceneTransitionObject.SetActive(true);
+                Debug.Log("Scene transition object activated.");
+            }
+
+            if (_click) // ユーザーがクリックまたはAボタンを押した場合
             {
                 _displayText = ""; // 表示テキストをリセット
                 _textCharNumber = 0; // 文字インデックスをリセット
                 _textStop = true; // テキスト表示終了フラグをセット
                 _allTextsDisplayed = true; // すべてのテキストが表示されたことを示す
+
                 Debug.Log("All texts have been displayed."); // デバッグ用にメッセージを出力
             }
         }
