@@ -51,9 +51,6 @@ public class BossSkillAttack_KH : MonoBehaviour, IDamagable_KH
 
     #region HitAttack
 
-    [SerializeField]
-    private EffectManager _effectManager; // EffectManagerの参照を追加
-
     private bool _isAttack = false;
     private GameObject _attackArea;
 
@@ -190,12 +187,6 @@ public class BossSkillAttack_KH : MonoBehaviour, IDamagable_KH
     {
         _characterAnim.NowAnim = "Attack";
 
-        //スキルエフェクト
-        if (_effectManager != null)
-        {
-            _effectManager.ShowSpecialAttackEffect(transform);
-        }
-
         _changeEnemyMoveType.IsMove = false;
 
         _soundEffectManagement.PlayStrongPunchSound(_audioSource);
@@ -204,12 +195,6 @@ public class BossSkillAttack_KH : MonoBehaviour, IDamagable_KH
     private void BiteAttack()
     {
         _characterAnim.NowAnim = "Attack2";
-
-        //スキルエフェクト
-        if (_effectManager != null)
-        {
-            _effectManager.ShowSpecialAttackEffect(transform);
-        }
 
         _changeEnemyMoveType.IsMove = false;
 

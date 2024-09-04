@@ -77,6 +77,7 @@ public class EffectManager : MonoBehaviour
         Quaternion effectRotation = attackerTransform.rotation * Quaternion.Euler(specialAttackEffectRotationOffset);
 
         // 特殊攻撃用のオブジェクトプールによりエフェクトを表示する
+        Debug.Log(specialAttackObjectPool);
         specialAttackObjectPool.ShowEffectPublic(effectPosition, effectRotation, specialAttackEffectScale, specialAttackEffectDuration);
     }
 }
