@@ -47,10 +47,12 @@ public class CanvasChange_SM : MonoBehaviour
             ToggleOptions();
         }
         //エンターキーが押されたら
-        if (_useEnterKey && Input.GetKeyDown(KeyCode.Return))
+        if (_useEnterKey && Input.GetButtonDown("Submit"))
         {
             ToggleOptions();
         }
+
+        
     }
 
     // オプション画面の表示/非表示を切り替えるメソッド

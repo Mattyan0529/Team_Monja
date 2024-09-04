@@ -22,6 +22,7 @@ public class SceneSwitcher_SM : MonoBehaviour
     {
         CheckObjectActive();
         CheckKeyboardInput();
+       
     }
 
     // ボタンのクリックイベントを登録するメソッド
