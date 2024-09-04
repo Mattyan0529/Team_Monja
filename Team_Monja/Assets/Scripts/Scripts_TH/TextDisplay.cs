@@ -29,6 +29,8 @@ public class DemonTextDisplay : MonoBehaviour
     private bool _finishedSentence = false;
     // シーン遷移用オブジェクトの参照
     public GameObject sceneTransitionObject;
+    // MoveAndRotateObjectスクリプトの参照
+    [SerializeField] private MoveAndRotateObject _moveAndRotateObject;
 
     void Start()
     {
@@ -69,7 +71,7 @@ public class DemonTextDisplay : MonoBehaviour
     {
         // 表示速度のカウンターをインクリメント
         _displayTextSpeed++;
-        if (_displayTextSpeed % 25 == 0) // 一定速度で文字を表示
+        if (_displayTextSpeed % 15 == 0) // 一定速度で文字を表示
         {
             if (_textCharNumber < texts[_textNumber].Length) // まだ表示する文字が残っている場合
             {
@@ -109,6 +111,12 @@ public class DemonTextDisplay : MonoBehaviour
             if (_click) // ユーザーがクリックした場合
             {
                 ResetForNextText(); // 次のセリフを表示する準備を行う
+                // 4番目のメッセージが表示されたときにMoveAndRotateObjectスクリプトを有効にする
+                if (_textNumber == 3 && _moveAndRotateObject != null)
+                {
+                    _moveAndRotateObject.enabled = true;
+                    Debug.Log("MoveAndRotateObject script enabled.");
+                }
             }
         }
         else // 最後のセリフが表示された場合
