@@ -10,6 +10,9 @@ public class WayPoint_KH : MonoBehaviour
     [SerializeField]
     private GameObject[] _nextPoints = default;
 
+    [SerializeField]
+    private GameObject _bossWayPoints = default;
+
     private NearPlayerWayPointManager_KH _nearPlayerWayPointManager = default;
 
     public GameObject[] NextPoints
@@ -32,12 +35,13 @@ public class WayPoint_KH : MonoBehaviour
     }
 
     /// <summary>
-    /// プレイヤーの追従範囲とウェイポイントの衝突を検知
+    /// プレイヤーのウェイポイント収集範囲とウェイポイントの衝突を検知
     /// </summary>
     private void OnTriggerEnter(Collider other)
     {
         if (!other.gameObject.CompareTag("NearPlayerArea")) return;
         if (!transform.parent.CompareTag("WayPoint")) return;
+
         _nearPlayerWayPointManager.AddNearPlayerWayPoint(gameObject);
     }
 

@@ -182,7 +182,7 @@ public class EnemyMove_KH : MonoBehaviour
         Vector3 playerPos = new Vector3(_player.transform.position.x, 0f, _player.transform.position.z);
 
         // プレイヤーと近い場合は追従をやめる
-        if (Vector3.SqrMagnitude(playerPos - nowPos) < Mathf.Pow(_followStopDistance, 2));
+        if (Vector3.SqrMagnitude(playerPos - nowPos) < Mathf.Pow(_followStopDistance, 2))return;
 
         // プレイヤーに向かって進む
         gameObject.transform.position = Vector3.MoveTowards

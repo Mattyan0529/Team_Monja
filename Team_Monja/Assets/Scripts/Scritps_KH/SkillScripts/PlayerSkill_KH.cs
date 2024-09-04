@@ -6,11 +6,11 @@ public class PlayerSkill_KH : MonoBehaviour
     [SerializeField]
     GameObject _coolTimeUIObj = default;
 
-    private PlayerMove_MT _playerMove = default;
     private MonsterSkill_KH _myMonsterSkill = default;
     private EnemyMove_KH _enemyMove = default;
     private AttackAreaJudge_KH _attackAreaJudge = default;
     private CoolTimeUI _coolTimeUI = default;
+    private MoveStopScript_KH _moveStop = default;
 
     private IDamagable_KH _skillInterface = default;
 
@@ -22,11 +22,6 @@ public class PlayerSkill_KH : MonoBehaviour
 
     private float _coolTime = 2f;    // スキルを発動してから次に発動できるようになるまでの時間
     private float _elapsedTime = 0f;
-
-    [SerializeField]
-    private float _moveStopTime = 2f;  // スキルを呼んだ後何秒間動きを止めておくか
-    private float _moveStopElapsedTime = 0f;
-    private bool _isStop = false;
 
     private int _skillNum;
     private bool _canUseSkill = true;
@@ -52,11 +47,6 @@ public class PlayerSkill_KH : MonoBehaviour
     {
         _skillNum = _myMonsterSkill.SkillTypeNum;
 
-        if (GameObject.FindWithTag("PlayerManager").GetComponent<PlayerMove_MT>())
-        {
-            _playerMove = GameObject.FindWithTag("PlayerManager").GetComponent<PlayerMove_MT>();
-        }
-
         if (GetComponent<NormalAttack_KH>())
         {
             _normalAttack = GetComponent<NormalAttack_KH>();
@@ -67,6 +57,7 @@ public class PlayerSkill_KH : MonoBehaviour
         }
 
         _coolTimeUI = _coolTimeUIObj.GetComponent<CoolTimeUI>();
+        _moveStop = GetComponent<MoveStopScript_KH>();
         _skillInterface = GetComponent<IDamagable_KH>();
 
 
@@ -82,11 +73,6 @@ public class PlayerSkill_KH : MonoBehaviour
         if (!_canUseSkill)
         {
             UpdateTime();
-        }
-
-        if (_isStop)
-        {
-            RestartMoveInTime();
         }
     }
 
@@ -121,11 +107,6 @@ public class PlayerSkill_KH : MonoBehaviour
     {
         if (((Input.GetMouseButtonDown(0) || lefttrigger > 0.3f) && _canUseSkill))
         {
-            if(_playerMove != null)
-            {
-                _playerMove.enabled = false;
-            }
-
             if (_normalAttack != null && _normalAttack.IsAttack) return;
             if (_playerGuard != null && _playerGuard.IsGuard) return;
 
@@ -133,7 +114,6 @@ public class PlayerSkill_KH : MonoBehaviour
             _skillInterface.SpecialAttack();
             _canUseSkill = false;
             _coolTimeUI.StartCoolTime();
-            _isStop = true;
         }
     }
 
@@ -150,26 +130,6 @@ public class PlayerSkill_KH : MonoBehaviour
         {
             _elapsedTime = 0f;
             _canUseSkill = true;
-        }
-    }
-
-    /// <summary>
-    /// スキルを使い終わったら停止解除
-    /// </summary>
-    private void RestartMoveInTime()
-    {
-        _moveStopElapsedTime += Time.deltaTime;
-
-        if (_moveStopElapsedTime > _moveStopTime)
-        {
-            _moveStopElapsedTime = 0f;
-
-            if (_playerMove != null)
-            {
-                _playerMove.enabled = true;
-            }
-
-            _isStop = false;
         }
     }
 }

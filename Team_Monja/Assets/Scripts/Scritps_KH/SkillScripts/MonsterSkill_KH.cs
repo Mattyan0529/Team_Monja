@@ -16,23 +16,18 @@ public class MonsterSkill_KH : MonoBehaviour
     private float _updateTime = 0f;    // 何秒おきにスキルを呼び出すか
     private float _elapsedTime = 3f;   // 最初の一回はすぐに攻撃するために_maxTimeSpacingより大きな値とする
 
-    [SerializeField]
-    private float _moveStopTime = 2f;  // スキルを呼んだ後何秒間動きを止めておくか
-    private float _moveStopElapsedTime = 0f;
-    private bool _isStop = false;
-
     private float _maxTimeSpacing = 2f;
     private float _minTimeSpacing = 1f;
 
     private float _nearPlayerAreaSize = 120f;
 
     private PlayerSkill_KH _playerSkill = default;
-    private EnemyMove_KH _enemyMove = default;
     private AttackAreaJudge_KH _attackAreaJudge = default;
     private SkillSpriteChange_KH _skillSpriteChange = default;
     private SkillSpriteChange_KH _normalAttackSpriteChange = default;
     private ChangeEnemyMoveType_KH _changeEnemyMoveType = default;
     private NearPlayerWayPointManager_KH _nearPlayerWayPointManager = default;
+    private EnemyMove_KH _enemyMove = default;
     private IDamagable_KH _skillInterface = default;
     //松本
     private CharacterAnim_MT _characterAnim;
@@ -78,10 +73,6 @@ public class MonsterSkill_KH : MonoBehaviour
     {
         GameobjectTagJudge();
         UpdateTime();
-        if (_isStop)
-        {
-            RestartMoveInTime();
-        }
     }
 
     /// <summary>
@@ -106,8 +97,8 @@ public class MonsterSkill_KH : MonoBehaviour
                 _playerGuard.enabled = true;
             }
 
-            _enemyMove.enabled = false;
             _attackAreaJudge.enabled = false;
+            _enemyMove.enabled = false;
             this.enabled = false;
         }
     }
@@ -133,9 +124,6 @@ public class MonsterSkill_KH : MonoBehaviour
         // 規定時間に達していた場合
         if (_elapsedTime > _updateTime)
         {
-            _enemyMove.enabled = false;
-            _isStop = true;
-
             RandomCallSkill();      // スキル発動  
             _elapsedTime = 0f;
         }
@@ -147,20 +135,5 @@ public class MonsterSkill_KH : MonoBehaviour
     private void RandomCallSkill()
     {
         _skillInterface.SpecialAttack();
-    }
-
-    /// <summary>
-    /// スキルを使い終わったら停止解除
-    /// </summary>
-    private void RestartMoveInTime()
-    {
-        _moveStopElapsedTime += Time.deltaTime;
-
-        if(_moveStopElapsedTime > _moveStopTime)
-        {
-            _moveStopElapsedTime = 0f;
-            _enemyMove.enabled = true;
-            _isStop = false;
-        }
     }
 }

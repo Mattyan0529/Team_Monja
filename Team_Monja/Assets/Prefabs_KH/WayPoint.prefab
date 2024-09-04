@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f4f8460f6f42c946b7ba31f8c314227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _followArea: {fileID: 0}
+  _nearPlayerArea: {fileID: 0}
   _nextPoints:
   - {fileID: 0}
   - {fileID: 0}
@@ -69,5 +69,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 4.76, z: 1}
+  m_Center: {x: 0, y: 1.79, z: 0}
