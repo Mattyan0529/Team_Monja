@@ -27878,6 +27878,10 @@ PrefabInstance:
       propertyPath: _residentScript
       value: 
       objectReference: {fileID: 1487418206}
+    - target: {fileID: 3970771515532509951, guid: e0290d7003f414c4286f037868bc63d9, type: 3}
+      propertyPath: Pool
+      value: 
+      objectReference: {fileID: 1537759968}
     - target: {fileID: 4077455743308520020, guid: e0290d7003f414c4286f037868bc63d9, type: 3}
       propertyPath: normalAttackObjectPool
       value: 
@@ -65263,6 +65267,10 @@ PrefabInstance:
       propertyPath: _residentScript
       value: 
       objectReference: {fileID: 1487418206}
+    - target: {fileID: 3970771515532509951, guid: e0290d7003f414c4286f037868bc63d9, type: 3}
+      propertyPath: Pool
+      value: 
+      objectReference: {fileID: 1537759968}
     - target: {fileID: 4077455743308520020, guid: e0290d7003f414c4286f037868bc63d9, type: 3}
       propertyPath: normalAttackObjectPool
       value: 
@@ -85457,6 +85465,10 @@ PrefabInstance:
       propertyPath: _residentScript
       value: 
       objectReference: {fileID: 1487418206}
+    - target: {fileID: 3970771515532509951, guid: e0290d7003f414c4286f037868bc63d9, type: 3}
+      propertyPath: Pool
+      value: 
+      objectReference: {fileID: 1537759968}
     - target: {fileID: 4077455743308520020, guid: e0290d7003f414c4286f037868bc63d9, type: 3}
       propertyPath: normalAttackObjectPool
       value: 

@@ -134,11 +134,6 @@ public class PlayerSkill_KH : MonoBehaviour
             _canUseSkill = false;
             _coolTimeUI.StartCoolTime();
             _isStop = true;
-
-            if (_playerMove != null)
-            {
-                _playerMove.enabled = true;
-            }
         }
     }
 
@@ -168,7 +163,12 @@ public class PlayerSkill_KH : MonoBehaviour
         if (_moveStopElapsedTime > _moveStopTime)
         {
             _moveStopElapsedTime = 0f;
-            _enemyMove.enabled = true;
+
+            if (_playerMove != null)
+            {
+                _playerMove.enabled = true;
+            }
+
             _isStop = false;
         }
     }
