@@ -4148,10 +4148,6 @@ PrefabInstance:
       propertyPath: m_Height
       value: 1.9
       objectReference: {fileID: 0}
-    - target: {fileID: 3315460586223129248, guid: 1f623e66310c12d46b1b992dc2a2dc4e, type: 3}
-      propertyPath: _coolTimeObj
-      value: 
-      objectReference: {fileID: 2551188133302458808}
     - target: {fileID: 3380737656220187954, guid: 1f623e66310c12d46b1b992dc2a2dc4e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.10365746
@@ -11380,10 +11376,6 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 41bb8d3c07a248b458ea8f935ea247cc, type: 2}
-    - target: {fileID: 3315460586223129248, guid: 1f623e66310c12d46b1b992dc2a2dc4e, type: 3}
-      propertyPath: _coolTimeObj
-      value: 
-      objectReference: {fileID: 2551188133302458808}
     - target: {fileID: 4734759929817739550, guid: 1f623e66310c12d46b1b992dc2a2dc4e, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -19450,37 +19442,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slimesphere
       objectReference: {fileID: 0}
-    - target: {fileID: 8954955660908691569, guid: 69d334979f0f3234c82d4028479155a6, type: 3}
-      propertyPath: Pool
-      value: 
-      objectReference: {fileID: 1537759968}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7945021242464775170, guid: 69d334979f0f3234c82d4028479155a6, type: 3}
-      insertIndex: 3
-      addedObject: {fileID: 419777871}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69d334979f0f3234c82d4028479155a6, type: 3}
 --- !u!1 &419777870 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7945021242464775170, guid: 69d334979f0f3234c82d4028479155a6, type: 3}
   m_PrefabInstance: {fileID: 419777869}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &419777871
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 419777870}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b26dba7c906f69145b86dd2ff5c53085, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  collisionEffect: {fileID: 5748487897280260033, guid: 4bfdd979c60ac7a43b43d325e40fd5e2, type: 3}
-  Pool: {fileID: 1537759968}
 --- !u!1001 &420221065
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26163,10 +26134,6 @@ PrefabInstance:
       propertyPath: m_Height
       value: 1.9
       objectReference: {fileID: 0}
-    - target: {fileID: 3315460586223129248, guid: 1f623e66310c12d46b1b992dc2a2dc4e, type: 3}
-      propertyPath: _coolTimeObj
-      value: 
-      objectReference: {fileID: 2551188133302458808}
     - target: {fileID: 3380737656220187954, guid: 1f623e66310c12d46b1b992dc2a2dc4e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.10365746
@@ -27895,10 +27862,6 @@ PrefabInstance:
       propertyPath: _residentScript
       value: 
       objectReference: {fileID: 1487418206}
-    - target: {fileID: 3970771515532509951, guid: e0290d7003f414c4286f037868bc63d9, type: 3}
-      propertyPath: Pool
-      value: 
-      objectReference: {fileID: 1537759968}
     - target: {fileID: 4077455743308520020, guid: e0290d7003f414c4286f037868bc63d9, type: 3}
       propertyPath: normalAttackObjectPool
       value: 
@@ -40944,13 +40907,30 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2748726473443272866, guid: 4bd7d3c75147a0d48a4e0c0b6dabd092, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1023871286}
   m_SourcePrefab: {fileID: 100100000, guid: 4bd7d3c75147a0d48a4e0c0b6dabd092, type: 3}
 --- !u!1 &1023871285 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2748726473443272866, guid: 4bd7d3c75147a0d48a4e0c0b6dabd092, type: 3}
   m_PrefabInstance: {fileID: 1023871284}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1023871286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023871285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9b3c0b08b5815f41a04d71b0dc58f9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lockOnRadius: 50
+  dead: {fileID: 0}
 --- !u!1 &1024705771
 GameObject:
   m_ObjectHideFlags: 0
@@ -65267,10 +65247,6 @@ PrefabInstance:
       propertyPath: _residentScript
       value: 
       objectReference: {fileID: 1487418206}
-    - target: {fileID: 3970771515532509951, guid: e0290d7003f414c4286f037868bc63d9, type: 3}
-      propertyPath: Pool
-      value: 
-      objectReference: {fileID: 1537759968}
     - target: {fileID: 4077455743308520020, guid: e0290d7003f414c4286f037868bc63d9, type: 3}
       propertyPath: normalAttackObjectPool
       value: 
@@ -85465,10 +85441,6 @@ PrefabInstance:
       propertyPath: _residentScript
       value: 
       objectReference: {fileID: 1487418206}
-    - target: {fileID: 3970771515532509951, guid: e0290d7003f414c4286f037868bc63d9, type: 3}
-      propertyPath: Pool
-      value: 
-      objectReference: {fileID: 1537759968}
     - target: {fileID: 4077455743308520020, guid: e0290d7003f414c4286f037868bc63d9, type: 3}
       propertyPath: normalAttackObjectPool
       value: 
