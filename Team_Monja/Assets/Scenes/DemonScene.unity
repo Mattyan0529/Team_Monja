@@ -6891,7 +6891,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 626798353}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ade02d1fa68235e4b9429d02d6f90032, type: 3}
   m_Name: 
@@ -9406,6 +9406,7 @@ MonoBehaviour:
   - "\u8CB4\u69D8\u306F\u901F\u3084\u304B\u306B\u4F9D\u983C\u3092\u9054\u6210\u3059\u308B\u306E\u3060"
   - "\u6642\u9593\u304C\u6765\u308C\u3070\u76F4\u63A5\u79C1\u304C\u5BFE\u8C61\u307E\u3067\u9023\u308C\u3066\u884C\u3063\u3066\u3084\u308B"
   sceneTransitionObject: {fileID: 1210501148}
+  _moveAndRotateObject: {fileID: 626798357}
 --- !u!114 &878004783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9460,7 +9461,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0

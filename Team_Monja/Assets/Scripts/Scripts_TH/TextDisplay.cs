@@ -31,11 +31,17 @@ public class DemonTextDisplay : MonoBehaviour
     public GameObject sceneTransitionObject;
     // MoveAndRotateObjectスクリプトの参照
     [SerializeField] private MoveAndRotateObject _moveAndRotateObject;
+    // 一文字ごとに再生する音のクリップ
+    [SerializeField] private AudioClip _charSoundClip;
+    // AudioSourceコンポーネントの参照
+    private AudioSource _audioSource;
 
     void Start()
     {
         // TextMeshProUGUIコンポーネントを取得
         _textMeshPro = GetComponent<TextMeshProUGUI>();
+        // AudioSourceコンポーネントを取得
+        _audioSource = GetComponent<AudioSource>();
         // シーン遷移用オブジェクトを非アクティブに設定
         if (sceneTransitionObject != null)
         {
@@ -79,6 +85,12 @@ public class DemonTextDisplay : MonoBehaviour
                 _displayText += texts[_textNumber][_textCharNumber];
                 _textCharNumber++;
                 _finishedSentence = false; // セリフが完全に表示されていない
+
+                // 音を再生
+                if (_audioSource != null && _charSoundClip != null)
+                {
+                    _audioSource.PlayOneShot(_charSoundClip);
+                }
             }
             else // 現在のセリフが全て表示された場合
             {
