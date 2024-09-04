@@ -23,6 +23,11 @@ public class PlayerSkill_KH : MonoBehaviour
     private float _coolTime = 2f;    // スキルを発動してから次に発動できるようになるまでの時間
     private float _elapsedTime = 0f;
 
+    [SerializeField]
+    private float _moveStopTime = 2f;  // スキルを呼んだ後何秒間動きを止めておくか
+    private float _moveStopElapsedTime = 0f;
+    private bool _isStop = false;
+
     private int _skillNum;
     private bool _canUseSkill = true;
     private bool _isUseSkill = false;
@@ -78,6 +83,11 @@ public class PlayerSkill_KH : MonoBehaviour
         {
             UpdateTime();
         }
+
+        if (_isStop)
+        {
+            RestartMoveInTime();
+        }
     }
 
     /// <summary>
@@ -109,11 +119,6 @@ public class PlayerSkill_KH : MonoBehaviour
     /// </summary>
     private void CallSkill()
     {
-        /*if (((Input.GetMouseButtonDown(0) || lefttrigger > 0.3f) && _skillNum == (int)MonsterSkill_KH.SkillType.Fly && _flySkill.IsFlying))
-        {
-            _isUseSkill = false;
-            _flySkill.StopFly();
-        }*/
         if (((Input.GetMouseButtonDown(0) || lefttrigger > 0.3f) && _canUseSkill))
         {
             if(_playerMove != null)
@@ -128,6 +133,7 @@ public class PlayerSkill_KH : MonoBehaviour
             _skillInterface.SpecialAttack();
             _canUseSkill = false;
             _coolTimeUI.StartCoolTime();
+            _isStop = true;
 
             if (_playerMove != null)
             {
@@ -149,6 +155,21 @@ public class PlayerSkill_KH : MonoBehaviour
         {
             _elapsedTime = 0f;
             _canUseSkill = true;
+        }
+    }
+
+    /// <summary>
+    /// スキルを使い終わったら停止解除
+    /// </summary>
+    private void RestartMoveInTime()
+    {
+        _moveStopElapsedTime += Time.deltaTime;
+
+        if (_moveStopElapsedTime > _moveStopTime)
+        {
+            _moveStopElapsedTime = 0f;
+            _enemyMove.enabled = true;
+            _isStop = false;
         }
     }
 }

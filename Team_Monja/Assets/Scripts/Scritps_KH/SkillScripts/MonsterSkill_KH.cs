@@ -138,7 +138,6 @@ public class MonsterSkill_KH : MonoBehaviour
 
             RandomCallSkill();      // スキル発動  
             _elapsedTime = 0f;
-            //MoveStop();
         }
     }
 
@@ -151,22 +150,11 @@ public class MonsterSkill_KH : MonoBehaviour
     }
 
     /// <summary>
-    /// スキルを使っている間止める、およびその解除の処理
-    /// </summary>
     /// スキルを使い終わったら停止解除
-    private void /*MoveStop*/RestartMoveInTime()
+    /// </summary>
+    private void RestartMoveInTime()
     {
-        //float skillTime = _updateTime;
-        //時間加算
-        //_elapsedTime += Time.deltaTime;
         _moveStopElapsedTime += Time.deltaTime;
-
-
-        /*if (_elapsedTime > skillTime)
-        {
-            _enemyMove.enabled = true;
-        }
-        else return;*/
 
         if(_moveStopElapsedTime > _moveStopTime)
         {
