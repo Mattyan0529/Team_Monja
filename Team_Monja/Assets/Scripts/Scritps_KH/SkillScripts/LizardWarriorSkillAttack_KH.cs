@@ -5,10 +5,6 @@ public class LizardWarriorSkillAttack_KH : MonoBehaviour, IDamagable_KH
     [SerializeField]
     private GameObject _residentScript;
 
-    [SerializeField]
-    private EffectManager _effectManager; // EffectManagerの参照を追加
-
-
     private float _deleteTime = 0.5f;
     private float _elapsedTime = 0f;
 
@@ -53,12 +49,6 @@ public class LizardWarriorSkillAttack_KH : MonoBehaviour, IDamagable_KH
     public void SpecialAttack()
     {  //松本
         _characterAnim.NowAnim = "Skill";
-
-        //スキルエフェクト
-        if (_effectManager != null)
-        {
-            _effectManager.ShowSpecialAttackEffect(transform);
-        }
 
         _changeEnemyMoveType.IsMove = false;
 

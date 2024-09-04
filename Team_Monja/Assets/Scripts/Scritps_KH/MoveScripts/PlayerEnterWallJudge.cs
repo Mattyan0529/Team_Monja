@@ -10,16 +10,34 @@ public class PlayerEnterWallJudge : MonoBehaviour
     private PlayerMove_MT _playerMove = default;
     private Rigidbody _playerRigidbody = default;
 
+    private bool _isCollisionPlayer = false;
+
     private void Start()
     {
         _playerMove = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerMove_MT>();
     }
 
-    private void OnCollisionStay(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            RestorePositionToBackSide();
+            _isCollisionPlayer = true;
+        }
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (!_isCollisionPlayer) return;
+
+        _playerRigidbody.velocity = Vector3.zero;
+        RestorePositionToBackSide();
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            _isCollisionPlayer = false;
         }
     }
 

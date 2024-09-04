@@ -8,10 +8,6 @@ public class SuccubusSkillAttack_KH : MonoBehaviour, IDamagable_KH
     [SerializeField]
     private GameObject _residentScript;
 
-    [SerializeField]
-    private EffectManager _effectManager; // EffectManagerの参照を追加
-
-
     private float _deleteTime = 0.5f;
     private float _elapsedTime = 0f;
     private float _skillResetTime = 5f;
@@ -76,11 +72,6 @@ public class SuccubusSkillAttack_KH : MonoBehaviour, IDamagable_KH
     {
         _isAttack = true;
         _attackArea.SetActive(true);
-        //スキルエフェクト
-        if (_effectManager != null)
-        {
-            _effectManager.ShowSpecialAttackEffect(transform);
-        }
     }
 
 

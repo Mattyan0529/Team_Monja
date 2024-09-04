@@ -29,11 +29,19 @@ public class DemonTextDisplay : MonoBehaviour
     private bool _finishedSentence = false;
     // シーン遷移用オブジェクトの参照
     public GameObject sceneTransitionObject;
+    // MoveAndRotateObjectスクリプトの参照
+    [SerializeField] private MoveAndRotateObject _moveAndRotateObject;
+    // 一文字ごとに再生する音のクリップ
+    [SerializeField] private AudioClip _charSoundClip;
+    // AudioSourceコンポーネントの参照
+    private AudioSource _audioSource;
 
     void Start()
     {
         // TextMeshProUGUIコンポーネントを取得
         _textMeshPro = GetComponent<TextMeshProUGUI>();
+        // AudioSourceコンポーネントを取得
+        _audioSource = GetComponent<AudioSource>();
         // シーン遷移用オブジェクトを非アクティブに設定
         if (sceneTransitionObject != null)
         {
@@ -69,7 +77,7 @@ public class DemonTextDisplay : MonoBehaviour
     {
         // 表示速度のカウンターをインクリメント
         _displayTextSpeed++;
-        if (_displayTextSpeed % 25 == 0) // 一定速度で文字を表示
+        if (_displayTextSpeed % 15 == 0) // 一定速度で文字を表示
         {
             if (_textCharNumber < texts[_textNumber].Length) // まだ表示する文字が残っている場合
             {
@@ -77,6 +85,12 @@ public class DemonTextDisplay : MonoBehaviour
                 _displayText += texts[_textNumber][_textCharNumber];
                 _textCharNumber++;
                 _finishedSentence = false; // セリフが完全に表示されていない
+
+                // 音を再生
+                if (_audioSource != null && _charSoundClip != null)
+                {
+                    _audioSource.PlayOneShot(_charSoundClip);
+                }
             }
             else // 現在のセリフが全て表示された場合
             {
@@ -109,6 +123,12 @@ public class DemonTextDisplay : MonoBehaviour
             if (_click) // ユーザーがクリックした場合
             {
                 ResetForNextText(); // 次のセリフを表示する準備を行う
+                // 4番目のメッセージが表示されたときにMoveAndRotateObjectスクリプトを有効にする
+                if (_textNumber == 3 && _moveAndRotateObject != null)
+                {
+                    _moveAndRotateObject.enabled = true;
+                    Debug.Log("MoveAndRotateObject script enabled.");
+                }
             }
         }
         else // 最後のセリフが表示された場合

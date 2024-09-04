@@ -5,10 +5,6 @@ public class SkeletonSkillAttack_KH : MonoBehaviour, IDamagable_KH
     [SerializeField]
     private GameObject _residentScript;
 
-    [SerializeField]
-    private EffectManager _effectManager; // EffectManagerの参照を追加
-
-
     private float _deleteTime = 0.5f;
     private float _elapsedTime = 0f;
 
@@ -59,12 +55,6 @@ public class SkeletonSkillAttack_KH : MonoBehaviour, IDamagable_KH
 
     private void CreateAttackArea()
     {
-        //スキルエフェクト
-        if (_effectManager != null)
-        {
-            _effectManager.ShowSpecialAttackEffect(transform);
-        }
-
         _soundEffectManagement.PlayStrongPunchSound(_audioSource);
         _isAttack = true;
         _attackArea.SetActive(true);

@@ -8,7 +8,7 @@ public class PlayerGuard_KH : MonoBehaviour
     private bool _isGuard = false;
     private bool _canUseGuard = true;
 
-    private float _deleteTime = 0.5f;
+    private float _deleteTime = 0.8f;
     private float _elapsedTime = 0f;
 
     private float _coolTime = 1f;
@@ -40,7 +40,7 @@ public class PlayerGuard_KH : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1) || Input.GetButtonDown("attack"))
         {
-            if (_isGuard == true) return;
+            if (!_canUseGuard) return;
 
             _isGuard = true;
             _canUseGuard = false;

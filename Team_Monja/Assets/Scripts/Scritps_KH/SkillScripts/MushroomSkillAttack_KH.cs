@@ -56,12 +56,6 @@ public class MushroomSkillAttack_KH : MonoBehaviour, IDamagable_KH
     {  //松本
         _characterAnim.NowAnim = "Skill";
 
-        //スキルエフェクト
-        if (_effectManager != null)
-        {
-            _effectManager.ShowSpecialAttackEffect(transform);
-        }
-
         _changeEnemyMoveType.IsMove = false;
 
         _soundEffectManagement.PlayStrongPunchSound(_audioSource);
