@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
-public class PlayerEnterWallJudge : MonoBehaviour
+public class PlayerEnterWallJudge_KH : MonoBehaviour
 {
     private GameObject _player = default;
 

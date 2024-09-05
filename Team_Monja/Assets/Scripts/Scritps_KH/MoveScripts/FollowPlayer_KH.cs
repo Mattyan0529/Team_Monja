@@ -55,6 +55,11 @@ public class FollowPlayer_KH : MonoBehaviour, IFollowable_KH
         Transform nearestWayPoint = _nearPlayerWayPoints[0];
         foreach (Transform wayPoint in _nearPlayerWayPoints)
         {
+            if(wayPoint.transform.parent.name != _enemyMove.WayPoint.name)
+            {
+                continue;
+            }
+
             float shortestDistance = Vector3.Distance
                 (nearestWayPoint.position, _player.transform.position);
 

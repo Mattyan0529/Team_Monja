@@ -30,8 +30,6 @@ public class ChangeCharacter_MT : MonoBehaviour
 
     public void ChangeTagClosestObject(List<Collider> objectsInTrigger, Transform referencePoint)
     {
-        //changeIcon.IconChange(_IconNum);
-
         if (closestEnemyFinder == null)
         {
             Debug.LogError("ClosestEnemyFinder_MT is not assigned.");

@@ -39,6 +39,7 @@ public class DragPlayerToBoss_KH : MonoBehaviour
 
         if (_isFirst)
         {
+            _targetWayPoint.SetActive(true);
             PlayerToMainWayPoint();
         }
         else
@@ -103,6 +104,7 @@ public class DragPlayerToBoss_KH : MonoBehaviour
         {
             StartCoroutine(DeactivateAfterOneSecond());
             _isdrag = false;
+            _targetWayPoint.SetActive(false);
             return;
         }
 

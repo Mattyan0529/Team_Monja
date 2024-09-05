@@ -4,7 +4,7 @@ using UnityEngine;
 public class BossSkillAttack_KH : MonoBehaviour, IDamagable_KH
 {
     [SerializeField]
-    private float _rangeHaveAttackArea = 7f;
+    private float _rangeSwitchAttack = 7f;
 
     [SerializeField]
     private GameObject[] _attackRangeImage = default;
@@ -123,14 +123,14 @@ public class BossSkillAttack_KH : MonoBehaviour, IDamagable_KH
         playerPos.y = 0f;
         myPos.y = 0f;
 
-        // Mathf.Pow(_rangeHaveAttackArea, 2)は_rangeHaveAttackAreaの2乗
+        // Mathf.Pow(_rangeSwitchAttack, 2)は_rangeSwitchAttackの2乗
         // 既定値よりプレイヤーが近かったら
-        if (Vector3.SqrMagnitude(playerPos - myPos) < Mathf.Pow(_rangeHaveAttackArea, 2))
+        if (Vector3.SqrMagnitude(playerPos - myPos) < Mathf.Pow(_rangeSwitchAttack, 2))
         {
             HitAttack();
         }
         // プレイヤーが既定値外の時
-        else if (Vector3.SqrMagnitude(playerPos - myPos) > Mathf.Pow(_rangeHaveAttackArea, 2))
+        else if (Vector3.SqrMagnitude(playerPos - myPos) > Mathf.Pow(_rangeSwitchAttack, 2))
         {
             FireSphere();
         }

@@ -101,7 +101,7 @@ public class TagJudge_MT : MonoBehaviour
 
         _compassCenter.GetComponent<MoveCompass_KH>().SetPlayer(_playerObj);
 
-        _invisibleWall.GetComponent<PlayerEnterWallJudge>().SetPlayer(_playerObj);
+        _invisibleWall.GetComponent<PlayerEnterWallJudge_KH>().SetPlayer(_playerObj);
 
         //キャラクター全員に対して行う
         foreach (GameObject character in _characters)
