@@ -38,6 +38,9 @@ public class SlimeSkillAttack_KH : MonoBehaviour, IDamagable_KH
         _audioSource = GetComponent<AudioSource>();
         _playerSkill = GetComponent<PlayerSkill_KH>();
         _changeEnemyMoveType = GetComponent<ChangeEnemyMoveType_KH>();
+
+        _attackArea = transform.Find("AttackArea").gameObject;
+        _attackArea.SetActive(false);
     }
 
     void Update()
