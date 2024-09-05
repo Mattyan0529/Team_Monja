@@ -18,6 +18,7 @@ TagManager:
   - FireAttackArea
   - ResidentScripts
   - NearPlayerArea
+  - SlimeSphere
   layers:
   - Default
   - TransparentFX
