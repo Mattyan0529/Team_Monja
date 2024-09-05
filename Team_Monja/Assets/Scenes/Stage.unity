@@ -408,6 +408,7 @@ MonoBehaviour:
   - {fileID: 392831716}
   - {fileID: 1075735954}
   - {fileID: 1638790456}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &10064613
 Transform:
   m_ObjectHideFlags: 0
@@ -1167,6 +1168,7 @@ MonoBehaviour:
   - {fileID: 660013585}
   - {fileID: 1075628524}
   - {fileID: 1617024640}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &43976796
 Transform:
   m_ObjectHideFlags: 0
@@ -1245,6 +1247,7 @@ MonoBehaviour:
   - {fileID: 1864987715}
   - {fileID: 994104306}
   - {fileID: 73202195}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &49413424
 Transform:
   m_ObjectHideFlags: 0
@@ -1951,6 +1954,7 @@ MonoBehaviour:
   - {fileID: 1389098263}
   - {fileID: 1864987715}
   - {fileID: 49413421}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &73202198
 Transform:
   m_ObjectHideFlags: 0
@@ -2116,6 +2120,7 @@ MonoBehaviour:
   - {fileID: 291479441}
   - {fileID: 551130806}
   - {fileID: 616766387}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &78669008
 Transform:
   m_ObjectHideFlags: 0
@@ -2346,6 +2351,7 @@ MonoBehaviour:
   - {fileID: 935918863}
   - {fileID: 1342071943}
   - {fileID: 2138604200}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &84683886
 Transform:
   m_ObjectHideFlags: 0
@@ -3032,6 +3038,7 @@ MonoBehaviour:
   - {fileID: 1415269217}
   - {fileID: 2001533341}
   - {fileID: 2004311996}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &99776337
 Transform:
   m_ObjectHideFlags: 0
@@ -3192,6 +3199,7 @@ MonoBehaviour:
   - {fileID: 347749811}
   - {fileID: 376346937}
   - {fileID: 236072940}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &101966590
 Transform:
   m_ObjectHideFlags: 0
@@ -3278,6 +3286,7 @@ MonoBehaviour:
   - {fileID: 1187496240}
   - {fileID: 943593680}
   - {fileID: 839195128}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &102564766 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000012940407390, guid: da1c6cde83c1e90409324bab7d35cec5, type: 3}
@@ -3580,6 +3589,7 @@ MonoBehaviour:
   - {fileID: 278986762}
   - {fileID: 1585698623}
   - {fileID: 1072698036}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &111269123
 Transform:
   m_ObjectHideFlags: 0
@@ -6311,6 +6321,7 @@ MonoBehaviour:
   - {fileID: 1024705771}
   - {fileID: 1970663995}
   - {fileID: 660360166}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &147877207
 Transform:
   m_ObjectHideFlags: 0
@@ -6489,6 +6500,7 @@ MonoBehaviour:
   - {fileID: 111269120}
   - {fileID: 1208414386}
   - {fileID: 278986762}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &150797477
 Transform:
   m_ObjectHideFlags: 0
@@ -6906,6 +6918,7 @@ MonoBehaviour:
   - {fileID: 994104306}
   - {fileID: 956305686}
   - {fileID: 1279872076}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &165435486
 Transform:
   m_ObjectHideFlags: 0
@@ -8376,6 +8389,7 @@ MonoBehaviour:
   - {fileID: 975984306}
   - {fileID: 588156821}
   - {fileID: 356449589}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &182858252
 Transform:
   m_ObjectHideFlags: 0
@@ -9362,6 +9376,7 @@ MonoBehaviour:
   - {fileID: 84683883}
   - {fileID: 1860664785}
   - {fileID: 934621644}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &198418916
 Transform:
   m_ObjectHideFlags: 0
@@ -9876,6 +9891,7 @@ MonoBehaviour:
   - {fileID: 1897187061}
   - {fileID: 1562735235}
   - {fileID: 1488965106}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &224939353 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000011861910002, guid: 9f7e5b070b5ac5c48af67b1642c462c0, type: 3}
@@ -10126,6 +10142,7 @@ MonoBehaviour:
   - {fileID: 233977833}
   - {fileID: 590403856}
   - {fileID: 2073953630}
+  _bossWayPoints: {fileID: 0}
 --- !u!1001 &231248951
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10249,6 +10266,7 @@ MonoBehaviour:
   - {fileID: 2073953630}
   - {fileID: 2060084829}
   - {fileID: 229699186}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &233977836
 Transform:
   m_ObjectHideFlags: 0
@@ -10412,6 +10430,7 @@ MonoBehaviour:
   - {fileID: 888377423}
   - {fileID: 347749811}
   - {fileID: 101966587}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &236539862 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000011427189252, guid: f3ca55d6fd8e590479a3ec1a06dd4960, type: 3}
@@ -12533,6 +12552,7 @@ MonoBehaviour:
   - {fileID: 2044540422}
   - {fileID: 111269120}
   - {fileID: 150797474}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &278986765
 Transform:
   m_ObjectHideFlags: 0
@@ -12678,6 +12698,7 @@ MonoBehaviour:
   - {fileID: 501334291}
   - {fileID: 1491724869}
   - {fileID: 921521234}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &285070683
 Transform:
   m_ObjectHideFlags: 0
@@ -12968,6 +12989,7 @@ MonoBehaviour:
   - {fileID: 501334291}
   - {fileID: 1665703735}
   - {fileID: 1507847480}
+  _bossWayPoints: {fileID: 0}
 --- !u!1001 &287774064
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13215,6 +13237,7 @@ MonoBehaviour:
   - {fileID: 975984306}
   - {fileID: 1190872168}
   - {fileID: 714279632}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &291378164
 Transform:
   m_ObjectHideFlags: 0
@@ -13286,6 +13309,7 @@ MonoBehaviour:
   - {fileID: 732068628}
   - {fileID: 78669005}
   - {fileID: 2103433002}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &291479444
 Transform:
   m_ObjectHideFlags: 0
@@ -14699,6 +14723,7 @@ MonoBehaviour:
   - {fileID: 2044540422}
   - {fileID: 2010917199}
   - {fileID: 1585698623}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &314654866
 Transform:
   m_ObjectHideFlags: 0
@@ -14785,6 +14810,7 @@ MonoBehaviour:
   - {fileID: 660013585}
   - {fileID: 1075628524}
   - {fileID: 902963307}
+  _bossWayPoints: {fileID: 0}
 --- !u!1 &317457019
 GameObject:
   m_ObjectHideFlags: 0
@@ -17690,6 +17716,7 @@ MonoBehaviour:
   - {fileID: 1024705771}
   - {fileID: 1970663995}
   - {fileID: 1006793788}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &341568030
 Transform:
   m_ObjectHideFlags: 0
@@ -18043,6 +18070,7 @@ MonoBehaviour:
   - {fileID: 985986359}
   - {fileID: 101966587}
   - {fileID: 236072940}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &347749814
 Transform:
   m_ObjectHideFlags: 0
@@ -18426,6 +18454,7 @@ MonoBehaviour:
   - {fileID: 1190872168}
   - {fileID: 182858249}
   - {fileID: 868946185}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &356449592
 Transform:
   m_ObjectHideFlags: 0
@@ -19369,6 +19398,7 @@ MonoBehaviour:
   - {fileID: 888377423}
   - {fileID: 1592657859}
   - {fileID: 101966587}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &376346940
 Transform:
   m_ObjectHideFlags: 0
@@ -20037,6 +20067,7 @@ MonoBehaviour:
   - {fileID: 2052290597}
   - {fileID: 1075735954}
   - {fileID: 1638790456}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &392831719
 Transform:
   m_ObjectHideFlags: 0
@@ -21680,6 +21711,7 @@ MonoBehaviour:
   - {fileID: 1649152465}
   - {fileID: 1680718536}
   - {fileID: 1006657213}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &446493459
 Transform:
   m_ObjectHideFlags: 0
@@ -22114,6 +22146,7 @@ MonoBehaviour:
   - {fileID: 1967101071}
   - {fileID: 763282780}
   - {fileID: 1778075100}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &476266643
 Transform:
   m_ObjectHideFlags: 0
@@ -22542,6 +22575,7 @@ MonoBehaviour:
   - {fileID: 476266640}
   - {fileID: 1632103094}
   - {fileID: 1207175502}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &486236364
 Transform:
   m_ObjectHideFlags: 0
@@ -22848,6 +22882,7 @@ MonoBehaviour:
   - {fileID: 1507847480}
   - {fileID: 1325508938}
   - {fileID: 286996728}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &501334294
 Transform:
   m_ObjectHideFlags: 0
@@ -24699,6 +24734,7 @@ MonoBehaviour:
   - {fileID: 1189922639}
   - {fileID: 616766387}
   - {fileID: 926177739}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &551130809
 Transform:
   m_ObjectHideFlags: 0
@@ -25054,6 +25090,7 @@ MonoBehaviour:
   - {fileID: 1867892458}
   - {fileID: 1415269217}
   - {fileID: 2001533341}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &571664302
 Transform:
   m_ObjectHideFlags: 0
@@ -25952,6 +25989,7 @@ MonoBehaviour:
   - {fileID: 1218871716}
   - {fileID: 356449589}
   - {fileID: 182858249}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &588156824
 Transform:
   m_ObjectHideFlags: 0
@@ -26104,6 +26142,7 @@ MonoBehaviour:
   - {fileID: 1257695366}
   - {fileID: 2073953630}
   - {fileID: 229699186}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &590403859
 Transform:
   m_ObjectHideFlags: 0
@@ -27094,6 +27133,7 @@ MonoBehaviour:
   - {fileID: 714741080}
   - {fileID: 392831716}
   - {fileID: 1075735954}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &613425354
 Transform:
   m_ObjectHideFlags: 0
@@ -27386,6 +27426,7 @@ MonoBehaviour:
   - {fileID: 732068628}
   - {fileID: 78669005}
   - {fileID: 551130806}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &616766390
 Transform:
   m_ObjectHideFlags: 0
@@ -29799,6 +29840,7 @@ MonoBehaviour:
   - {fileID: 660013585}
   - {fileID: 1933979878}
   - {fileID: 902963307}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &640194206
 Transform:
   m_ObjectHideFlags: 0
@@ -30280,6 +30322,7 @@ MonoBehaviour:
   - {fileID: 902963307}
   - {fileID: 640194203}
   - {fileID: 314876963}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &660013588
 Transform:
   m_ObjectHideFlags: 0
@@ -30353,6 +30396,7 @@ MonoBehaviour:
   - {fileID: 916628902}
   - {fileID: 147877204}
   - {fileID: 1822189092}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &660360169
 Transform:
   m_ObjectHideFlags: 0
@@ -31663,6 +31707,7 @@ MonoBehaviour:
   - {fileID: 1190872168}
   - {fileID: 1218871716}
   - {fileID: 291378161}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &714279635
 Transform:
   m_ObjectHideFlags: 0
@@ -31734,6 +31779,7 @@ MonoBehaviour:
   - {fileID: 10064610}
   - {fileID: 613425351}
   - {fileID: 1822519277}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &714741083
 Transform:
   m_ObjectHideFlags: 0
@@ -32396,6 +32442,7 @@ MonoBehaviour:
   - {fileID: 551130806}
   - {fileID: 616766387}
   - {fileID: 926177739}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &732068631
 Transform:
   m_ObjectHideFlags: 0
@@ -34032,6 +34079,7 @@ MonoBehaviour:
   - {fileID: 476266640}
   - {fileID: 2105546808}
   - {fileID: 1967101071}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &763282783
 Transform:
   m_ObjectHideFlags: 0
@@ -35389,6 +35437,7 @@ MonoBehaviour:
   - {fileID: 1187496240}
   - {fileID: 1657934228}
   - {fileID: 899297126}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &793393585
 Transform:
   m_ObjectHideFlags: 0
@@ -37046,6 +37095,7 @@ MonoBehaviour:
   - {fileID: 943593680}
   - {fileID: 1995518162}
   - {fileID: 102332817}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &839195131
 Transform:
   m_ObjectHideFlags: 0
@@ -38353,6 +38403,7 @@ MonoBehaviour:
   - {fileID: 975984306}
   - {fileID: 1190872168}
   - {fileID: 356449589}
+  _bossWayPoints: {fileID: 0}
 --- !u!1001 &870474930
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39002,6 +39053,7 @@ MonoBehaviour:
   - {fileID: 101966587}
   - {fileID: 376346937}
   - {fileID: 236072940}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &888377426
 Transform:
   m_ObjectHideFlags: 0
@@ -39406,6 +39458,7 @@ MonoBehaviour:
   - {fileID: 943593680}
   - {fileID: 793393582}
   - {fileID: 1251147431}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &899297129
 Transform:
   m_ObjectHideFlags: 0
@@ -39858,6 +39911,7 @@ MonoBehaviour:
   - {fileID: 1075628524}
   - {fileID: 640194203}
   - {fileID: 314876963}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &902963310
 Transform:
   m_ObjectHideFlags: 0
@@ -40575,6 +40629,7 @@ MonoBehaviour:
   - {fileID: 1822189092}
   - {fileID: 1006793788}
   - {fileID: 2031126792}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &916628905
 Transform:
   m_ObjectHideFlags: 0
@@ -40777,6 +40832,7 @@ MonoBehaviour:
   - {fileID: 1665703735}
   - {fileID: 285070680}
   - {fileID: 1952770108}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &921521237
 Transform:
   m_ObjectHideFlags: 0
@@ -41079,6 +41135,7 @@ MonoBehaviour:
   - {fileID: 732068628}
   - {fileID: 1189922639}
   - {fileID: 551130806}
+  _bossWayPoints: {fileID: 0}
 --- !u!1001 &926584607
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -41241,6 +41298,7 @@ MonoBehaviour:
   - {fileID: 1860664785}
   - {fileID: 1197841578}
   - {fileID: 198418913}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &934621647
 Transform:
   m_ObjectHideFlags: 0
@@ -41384,6 +41442,7 @@ MonoBehaviour:
   - {fileID: 1860664785}
   - {fileID: 1342071943}
   - {fileID: 2138604200}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &935918866
 Transform:
   m_ObjectHideFlags: 0
@@ -41832,6 +41891,7 @@ MonoBehaviour:
   - {fileID: 1251147431}
   - {fileID: 839195128}
   - {fileID: 102332817}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &943593683
 Transform:
   m_ObjectHideFlags: 0
@@ -42346,6 +42406,7 @@ MonoBehaviour:
   - {fileID: 1864987715}
   - {fileID: 1279872076}
   - {fileID: 1309639718}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &956305689
 Transform:
   m_ObjectHideFlags: 0
@@ -43088,6 +43149,7 @@ MonoBehaviour:
   - {fileID: 356449589}
   - {fileID: 182858249}
   - {fileID: 868946185}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &975984309
 Transform:
   m_ObjectHideFlags: 0
@@ -43469,6 +43531,7 @@ MonoBehaviour:
   - {fileID: 888377423}
   - {fileID: 347749811}
   - {fileID: 1484855375}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &985986362
 Transform:
   m_ObjectHideFlags: 0
@@ -44081,6 +44144,7 @@ MonoBehaviour:
   - {fileID: 1389098263}
   - {fileID: 165435483}
   - {fileID: 49413421}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &994104309
 Transform:
   m_ObjectHideFlags: 0
@@ -44408,6 +44472,7 @@ MonoBehaviour:
   - {fileID: 446493456}
   - {fileID: 2054183863}
   - {fileID: 1649152465}
+  _bossWayPoints: {fileID: 0}
 --- !u!1 &1006793788
 GameObject:
   m_ObjectHideFlags: 0
@@ -44466,6 +44531,7 @@ MonoBehaviour:
   - {fileID: 916628902}
   - {fileID: 341568027}
   - {fileID: 2031126792}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1006793791
 Transform:
   m_ObjectHideFlags: 0
@@ -44537,6 +44603,7 @@ MonoBehaviour:
   - {fileID: 1897187061}
   - {fileID: 1837023173}
   - {fileID: 1488965106}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1010093565
 Transform:
   m_ObjectHideFlags: 0
@@ -44991,7 +45058,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockOnRadius: 50
-  dead: {fileID: 0}
+  childObject: {fileID: 0}
 --- !u!1 &1024705771
 GameObject:
   m_ObjectHideFlags: 0
@@ -45053,6 +45120,7 @@ MonoBehaviour:
   - {fileID: 1006793788}
   - {fileID: 341568027}
   - {fileID: 2031126792}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1024705774
 Transform:
   m_ObjectHideFlags: 0
@@ -46379,6 +46447,7 @@ MonoBehaviour:
   - {fileID: 2044540422}
   - {fileID: 111269120}
   - {fileID: 1585698623}
+  _bossWayPoints: {fileID: 0}
 --- !u!1 &1075590800
 GameObject:
   m_ObjectHideFlags: 0
@@ -46542,6 +46611,7 @@ MonoBehaviour:
   - {fileID: 43976793}
   - {fileID: 902963307}
   - {fileID: 314876963}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1075628527
 Transform:
   m_ObjectHideFlags: 0
@@ -46613,6 +46683,7 @@ MonoBehaviour:
   - {fileID: 10064610}
   - {fileID: 613425351}
   - {fileID: 392831716}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1075735957
 Transform:
   m_ObjectHideFlags: 0
@@ -48036,6 +48107,7 @@ MonoBehaviour:
   - {fileID: 888377423}
   - {fileID: 1592657859}
   - {fileID: 1484855375}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1100758720
 Transform:
   m_ObjectHideFlags: 0
@@ -48305,6 +48377,7 @@ MonoBehaviour:
   - {fileID: 732068628}
   - {fileID: 1189922639}
   - {fileID: 2103433002}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1107117492
 Transform:
   m_ObjectHideFlags: 0
@@ -49427,6 +49500,7 @@ MonoBehaviour:
   - {fileID: 660013585}
   - {fileID: 1933979878}
   - {fileID: 1617024640}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1142187796
 Transform:
   m_ObjectHideFlags: 0
@@ -49500,6 +49574,7 @@ MonoBehaviour:
   - {fileID: 1900746117}
   - {fileID: 1415269217}
   - {fileID: 2004311996}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1146198971
 Transform:
   m_ObjectHideFlags: 0
@@ -50448,6 +50523,7 @@ MonoBehaviour:
   - {fileID: 1897187061}
   - {fileID: 1562735235}
   - {fileID: 1601974382}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1170042217
 Transform:
   m_ObjectHideFlags: 0
@@ -51153,6 +51229,7 @@ MonoBehaviour:
   - {fileID: 839195128}
   - {fileID: 1995518162}
   - {fileID: 102332817}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1187496243
 Transform:
   m_ObjectHideFlags: 0
@@ -51295,6 +51372,7 @@ MonoBehaviour:
   - {fileID: 1107117489}
   - {fileID: 551130806}
   - {fileID: 926177739}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1189922642
 Transform:
   m_ObjectHideFlags: 0
@@ -51450,6 +51528,7 @@ MonoBehaviour:
   - {fileID: 291378161}
   - {fileID: 356449589}
   - {fileID: 868946185}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1190872171
 Transform:
   m_ObjectHideFlags: 0
@@ -51715,6 +51794,7 @@ MonoBehaviour:
   - {fileID: 84683883}
   - {fileID: 2083732550}
   - {fileID: 934621644}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1197841581
 Transform:
   m_ObjectHideFlags: 0
@@ -52140,6 +52220,7 @@ MonoBehaviour:
   - {fileID: 1632103094}
   - {fileID: 1323726833}
   - {fileID: 486236361}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1207175505
 Transform:
   m_ObjectHideFlags: 0
@@ -52316,6 +52397,7 @@ MonoBehaviour:
   - {fileID: 2044540422}
   - {fileID: 2010917199}
   - {fileID: 150797474}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1208414389
 Transform:
   m_ObjectHideFlags: 0
@@ -52610,6 +52692,7 @@ MonoBehaviour:
   - {fileID: 975984306}
   - {fileID: 588156821}
   - {fileID: 714279632}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1218871719
 Transform:
   m_ObjectHideFlags: 0
@@ -53799,6 +53882,7 @@ MonoBehaviour:
   - {fileID: 1187496240}
   - {fileID: 943593680}
   - {fileID: 899297126}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1251147434
 Transform:
   m_ObjectHideFlags: 0
@@ -53984,6 +54068,7 @@ MonoBehaviour:
   - {fileID: 233977833}
   - {fileID: 590403856}
   - {fileID: 1671926305}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1257695369
 Transform:
   m_ObjectHideFlags: 0
@@ -54155,6 +54240,7 @@ MonoBehaviour:
   - {fileID: 1976740818}
   - {fileID: 1649152465}
   - {fileID: 1680718536}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1259991485
 Transform:
   m_ObjectHideFlags: 0
@@ -54734,6 +54820,7 @@ MonoBehaviour:
   - {fileID: 1389098263}
   - {fileID: 165435483}
   - {fileID: 956305686}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1279872079
 Transform:
   m_ObjectHideFlags: 0
@@ -56447,6 +56534,7 @@ MonoBehaviour:
   - {fileID: 1389098263}
   - {fileID: 1864987715}
   - {fileID: 956305686}
+  _bossWayPoints: {fileID: 0}
 --- !u!1 &1310072620
 GameObject:
   m_ObjectHideFlags: 0
@@ -57408,6 +57496,7 @@ MonoBehaviour:
   - {fileID: 476266640}
   - {fileID: 2105546808}
   - {fileID: 1207175502}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1323726836
 Transform:
   m_ObjectHideFlags: 0
@@ -57484,6 +57573,7 @@ MonoBehaviour:
   - {fileID: 501334291}
   - {fileID: 1491724869}
   - {fileID: 1507847480}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1325508941
 Transform:
   m_ObjectHideFlags: 0
@@ -58274,6 +58364,7 @@ MonoBehaviour:
   - {fileID: 84683883}
   - {fileID: 2083732550}
   - {fileID: 935918863}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1342071946
 Transform:
   m_ObjectHideFlags: 0
@@ -59952,6 +60043,7 @@ MonoBehaviour:
   - {fileID: 956305686}
   - {fileID: 1279872076}
   - {fileID: 1309639718}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1389098266
 Transform:
   m_ObjectHideFlags: 0
@@ -61428,6 +61520,7 @@ MonoBehaviour:
   - {fileID: 1146198968}
   - {fileID: 2001533341}
   - {fileID: 2004311996}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1415269220
 Transform:
   m_ObjectHideFlags: 0
@@ -63453,6 +63546,7 @@ MonoBehaviour:
   - {fileID: 347749811}
   - {fileID: 1100758717}
   - {fileID: 985986359}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1484855378
 Transform:
   m_ObjectHideFlags: 0
@@ -63747,6 +63841,7 @@ MonoBehaviour:
   - {fileID: 1562735235}
   - {fileID: 1010093562}
   - {fileID: 224604282}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1488965109
 Transform:
   m_ObjectHideFlags: 0
@@ -64024,6 +64119,7 @@ MonoBehaviour:
   - {fileID: 285070680}
   - {fileID: 1507847480}
   - {fileID: 1325508938}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1491724872
 Transform:
   m_ObjectHideFlags: 0
@@ -64938,6 +65034,7 @@ MonoBehaviour:
   - {fileID: 1665703735}
   - {fileID: 1325508938}
   - {fileID: 286996728}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1507847483
 Transform:
   m_ObjectHideFlags: 0
@@ -67546,6 +67643,7 @@ MonoBehaviour:
   - {fileID: 1170042214}
   - {fileID: 1488965106}
   - {fileID: 224604282}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1562735238
 Transform:
   m_ObjectHideFlags: 0
@@ -68800,6 +68898,7 @@ MonoBehaviour:
   - {fileID: 111269120}
   - {fileID: 314654863}
   - {fileID: 1072698036}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1585698626
 Transform:
   m_ObjectHideFlags: 0
@@ -68950,6 +69049,7 @@ MonoBehaviour:
   - {fileID: 1100758717}
   - {fileID: 101966587}
   - {fileID: 376346937}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1592657862
 Transform:
   m_ObjectHideFlags: 0
@@ -69194,6 +69294,7 @@ MonoBehaviour:
   - {fileID: 10064610}
   - {fileID: 2052290597}
   - {fileID: 1822519277}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1600187673
 Transform:
   m_ObjectHideFlags: 0
@@ -69267,6 +69368,7 @@ MonoBehaviour:
   - {fileID: 1562735235}
   - {fileID: 2039128816}
   - {fileID: 1170042214}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1601974385
 Transform:
   m_ObjectHideFlags: 0
@@ -69654,6 +69756,7 @@ MonoBehaviour:
   - {fileID: 1075628524}
   - {fileID: 1142187793}
   - {fileID: 43976793}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1617024643
 Transform:
   m_ObjectHideFlags: 0
@@ -70530,6 +70633,7 @@ MonoBehaviour:
   - {fileID: 486236361}
   - {fileID: 1967101071}
   - {fileID: 1778075100}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1632103097
 Transform:
   m_ObjectHideFlags: 0
@@ -70603,6 +70707,7 @@ MonoBehaviour:
   - {fileID: 1146198968}
   - {fileID: 1867892458}
   - {fileID: 1900746117}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1633388581
 Transform:
   m_ObjectHideFlags: 0
@@ -71048,6 +71153,7 @@ MonoBehaviour:
   - {fileID: 10064610}
   - {fileID: 2052290597}
   - {fileID: 392831716}
+  _bossWayPoints: {fileID: 0}
 --- !u!1001 &1639443789
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -71500,6 +71606,7 @@ MonoBehaviour:
   - {fileID: 2054183863}
   - {fileID: 1680718536}
   - {fileID: 1006657213}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1649152468
 Transform:
   m_ObjectHideFlags: 0
@@ -71728,6 +71835,7 @@ MonoBehaviour:
   - {fileID: 1754844825}
   - {fileID: 2073953630}
   - {fileID: 2060084829}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1657896914
 Transform:
   m_ObjectHideFlags: 0
@@ -71801,6 +71909,7 @@ MonoBehaviour:
   - {fileID: 793393582}
   - {fileID: 839195128}
   - {fileID: 1995518162}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1657934231
 Transform:
   m_ObjectHideFlags: 0
@@ -72031,6 +72140,7 @@ MonoBehaviour:
   - {fileID: 1952770108}
   - {fileID: 1507847480}
   - {fileID: 286996728}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1665703738
 Transform:
   m_ObjectHideFlags: 0
@@ -72329,6 +72439,7 @@ MonoBehaviour:
   - {fileID: 590403856}
   - {fileID: 1754844825}
   - {fileID: 1257695366}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1671926308
 Transform:
   m_ObjectHideFlags: 0
@@ -72763,6 +72874,7 @@ MonoBehaviour:
   - {fileID: 446493456}
   - {fileID: 1259991482}
   - {fileID: 1649152465}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1680718539
 Transform:
   m_ObjectHideFlags: 0
@@ -74953,6 +75065,7 @@ MonoBehaviour:
   - {fileID: 233977833}
   - {fileID: 1657896911}
   - {fileID: 1671926305}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1754844828
 Transform:
   m_ObjectHideFlags: 0
@@ -75911,6 +76024,7 @@ MonoBehaviour:
   - {fileID: 476266640}
   - {fileID: 1632103094}
   - {fileID: 1967101071}
+  _bossWayPoints: {fileID: 0}
 --- !u!1001 &1778146254
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -77550,6 +77664,7 @@ MonoBehaviour:
   - {fileID: 1024705771}
   - {fileID: 916628902}
   - {fileID: 660360166}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1822189095
 Transform:
   m_ObjectHideFlags: 0
@@ -77649,6 +77764,7 @@ MonoBehaviour:
   - {fileID: 2052290597}
   - {fileID: 714741080}
   - {fileID: 1600187670}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1822519280
 Transform:
   m_ObjectHideFlags: 0
@@ -77966,6 +78082,7 @@ MonoBehaviour:
   - {fileID: 2039128816}
   - {fileID: 1488965106}
   - {fileID: 1010093562}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1837023176
 Transform:
   m_ObjectHideFlags: 0
@@ -79925,6 +80042,7 @@ MonoBehaviour:
   - {fileID: 198418913}
   - {fileID: 935918863}
   - {fileID: 2138604200}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1860664788
 Transform:
   m_ObjectHideFlags: 0
@@ -80003,6 +80121,7 @@ MonoBehaviour:
   - {fileID: 73202195}
   - {fileID: 956305686}
   - {fileID: 1309639718}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1864987718
 Transform:
   m_ObjectHideFlags: 0
@@ -80396,6 +80515,7 @@ MonoBehaviour:
   - {fileID: 99776334}
   - {fileID: 571664299}
   - {fileID: 1633388578}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1867892461
 Transform:
   m_ObjectHideFlags: 0
@@ -81342,6 +81462,7 @@ MonoBehaviour:
   - {fileID: 1488965106}
   - {fileID: 1010093562}
   - {fileID: 224604282}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1897187064
 Transform:
   m_ObjectHideFlags: 0
@@ -81495,6 +81616,7 @@ MonoBehaviour:
   - {fileID: 99776334}
   - {fileID: 1146198968}
   - {fileID: 1633388578}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1900746120
 Transform:
   m_ObjectHideFlags: 0
@@ -82389,6 +82511,7 @@ MonoBehaviour:
   - {fileID: 1142187793}
   - {fileID: 902963307}
   - {fileID: 640194203}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1933979881
 Transform:
   m_ObjectHideFlags: 0
@@ -82967,6 +83090,7 @@ MonoBehaviour:
   - {fileID: 501334291}
   - {fileID: 1665703735}
   - {fileID: 921521234}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1952770111
 Transform:
   m_ObjectHideFlags: 0
@@ -83225,6 +83349,7 @@ MonoBehaviour:
   - {fileID: 1632103094}
   - {fileID: 763282780}
   - {fileID: 1778075100}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1967101074
 Transform:
   m_ObjectHideFlags: 0
@@ -83488,6 +83613,7 @@ MonoBehaviour:
   - {fileID: 147877204}
   - {fileID: 1006793788}
   - {fileID: 341568027}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1970663998
 Transform:
   m_ObjectHideFlags: 0
@@ -83610,6 +83736,7 @@ MonoBehaviour:
   - {fileID: 446493456}
   - {fileID: 1259991482}
   - {fileID: 1997729312}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1976740821
 Transform:
   m_ObjectHideFlags: 0
@@ -84454,6 +84581,7 @@ MonoBehaviour:
   - {fileID: 1187496240}
   - {fileID: 1657934228}
   - {fileID: 839195128}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1995518165
 Transform:
   m_ObjectHideFlags: 0
@@ -84589,6 +84717,7 @@ MonoBehaviour:
   - {fileID: 2054183863}
   - {fileID: 1976740818}
   - {fileID: 2128671216}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &1997729315
 Transform:
   m_ObjectHideFlags: 0
@@ -84730,6 +84859,7 @@ MonoBehaviour:
   - {fileID: 99776334}
   - {fileID: 571664299}
   - {fileID: 1415269217}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &2001533344
 Transform:
   m_ObjectHideFlags: 0
@@ -84999,6 +85129,7 @@ MonoBehaviour:
   - {fileID: 99776334}
   - {fileID: 1146198968}
   - {fileID: 1415269217}
+  _bossWayPoints: {fileID: 0}
 --- !u!1 &2005332181
 GameObject:
   m_ObjectHideFlags: 0
@@ -85344,6 +85475,7 @@ MonoBehaviour:
   - {fileID: 1208414386}
   - {fileID: 1585698623}
   - {fileID: 314654863}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &2010917202
 Transform:
   m_ObjectHideFlags: 0
@@ -86431,6 +86563,7 @@ MonoBehaviour:
   - {fileID: 1024705771}
   - {fileID: 916628902}
   - {fileID: 1006793788}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &2031721991 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000012647527992, guid: dffc3e6b366597c4988d6935d7bf4617, type: 3}
@@ -86502,6 +86635,7 @@ MonoBehaviour:
   - {fileID: 1897187061}
   - {fileID: 1837023173}
   - {fileID: 1601974382}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &2039128819
 Transform:
   m_ObjectHideFlags: 0
@@ -86656,6 +86790,7 @@ MonoBehaviour:
   - {fileID: 1585698623}
   - {fileID: 314654863}
   - {fileID: 1072698036}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &2044540425
 Transform:
   m_ObjectHideFlags: 0
@@ -87057,6 +87192,7 @@ MonoBehaviour:
   - {fileID: 1600187670}
   - {fileID: 392831716}
   - {fileID: 1638790456}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &2052290600
 Transform:
   m_ObjectHideFlags: 0
@@ -87264,6 +87400,7 @@ MonoBehaviour:
   - {fileID: 2128671216}
   - {fileID: 1649152465}
   - {fileID: 1006657213}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &2054183866
 Transform:
   m_ObjectHideFlags: 0
@@ -87696,6 +87833,7 @@ MonoBehaviour:
   - {fileID: 233977833}
   - {fileID: 1657896911}
   - {fileID: 2073953630}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &2060084832
 Transform:
   m_ObjectHideFlags: 0
@@ -88761,6 +88899,7 @@ MonoBehaviour:
   - {fileID: 590403856}
   - {fileID: 2060084829}
   - {fileID: 229699186}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &2073953633
 Transform:
   m_ObjectHideFlags: 0
@@ -89136,6 +89275,7 @@ MonoBehaviour:
   - {fileID: 1197841578}
   - {fileID: 935918863}
   - {fileID: 1342071943}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &2083732553
 Transform:
   m_ObjectHideFlags: 0
@@ -89714,6 +89854,7 @@ MonoBehaviour:
   - {fileID: 1189922639}
   - {fileID: 291479441}
   - {fileID: 1107117489}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &2103433005
 Transform:
   m_ObjectHideFlags: 0
@@ -89797,6 +89938,7 @@ MonoBehaviour:
   - {fileID: 1323726833}
   - {fileID: 1967101071}
   - {fileID: 763282780}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &2105546811
 Transform:
   m_ObjectHideFlags: 0
@@ -90786,6 +90928,7 @@ MonoBehaviour:
   - {fileID: 446493456}
   - {fileID: 2054183863}
   - {fileID: 1997729312}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &2128671219
 Transform:
   m_ObjectHideFlags: 0
@@ -91697,6 +91840,7 @@ MonoBehaviour:
   - {fileID: 84683883}
   - {fileID: 1860664785}
   - {fileID: 935918863}
+  _bossWayPoints: {fileID: 0}
 --- !u!4 &2142393673 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000010695874706, guid: 43ccada6edf137d45a1a61238462411e, type: 3}
@@ -93314,6 +93458,7 @@ MonoBehaviour:
   - {fileID: 2762217183871623253}
   - {fileID: 2762217183437078109}
   - {fileID: 2762217182603391268}
+  _bossWayPoints: {fileID: 0}
 --- !u!114 &6736033768727629844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93331,6 +93476,7 @@ MonoBehaviour:
   - {fileID: 2762217183871623253}
   - {fileID: 2762217183437078109}
   - {fileID: 2762217183366630878}
+  _bossWayPoints: {fileID: 0}
 --- !u!114 &6736033769242513860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93353,6 +93499,7 @@ MonoBehaviour:
   - {fileID: 2762217183366630878}
   - {fileID: 2762217183746188698}
   - {fileID: 2762217184382050693}
+  _bossWayPoints: {fileID: 0}
 --- !u!114 &6736033769367688203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93370,6 +93517,7 @@ MonoBehaviour:
   - {fileID: 2762217183871623253}
   - {fileID: 2762217182675478662}
   - {fileID: 2762217183366630878}
+  _bossWayPoints: {fileID: 0}
 --- !u!114 &6736033769677295564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93389,6 +93537,7 @@ MonoBehaviour:
   - {fileID: 2762217184513317605}
   - {fileID: 2762217183366630878}
   - {fileID: 2762217184382050693}
+  _bossWayPoints: {fileID: 0}
 --- !u!114 &6736033769743318095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93408,6 +93557,7 @@ MonoBehaviour:
   - {fileID: 2762217183437078109}
   - {fileID: 2762217183746188698}
   - {fileID: 2762217184382050693}
+  _bossWayPoints: {fileID: 0}
 --- !u!114 &6736033770437056412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93425,6 +93575,7 @@ MonoBehaviour:
   - {fileID: 2762217183871623253}
   - {fileID: 2762217182675478662}
   - {fileID: 2762217182603391268}
+  _bossWayPoints: {fileID: 0}
 --- !u!114 &6736033770442561815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93444,6 +93595,7 @@ MonoBehaviour:
   - {fileID: 2762217182685701645}
   - {fileID: 2762217183366630878}
   - {fileID: 2762217183746188698}
+  _bossWayPoints: {fileID: 0}
 --- !u!114 &6736033770506780853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93463,6 +93615,7 @@ MonoBehaviour:
   - {fileID: 2762217183437078109}
   - {fileID: 2762217182685701645}
   - {fileID: 2762217184513317605}
+  _bossWayPoints: {fileID: 0}
 --- !u!1001 &7689814680289216322
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -93827,6 +93980,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 8273953576474761257, guid: ddbba76e08694f14bbd4a500561ceb0b, type: 3}
+      propertyPath: _bossWayPoints
+      value: 
+      objectReference: {fileID: 1555896574}
     - target: {fileID: 8273953576474761257, guid: ddbba76e08694f14bbd4a500561ceb0b, type: 3}
       propertyPath: _nearPlayerArea
       value: 
