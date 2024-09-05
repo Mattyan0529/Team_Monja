@@ -8,21 +8,29 @@ public class LockOn : MonoBehaviour
     private List<Transform> targets = new List<Transform>(); // ターゲット候補のリスト
     private int currentTargetIndex = 0; // 現在のターゲットのインデックス
     private bool isLockedOn = false; // ロックオン状態のフラグ
-    [SerializeField] CharacterDeadDecision_MT dead;
+    private CharacterDeadDecision_MT dead;
+    [SerializeField] private Transform childObject; // 子オブジェクトの参照を事前にセット
+
+    private void Start()
+    {
+        childObject = transform.GetChild(0); // 子オブジェクトをインデックスで取得する (インデックスを変更可能)
+    }
 
     void Update()
     {
         // "TargetButton" ボタンが押された瞬間を検出
         if (Input.GetButtonDown("TargetButton"))
         {
+            FindTargets();
             if (!isLockedOn)
             {
                 // ロックオンを開始する場合、ターゲットをリストに追加して最初のターゲットをロックオン
                 isLockedOn = true;
-                FindTargets();
+                //FindTargets();
             }
             else
             {
+               
                 // ロックオン中の場合、次のターゲットに切り替える
                 SwitchTarget(1);
             }
@@ -56,6 +64,10 @@ public class LockOn : MonoBehaviour
                 else
                 {
                     isLockedOn = false; // リストが空ならロックオンを解除
+                    Vector3 newRotation = transform.localEulerAngles;
+                    newRotation.x = 0f; // X軸のローテーションを15に戻す
+                    transform.localEulerAngles = newRotation;
+
                 }
             }
 
@@ -75,20 +87,36 @@ public class LockOn : MonoBehaviour
 
         // 現在のターゲットリストをクリア
         targets.Clear();
+        Transform nearestTarget = null;
+        float nearestDistance = Mathf.Infinity;
 
         // 取得したコライダーの中から、「Enemy」タグを持つものをターゲットリストに追加
         foreach (var hitCollider in hitColliders)
         {
-            if (hitCollider.CompareTag("Enemy"))
+            if (hitCollider.CompareTag("Enemy") || hitCollider.CompareTag("Boss"))
             {
+                // プレイヤーとの距離を計算
+                float distanceToTarget = Vector3.Distance(transform.position, hitCollider.transform.position);
+
+                // 一番近い敵を更新
+                if (distanceToTarget < nearestDistance)
+                {
+                    nearestDistance = distanceToTarget;
+                    nearestTarget = hitCollider.transform;
+                }
+
                 // ターゲットリストに敵のTransformを追加
                 targets.Add(hitCollider.transform);
             }
         }
 
-        // ターゲットリストが空でなければ、最初のターゲットにロックオン
-        if (targets.Count > 0)
+        // ターゲットリストが空でなく、一番近いターゲットが存在する場合
+        if (targets.Count > 0 && nearestTarget != null)
         {
+            // 一番近いターゲットをリストの最初に移動
+            targets.Remove(nearestTarget);
+            targets.Insert(0, nearestTarget);
+
             // 現在のターゲットインデックスを0（最初のターゲット）に設定
             currentTargetIndex = 0;
         }
