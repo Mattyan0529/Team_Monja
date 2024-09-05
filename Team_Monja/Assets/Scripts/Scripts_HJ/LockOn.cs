@@ -77,6 +77,9 @@ public class LockOn : MonoBehaviour
         if (Input.GetButtonDown("TargetCancel"))
         {
             isLockedOn = false;
+            Vector3 newRotation = transform.localEulerAngles;
+            newRotation.x = 0f; // X軸のローテーションを15に戻す
+            transform.localEulerAngles = newRotation;
         }
     }
 
