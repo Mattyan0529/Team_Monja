@@ -6,11 +6,11 @@ public class PlayerSkill_KH : MonoBehaviour
     [SerializeField]
     GameObject _coolTimeUIObj = default;
 
+    private PlayerMove_MT _playerMove = default;
     private MonsterSkill_KH _myMonsterSkill = default;
     private EnemyMove_KH _enemyMove = default;
     private AttackAreaJudge_KH _attackAreaJudge = default;
     private CoolTimeUI_KH _coolTimeUI = default;
-    private MoveStopScript_KH _moveStop = default;
 
     private IDamagable_KH _skillInterface = default;
 
@@ -47,6 +47,11 @@ public class PlayerSkill_KH : MonoBehaviour
     {
         _skillNum = _myMonsterSkill.SkillTypeNum;
 
+        if (GameObject.FindWithTag("PlayerManager").GetComponent<PlayerMove_MT>())
+        {
+            _playerMove = GameObject.FindWithTag("PlayerManager").GetComponent<PlayerMove_MT>();
+        }
+
         if (GetComponent<NormalAttack_KH>())
         {
             _normalAttack = GetComponent<NormalAttack_KH>();
@@ -57,7 +62,6 @@ public class PlayerSkill_KH : MonoBehaviour
         }
 
         _coolTimeUI = _coolTimeUIObj.GetComponent<CoolTimeUI_KH>();
-        _moveStop = GetComponent<MoveStopScript_KH>();
         _skillInterface = GetComponent<IDamagable_KH>();
 
 
@@ -105,8 +109,18 @@ public class PlayerSkill_KH : MonoBehaviour
     /// </summary>
     private void CallSkill()
     {
-        if (((Input.GetMouseButtonDown(0) || lefttrigger > 0.3f) && _canUseSkill))
+        /*if (((Input.GetMouseButtonDown(0) || lefttrigger > 0.3f) && _skillNum == (int)MonsterSkill_KH.SkillType.Fly && _flySkill.IsFlying))
         {
+            _isUseSkill = false;
+            _flySkill.StopFly();
+        }*/
+        if (((Input.GetMouseButtonDown(0) || Input.GetButtonDown("Cancel") && _canUseSkill)))
+        {
+            if(_playerMove != null)
+            {
+                _playerMove.enabled = false;
+            }
+
             if (_normalAttack != null && _normalAttack.IsAttack) return;
             if (_playerGuard != null && _playerGuard.IsGuard) return;
 
@@ -114,6 +128,11 @@ public class PlayerSkill_KH : MonoBehaviour
             _skillInterface.SpecialAttack();
             _canUseSkill = false;
             _coolTimeUI.StartCoolTime();
+
+            if (_playerMove != null)
+            {
+                _playerMove.enabled = true;
+            }
         }
     }
 
