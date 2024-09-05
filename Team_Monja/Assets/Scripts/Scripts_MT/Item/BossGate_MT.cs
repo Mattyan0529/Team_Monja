@@ -7,8 +7,12 @@ using UnityEngine.UI;
 public class BossGate_MT : MonoBehaviour
 {
     [SerializeField] private GameObject _canvasObjBoss = default;
+    [SerializeField] private GameObject _canvasObjPlayer = default;
     [SerializeField] private GameObject _gateObj = default;
     [SerializeField] private GameObject _pressF = default;
+
+    // í«ãLÅFñk
+    private TimeManager_KH _timeManager = default;
 
     private Canvas _canvasBoss;
     private Collider _collider;
@@ -17,6 +21,9 @@ public class BossGate_MT : MonoBehaviour
     {
         _canvasBoss = _canvasObjBoss.GetComponent<Canvas>();
         _collider = _gateObj.GetComponent<Collider>();
+
+        // í«ãLÅFñk
+        _timeManager = _canvasObjPlayer.GetComponentInChildren<TimeManager_KH>();
     }
 
     /// <summary>
@@ -27,6 +34,9 @@ public class BossGate_MT : MonoBehaviour
         _collider.isTrigger = true;
         _canvasBoss.enabled = true;
         _pressF.SetActive(false);
+
+        // í«ãLÅFñk
+        _timeManager.IsInCastle = true;
     }
 
     private void OnTriggerStay(Collider other)

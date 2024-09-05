@@ -23,8 +23,14 @@ public class TimeManager_KH : MonoBehaviour
 
     [SerializeField]
     private GameObject _damonHand = default;
+    private bool _isInCastle = false;
 
-    int _wordNumber = 0;
+    private int _wordNumber = 0; 
+
+    public bool IsInCastle
+    {
+        set { _isInCastle = value; }
+    }
 
     void Start()
     {
@@ -75,7 +81,10 @@ public class TimeManager_KH : MonoBehaviour
 
     private void PullPlayer()
     {
-        _damonHand.SetActive(true);
+        if (!_isInCastle)
+        {
+            _damonHand.SetActive(true);
+        }
         this.enabled = false;
     }
 }
