@@ -31,25 +31,28 @@ public class MenuNavigation_SM : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal"); // 水平方向の入力を取得
         float vertical = Input.GetAxis("Vertical");     // 垂直方向の入力を取得
 
-        // 十字キーの入力をチェック：北
-        bool dPadUp = Input.GetKeyDown(KeyCode.UpArrow);
-        bool dPadDown = Input.GetKeyDown(KeyCode.DownArrow);
-        bool dPadLeft = Input.GetKeyDown(KeyCode.LeftArrow);
-        bool dPadRight = Input.GetKeyDown(KeyCode.RightArrow);
 
         // 入力があった場合に処理を行う
-        if (Mathf.Abs(horizontal) > 0.1f || Mathf.Abs(vertical) > 0.1f || dPadUp || dPadDown || dPadLeft || dPadRight)
+        if (Mathf.Abs(horizontal) > 0.1f || Mathf.Abs(vertical) > 0.1f )
         {
             // 現在選択されているオブジェクトがnullの場合
             if (_eventSystem.currentSelectedGameObject == null)
             {
                 // 最初に選択されるオブジェクトを再度選択
                 _eventSystem.SetSelectedGameObject(_selectedObject);
+
+                // 1つ目のAudioSourceからSEを鳴らす（AudioSourceは別にどっちでもいい）：北
+                _soundEffectManagement.PlayBigSelectionSound(_audioSource[0]);
+                Debug.Log("SE");
             }
             else
             {
                 // 現在選択されているオブジェクトを更新
                 _selectedObject = _eventSystem.currentSelectedGameObject;
+
+                // 1つ目のAudioSourceからSEを鳴らす（AudioSourceは別にどっちでもいい）：北
+                _soundEffectManagement.PlayBigSelectionSound(_audioSource[0]);
+                Debug.Log("SE");
             }
 
             // マウスオーバー中のオブジェクトが選択されている場合、それをクリア
@@ -58,8 +61,7 @@ public class MenuNavigation_SM : MonoBehaviour
                 HoverSelectable_SM._currentHoveredObject = null;
             }
 
-            // 1つ目のAudioSourceからSEを鳴らす（AudioSourceは別にどっちでもいい）：北
-            _soundEffectManagement.PlayBigSelectionSound(_audioSource[0]);
+
         }
     }
 }
