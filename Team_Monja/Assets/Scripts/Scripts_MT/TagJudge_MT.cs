@@ -31,6 +31,7 @@ public class TagJudge_MT : MonoBehaviour
 
 
     private GameObject _playerObj;
+    private GameObject _bossObj;
 
     private string _currentTag; //１フレーム前のタグ
 
@@ -70,7 +71,7 @@ public class TagJudge_MT : MonoBehaviour
     public void SetPlayer()
     {
         _playerObj = GameObject.FindWithTag("Player");
-
+        _bossObj = GameObject.FindGameObjectWithTag("Boss");
 
         _playerManager.GetComponent<PlayerMove_MT>().SetPlayer();
         _playerManager.GetComponent<EatEnemy_MT>().SetPlayer();
@@ -86,6 +87,7 @@ public class TagJudge_MT : MonoBehaviour
         _playerObj.GetComponentInChildren<EnemyHP_MT>().TagCheck();
         _playerObj.GetComponentInChildren<EnemyHP_MT>().SetPlayerArea();
 
+        _bossObj.GetComponent<BossSkillAttack_KH>().SetPlayer(_playerObj);
 
         _MiniMapIcon.GetComponent<PlayerMinimapIconSet>().SetPlayer(_playerObj);
 
