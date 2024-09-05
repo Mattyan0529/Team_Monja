@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerEnterWallJudge : MonoBehaviour
+public class PlayerEnterWallJudge_KH : MonoBehaviour
 {
     private GameObject _player = default;
 

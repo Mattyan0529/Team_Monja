@@ -217,4 +217,10 @@ public class ChangeEnemyMoveType_KH : MonoBehaviour
 
         _speedAfterCalculation = _nowSpeed / NowDeceleration;
     }
+
+    private void ResurrectionStart()
+    {
+        _isMove = false;
+
+    }
 }
