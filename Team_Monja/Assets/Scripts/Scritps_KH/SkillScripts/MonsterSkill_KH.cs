@@ -4,14 +4,6 @@ public class MonsterSkill_KH : MonoBehaviour
 {
     [SerializeField]
     private GameObject _nearPlayerArea;
-    [SerializeField]
-    private Sprite _skillIcon = default;
-    [SerializeField]
-    private GameObject _skillSpriteObj = default;
-    [SerializeField]
-    private Sprite _normalAttackIcon = default;
-    [SerializeField]
-    private GameObject _normalAttackSpriteObj = default;
 
     private float _updateTime = 0f;    // 何秒おきにスキルを呼び出すか
     private float _elapsedTime = 3f;   // 最初の一回はすぐに攻撃するために_maxTimeSpacingより大きな値とする
@@ -23,8 +15,6 @@ public class MonsterSkill_KH : MonoBehaviour
 
     private PlayerSkill_KH _playerSkill = default;
     private AttackAreaJudge_KH _attackAreaJudge = default;
-    private SkillSpriteChange_KH _skillSpriteChange = default;
-    private SkillSpriteChange_KH _normalAttackSpriteChange = default;
     private ChangeEnemyMoveType_KH _changeEnemyMoveType = default;
     private NearPlayerWayPointManager_KH _nearPlayerWayPointManager = default;
     private EnemyMove_KH _enemyMove = default;
@@ -61,8 +51,6 @@ public class MonsterSkill_KH : MonoBehaviour
         //松本
         _characterAnim = GetComponent<CharacterAnim_MT>();
 
-        _skillSpriteChange = _skillSpriteObj.GetComponent<SkillSpriteChange_KH>();
-        _normalAttackSpriteChange = _normalAttackSpriteObj.GetComponent<SkillSpriteChange_KH>();
         _nearPlayerWayPointManager = _nearPlayerArea.GetComponent<NearPlayerWayPointManager_KH>();
         GameobjectTagJudge();
         _updateTime = Random.Range(_minTimeSpacing, _maxTimeSpacing);
@@ -85,8 +73,6 @@ public class MonsterSkill_KH : MonoBehaviour
             _nearPlayerWayPointManager.ClearNearPlayerWayPoint();
             _nearPlayerArea.transform.localScale = gameObject.transform.localScale * _nearPlayerAreaSize;
             _playerSkill.enabled = true;
-            _skillSpriteChange.ChangeSprite(_skillIcon);
-            _normalAttackSpriteChange.ChangeSprite(_normalAttackIcon);
 
             if (GetComponent<NormalAttack_KH>())
             {

@@ -24,7 +24,7 @@ public class NormalAttack_KH : MonoBehaviour
     private bool _canUseNormalAttack = true;
 
     private WriteHitPoint_KH _writeHitPoint = default;
-    private CoolTimeUI _coolTimeUI = default;
+    private CoolTimeUI_KH _coolTimeUI = default;
     private CreateDamageImage_KH _createDamageImage = default;
     private SoundEffectManagement_KH _soundEffectManagement = default;
     private AudioSource _audioSource = default;
@@ -40,7 +40,7 @@ public class NormalAttack_KH : MonoBehaviour
     {
         _writeHitPoint = _residentScript.GetComponent<WriteHitPoint_KH>();
         _characterAnim = GetComponent<CharacterAnim_MT>();
-        _coolTimeUI = _coolTimeUIObj.GetComponent<CoolTimeUI>();
+        _coolTimeUI = _coolTimeUIObj.GetComponent<CoolTimeUI_KH>();
         _createDamageImage = _residentScript.GetComponent<CreateDamageImage_KH>();
         _soundEffectManagement = _residentScript.GetComponent<SoundEffectManagement_KH>();
         _audioSource = GetComponent<AudioSource>();

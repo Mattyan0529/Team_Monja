@@ -14,7 +14,7 @@ public class PlayerGuard_KH : MonoBehaviour
     private float _coolTime = 1f;
     private float _coolTimeElapsedTime = 0f;
 
-    private CoolTimeUI _coolTimeUI = default;
+    private CoolTimeUI_KH _coolTimeUI = default;
 
     public bool IsGuard
     {
@@ -23,7 +23,7 @@ public class PlayerGuard_KH : MonoBehaviour
 
     private void Start()
     {
-        _coolTimeUI = _coolTimeObj.GetComponent<CoolTimeUI>();
+        _coolTimeUI = _coolTimeObj.GetComponent<CoolTimeUI_KH>();
     }
 
     void Update()

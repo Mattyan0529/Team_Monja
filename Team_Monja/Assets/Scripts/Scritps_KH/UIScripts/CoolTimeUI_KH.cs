@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CoolTimeUI : MonoBehaviour
+public class CoolTimeUI_KH : MonoBehaviour
 {
     private Image _image = default;
     [SerializeField]

@@ -9,7 +9,7 @@ public class PlayerSkill_KH : MonoBehaviour
     private MonsterSkill_KH _myMonsterSkill = default;
     private EnemyMove_KH _enemyMove = default;
     private AttackAreaJudge_KH _attackAreaJudge = default;
-    private CoolTimeUI _coolTimeUI = default;
+    private CoolTimeUI_KH _coolTimeUI = default;
     private MoveStopScript_KH _moveStop = default;
 
     private IDamagable_KH _skillInterface = default;
@@ -56,7 +56,7 @@ public class PlayerSkill_KH : MonoBehaviour
             _playerGuard = GetComponent<PlayerGuard_KH>();
         }
 
-        _coolTimeUI = _coolTimeUIObj.GetComponent<CoolTimeUI>();
+        _coolTimeUI = _coolTimeUIObj.GetComponent<CoolTimeUI_KH>();
         _moveStop = GetComponent<MoveStopScript_KH>();
         _skillInterface = GetComponent<IDamagable_KH>();
 
