@@ -105,7 +105,6 @@ public class EvillMageSkillAttack_KH : MonoBehaviour, IDamagable_KH
         // ‹K’èŽžŠÔ‚É’B‚µ‚Ä‚¢‚½ê‡
         if (_elapsedTime > _deleteTime)
         {
-            Debug.Log("‚«‚¦‚½");
             _characterAnim.NowAnim = "Idle";
             _attackArea.SetActive(false);
             _elapsedTime = 0f;
