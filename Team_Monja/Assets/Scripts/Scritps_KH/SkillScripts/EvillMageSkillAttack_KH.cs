@@ -5,40 +5,36 @@ public class EvillMageSkillAttack_KH : MonoBehaviour, IDamagable_KH
     [SerializeField]
     private GameObject _residentScript;
 
+    private float _deleteTime = 1f;
+    private float _elapsedTime = 0f;
 
+    private GameObject _attackArea;
 
-    private float _bulletSpeed = 50f;
-
-    private float _addSpownPos = 1f;     // 弾を生成するときにyに足す値
-
-    private GameObject _bullet = default;
     private WriteHitPoint_KH _writeHitPoint = default;
-    private BulletHitDecision_KH _bulletHitDecision = default;
     private SoundEffectManagement_KH _soundEffectManagement = default;
     private AudioSource _audioSource = default;
     private CreateDamageImage_KH _createDamageImage = default;
     private PlayerSkill_KH _playerSkill = default;
-    private CharacterAnim_MT _characterAnim = default;
     private ChangeEnemyMoveType_KH _changeEnemyMoveType = default;
 
-    private float _deleteTime = 2f;
-    private float _elapsedTime = 0f;
+    private bool _isAttack = false;
 
-    private bool _isShot = false;
+    //松本
+    private CharacterAnim_MT _characterAnim = default;
 
     void Start()
     {
         _writeHitPoint = _residentScript.GetComponent<WriteHitPoint_KH>();
-        _createDamageImage = _residentScript.GetComponent<CreateDamageImage_KH>();
         _soundEffectManagement = _residentScript.GetComponent<SoundEffectManagement_KH>();
-        _playerSkill = GetComponent<PlayerSkill_KH>();
+        _createDamageImage = _residentScript.GetComponent<CreateDamageImage_KH>();
         _characterAnim = GetComponent<CharacterAnim_MT>();
         _audioSource = GetComponent<AudioSource>();
+        _playerSkill = GetComponent<PlayerSkill_KH>();
         _changeEnemyMoveType = GetComponent<ChangeEnemyMoveType_KH>();
 
-        // 子オブジェクトからBulletを取得
-        _bullet = transform.Find("Bullet").gameObject;
-        _bulletHitDecision = _bullet.GetComponent<BulletHitDecision_KH>();
+        // 子オブジェクトの中からAttackAreaを取得
+        _attackArea = transform.Find("AttackArea").gameObject;
+        _attackArea.SetActive(false);
     }
 
     void Update()
@@ -46,31 +42,18 @@ public class EvillMageSkillAttack_KH : MonoBehaviour, IDamagable_KH
         UpdateTime();
     }
 
-    /// <summary>
-    /// 遠距離の弾を生成する
-    /// </summary>
     public void SpecialAttack()
-    {
-        if (_isShot) return;      // 重複で攻撃はしない
-
-        //松本
+    {  //松本
         _characterAnim.NowAnim = "Skill";
 
-
-        // 速度を付ける
-        _bullet.transform.position = new Vector3(transform.position.x, transform.position.y + _addSpownPos, transform.position.z);
-        Rigidbody rigidbody = _bullet.GetComponent<Rigidbody>();
-        rigidbody.velocity = transform.forward * _bulletSpeed;
-        _bullet.transform.SetParent(null);
-        _bulletHitDecision.ActivateBullet();
-
         _changeEnemyMoveType.IsMove = false;
+        _soundEffectManagement.PlaySlimeSound(_audioSource);
+    }
 
-        // SEを鳴らす
-        _soundEffectManagement.PlayLongDistanceAttackSound(_audioSource);
-
-        _isShot = true;
-
+    private void CreateAttackArea()
+    {
+        _isAttack = true;
+        _attackArea.SetActive(true);
     }
 
     /// <summary>
@@ -78,9 +61,6 @@ public class EvillMageSkillAttack_KH : MonoBehaviour, IDamagable_KH
     /// </summary>
     public void HitDecision(GameObject hitObj)
     {
-        _isShot = false;
-        _bullet.transform.SetParent(gameObject.transform);
-
         // 相手と自分のStatusManagerが両方必要
         StatusManager_MT targetStatusManager = hitObj.gameObject.GetComponent<StatusManager_MT>();
         StatusManager_MT myStatusManager = GetComponent<StatusManager_MT>();
@@ -113,34 +93,26 @@ public class EvillMageSkillAttack_KH : MonoBehaviour, IDamagable_KH
     }
 
     /// <summary>
-    /// 一定時間後弾を削除する
+    /// 一定時間後攻撃範囲を削除する
     /// </summary>
     private void UpdateTime()
     {
-        if (!_isShot) return;     // 攻撃中以外は処理を行わない
+        if (!_isAttack) return;     // 攻撃中以外は処理を行わない
+
         // 時間加算
         _elapsedTime += Time.deltaTime;
 
         // 規定時間に達していた場合
         if (_elapsedTime > _deleteTime)
         {
+            Debug.Log("きえた");
             _characterAnim.NowAnim = "Idle";
-            _bulletHitDecision.DisableBullet();
-            _bullet.transform.SetParent(gameObject.transform);
+            _attackArea.SetActive(false);
             _elapsedTime = 0f;
             _changeEnemyMoveType.IsMove = true;
-            _isShot = false;
+            _isAttack = false;
             _playerSkill.IsUseSkill = false;
         }
-    }
-
-    private void OnDisable()
-    {
-        if (_bulletHitDecision != null)
-        {
-            _bulletHitDecision.DisableBullet();
-        }
-        _isShot = false;
     }
 }
 
