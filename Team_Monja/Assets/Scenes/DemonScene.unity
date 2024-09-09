@@ -6897,7 +6897,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targetTransform: {fileID: 935364387}
-  _moveDuration: 1
+  _moveDuration: 0.2
   _particleSystems:
   - {fileID: 1662943645}
   - {fileID: 663455467}
@@ -9407,6 +9407,7 @@ MonoBehaviour:
   - "\u6642\u9593\u304C\u6765\u308C\u3070\u76F4\u63A5\u79C1\u304C\u5BFE\u8C61\u307E\u3067\u9023\u308C\u3066\u884C\u3063\u3066\u3084\u308B"
   sceneTransitionObject: {fileID: 1210501148}
   _moveAndRotateObject: {fileID: 626798357}
+  _charSoundClip: {fileID: 0}
 --- !u!114 &878004783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17290,6 +17291,7 @@ GameObject:
   - component: {fileID: 1768818532}
   - component: {fileID: 1768818531}
   - component: {fileID: 1768818530}
+  - component: {fileID: 1768818533}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -17347,6 +17349,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1768818533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1768818529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff0f8d323d412b04c883cff217925d38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sceneNameToLoad: Stage
+  _holdDuration: 2
+  _circularGauge: {fileID: 0}
 --- !u!1001 &1771454149
 PrefabInstance:
   m_ObjectHideFlags: 0
