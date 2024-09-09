@@ -114,7 +114,7 @@ public class PlayerSkill_KH : MonoBehaviour
             _isUseSkill = false;
             _flySkill.StopFly();
         }*/
-        if (((Input.GetMouseButtonDown(0) || Input.GetButtonDown("Cancel") && _canUseSkill)))
+        if (_canUseSkill && (Input.GetMouseButtonDown(0) || Input.GetButtonDown("Cancel")))
         {
             if(_playerMove != null)
             {
