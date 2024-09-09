@@ -7,7 +7,7 @@ public class SlimeSkillAttack_KH : MonoBehaviour, IDamagable_KH
     [SerializeField]
     private GameObject _residentScript;
 
-    private float _deleteTime = 1.5f;
+    private float _deleteTime = 1.8f;
     private float _elapsedTime = 0f;
 
     private GameObject _attackArea;
@@ -97,10 +97,7 @@ public class SlimeSkillAttack_KH : MonoBehaviour, IDamagable_KH
     {
         _characterAnim.NowAnim = "Idle";
         _attackArea.SetActive(false);
-        _elapsedTime = 0f;
         _changeEnemyMoveType.IsMove = true;
-        _isAttack = false;
-        _playerSkill.IsUseSkill = false;
     }
 
     /// <summary>
@@ -117,6 +114,9 @@ public class SlimeSkillAttack_KH : MonoBehaviour, IDamagable_KH
         if (_elapsedTime > _deleteTime)
         {
             DeleteAttackArea();
+            _elapsedTime = 0f;
+            _isAttack = false;
+            _playerSkill.IsUseSkill = false;
         }
     }
 }
