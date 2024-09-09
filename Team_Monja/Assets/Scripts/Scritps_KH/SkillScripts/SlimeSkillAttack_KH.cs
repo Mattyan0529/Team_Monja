@@ -9,6 +9,7 @@ public class SlimeSkillAttack_KH : MonoBehaviour, IDamagable_KH
 
     private float _deleteTime = 1.8f;
     private float _elapsedTime = 0f;
+    private float _secondsExpandMomentAttackRange = 0.5f;
 
     private GameObject _attackArea;
 
@@ -20,6 +21,7 @@ public class SlimeSkillAttack_KH : MonoBehaviour, IDamagable_KH
     private ChangeEnemyMoveType_KH _changeEnemyMoveType = default;
 
     private bool _isAttack = false;
+    private bool _isDeleted = false;
 
     //松本
     private CharacterAnim_MT _characterAnim = default;
@@ -47,12 +49,20 @@ public class SlimeSkillAttack_KH : MonoBehaviour, IDamagable_KH
     {  //松本
         _characterAnim.NowAnim = "Skill";
 
+        _isDeleted = false;
         _changeEnemyMoveType.IsMove = false;
         _soundEffectManagement.PlaySlimeSound(_audioSource);
     }
 
     private void CreateAttackArea()
     {
+        // すぐにエリアが削除された場合は、攻撃範囲の展開が間に合っていないので
+        // 再度展開し、数秒後に消す
+        if (_isDeleted) 
+        {
+            Invoke("DeleteAttackArea", _secondsExpandMomentAttackRange);
+        }
+
         _isAttack = true;
         _attackArea.SetActive(true);
     }
@@ -101,6 +111,7 @@ public class SlimeSkillAttack_KH : MonoBehaviour, IDamagable_KH
         _elapsedTime = 0f;
         _isAttack = false;
         _playerSkill.IsUseSkill = false;
+        _isDeleted = true;
     }
 
     /// <summary>
