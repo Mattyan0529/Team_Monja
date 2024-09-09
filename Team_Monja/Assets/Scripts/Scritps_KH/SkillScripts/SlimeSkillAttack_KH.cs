@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SlimeSkillAttack_KH : MonoBehaviour, IDamagable_KH
@@ -14,7 +15,6 @@ public class SlimeSkillAttack_KH : MonoBehaviour, IDamagable_KH
     private WriteHitPoint_KH _writeHitPoint = default;
     private SoundEffectManagement_KH _soundEffectManagement = default;
     private AudioSource _audioSource = default;
-    private PlayerMove_MT _playerMove = default;
     private CreateDamageImage_KH _createDamageImage = default;
     private PlayerSkill_KH _playerSkill = default;
     private ChangeEnemyMoveType_KH _changeEnemyMoveType = default;
@@ -23,11 +23,6 @@ public class SlimeSkillAttack_KH : MonoBehaviour, IDamagable_KH
 
     //松本
     private CharacterAnim_MT _characterAnim = default;
-
-    private void Awake()
-    {
-        _playerMove = GetComponent<PlayerMove_MT>();
-    }
 
     void Start()
     {
@@ -98,6 +93,16 @@ public class SlimeSkillAttack_KH : MonoBehaviour, IDamagable_KH
         _writeHitPoint.UpdateHitPoint(targetStatus, hitPointAfterDamage);      // targetStatusのHPを更新
     }
 
+    public void DeleteAttackArea()
+    {
+        _characterAnim.NowAnim = "Idle";
+        _attackArea.SetActive(false);
+        _elapsedTime = 0f;
+        _changeEnemyMoveType.IsMove = true;
+        _isAttack = false;
+        _playerSkill.IsUseSkill = false;
+    }
+
     /// <summary>
     /// 一定時間後攻撃範囲を削除する
     /// </summary>
@@ -111,12 +116,7 @@ public class SlimeSkillAttack_KH : MonoBehaviour, IDamagable_KH
         // 規定時間に達していた場合
         if (_elapsedTime > _deleteTime)
         {
-            _characterAnim.NowAnim = "Idle";
-            _attackArea.SetActive(false);
-            _elapsedTime = 0f;
-            _changeEnemyMoveType.IsMove = true;
-            _isAttack = false;
-            _playerSkill.IsUseSkill = false;
+            DeleteAttackArea();
         }
     }
 }

@@ -8,6 +8,7 @@ public class SlimeSkillAreaMove_KH : MonoBehaviour
 
     void Update()
     {
+        if (_slimeSphere == null) return;
         gameObject.transform.position = _slimeSphere.transform.position;
     }
 
