@@ -7,13 +7,14 @@ public class LockOn : MonoBehaviour
     [SerializeField] float lockOnRadius = 10f; // ロックオン範囲の半径
     private List<Transform> targets = new List<Transform>(); // ターゲット候補のリスト
     private int currentTargetIndex = 0; // 現在のターゲットのインデックス
-    private bool isLockedOn = false; // ロックオン状態のフラグ
+    public bool isLockedOn = false; // ロックオン状態のフラグ
     private CharacterDeadDecision_MT dead;
     [SerializeField] private Transform childObject; // 子オブジェクトの参照を事前にセット
 
     private void Start()
     {
         childObject = transform.GetChild(0); // 子オブジェクトをインデックスで取得する (インデックスを変更可能)
+        isLockedOn = false;
     }
 
     void Update()
@@ -21,16 +22,16 @@ public class LockOn : MonoBehaviour
         // "TargetButton" ボタンが押された瞬間を検出
         if (Input.GetButtonDown("TargetButton"))
         {
-            FindTargets();
+            //FindTargets();
             if (!isLockedOn)
             {
                 // ロックオンを開始する場合、ターゲットをリストに追加して最初のターゲットをロックオン
                 isLockedOn = true;
-                //FindTargets();
+                FindTargets();
             }
             else
             {
-               
+                FindTargets();
                 // ロックオン中の場合、次のターゲットに切り替える
                 SwitchTarget(1);
             }
@@ -65,12 +66,16 @@ public class LockOn : MonoBehaviour
                 {
                     isLockedOn = false; // リストが空ならロックオンを解除
                     Vector3 newRotation = transform.localEulerAngles;
-                    newRotation.x = 0f; // X軸のローテーションを15に戻す
+                    newRotation.x = 0f; // X軸のローテーションを0に戻す
                     transform.localEulerAngles = newRotation;
 
                 }
             }
 
+        }
+        if(targets.Count <=0)
+        {
+            isLockedOn = false;
         }
 
 
@@ -78,9 +83,14 @@ public class LockOn : MonoBehaviour
         {
             isLockedOn = false;
             Vector3 newRotation = transform.localEulerAngles;
-            newRotation.x = 0f; // X軸のローテーションを15に戻す
+            newRotation.x = 0f; // X軸のローテーションを0に戻す
             transform.localEulerAngles = newRotation;
+            // 現在のターゲットリストをクリア
+            targets.Clear();
+
         }
+
+        Debug.Log(targets.Count);
     }
 
     void FindTargets()
@@ -88,8 +98,6 @@ public class LockOn : MonoBehaviour
         // プレイヤーの位置を中心に、指定した半径内にあるすべてのコライダーを取得
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, lockOnRadius);
 
-        // 現在のターゲットリストをクリア
-        targets.Clear();
         Transform nearestTarget = null;
         float nearestDistance = Mathf.Infinity;
 
@@ -98,23 +106,27 @@ public class LockOn : MonoBehaviour
         {
             if (hitCollider.CompareTag("Enemy") || hitCollider.CompareTag("Boss"))
             {
-                // プレイヤーとの距離を計算
-                float distanceToTarget = Vector3.Distance(transform.position, hitCollider.transform.position);
-
-                // 一番近い敵を更新
-                if (distanceToTarget < nearestDistance)
+                // ターゲットリストにすでに含まれていないか確認
+                if (!targets.Contains(hitCollider.transform))
                 {
-                    nearestDistance = distanceToTarget;
-                    nearestTarget = hitCollider.transform;
-                }
+                    // プレイヤーとの距離を計算
+                    float distanceToTarget = Vector3.Distance(transform.position, hitCollider.transform.position);
 
-                // ターゲットリストに敵のTransformを追加
-                targets.Add(hitCollider.transform);
+                    // 一番近い敵を更新
+                    if (distanceToTarget < nearestDistance)
+                    {
+                        nearestDistance = distanceToTarget;
+                        nearestTarget = hitCollider.transform;
+                    }
+
+                    // ターゲットリストに敵のTransformを追加
+                    targets.Add(hitCollider.transform);
+                }
             }
         }
 
-        // ターゲットリストが空でなく、一番近いターゲットが存在する場合
-        if (targets.Count > 0 && nearestTarget != null)
+        // 一番近いターゲットが存在する場合
+        if (nearestTarget != null)
         {
             // 一番近いターゲットをリストの最初に移動
             targets.Remove(nearestTarget);
