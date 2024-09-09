@@ -17,14 +17,14 @@ public class CharacterAnim_MT : MonoBehaviour
     private void Start()
     {
         animator = GetComponent<Animator>();
+        NowAnim = "Idle";   
     }
 
     private void LateUpdate()
     {
-        if (NowAnim != _currentAnim)
-        {
+        
             AnimSwitch();
-        }
+        
 
 
         _currentAnim = NowAnim;
@@ -44,15 +44,19 @@ public class CharacterAnim_MT : MonoBehaviour
                 break;
             case "Attack":
                 animator.SetTrigger("Attack");
+                
                 break;
             case "Attack2":
                 animator.SetTrigger("Attack2");
+             
                 break;
             case "Skill":
                 animator.SetTrigger("Skill");
+               
                 break;
             case "GotDamage":
                 animator.SetTrigger("GotDamage");
+          
                 break;
             case "Die":
                 animator.SetTrigger("Die");
@@ -65,6 +69,8 @@ public class CharacterAnim_MT : MonoBehaviour
                 animator.SetBool("Idle", false);
                 animator.SetBool("Move", false);
                 animator.SetBool("Die", false);
+                break;
+            case null:
                 break;
         }
     }
