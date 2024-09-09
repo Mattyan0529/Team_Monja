@@ -5,11 +5,23 @@ using UnityEngine;
 public class SlimeSkillAreaMove_KH : MonoBehaviour
 {
     private GameObject _slimeSphere = default;
+    private SlimeLuncer _slimeLuncer = default;
+
+    private void Start()
+    {
+        _slimeLuncer = transform.parent.GetComponent<SlimeLuncer>();
+    }
 
     void Update()
     {
-        if (_slimeSphere == null) return;
-        gameObject.transform.position = _slimeSphere.transform.position;
+        if (_slimeSphere == null) 
+        {
+            gameObject.transform.position = _slimeLuncer.LastSpherePos.position;
+        }
+        else
+        {
+            gameObject.transform.position = _slimeSphere.transform.position;
+        }
     }
 
     private void OnEnable()

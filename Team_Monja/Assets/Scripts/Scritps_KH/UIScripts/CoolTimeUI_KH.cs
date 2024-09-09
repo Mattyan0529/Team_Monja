@@ -11,17 +11,17 @@ public class CoolTimeUI_KH : MonoBehaviour
     void Start()
     {
         _image = GetComponent<Image>();
-        _image.fillAmount = 0f;
+        _image.fillAmount = 1f;
     }
 
     void Update()
     {
         if (_isCoolTime)
         {
-            _image.fillAmount -= 1.0f / _skillCoolTime * Time.deltaTime;
+            _image.fillAmount += 1.0f / _skillCoolTime * Time.deltaTime;
         }
 
-        if(_image.fillAmount < 0f)
+        if(_image.fillAmount > 1f)
         {
             _isCoolTime = false;
         }
@@ -33,6 +33,6 @@ public class CoolTimeUI_KH : MonoBehaviour
     public void StartCoolTime()
     {
         _isCoolTime = true;
-        _image.fillAmount = 1f;
+        _image.fillAmount = 0f;
     }
 }
