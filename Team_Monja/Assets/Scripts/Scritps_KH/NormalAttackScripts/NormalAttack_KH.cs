@@ -55,16 +55,25 @@ public class NormalAttack_KH : MonoBehaviour
 
     private void AttackInputManager()
     {
-        if (Input.GetMouseButtonDown(1) ||Input.GetButtonDown("Submit"))
+        if (Input.GetMouseButtonDown(1) || Input.GetButtonDown("Submit"))
         {
             if (!_canUseNormalAttack) return;
 
             //松本
             _characterAnim.NowAnim = "Attack";
 
-            _coolTimeUI.StartCoolTime();
-            _canUseNormalAttack = false;
+
+
         }
+    }
+
+    /// <summary>
+    /// クールタイムをスタートする(攻撃アニメーションの最後に呼び出す)
+    /// </summary>
+    private void StartCoolTime()
+    {
+        _coolTimeUI.StartCoolTime();
+        _canUseNormalAttack = false;
     }
 
     /// <summary>
@@ -74,9 +83,6 @@ public class NormalAttack_KH : MonoBehaviour
     {
         _attackArea.SetActive(true);
         _isAttack = true;
-
-        //// 通常攻撃エフェクトを表示
-        //_effectManager.ShowNormalAttackEffect(transform);
 
         _soundEffectManagement.PlayStrongPunchSound(_audioSource);
     }
