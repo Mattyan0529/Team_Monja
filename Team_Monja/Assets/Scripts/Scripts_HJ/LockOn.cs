@@ -9,11 +9,14 @@ public class LockOn : MonoBehaviour
     private int currentTargetIndex = 0; // 現在のターゲットのインデックス
     public bool isLockedOn = false; // ロックオン状態のフラグ
     private CharacterDeadDecision_MT dead;
-    [SerializeField] private Transform childObject; // 子オブジェクトの参照を事前にセット
+    [SerializeField] private Transform childObject; // 子オブジェクト（メインカメラ）
+    [SerializeField] private GameObject _lockOnImage; // ロックオンしたときに画面に表示するイメージ
 
     private void Start()
     {
-        childObject = transform.GetChild(0); // 子オブジェクトをインデックスで取得する (インデックスを変更可能)
+        // 子オブジェクトをインデックスで取得する (ここではメインカメラを想定)
+        childObject = Camera.main.transform; // メインカメラとして初期化
+        _lockOnImage.SetActive(false); // 初期化時にロックオンイメージを非表示に
         isLockedOn = false;
     }
 
@@ -22,17 +25,16 @@ public class LockOn : MonoBehaviour
         // "TargetButton" ボタンが押された瞬間を検出
         if (Input.GetButtonDown("TargetButton"))
         {
-            //FindTargets();
             if (!isLockedOn)
             {
-                // ロックオンを開始する場合、ターゲットをリストに追加して最初のターゲットをロックオン
+                // ロックオンを開始し、ターゲットをリストに追加
                 isLockedOn = true;
                 FindTargets();
             }
             else
             {
                 FindTargets();
-                // ロックオン中の場合、次のターゲットに切り替える
+                // ロックオン中なら次のターゲットに切り替える
                 SwitchTarget(1);
             }
         }
@@ -40,125 +42,115 @@ public class LockOn : MonoBehaviour
         // ターゲットリストが空でない場合
         if (isLockedOn && targets.Count > 0)
         {
-            // 現在ロックオンしているターゲットのTransformを取得
-            Transform currentTarget = targets[currentTargetIndex];
+            Transform currentTarget = targets[currentTargetIndex]; // 現在ロックオンしているターゲット
+            dead = currentTarget.GetComponent<CharacterDeadDecision_MT>();
 
-            // 現在ターゲットしているオブジェクトのスクリプトを取得
-           dead = currentTarget.GetComponent<CharacterDeadDecision_MT>();
-
-            // キャラクターが現在のターゲットの方向を向くようにする
+            // キャラクターをターゲット方向に向かせる
             Vector3 direction = currentTarget.position - transform.position; // ターゲットまでの方向ベクトルを計算
             Quaternion rotation = Quaternion.LookRotation(direction); // その方向を向く回転を計算
+            transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * 4f); // スムーズに回転させる
 
-            // 現在の回転からターゲット方向の回転へ、スムーズに回転させる
-            transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * 4f);
-
+            // ターゲットが死んだ場合、リストから削除して次のターゲットに切り替える
             if (dead.IsDeadDecision())
             {
                 targets.RemoveAt(currentTargetIndex); // 現在のターゲットをリストから削除
-
-                // リストがまだ空でない場合、次のターゲットをロックオン
                 if (targets.Count > 0)
                 {
-                    currentTargetIndex = currentTargetIndex % targets.Count; // 新しいインデックスがリストの範囲内に収まるように調整
+                    currentTargetIndex = currentTargetIndex % targets.Count; // リストが空でない場合は次のターゲットへ
                 }
                 else
                 {
                     isLockedOn = false; // リストが空ならロックオンを解除
-                    Vector3 newRotation = transform.localEulerAngles;
-                    newRotation.x = 0f; // X軸のローテーションを0に戻す
-                    transform.localEulerAngles = newRotation;
-
+                    ResetRotation();
                 }
             }
 
+            // ターゲットが存在する間、ロックオンイメージを追従させる
+            Vector3 targetScreenPos = Camera.main.WorldToScreenPoint(currentTarget.position); // ターゲットのスクリーン座標
+            if (targetScreenPos.z > 0)
+            {
+                _lockOnImage.transform.position = targetScreenPos; // イメージをスクリーン座標に配置
+                _lockOnImage.SetActive(true); // ロックオンイメージを表示
+            }
+            else
+            {
+                _lockOnImage.SetActive(false); // カメラ外にある場合は非表示
+            }
         }
-        if(targets.Count <=0)
+        else
+        {
+            _lockOnImage.SetActive(false); // ロックオン解除時、イメージを非表示
+        }
+
+        // ターゲットがいない場合はロックオンを解除
+        if (targets.Count <= 0)
         {
             isLockedOn = false;
         }
 
-
+        // ターゲットキャンセルボタンが押されたらロックオン解除
         if (Input.GetButtonDown("TargetCancel"))
         {
             isLockedOn = false;
-            Vector3 newRotation = transform.localEulerAngles;
-            newRotation.x = 0f; // X軸のローテーションを0に戻す
-            transform.localEulerAngles = newRotation;
-            // 現在のターゲットリストをクリア
-            targets.Clear();
-
+            ResetRotation();
+            targets.Clear(); // ターゲットリストをクリア
+            _lockOnImage.SetActive(false); // ロックオンイメージを非表示
         }
-
-        Debug.Log(targets.Count);
     }
 
+    // ターゲット候補を探す
     void FindTargets()
     {
-        // プレイヤーの位置を中心に、指定した半径内にあるすべてのコライダーを取得
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, lockOnRadius);
-
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, lockOnRadius); // プレイヤー周辺のコライダーを取得
         Transform nearestTarget = null;
         float nearestDistance = Mathf.Infinity;
 
-        // 取得したコライダーの中から、「Enemy」タグを持つものをターゲットリストに追加
         foreach (var hitCollider in hitColliders)
         {
             if (hitCollider.CompareTag("Enemy") || hitCollider.CompareTag("Boss"))
             {
-                // ターゲットリストにすでに含まれていないか確認
                 if (!targets.Contains(hitCollider.transform))
                 {
-                    // プレイヤーとの距離を計算
-                    float distanceToTarget = Vector3.Distance(transform.position, hitCollider.transform.position);
-
-                    // 一番近い敵を更新
+                    float distanceToTarget = Vector3.Distance(transform.position, hitCollider.transform.position); // プレイヤーとの距離を計算
                     if (distanceToTarget < nearestDistance)
                     {
                         nearestDistance = distanceToTarget;
-                        nearestTarget = hitCollider.transform;
+                        nearestTarget = hitCollider.transform; // 最も近いターゲットを記録
                     }
-
-                    // ターゲットリストに敵のTransformを追加
-                    targets.Add(hitCollider.transform);
+                    targets.Add(hitCollider.transform); // ターゲットリストに追加
                 }
             }
         }
 
-        // 一番近いターゲットが存在する場合
         if (nearestTarget != null)
         {
-            // 一番近いターゲットをリストの最初に移動
-            targets.Remove(nearestTarget);
+            targets.Remove(nearestTarget); // 最も近いターゲットをリストの最初に移動
             targets.Insert(0, nearestTarget);
-
-            // 現在のターゲットインデックスを0（最初のターゲット）に設定
-            currentTargetIndex = 0;
+            currentTargetIndex = 0; // 最初のターゲットを現在のターゲットに設定
         }
     }
 
+    // ターゲットを切り替える
     void SwitchTarget(int direction)
     {
-        // ターゲットが1つもない場合は処理を終了
         if (targets.Count == 0) return;
 
-        // 現在のターゲットインデックスを、方向に応じて更新
-        currentTargetIndex += direction;
-
-        // インデックスがリストの範囲を超えないように調整
-        // インデックスが負の値になった場合（範囲外）、リストの最後のターゲットにループする
+        currentTargetIndex += direction; // ターゲットインデックスを更新
         if (currentTargetIndex < 0)
         {
-            currentTargetIndex = targets.Count - 1;
+            currentTargetIndex = targets.Count - 1; // インデックスが負の場合、リストの最後に戻る
         }
-        // インデックスがリストのサイズ以上になった場合（範囲外）、リストの最初のターゲットにループする
         else if (currentTargetIndex >= targets.Count)
         {
-            currentTargetIndex = 0;
+            currentTargetIndex = 0; // インデックスが範囲外の場合、リストの最初に戻る
         }
     }
 
-
+    // キャラクターの回転をリセットする
+    void ResetRotation()
+    {
+        Vector3 newRotation = transform.localEulerAngles;
+        newRotation.x = 0f; // X軸のローテーションを0に戻す
+        transform.localEulerAngles = newRotation;
+    }
 }
-
-
