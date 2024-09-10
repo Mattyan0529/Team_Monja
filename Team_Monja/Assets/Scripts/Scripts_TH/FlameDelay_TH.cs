@@ -8,7 +8,7 @@ public class FlameDelay_TH : MonoBehaviour
     [SerializeField]
     private GameObject[] _attackRangeFrame = default;
     [SerializeField]
-    private float _fireSphereDelay = 3f; // FireSphere”­“®Œã‚Ì’x‰„ŠÔi•bj
+    private float _fireSphereDelay = 0.5f; // FireSphere”­“®Œã‚Ì’x‰„ŠÔi•bj
     [SerializeField]
     private float _frameDisplayTime = 2f; // UŒ‚”ÍˆÍƒtƒŒ[ƒ€‚ª•\¦‚³‚ê‚éŠÔi•bj
     [SerializeField]
@@ -41,9 +41,6 @@ public class FlameDelay_TH : MonoBehaviour
         _attackRangeFrame[0].SetActive(false);
         _attackRangeFrame[1].SetActive(false);
         _attackRangeFrame[2].SetActive(false);
-
-        // UŒ‚”ÍˆÍ‚Ì•\¦ŠÔ‚ğŠÇ—
-        yield return new WaitForSeconds(_sphereDeleteTime);
 
         foreach (var attackRange in _attackRangeImage)
         {

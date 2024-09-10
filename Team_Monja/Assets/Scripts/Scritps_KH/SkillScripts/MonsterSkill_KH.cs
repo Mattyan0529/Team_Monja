@@ -7,8 +7,9 @@ public class MonsterSkill_KH : MonoBehaviour
 
     private float _updateTime = 0f;    // 何秒おきにスキルを呼び出すか
     private float _elapsedTime = 3f;   // 最初の一回はすぐに攻撃するために_maxTimeSpacingより大きな値とする
-
+    [SerializeField]
     private float _maxTimeSpacing = 2f;
+    [SerializeField]
     private float _minTimeSpacing = 1f;
 
     private float _nearPlayerAreaSize = 120f;
