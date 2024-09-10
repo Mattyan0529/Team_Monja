@@ -72,6 +72,7 @@ public class EnemyMove_KH : MonoBehaviour
         }
         else
         {
+            _characterAnim.NowAnim = "Idle";
             NextWayPointSearch();
         }
 
