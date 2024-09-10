@@ -37,10 +37,12 @@ public class CharacterAnim_MT : MonoBehaviour
             case "Idle":
                 animator.SetBool("Idle", true);
                 animator.SetBool("Move", false);
+                NowAnim = null;
                 break;
             case "Move":
                 animator.SetBool("Move", true);
                 animator.SetBool("Idle", false);
+                NowAnim = null;
                 break;
             case "Attack":
                 animator.SetTrigger("Attack");
@@ -63,12 +65,14 @@ public class CharacterAnim_MT : MonoBehaviour
                 animator.SetBool("Die", true);
                 animator.SetBool("Idle", false);
                 animator.SetBool("Move", false);
+                NowAnim = null;
                 break;
             case "Revive":
                 animator.SetTrigger("Revive");
                 animator.SetBool("Idle", false);
                 animator.SetBool("Move", false);
                 animator.SetBool("Die", false);
+                NowAnim = null;
                 break;
             case null:
                 break;
