@@ -17,6 +17,7 @@ public class GameEndCamera_MT : MonoBehaviour
     [SerializeField] private GameObject _gameOverImage = default;
 
 
+
     private float _slowTimeScale = 0.3f; //スローモーションの時の時間速度
     private Vector3 _deadCameraPosition = new Vector3(0, 0, 0);　//死んだときのカメラの位置
     private Vector3 _deadCameraRotation = new Vector3(0, 0, 0);  // 死んだときのカメラの向き
