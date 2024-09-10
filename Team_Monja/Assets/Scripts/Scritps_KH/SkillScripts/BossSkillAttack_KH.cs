@@ -14,9 +14,8 @@ public class BossSkillAttack_KH : MonoBehaviour, IDamagable_KH
     [SerializeField]
     private GameObject[] _pillarOfFire = default;
 
-    //武田
     [SerializeField]
-    private FlameDelay_TH _FlameDelay_TH; // FlameDelay_THの参照を追加しました。
+    private GameObject _bossFollowArea = default;
 
     //松本
     private CharacterAnim_MT _characterAnim = default;
@@ -33,6 +32,7 @@ public class BossSkillAttack_KH : MonoBehaviour, IDamagable_KH
     private WriteHitPoint_KH _writeHitPoint = default;
     private CreateDamageImage_KH _createDamageImage = default;
     private ChangeEnemyMoveType_KH _changeEnemyMoveType = default;
+    private BoxCollider _pillarOfFireBounds = default;
 
     private GameObject _player = default;
     private GameObject _residentScript = default;
@@ -77,6 +77,7 @@ public class BossSkillAttack_KH : MonoBehaviour, IDamagable_KH
         _soundEffectManagement = _residentScript.GetComponent<SoundEffectManagement_KH>();
         _audioSource = GetComponent<AudioSource>();
         _changeEnemyMoveType = GetComponent<ChangeEnemyMoveType_KH>();
+        _pillarOfFireBounds = _bossFollowArea.GetComponent<BoxCollider>();
    
 
         #region FireAttack
@@ -171,12 +172,19 @@ public class BossSkillAttack_KH : MonoBehaviour, IDamagable_KH
         _underPlayerAttackRange.transform.position = _player.transform.position;
         _underPlayerAttackRange.transform.parent = null;
 
-        // プレイヤーから近い攻撃範囲の位置決定
-        float nearPlayerX = Random.Range(_minimumNearPlayerAttackRange, _maximumNearPlayerAttackRange);
-        float nearPlayerZ = Random.Range(_minimumNearPlayerAttackRange, _maximumNearPlayerAttackRange);
-        Vector3 nearPlayerPos = new Vector3
-            (_player.transform.position.x + nearPlayerX, _player.transform.position.y, _player.transform.position.z + nearPlayerZ);
+        Vector3 nearPlayerPos;
 
+        // 攻撃範囲が_pillarOfFireBoundsの範囲外の間繰り返す
+        do
+        {
+            // プレイヤーから近い攻撃範囲の位置決定
+            float nearPlayerX = Random.Range(_minimumNearPlayerAttackRange, _maximumNearPlayerAttackRange);
+            float nearPlayerZ = Random.Range(_minimumNearPlayerAttackRange, _maximumNearPlayerAttackRange);
+            nearPlayerPos = new Vector3
+                (_player.transform.position.x + nearPlayerX, _player.transform.position.y, _player.transform.position.z + nearPlayerZ);
+        } while (!_pillarOfFireBounds.bounds.Contains(nearPlayerPos));
+
+        // 攻撃範囲の位置反映
         _attackRangeImage[1].transform.position = new Vector3(nearPlayerPos.x, _imagePositionY, nearPlayerPos.z);
         _attackRangeImage[1].SetActive(true);
 
@@ -185,12 +193,19 @@ public class BossSkillAttack_KH : MonoBehaviour, IDamagable_KH
         _nearPlayerAttackRange.transform.position = nearPlayerPos;
         _nearPlayerAttackRange.transform.parent = null;
 
-        // プレイヤーから遠い攻撃範囲の位置決定
-        float farPlayerX = Random.Range(_minimumFarPlayerAttackRange, _maximumFarPlayerAttackRange);
-        float farPlayerZ = Random.Range(_minimumFarPlayerAttackRange, _maximumFarPlayerAttackRange);
-        Vector3 farPlayerPos = new Vector3
-            (_player.transform.position.x + farPlayerX, _player.transform.position.y, _player.transform.position.z + farPlayerZ);
+        Vector3 farPlayerPos;
 
+        // 攻撃範囲が_pillarOfFireBoundsの範囲外の間繰り返す
+        do
+        {
+            // プレイヤーから遠い攻撃範囲の位置決定
+            float farPlayerX = Random.Range(_minimumFarPlayerAttackRange, _maximumFarPlayerAttackRange);
+            float farPlayerZ = Random.Range(_minimumFarPlayerAttackRange, _maximumFarPlayerAttackRange);
+            farPlayerPos = new Vector3
+                (_player.transform.position.x + farPlayerX, _player.transform.position.y, _player.transform.position.z + farPlayerZ);
+        } while (!_pillarOfFireBounds.bounds.Contains(farPlayerPos));
+
+        // 攻撃範囲の位置反映
         _attackRangeImage[2].transform.position = new Vector3(farPlayerPos.x, _imagePositionY, farPlayerPos.z);
         _attackRangeImage[2].SetActive(true);
 
@@ -206,7 +221,6 @@ public class BossSkillAttack_KH : MonoBehaviour, IDamagable_KH
 
         _characterAnim.NowAnim = "Skill";
         Invoke("CreateFireAttackArea", _timeFromPredictionToAttack);
-        Debug.Log("Invokeを呼んだよ");
     }
 
     private void HitAttack()
@@ -235,8 +249,6 @@ public class BossSkillAttack_KH : MonoBehaviour, IDamagable_KH
 
     private void CreateFireAttackArea()
     {
-        Debug.Log("呼ばれたよ");
-
         // 攻撃範囲有効化
         _underPlayerAttackRange.SetActive(true);
         _nearPlayerAttackRange.SetActive(true);
