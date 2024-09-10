@@ -13,7 +13,8 @@ public class GameEndCamera_MT : MonoBehaviour
 
     //canvas
     [SerializeField] private GameObject _canvasPlayer = default;
-    //ゲームオーバーの画面画像
+    //ゲームオーバーのキャンバス
+    [SerializeField] private GameObject _gameOverCanvas = default;
     [SerializeField] private GameObject _gameOverImage = default;
 
 
@@ -88,6 +89,7 @@ public class GameEndCamera_MT : MonoBehaviour
         Time.timeScale = 0.0001f;
         Debug.Log("Time scale set to 0");
 
+        _gameOverCanvas.SetActive(true);
         _gameOverImage.SetActive(true);
         Debug.Log("Game over image activated");
 
