@@ -20,6 +20,8 @@ public class NormalAttack_KH : MonoBehaviour
 
     [SerializeField]
     private GameObject _attackArea;
+    private int _attackCount = default;
+    private bool _isAttacked = false;//入力の重複防止
     private bool _isAttack = false;
     private bool _canUseNormalAttack = true;
 
@@ -48,23 +50,52 @@ public class NormalAttack_KH : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(_attackCount);
         UpdateTime();
         UpdateCoolTime();
         AttackInputManager();
+        _isAttacked = false;
     }
 
     private void AttackInputManager()
     {
-        if (Input.GetMouseButtonDown(1) || Input.GetButtonDown("Submit"))
+        if ((Input.GetMouseButtonDown(1) || Input.GetButtonDown("Submit")) && !_isAttacked)
         {
             if (!_canUseNormalAttack) return;
 
-            //松本
-            _characterAnim.NowAnim = "Attack";
+            _isAttacked = true;
 
-
+            if(_attackCount > 0)
+            {
+                _attackCount++;
+            }
+            else
+            {
+                //最初はスクリプトから攻撃を呼び出す
+                _characterAnim.NowAnim = "Attack";
+                _attackCount--;
+            }
 
         }
+    }
+
+    /// <summary>
+    /// 連続攻撃をするか(攻撃アニメーションの最後
+    /// </summary>
+    private void ComboOrCoolTime()
+    {
+        if(_attackCount > 0)
+        {
+            //連続攻撃の入力があれば
+           _characterAnim.NowAnim = "Attack";
+            _attackCount--;
+        }
+        else
+        {
+            //連続攻撃の入力がなければ
+            StartCoolTime();
+        }
+
     }
 
     /// <summary>
@@ -73,6 +104,7 @@ public class NormalAttack_KH : MonoBehaviour
     private void StartCoolTime()
     {
         _coolTimeUI.StartCoolTime();
+        _attackCount = 0;//攻撃の入力回数をリセット
         _canUseNormalAttack = false;
     }
 
