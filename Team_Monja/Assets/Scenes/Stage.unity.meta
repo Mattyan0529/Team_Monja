@@ -1,15 +1,7 @@
 fileFormatVersion: 2
 guid: 4ae7bd2bdf469f84e94555bbdfe930f5
-timeCreated: 1496004921
-licenseType: Store
 DefaultImporter:
+  externalObjects: {}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 108275
-  packageName: Lowpoly Style Ultra Pack
-  packageVersion: 1.21
-  assetPath: Assets/Lowpoly Style/Arctic Tundra/DemoScene/Tundra.unity
-  uploadId: 399822
