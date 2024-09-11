@@ -48,7 +48,6 @@ public class CharacterDeadDecision_MT : MonoBehaviour
             //プレイヤーなら死んだときにスローモーションにする
             if (CompareTag("Player") && _coroutineSwitch)
             {
-
                 StartCoroutine(_gameEndCamera.GameOverCoroutine());
                 _coroutineSwitch = false;
             }
@@ -56,6 +55,12 @@ public class CharacterDeadDecision_MT : MonoBehaviour
             {
                 EnemyStop();
             }
+        }
+
+        //ゲームオーバーになったら全キャラクターの動きを止める
+        if (_gameEndCamera.IsGameOver)
+        {
+            EnemyStop();
         }
     }
 
@@ -93,13 +98,16 @@ public class CharacterDeadDecision_MT : MonoBehaviour
         if (_normalAttack != null)
         {
             _normalAttack.enabled = false;
+            _normalAttack.FinishNormalAttack();
         }
         if (_playerGuard != null)
         {
             _playerGuard.enabled = false;
         }
-
-        _characterAnim.NowAnim = "Die";
+        if (IsDeadDecision())
+        {
+            _characterAnim.NowAnim = "Die";
+        }
 
         _isAlive = false;
     }
