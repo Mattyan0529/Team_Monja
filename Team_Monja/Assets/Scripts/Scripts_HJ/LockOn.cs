@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class LockOn : MonoBehaviour
 {
-    [SerializeField] private float lockOnRadius = 10f;
-    private List<Transform> targets = new List<Transform>();
-    private int currentTargetIndex = 0;
-    public bool isLockedOn = false;
+    [Header("ロックオン設定")]
+    [SerializeField] private float lockOnRadius = 10f; // ロックオン範囲の半径 (インスペクタで編集可能)
+    private List<Transform> targets = new List<Transform>(); // ターゲット候補のリスト
+    private int currentTargetIndex = 0; // 現在のターゲットのインデックス
+    public bool isLockedOn = false; // ロックオン状態のフラグ
     private CharacterDeadDecision_MT dead;
     [SerializeField] private Transform childObject; // メインカメラ
     [SerializeField] private GameObject _lockOnImage; // ロックオンイメージ
@@ -42,17 +43,14 @@ public class LockOn : MonoBehaviour
                 dead = currentTarget.GetComponent<CharacterDeadDecision_MT>();
             }
 
-            // キャラクターをターゲット方向に向かせる
             Vector3 direction = currentTarget.position - transform.position;
             Quaternion rotation = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * 4f);
 
-            // ターゲットに向かってRayを飛ばす
             Ray ray = new Ray(transform.position, direction);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, lockOnRadius))
             {
-                // Rayが何かにヒットした場合
                 if (hit.transform == currentTarget)
                 {
                     Debug.Log("Ray hit the target!");
@@ -60,10 +58,7 @@ public class LockOn : MonoBehaviour
                 else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Building"))
                 {
                     Debug.Log("Ray hit a building. Locking off.");
-                    isLockedOn = false;
-                    targets.Clear(); // ターゲットリストをクリア
-                    _lockOnImage.SetActive(false); // ロックオンイメージを非表示
-                    ResetRotation();
+                    CancelLockOn();
                 }
                 else
                 {
@@ -71,9 +66,9 @@ public class LockOn : MonoBehaviour
                 }
             }
 
-            // ターゲットが死んだ場合、リストから削除
-            if (dead.IsDeadDecision())
+            if (Vector3.Distance(transform.position, currentTarget.position) > lockOnRadius)
             {
+                Debug.Log("Target is out of range.");
                 targets.RemoveAt(currentTargetIndex);
                 if (targets.Count > 0)
                 {
@@ -81,8 +76,7 @@ public class LockOn : MonoBehaviour
                 }
                 else
                 {
-                    isLockedOn = false;
-                    ResetRotation();
+                    CancelLockOn();
                 }
             }
 
@@ -106,10 +100,12 @@ public class LockOn : MonoBehaviour
 
         if (Input.GetButtonDown("TargetCancel"))
         {
-            isLockedOn = false;
-            ResetRotation();
-            targets.Clear();
-            _lockOnImage.SetActive(false);
+            CancelLockOn();
+        }
+
+        if (isLockedOn)
+        {
+            UpdateTargetList();
         }
     }
 
@@ -144,6 +140,22 @@ public class LockOn : MonoBehaviour
         }
     }
 
+    void UpdateTargetList()
+    {
+        for (int i = targets.Count - 1; i >= 0; i--)
+        {
+            Transform target = targets[i];
+            if (Vector3.Distance(transform.position, target.position) > lockOnRadius)
+            {
+                targets.RemoveAt(i);
+                if (currentTargetIndex >= targets.Count)
+                {
+                    currentTargetIndex = 0;
+                }
+            }
+        }
+    }
+
     void SwitchTarget(int direction)
     {
         if (targets.Count == 0) return;
@@ -160,5 +172,14 @@ public class LockOn : MonoBehaviour
         Vector3 newRotation = transform.localEulerAngles;
         newRotation.x = 0f;
         transform.localEulerAngles = newRotation;
+    }
+
+    // ロックオンをキャンセルするメソッド
+   public  void CancelLockOn()
+    {
+        isLockedOn = false;
+        ResetRotation();
+        targets.Clear();
+        _lockOnImage.SetActive(false);
     }
 }
