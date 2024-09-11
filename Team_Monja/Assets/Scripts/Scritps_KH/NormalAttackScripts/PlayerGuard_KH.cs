@@ -35,6 +35,7 @@ public class PlayerGuard_KH : MonoBehaviour
         GuardManagement();
         UpdateTime();
         UpdateCoolTime();
+        _isGuarded = false;
     }
 
     /// <summary>
