@@ -43,6 +43,22 @@ public class LockOn : MonoBehaviour
                 dead = currentTarget.GetComponent<CharacterDeadDecision_MT>();
             }
 
+            // ターゲットが死んでいるか確認
+            if (dead.IsDeadDecision())
+            {
+                Debug.Log("Target is dead.");
+                targets.RemoveAt(currentTargetIndex);
+                if (targets.Count > 0)
+                {
+                    currentTargetIndex = currentTargetIndex % targets.Count;
+                }
+                else
+                {
+                    CancelLockOn();
+                }
+                return; // これ以上の処理をしない
+            }
+
             Vector3 direction = currentTarget.position - transform.position;
             Quaternion rotation = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * 4f);
@@ -145,7 +161,8 @@ public class LockOn : MonoBehaviour
         for (int i = targets.Count - 1; i >= 0; i--)
         {
             Transform target = targets[i];
-            if (Vector3.Distance(transform.position, target.position) > lockOnRadius)
+            if (Vector3.Distance(transform.position, target.position) > lockOnRadius ||
+                (target.GetComponent<CharacterDeadDecision_MT>() != null && target.GetComponent<CharacterDeadDecision_MT>().IsDeadDecision()))
             {
                 targets.RemoveAt(i);
                 if (currentTargetIndex >= targets.Count)
@@ -175,7 +192,7 @@ public class LockOn : MonoBehaviour
     }
 
     // ロックオンをキャンセルするメソッド
-   public  void CancelLockOn()
+    public void CancelLockOn()
     {
         isLockedOn = false;
         ResetRotation();
