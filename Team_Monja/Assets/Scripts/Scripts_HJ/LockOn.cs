@@ -4,24 +4,27 @@ using UnityEngine;
 
 public class LockOn : MonoBehaviour
 {
-    [Header("ロックオン設定")]
-    [SerializeField] private float lockOnRadius = 10f; // ロックオン範囲の半径 (インスペクタで編集可能)
+    [SerializeField] float lockOnRadius = 10f; // ロックオン範囲の半径
     private List<Transform> targets = new List<Transform>(); // ターゲット候補のリスト
     private int currentTargetIndex = 0; // 現在のターゲットのインデックス
     public bool isLockedOn = false; // ロックオン状態のフラグ
     private CharacterDeadDecision_MT dead;
-    [SerializeField] private Transform childObject; // メインカメラ
-    [SerializeField] private GameObject _lockOnImage; // ロックオンイメージ
+    [SerializeField] private Transform childObject; // 子オブジェクト（メインカメラ）
+    [SerializeField] private GameObject _lockOnImage; // ロックオンしたときに画面に表示するイメージ
+    [SerializeField] private LayerMask obstacleLayerMask; // 障害物のレイヤーマスク
+
+    private Camera _camera; // メインカメラ
 
     private void Start()
     {
-        childObject = Camera.main.transform;
-        _lockOnImage.SetActive(false);
+        _camera = Camera.main; // メインカメラの取得
+        _lockOnImage.SetActive(false); // 初期化時にロックオンイメージを非表示に
         isLockedOn = false;
     }
 
     void Update()
     {
+        // "TargetButton" ボタンが押された瞬間を検出
         if (Input.GetButtonDown("TargetButton"))
         {
             if (!isLockedOn)
@@ -31,60 +34,29 @@ public class LockOn : MonoBehaviour
             }
             else
             {
+                FindTargets();
                 SwitchTarget(1);
             }
         }
 
         if (isLockedOn && targets.Count > 0)
         {
-            Transform currentTarget = targets[currentTargetIndex];
-            if (dead == null || dead.gameObject != currentTarget.gameObject)
-            {
-                dead = currentTarget.GetComponent<CharacterDeadDecision_MT>();
-            }
-
-            // ターゲットが死んでいるか確認
-            if (dead.IsDeadDecision())
-            {
-                Debug.Log("Target is dead.");
-                targets.RemoveAt(currentTargetIndex);
-                if (targets.Count > 0)
-                {
-                    currentTargetIndex = currentTargetIndex % targets.Count;
-                }
-                else
-                {
-                    CancelLockOn();
-                }
-                return; // これ以上の処理をしない
-            }
+            Transform currentTarget = targets[currentTargetIndex]; // 現在ロックオンしているターゲット
+            dead = currentTarget.GetComponent<CharacterDeadDecision_MT>();
 
             Vector3 direction = currentTarget.position - transform.position;
             Quaternion rotation = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * 4f);
+            transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * 4f); // プレイヤーがターゲットを向く
 
-            Ray ray = new Ray(transform.position, direction);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, lockOnRadius))
+            // ターゲットとプレイヤーの間に障害物があるか確認
+            if (IsObstacleBetween(transform.position, currentTarget))
             {
-                if (hit.transform == currentTarget)
-                {
-                    Debug.Log("Ray hit the target!");
-                }
-                else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Building"))
-                {
-                    Debug.Log("Ray hit a building. Locking off.");
-                    CancelLockOn();
-                }
-                else
-                {
-                    Debug.Log("Ray hit something else.");
-                }
+                CancelLockOn(); // 障害物がある場合にロックオンを解除
+                return;
             }
 
-            if (Vector3.Distance(transform.position, currentTarget.position) > lockOnRadius)
+            if (dead != null && dead.IsDeadDecision())
             {
-                Debug.Log("Target is out of range.");
                 targets.RemoveAt(currentTargetIndex);
                 if (targets.Count > 0)
                 {
@@ -96,32 +68,25 @@ public class LockOn : MonoBehaviour
                 }
             }
 
-            Vector3 targetScreenPos = Camera.main.WorldToScreenPoint(currentTarget.position);
-            bool isTargetOnScreen = targetScreenPos.z > 0;
-            _lockOnImage.SetActive(isTargetOnScreen);
-            if (isTargetOnScreen)
+            Vector3 targetScreenPos = _camera.WorldToScreenPoint(currentTarget.position);
+            if (targetScreenPos.z > 0)
             {
                 _lockOnImage.transform.position = targetScreenPos;
+                _lockOnImage.SetActive(true);
+            }
+            else
+            {
+                CancelLockOn(); // ターゲットが見えなくなった場合にロックオンを解除
             }
         }
         else
         {
-            _lockOnImage.SetActive(false);
-        }
-
-        if (targets.Count <= 0)
-        {
-            isLockedOn = false;
+            _lockOnImage.SetActive(false); // ターゲットがいない場合はイメージを非表示に
         }
 
         if (Input.GetButtonDown("TargetCancel"))
         {
             CancelLockOn();
-        }
-
-        if (isLockedOn)
-        {
-            UpdateTargetList();
         }
     }
 
@@ -156,32 +121,27 @@ public class LockOn : MonoBehaviour
         }
     }
 
-    void UpdateTargetList()
-    {
-        for (int i = targets.Count - 1; i >= 0; i--)
-        {
-            Transform target = targets[i];
-            if (Vector3.Distance(transform.position, target.position) > lockOnRadius ||
-                (target.GetComponent<CharacterDeadDecision_MT>() != null && target.GetComponent<CharacterDeadDecision_MT>().IsDeadDecision()))
-            {
-                targets.RemoveAt(i);
-                if (currentTargetIndex >= targets.Count)
-                {
-                    currentTargetIndex = 0;
-                }
-            }
-        }
-    }
-
     void SwitchTarget(int direction)
     {
         if (targets.Count == 0) return;
 
-        currentTargetIndex = (currentTargetIndex + direction) % targets.Count;
+        currentTargetIndex += direction;
         if (currentTargetIndex < 0)
         {
-            currentTargetIndex += targets.Count;
+            currentTargetIndex = targets.Count - 1;
         }
+        else if (currentTargetIndex >= targets.Count)
+        {
+            currentTargetIndex = 0;
+        }
+    }
+
+    public void CancelLockOn()
+    {
+        isLockedOn = false;
+        targets.Clear();
+        _lockOnImage.SetActive(false);
+        ResetRotation();
     }
 
     void ResetRotation()
@@ -191,12 +151,18 @@ public class LockOn : MonoBehaviour
         transform.localEulerAngles = newRotation;
     }
 
-    // ロックオンをキャンセルするメソッド
-    public void CancelLockOn()
+    bool IsObstacleBetween(Vector3 fromPosition, Transform target)
     {
-        isLockedOn = false;
-        ResetRotation();
-        targets.Clear();
-        _lockOnImage.SetActive(false);
+        // プレイヤーとターゲットの間に障害物がないか確認するRaycast
+        Vector3 directionToTarget = (target.position - fromPosition).normalized;
+        float distanceToTarget = Vector3.Distance(fromPosition, target.position);
+
+        // Raycastを使って障害物の判定
+        if (Physics.Raycast(fromPosition, directionToTarget, distanceToTarget, obstacleLayerMask))
+        {
+            return true; // 障害物がある
+        }
+
+        return false; // 障害物がない
     }
 }
