@@ -51,7 +51,7 @@ public class EnemyMove_KH : MonoBehaviour
         _characterAnim = GetComponent<CharacterAnim_MT>();
         _miniWayPoint = _changeEnemyMoveType.MiniWayPoint;
 
-        SearchNearMainWayPoint();
+        SearchNearMyWayPoint();
 
         _nowEnemyState = EnemyState.InMove;
     }
@@ -143,6 +143,15 @@ public class EnemyMove_KH : MonoBehaviour
         {
             _nowEnemyState = EnemyState.InSearch;
         }
+    }
+
+    /// <summary>
+    /// 自分の周りにある小さなウェイポイントを探す
+    /// </summary>
+    private void SearchNearMyWayPoint()
+    {
+        GameObject miniWayPoint = _changeEnemyMoveType.MiniWayPoint;
+        _targetWayPoint = miniWayPoint.transform.GetChild(0);
     }
 
     private void SearchNearMainWayPoint()
