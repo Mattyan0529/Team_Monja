@@ -60,7 +60,18 @@ public class PlayerSkill_KH : MonoBehaviour
 
     void Update()
     {
-        CallSkill();
+   
+        if (_canUseSkill && (Input.GetMouseButtonDown(0) || Input.GetButtonDown("Cancel")))
+        {
+            _isUseSkill = true;
+        }
+
+        if (_isUseSkill)
+        {
+            _isUseSkill = false;
+            CallSkill();
+        }
+
 
         if (!_canUseSkill)
         {
@@ -93,44 +104,32 @@ public class PlayerSkill_KH : MonoBehaviour
     }
 
     /// <summary>
-    /// ボタンを押したらスキル発動
+    /// スキル発動
     /// </summary>
     private void CallSkill()
     {
-        // スキルが使える状態かどうか、既にスキルを使用していないか確認
-        if (_canUseSkill && !_isUseSkill && (Input.GetMouseButtonDown(0) || Input.GetButtonDown("Cancel")))
-        {
-            // スキルが使えなくなる状態に設定
+            
             _canUseSkill = false;
-            _isUseSkill = true;  // スキル使用中を表すフラグをtrueに
-
-            // クールタイムUIを開始
             _coolTimeUI.StartCoolTime();
 
-            // プレイヤーの移動を一時的に無効にする
             if (_playerMove != null)
             {
                 _playerMove.enabled = false;
             }
 
-            // 通常攻撃やガードが実行中ならスキルを発動しない
             if (_normalAttack != null && _normalAttack.IsAttack) return;
             if (_playerGuard != null && _playerGuard.IsGuard) return;
 
-            // スキル発動
+          
             _skillInterface.SpecialAttack();
 
-            // スキル発動後、再び移動を有効にする
+
             if (_playerMove != null)
             {
                 _playerMove.enabled = true;
             }
-
-            // スキル終了処理（例: スキルアニメーションの終了を待つ場合などはここに処理を追加する）
-            _isUseSkill = false;  // スキルが終了したら再び使用できるようにフラグをfalseに
-        }
+    
     }
-
 
     /// <summary>
     /// スキルを再度使えるようにする
