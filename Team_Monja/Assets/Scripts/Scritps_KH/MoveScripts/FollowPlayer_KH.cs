@@ -26,8 +26,7 @@ public class FollowPlayer_KH : MonoBehaviour, IFollowable_KH
 
     void Start()
     {
-        SearchPlayer();
-
+        _nearPlayerArea = GameObject.FindGameObjectWithTag("NearPlayerArea");
         _nearPlayerWayPointManager = _nearPlayerArea.gameObject.GetComponent<NearPlayerWayPointManager_KH>();
         _searchWayPointTwoDimensionalArray =
             _nearPlayerArea.gameObject.GetComponent<SearchWayPointTwoDimensionalArray_KH>();
@@ -77,12 +76,12 @@ public class FollowPlayer_KH : MonoBehaviour, IFollowable_KH
     }
 
     /// <summary>
-    /// プレイヤーが変わったときに変数の中身を変更する
+    /// プレイヤーを設定
     /// </summary>
-    private void SearchPlayer()
+    /// <param name="player"></param>
+    public void SetPlayer(GameObject player)
     {
-        _player = GameObject.FindGameObjectWithTag("Player").transform;
-        _nearPlayerArea = GameObject.FindGameObjectWithTag("NearPlayerArea");
+        _player = player.transform;
     }
 
     /// <summary>

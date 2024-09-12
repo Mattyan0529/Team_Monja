@@ -5,10 +5,12 @@ public class EnemyMove_KH : MonoBehaviour
     [SerializeField]
     private GameObject _wayPoints = default;
 
+    [SerializeField]
+    private GameObject _miniWayPoint = default;
+
     private Transform _currentWayPoint = default;
     private Transform _targetWayPoint = default;
 
-    private GameObject _miniWayPoint = default;
     private GameObject _player = default;
 
     private float _shortestDistance = default;
@@ -45,11 +47,21 @@ public class EnemyMove_KH : MonoBehaviour
         get { return _wayPoints; }
     }
 
+    public GameObject MiniWayPoint
+    {
+        get { return _miniWayPoint; }
+    }
+
+    private void Awake()
+    {
+        _miniWayPoint.transform.position = gameObject.transform.position;
+    }
+
+
     void Start()
     {
         _changeEnemyMoveType = GetComponent<ChangeEnemyMoveType_KH>();
         _characterAnim = GetComponent<CharacterAnim_MT>();
-        _miniWayPoint = _changeEnemyMoveType.MiniWayPoint;
 
         SearchNearMyWayPoint();
 
@@ -150,10 +162,12 @@ public class EnemyMove_KH : MonoBehaviour
     /// </summary>
     private void SearchNearMyWayPoint()
     {
-        GameObject miniWayPoint = _changeEnemyMoveType.MiniWayPoint;
-        _targetWayPoint = miniWayPoint.transform.GetChild(0);
+        _targetWayPoint = _miniWayPoint.transform.GetChild(0);
     }
 
+    /// <summary>
+    /// マップ全体の道に設置されたウェイポイントの中でいちばん近いものを探す
+    /// </summary>
     private void SearchNearMainWayPoint()
     {
         bool isFirst = true;
@@ -205,6 +219,9 @@ public class EnemyMove_KH : MonoBehaviour
         gameObject.transform.rotation = Quaternion.Euler(0f, directionQuaternion.eulerAngles.y, 0f);
     }
 
+    /// <summary>
+    /// ウェイポイントを使わずに追従する距離か判断する
+    /// </summary>
     private void JudgeShortDistance()
     {
         Vector3 nowPos = new Vector3(transform.position.x, 0f, transform.position.z);

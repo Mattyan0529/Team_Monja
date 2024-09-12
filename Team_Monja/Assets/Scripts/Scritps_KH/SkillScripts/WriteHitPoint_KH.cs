@@ -4,7 +4,6 @@ using UnityEngine;
 public class WriteHitPoint_KH : MonoBehaviour
 {    //コンポーネント
     private ControllerVibration_MT _vibration;
-    private MoveSlider_MT _moveSlider;
     private CharacterAnim_MT _characterAnim;
     private GameObject _nowPlayer;
 
@@ -41,7 +40,6 @@ public class WriteHitPoint_KH : MonoBehaviour
         //現在のキャラクター取得
         _nowPlayer = GameObject.FindWithTag("Player");
         _characterAnim = _nowPlayer.GetComponent<CharacterAnim_MT>();
-        _moveSlider = _canvasObj.GetComponentInChildren<MoveSlider_MT>();
 
         _audioSource = attackedStatus.gameObject.GetComponent<AudioSource>();
 

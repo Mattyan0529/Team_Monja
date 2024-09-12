@@ -2,16 +2,17 @@ using UnityEngine;
 
 public class RandomWayPointBetweenMove_KH : MonoBehaviour, IFollowable_KH
 {
-    private ChangeEnemyMoveType_KH _changeEnemyMoveType = default;
-    private FollowPlayer_KH _followPlayer = default;
     private GameObject _wayPoint = default;
+
+    /// <summary>
+    /// MiniWayPointから一番近いメインウェイポイント
+    /// </summary>
     private Transform _target = default;
+
     private EnemyMove_KH _enemyMove = default;
 
     private void Start()
     {
-        _changeEnemyMoveType = GetComponent<ChangeEnemyMoveType_KH>();
-        _followPlayer = GetComponent<FollowPlayer_KH>();
         _enemyMove = GetComponent<EnemyMove_KH>();
         _wayPoint = _enemyMove.WayPoint;
     }
@@ -30,7 +31,7 @@ public class RandomWayPointBetweenMove_KH : MonoBehaviour, IFollowable_KH
         {
             if (myWayPoint == _target)
             {
-                nextWayPoint = _changeEnemyMoveType.MiniWayPoint.transform.GetChild(0);
+                nextWayPoint = _enemyMove.MiniWayPoint.transform.GetChild(0);
             }
             else
             {
@@ -56,7 +57,7 @@ public class RandomWayPointBetweenMove_KH : MonoBehaviour, IFollowable_KH
     /// <returns>MiniWayPointからいちばん近いメインWayPoint</returns>
     private Transform SwitchFromFollowUpToRandomMoving()
     {
-        Transform miniWayPoint = _changeEnemyMoveType.MiniWayPoint.transform;
+        Transform miniWayPoint = _enemyMove.MiniWayPoint.transform;
         Transform nearestWayPoint = _wayPoint.transform.GetChild(0);
 
         foreach (Transform child in _wayPoint.transform)
