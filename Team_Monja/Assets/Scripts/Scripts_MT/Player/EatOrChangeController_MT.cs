@@ -7,11 +7,14 @@ public class EatOrChangeController_MT : MonoBehaviour
     private EatEnemy_MT eatEnemy;
     private ChangeCharacter_MT changeCharacter;
     private EnemyTriggerManager_MT enemyTriggerManager;
+    private LockOn lockOn;
+
     void Start()
     {
         eatEnemy = GetComponent<EatEnemy_MT>();
         changeCharacter = GetComponent<ChangeCharacter_MT>();
         enemyTriggerManager = GameObject.FindWithTag("NearTrigger").GetComponent<EnemyTriggerManager_MT>();
+        lockOn = Camera.main.GetComponentInParent<LockOn>();
     }
 
     void Update()
@@ -24,6 +27,7 @@ public class EatOrChangeController_MT : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q) || Input.GetButtonDown("change"))
         {
             ChangeTagClosestObject();
+            lockOn.ResetRotation();
         }
     }
 
