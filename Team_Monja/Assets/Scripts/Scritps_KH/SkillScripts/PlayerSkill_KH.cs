@@ -17,17 +17,11 @@ public class PlayerSkill_KH : MonoBehaviour
     private NormalAttack_KH _normalAttack = default;
     private PlayerGuard_KH _playerGuard = default;
 
-    //èºñ{
-    private CharacterAnim_MT _characterAnim = default;
-
     private float _coolTime = 2f;    // ÉXÉLÉãÇî≠ìÆÇµÇƒÇ©ÇÁéüÇ…î≠ìÆÇ≈Ç´ÇÈÇÊÇ§Ç…Ç»ÇÈÇ‹Ç≈ÇÃéûä‘
     private float _elapsedTime = 0f;
 
-    private int _skillNum;
     private bool _canUseSkill = true;
     private bool _isUseSkill = false;
-
-    private float lefttrigger;
 
     public bool IsUseSkill
     {
@@ -40,13 +34,10 @@ public class PlayerSkill_KH : MonoBehaviour
         _myMonsterSkill = GetComponent<MonsterSkill_KH>();
         _enemyMove = GetComponent<EnemyMove_KH>();
         _attackAreaJudge = GetComponent<AttackAreaJudge_KH>();
-        _characterAnim = GetComponent<CharacterAnim_MT>();
     }
 
     void Start()
     {
-        _skillNum = _myMonsterSkill.SkillTypeNum;
-
         if (GameObject.FindWithTag("PlayerManager").GetComponent<PlayerMove_MT>())
         {
             _playerMove = GameObject.FindWithTag("PlayerManager").GetComponent<PlayerMove_MT>();
@@ -64,15 +55,12 @@ public class PlayerSkill_KH : MonoBehaviour
         _coolTimeUI = _coolTimeUIObj.GetComponent<CoolTimeUI_KH>();
         _skillInterface = GetComponent<IDamagable_KH>();
 
-
         GameObjectTagJudge();
     }
 
     void Update()
     {
         CallSkill();
-
-        lefttrigger = Input.GetAxis("skill");
 
         if (!_canUseSkill)
         {
@@ -109,7 +97,6 @@ public class PlayerSkill_KH : MonoBehaviour
     /// </summary>
     private void CallSkill()
     {
-        
         if (_canUseSkill && (Input.GetMouseButtonDown(0) || Input.GetButtonDown("Cancel")))
         {
             _coolTimeUI.StartCoolTime();
