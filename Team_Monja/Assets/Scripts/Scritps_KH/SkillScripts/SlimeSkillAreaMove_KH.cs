@@ -10,6 +10,7 @@ public class SlimeSkillAreaMove_KH : MonoBehaviour
     private void Start()
     {
         _slimeLuncer = transform.parent.GetComponent<SlimeLuncer>();
+        gameObject.transform.position = _slimeSphere.transform.position;
     }
 
     void Update()

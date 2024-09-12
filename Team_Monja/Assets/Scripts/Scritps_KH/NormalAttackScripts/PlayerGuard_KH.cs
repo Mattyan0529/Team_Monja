@@ -47,6 +47,7 @@ public class PlayerGuard_KH : MonoBehaviour
         {
             if (!_canUseGuard) return;
 
+            _isGuard = true;
             _isGuarded = true;
 
             if (_guardCount > 0)
