@@ -1,11 +1,7 @@
-using System.Net.Sockets;
 using UnityEngine;
 
 public class ChangeEnemyMoveType_KH : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject _miniWayPoint = default;
-
     [SerializeField]
     private float _maxSpeed = 8f;
 
@@ -17,7 +13,6 @@ public class ChangeEnemyMoveType_KH : MonoBehaviour
 
     private RandomWayPointBetweenMove_KH _randomMove = default;
     private FollowPlayer_KH _followPlayer = default;
-    private StatusManager_MT _playerStatusManager = default;
     private StatusManager_MT _myStatusManager = default;
 
     private Transform _targetPoint = default;
@@ -35,21 +30,6 @@ public class ChangeEnemyMoveType_KH : MonoBehaviour
     private float _Speed = default;
 
     #region Property
-
-    public GameObject MiniWayPoint
-    {
-        get { return _miniWayPoint; }
-    }
-
-    public float MaxSpeed
-    {
-        get { return _maxSpeed; }
-    }
-
-    public float MaxRotationSpeed
-    {
-        get { return _maxRotationSpeed; }
-    }
 
     public float NowSpeed
     {
@@ -115,21 +95,11 @@ public class ChangeEnemyMoveType_KH : MonoBehaviour
 
     #endregion
 
-    private void Awake()
-    {
-        _miniWayPoint.transform.position = gameObject.transform.position;
-    }
-
     private void Start()
     {
         _randomMove = GetComponent<RandomWayPointBetweenMove_KH>();
         _followPlayer = GetComponent<FollowPlayer_KH>();
         _myStatusManager = GetComponent<StatusManager_MT>();
-    }
-
-    private void Update()
-    {
-        CalculateSpeed();
     }
 
     /// <summary>
@@ -139,9 +109,7 @@ public class ChangeEnemyMoveType_KH : MonoBehaviour
     public void SetPlayer(GameObject player)
     {
         _player = player;
-        _playerStatusManager = _player.GetComponent<StatusManager_MT>();
     }
-
 
     /// <summary>
     /// ç°ÇÃèÛë‘Ç…ìKÇµÇΩéüÇÃWayPointÇíTçıÇ∑ÇÈ
@@ -157,6 +125,7 @@ public class ChangeEnemyMoveType_KH : MonoBehaviour
             case EnemyMoveState.InRandomMove:
                 _isMove = true;
                 _nowSpeed = _randomMoveSpeed * _myStatusManager.SpeedMultiplier;
+                CalculateSpeed();
                 nextWayPoint = _randomMove.SearchTargetWayPoint(myWayPoint);
                 _targetPoint = nextWayPoint;
                 break;
@@ -164,6 +133,7 @@ public class ChangeEnemyMoveType_KH : MonoBehaviour
             case EnemyMoveState.InFollow:
                 _isMove = true;
                 _nowSpeed = _maxSpeed * _myStatusManager.SpeedMultiplier;
+                CalculateSpeed();
                 nextWayPoint = _followPlayer.SearchTargetWayPoint(myWayPoint);
                 _targetPoint = _player.transform;
                 break; 
@@ -215,12 +185,12 @@ public class ChangeEnemyMoveType_KH : MonoBehaviour
             _deceleration = Deceleration.slow;
         }
 
-        _speedAfterCalculation = _nowSpeed / NowDeceleration;
+        // _decelerationÇÕÅÄÇQÇ≈í≤êÆÇ∑ÇÈëOíÒÇ≈çÏÇÁÇÍÇƒÇÈ
+        _nowSpeed = _nowSpeed / ((int)_deceleration / 2f);
     }
 
     private void ResurrectionStart()
     {
         _isMove = false;
-
     }
 }

@@ -6,14 +6,14 @@ using UnityEngine.SceneManagement;
 public class GameEndCamera_MT : MonoBehaviour
 {
 
-
     private StatusManager_MT _statusManagerPlayer = default;
     private StatusManager_MT _statusManagerBoss = default;
     private CameraManager_MT _cameraManager = default;
 
     //canvas
     [SerializeField] private GameObject _canvasPlayer = default;
-    //ゲームオーバーの画面画像
+    //ゲームオーバーのキャンバス
+    [SerializeField] private GameObject _gameOverCanvas = default;
     [SerializeField] private GameObject _gameOverImage = default;
 
 
@@ -23,6 +23,14 @@ public class GameEndCamera_MT : MonoBehaviour
     private Vector3 _deadCameraRotation = new Vector3(0, 0, 0);  // 死んだときのカメラの向き
     private bool _isCoroutineActive = false;//コルーチンが動作中かどうか
     private bool _isGameClear = false;//ゲームクリア
+    private bool _isGameOver = false;
+
+
+    public bool IsGameOver
+    {
+        get { return _isGameOver; }
+    }
+
 
     private void Start()
     {
@@ -58,6 +66,7 @@ public class GameEndCamera_MT : MonoBehaviour
         Debug.Log("GameOverCoroutine started");
         _isCoroutineActive = true;
 
+        _isGameOver = true;
 
         float slowTime = 1.75f;
 
@@ -88,6 +97,7 @@ public class GameEndCamera_MT : MonoBehaviour
         Time.timeScale = 0.0001f;
         Debug.Log("Time scale set to 0");
 
+        _gameOverCanvas.SetActive(true);
         _gameOverImage.SetActive(true);
         Debug.Log("Game over image activated");
 

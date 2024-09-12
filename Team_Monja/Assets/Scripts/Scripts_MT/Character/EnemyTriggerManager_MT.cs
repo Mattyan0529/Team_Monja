@@ -8,6 +8,23 @@ public class EnemyTriggerManager_MT : MonoBehaviour
 
     private GameObject _playerObj;
 
+    private GameEndCamera_MT _gameEndCamera;
+
+
+    private void Start()
+    {
+        //カメラの親オブジェクトから取得
+        _gameEndCamera = GameObject.FindWithTag("CameraPos").GetComponent<GameEndCamera_MT>();
+    }
+
+    private void Update()
+    {//ゲームオーバーになったらリストの要素を削除
+        if (_gameEndCamera.IsGameOver)
+        {
+            objectsInTrigger.Clear();
+            this.gameObject.SetActive(false);
+        }
+    }
 
     /// <summary>
     /// プレイヤーを探して自身を子オブジェクトにする

@@ -7,6 +7,7 @@ public class CharacterDeadDecision_MT : MonoBehaviour
     private StatusManager_MT _statusManager;
     private CharacterAnim_MT _characterAnim;
     private GameEndCamera_MT _gameEndCamera;
+    private LockOn _lockOn;
 
     // 追記：北
     [SerializeField]
@@ -29,6 +30,7 @@ public class CharacterDeadDecision_MT : MonoBehaviour
         _statusManager = GetComponent<StatusManager_MT>();
         _characterAnim = GetComponent<CharacterAnim_MT>();
         _gameEndCamera = GameObject.FindWithTag("CameraPos").GetComponent<GameEndCamera_MT>();
+        _lockOn = GameObject.FindWithTag("CameraPos").GetComponent<LockOn>();
         // 追記：北
         _monsterSkill = GetComponent<MonsterSkill_KH>();
         _playerSkill = GetComponent<PlayerSkill_KH>();
@@ -48,7 +50,6 @@ public class CharacterDeadDecision_MT : MonoBehaviour
             //プレイヤーなら死んだときにスローモーションにする
             if (CompareTag("Player") && _coroutineSwitch)
             {
-
                 StartCoroutine(_gameEndCamera.GameOverCoroutine());
                 _coroutineSwitch = false;
             }
@@ -56,6 +57,15 @@ public class CharacterDeadDecision_MT : MonoBehaviour
             {
                 EnemyStop();
             }
+        }
+
+        //ゲームオーバーになったら全キャラクターの動きを止める
+        if (_gameEndCamera.IsGameOver)
+        {
+            Debug.Log(123123123);
+            EnemyStop();
+            //ロックオンを解除
+            _lockOn.CancelLockOn();
         }
     }
 
@@ -93,13 +103,20 @@ public class CharacterDeadDecision_MT : MonoBehaviour
         if (_normalAttack != null)
         {
             _normalAttack.enabled = false;
+            _normalAttack.FinishNormalAttack();
         }
         if (_playerGuard != null)
         {
             _playerGuard.enabled = false;
         }
-
-        _characterAnim.NowAnim = "Die";
+        if (IsDeadDecision())
+        {
+            _characterAnim.NowAnim = "Die";
+        }
+        else
+        {
+            _characterAnim.NowAnim = "Idle";
+        }
 
         _isAlive = false;
     }

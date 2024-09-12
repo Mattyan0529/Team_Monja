@@ -1,11 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerEnterWallJudge_KH : MonoBehaviour
 {
-    private GameObject _player = default;
-
     private PlayerMove_MT _playerMove = default;
     private Rigidbody _playerRigidbody = default;
 
@@ -54,7 +50,6 @@ public class PlayerEnterWallJudge_KH : MonoBehaviour
     /// <param name="player"></param>
     public void SetPlayer(GameObject player)
     {
-        _player = player;
         _playerRigidbody = player.GetComponent<Rigidbody>();
     }
 }

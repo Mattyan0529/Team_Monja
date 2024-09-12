@@ -109,14 +109,12 @@ public class PlayerSkill_KH : MonoBehaviour
     /// </summary>
     private void CallSkill()
     {
-        /*if (((Input.GetMouseButtonDown(0) || lefttrigger > 0.3f) && _skillNum == (int)MonsterSkill_KH.SkillType.Fly && _flySkill.IsFlying))
-        {
-            _isUseSkill = false;
-            _flySkill.StopFly();
-        }*/
+        
         if (_canUseSkill && (Input.GetMouseButtonDown(0) || Input.GetButtonDown("Cancel")))
         {
-            if(_playerMove != null)
+            _coolTimeUI.StartCoolTime();
+
+            if (_playerMove != null)
             {
                 _playerMove.enabled = false;
             }
@@ -127,8 +125,7 @@ public class PlayerSkill_KH : MonoBehaviour
             _isUseSkill = true;
             _skillInterface.SpecialAttack();
             _canUseSkill = false;
-            _coolTimeUI.StartCoolTime();
-
+          
             if (_playerMove != null)
             {
                 _playerMove.enabled = true;

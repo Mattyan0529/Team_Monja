@@ -19,6 +19,9 @@ TagManager:
   - ResidentScripts
   - NearPlayerArea
   - SlimeSphere
+  - NormalHit
+  - HeartHit
+  - ThunderHit
   layers:
   - Default
   - TransparentFX
@@ -27,7 +30,7 @@ TagManager:
   - Water
   - UI
   - AreaLimitWall
-  - 
+  - Building
   - 
   - 
   - 

@@ -3,15 +3,7 @@ using UnityEngine.InputSystem;
 
 public class ControllerVibration_MT : MonoBehaviour
 {
-    private void Update()
-    {
-        // Xbox One コントローラーのBボタンを押したら振動
-        if (Gamepad.current != null && Gamepad.current.buttonEast.wasPressedThisFrame)
-        {
-            // 振動開始
-            VibrateController(1f, 1f, 1.0f);
-        }
-    }
+    
 
     // コントローラーの振動を開始
     public void VibrateController(float lowFrequency, float highFrequency, float duration)

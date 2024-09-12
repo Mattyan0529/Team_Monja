@@ -8,7 +8,7 @@ public class SuccubusSkillAttack_KH : MonoBehaviour, IDamagable_KH
     [SerializeField]
     private GameObject _residentScript;
 
-    private float _deleteTime = 0.5f;
+    private float _deleteTime = 2f;
     private float _elapsedTime = 0f;
     private float _skillResetTime = 5f;
 
