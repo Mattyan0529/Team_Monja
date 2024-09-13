@@ -59,7 +59,11 @@ public class MenuNavigation_SM : MonoBehaviour
                 _previousSelectedObject = _selectedObject;
             }
 
-
+            // マウスオーバー中のオブジェクトが選択されている場合、それをクリア
+            if (HoverSelectable_SM._currentHoveredObject == _selectedObject)
+            {
+                HoverSelectable_SM._currentHoveredObject = null;
+            }
         }
     }
 }

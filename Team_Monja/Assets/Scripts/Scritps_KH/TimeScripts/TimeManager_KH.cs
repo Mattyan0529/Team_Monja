@@ -29,6 +29,7 @@ public class TimeManager_KH : MonoBehaviour
 
     public bool IsInCastle
     {
+        get { return _isInCastle; }
         set { _isInCastle = value; }
     }
 
@@ -84,6 +85,7 @@ public class TimeManager_KH : MonoBehaviour
         if (!_isInCastle)
         {
             _damonHand.SetActive(true);
+         
         }
         this.enabled = false;
     }

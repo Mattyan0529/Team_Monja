@@ -13,21 +13,26 @@ public class TagJudge_MT : MonoBehaviour
     [SerializeField]
     private GameObject _MiniMapIcon;
     [SerializeField]
-    private GameObject _damonHand; 
+    private GameObject _damonHand;
     [SerializeField]
-    private GameObject _atkBar;  
+    private GameObject _atkBar;
     [SerializeField]
     private GameObject _defBar;
     [SerializeField]
     private GameObject _nearPlayerArea;
     [SerializeField]
-    private GameObject _miniMapCamera;  
+    private GameObject _miniMapCamera;
     [SerializeField]
     private GameObject _compassCenter;
     [SerializeField]
     private GameObject _invisibleWall;
+   
+
+
     [SerializeField,Header("シーン内の全キャラクター")]
     private GameObject[] _characters;
+ 
+
 
 
     private GameObject _playerObj;
@@ -76,6 +81,7 @@ public class TagJudge_MT : MonoBehaviour
         _playerManager.GetComponent<PlayerMove_MT>().SetPlayer();
         _playerManager.GetComponent<EatEnemy_MT>().SetPlayer();
         _playerManager.GetComponent<ChangeCharacter_MT>().SetPlayer();
+        _playerManager.GetComponent<EatOrChangeController_MT>().SetPlayer(_playerObj);
 
         _cameraObj.GetComponent<GameEndCamera_MT>().SetPlayer(_playerObj);
         _cameraObj.GetComponent<CameraManager_MT>().FindPlayer(_playerObj);
@@ -112,6 +118,13 @@ public class TagJudge_MT : MonoBehaviour
             character.GetComponent<AttackAreaJudge_KH>().SetPlayer(_playerObj);
             character.GetComponent<EnemyMove_KH>().SetPlayer(_playerObj);
             character.GetComponent<FollowPlayer_KH>().SetPlayer(_playerObj);
+
+
+            //ボスにはないやつこの下
+            if (character.CompareTag("Boss")) return;
+
+
+            character.GetComponent<DeathSpwanSoul_TH>().SetPlayer(_playerObj);
         }
     }
 

@@ -4,44 +4,44 @@ using UnityEngine;
 
 public class EnemyTriggerManager_MT : MonoBehaviour
 {
-    public List<Collider> objectsInTrigger = new List<Collider>(); // トリガー内のオブジェクトを保持するリスト
+    // トリガー内の敵オブジェクトを保持するリスト
+    public List<Collider> objectsInTrigger = new List<Collider>();
 
-    private GameObject _playerObj;
-
-    private GameEndCamera_MT _gameEndCamera;
-
+    private GameObject _playerObj; // プレイヤーオブジェクトを保持する変数
+    private GameEndCamera_MT _gameEndCamera; // ゲーム終了時のカメラ制御用スクリプト
 
     private void Start()
     {
-        //カメラの親オブジェクトから取得
+        // カメラの親オブジェクトからGameEndCamera_MTスクリプトを取得
         _gameEndCamera = GameObject.FindWithTag("CameraPos").GetComponent<GameEndCamera_MT>();
     }
 
     private void Update()
-    {//ゲームオーバーになったらリストの要素を削除
+    {
+        // ゲームオーバー時にトリガー内のオブジェクトリストをクリアし、オブジェクトを無効化
         if (_gameEndCamera.IsGameOver)
         {
-            objectsInTrigger.Clear();
-            this.gameObject.SetActive(false);
+            objectsInTrigger.Clear(); // リストの要素をすべて削除
+            gameObject.SetActive(false); // 自分自身を非アクティブにする
         }
     }
 
     /// <summary>
-    /// プレイヤーを探して自身を子オブジェクトにする
+    /// プレイヤーを探して、自身をプレイヤーの子オブジェクトにするメソッド
     /// </summary>
     public void SetToPlayer(GameObject player)
     {
-        _playerObj = player;
-        transform.SetParent(_playerObj.transform);
-        this.transform.localPosition = Vector3.zero;
+        _playerObj = player; // プレイヤーオブジェクトを設定
+        transform.SetParent(_playerObj.transform); // 自身をプレイヤーの子オブジェクトに設定
+        transform.localPosition = Vector3.zero; // プレイヤーの位置に合わせて自身のローカルポジションをリセット
     }
-
-
 
     private void OnTriggerStay(Collider other)
     {
+        // トリガー内にEnemyまたはBossがいる場合、そのColliderをリストに追加
         if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Boss"))
         {
+            // リストに含まれていない場合のみ追加
             if (!objectsInTrigger.Contains(other))
             {
                 objectsInTrigger.Add(other);
@@ -49,16 +49,12 @@ public class EnemyTriggerManager_MT : MonoBehaviour
         }
     }
 
-
-    // 子オブジェクトのOnTriggerExitの処理
     private void OnTriggerExit(Collider other)
     {
+        // トリガーからEnemyまたはBossが出た場合、そのColliderをリストから削除
         if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Boss"))
         {
-            if (objectsInTrigger.Contains(other))
-            {
-                objectsInTrigger.Remove(other);
-            }
+            objectsInTrigger.Remove(other); // リストに含まれている場合のみ削除
         }
     }
 }

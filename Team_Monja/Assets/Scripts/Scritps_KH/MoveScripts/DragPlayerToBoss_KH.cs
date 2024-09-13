@@ -14,6 +14,10 @@ public class DragPlayerToBoss_KH : MonoBehaviour
 
     private SearchWayPointTwoDimensionalArray_KH _searchWayPointTwoDimensionalArray = default;
     private EnemyMove_KH _enemyMove;
+    [SerializeField]
+    private TimeManager_KH _timeManager;
+    [SerializeField]
+    private BossGate_MT _bossGate;
 
     private float _speed = 100f;
     private float _followStopDistance = 0.1f;
@@ -25,6 +29,8 @@ public class DragPlayerToBoss_KH : MonoBehaviour
     private bool _isFirst = true;
     // ƒvƒŒƒCƒ„[‚ðˆø‚«‚¸‚éó‘Ô‚©‚Ç‚¤‚©
     private bool _isdrag = false;
+
+    public bool Isdrag { get => _isdrag; set => _isdrag = value; }
 
     void Start()
     {
@@ -105,6 +111,11 @@ public class DragPlayerToBoss_KH : MonoBehaviour
             StartCoroutine(DeactivateAfterOneSecond());
             _isdrag = false;
             _targetWayPoint.SetActive(false);
+
+            _bossGate.OpenGate();
+           _timeManager.IsInCastle = true;
+
+
             return;
         }
 

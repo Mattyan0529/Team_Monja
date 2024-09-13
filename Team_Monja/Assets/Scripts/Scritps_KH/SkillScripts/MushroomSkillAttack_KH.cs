@@ -7,9 +7,6 @@ public class MushroomSkillAttack_KH : MonoBehaviour, IDamagable_KH
     [SerializeField]
     private GameObject _residentScript;
 
-    [SerializeField]
-    private EffectManager _effectManager; // EffectManager‚ÌQÆ‚ğ’Ç‰Á
-
 
     private float _deleteTime = 0.5f;
     private float _elapsedTime = 0f;
