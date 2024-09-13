@@ -11,7 +11,7 @@ public class BossGate_MT : MonoBehaviour
     [SerializeField] private GameObject _gateObj = default;
     [SerializeField] private GameObject _pressF = default;
 
-    [SerializeField] private DragPlayerToBoss_KH _dragPlayer;
+    [SerializeField] private DragPlayerToBoss_KH _DamonHand;
     // ’Ç‹LF–k
     private TimeManager_KH _timeManager = default;
 
@@ -32,7 +32,7 @@ public class BossGate_MT : MonoBehaviour
 
     private void Update()
     {
-        if (_dragPlayer.Isdrag  ||!isClosed)
+        if (_DamonHand.Isdrag  ||!isClosed)
         {
             CloseGate();
         }
@@ -63,7 +63,7 @@ public class BossGate_MT : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
 
-        if ((other.gameObject.CompareTag("Player") || !_timeManager.IsInCastle ) && !_dragPlayer.Isdrag)
+        if ((other.gameObject.CompareTag("Player") || !_timeManager.IsInCastle ) && !_DamonHand.Isdrag)
         {
             _pressF.SetActive(true);
             if (Input.GetKeyDown(KeyCode.F) || Input.GetAxis("Submit") > 0)
