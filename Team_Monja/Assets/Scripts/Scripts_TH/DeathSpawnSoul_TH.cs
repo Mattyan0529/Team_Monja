@@ -23,7 +23,7 @@ public class DeathSpwanSoul_TH : MonoBehaviour
         characterDeadDecision = GetComponent<CharacterDeadDecision_MT>();
         _closestEnemyFinder = GameObject.FindWithTag("PlayerManager").GetComponent<ClosestEnemyFinder_MT>();
         _enemyTriggerManager = GameObject.FindWithTag("NearTrigger").GetComponent<EnemyTriggerManager_MT>();
-        
+
         _nowPositionY = transform.position.y;
         // タグを持つ最初の子オブジェクトを検索する
         _tutorialObj = FindFirstObjectWithTag(transform, _targetTag);
@@ -41,14 +41,14 @@ public class DeathSpwanSoul_TH : MonoBehaviour
         {
             if (!CompareTag("Player"))
             {
-                Debug.Log(_closestEnemyFinder.GetClosestObject(_enemyTriggerManager.objectsInTrigger, _player.transform).gameObject);
+              
                 //プレイヤーから一番近い場合
                 if (_enemyTriggerManager.objectsInTrigger != null && _player != null &&
-                    (this.gameObject == _closestEnemyFinder.GetClosestObject(_enemyTriggerManager.objectsInTrigger, _player.transform)))
+                    (this.gameObject == _closestEnemyFinder.GetClosestObject(_enemyTriggerManager.objectsInTrigger, _player.transform).gameObject))
                 {
                     _tutorialObj.SetActive(true);
                 }
-
+           
                 ToggleParticleSystem(true);  // 死亡状態でパーティクルシステムを表示
             }
         }
