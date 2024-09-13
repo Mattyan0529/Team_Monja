@@ -37,9 +37,7 @@ public class WriteHitPoint_KH : MonoBehaviour
         }
 
 
-        //現在のキャラクター取得
-        _nowPlayer = GameObject.FindWithTag("Player");
-        _characterAnim = _nowPlayer.GetComponent<CharacterAnim_MT>();
+        _characterAnim = attackedStatus.gameObject.GetComponent<CharacterAnim_MT>();
 
         _audioSource = attackedStatus.gameObject.GetComponent<AudioSource>();
 
