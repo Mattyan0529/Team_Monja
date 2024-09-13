@@ -20,9 +20,6 @@ public class MonsterSkill_KH : MonoBehaviour
     private NearPlayerWayPointManager_KH _nearPlayerWayPointManager = default;
     private EnemyMove_KH _enemyMove = default;
     private IDamagable_KH _skillInterface = default;
-    //èºñ{
-    private CharacterAnim_MT _characterAnim;
-
 
     private NormalAttack_KH _normalAttack = default;
     private PlayerGuard_KH _playerGuard = default;
@@ -49,9 +46,6 @@ public class MonsterSkill_KH : MonoBehaviour
 
     void Start()
     {
-        //èºñ{
-        _characterAnim = GetComponent<CharacterAnim_MT>();
-
         _nearPlayerWayPointManager = _nearPlayerArea.GetComponent<NearPlayerWayPointManager_KH>();
         GameobjectTagJudge();
         _updateTime = Random.Range(_minTimeSpacing, _maxTimeSpacing);
