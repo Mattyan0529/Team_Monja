@@ -74,6 +74,9 @@ public class CharacterAnim_MT : MonoBehaviour
                 animator.SetBool("Die", false);
                 NowAnim = null;
                 break;
+            case "Eat":
+                animator.SetTrigger("Eat");
+                break;
             case null:
                 break;
         }
