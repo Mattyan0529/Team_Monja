@@ -31,7 +31,6 @@ public class DeathSpwanSoul_TH : MonoBehaviour
         {
             if (!CompareTag("Player"))
             {
-                MoveArrow();
                 ToggleParticleSystem(true);  // 死亡状態でパーティクルシステムを表示
             }
         }
@@ -40,17 +39,6 @@ public class DeathSpwanSoul_TH : MonoBehaviour
             ToggleParticleSystem(false); // 生存状態でパーティクルシステムを非表示
         }
     }
-
-    private void MoveArrow()
-    {
-        // 自動で回転
-        transform.Rotate(0, 0, _rotateSpeed);
-        // 上下にふわふわ浮く処理
-        transform.position = new Vector3(transform.position.x,
-            _nowPositionY + Mathf.PingPong(Time.time, _pingPongValue),
-            transform.position.z);
-    }
-
     private void ToggleParticleSystem(bool isActive)
     {
         if (_particleSystemObject != null)
