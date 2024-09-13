@@ -10,6 +10,7 @@ public class DeathSpwanSoul_TH : MonoBehaviour
     private float _nowPositionY = default;
     private string _targetTag = "TutorialUI";
     private GameObject _player;
+    private GameObject _tutorialObj;
     private EnemyTriggerManager_MT _enemyTriggerManager;
     private CharacterDeadDecision_MT characterDeadDecision;
     private ClosestEnemyFinder_MT _closestEnemyFinder;
@@ -24,6 +25,8 @@ public class DeathSpwanSoul_TH : MonoBehaviour
         _enemyTriggerManager = GameObject.FindWithTag("NearTrigger").GetComponent<EnemyTriggerManager_MT>();
 
         _nowPositionY = transform.position.y;
+        // タグを持つ最初の子オブジェクトを検索する
+        _tutorialObj = FindFirstObjectWithTag(transform, _targetTag);
 
         // 初期状態でパーティクルシステムを非表示にしておく
         if (_particleSystemObject != null)
@@ -37,26 +40,21 @@ public class DeathSpwanSoul_TH : MonoBehaviour
         if (characterDeadDecision.IsDeadDecision())
         {
             if (!CompareTag("Player"))
-            {// タグを持つ最初の子オブジェクトを検索する
-                GameObject foundObject = FindFirstObjectWithTag(transform, _targetTag);
-                Debug.Log(foundObject);
+            {
+              
                 //プレイヤーから一番近い場合
                 if (_enemyTriggerManager.objectsInTrigger != null && _player != null &&
                     (this.gameObject == _closestEnemyFinder.GetClosestObject(_enemyTriggerManager.objectsInTrigger, _player.transform).gameObject))
                 {
-                    foundObject.SetActive(true);
+                    _tutorialObj.SetActive(true);
                 }
-                else
-                {
-                    foundObject.SetActive(false);
-                }
-
+           
                 ToggleParticleSystem(true);  // 死亡状態でパーティクルシステムを表示
             }
         }
         else
         {
-
+            _tutorialObj.SetActive(false);
             ToggleParticleSystem(false); // 生存状態でパーティクルシステムを非表示
         }
     }
