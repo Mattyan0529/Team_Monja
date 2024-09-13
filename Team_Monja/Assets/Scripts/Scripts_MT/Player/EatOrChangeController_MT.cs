@@ -9,6 +9,8 @@ public class EatOrChangeController_MT : MonoBehaviour
     private EnemyTriggerManager_MT enemyTriggerManager;
     private LockOn lockOn;
 
+
+    private GameObject _player;
     void Start()
     {
         eatEnemy = GetComponent<EatEnemy_MT>();
@@ -39,7 +41,7 @@ public class EatOrChangeController_MT : MonoBehaviour
         {
             if(enemyTriggerManager.objectsInTrigger != null)
             {
-                eatEnemy.RemoveClosestObject(enemyTriggerManager.objectsInTrigger, transform);
+                eatEnemy.RemoveClosestObject(enemyTriggerManager.objectsInTrigger, _player.transform);
             }
              
         }
@@ -56,7 +58,7 @@ public class EatOrChangeController_MT : MonoBehaviour
         {
             if (enemyTriggerManager.objectsInTrigger != null)
             {
-                changeCharacter.ChangeTagClosestObject(enemyTriggerManager.objectsInTrigger, transform);
+                changeCharacter.ChangeTagClosestObject(enemyTriggerManager.objectsInTrigger,_player.transform);
             }
           
         }
@@ -65,4 +67,10 @@ public class EatOrChangeController_MT : MonoBehaviour
             Debug.LogError("ChangeCharacter_MT component is null.");
         }
     }
+
+    public void SetPlayer(GameObject player)
+    {
+        _player = player;
+    }
+
 }
