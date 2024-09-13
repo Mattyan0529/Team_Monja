@@ -144,7 +144,7 @@ public class LockOn : MonoBehaviour
         ResetRotation();
     }
 
-    void ResetRotation()
+    public void ResetRotation()
     {
         Vector3 newRotation = transform.localEulerAngles;
         newRotation.x = 0f;

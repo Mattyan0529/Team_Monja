@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DropDawnSoul_TH : MonoBehaviour
+public class SpawnSoul_TH : MonoBehaviour
 {
     [SerializeField]
     private GameObject _particleSystemObject;  // パーティクルシステムのGameObject

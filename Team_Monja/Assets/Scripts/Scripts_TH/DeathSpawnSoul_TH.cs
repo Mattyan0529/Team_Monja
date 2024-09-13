@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DropDawnSoul_TH : MonoBehaviour
+public class DeathSpwanSoul_TH : MonoBehaviour
 {
     [SerializeField]
     private GameObject _particleSystemObject;  // パーティクルシステムのGameObject
@@ -10,9 +10,11 @@ public class DropDawnSoul_TH : MonoBehaviour
     private float _nowPositionY = default;
 
     private CharacterDeadDecision_MT characterDeadDecision;
+    private MeshRenderer meshRenderer;
 
     void Start()
     {
+        meshRenderer = GetComponent<MeshRenderer>();
         // 親オブジェクトから取得
         characterDeadDecision = GetComponentInParent<CharacterDeadDecision_MT>();
 
@@ -31,14 +33,28 @@ public class DropDawnSoul_TH : MonoBehaviour
         {
             if (!CompareTag("Player"))
             {
+                meshRenderer.enabled = true;
+                MoveArrow();
                 ToggleParticleSystem(true);  // 死亡状態でパーティクルシステムを表示
             }
         }
         else
         {
+            meshRenderer.enabled = false;
             ToggleParticleSystem(false); // 生存状態でパーティクルシステムを非表示
         }
     }
+
+    private void MoveArrow()
+    {
+        // 自動で回転
+        transform.Rotate(0, 0, _rotateSpeed);
+        // 上下にふわふわ浮く処理
+        transform.position = new Vector3(transform.position.x,
+            _nowPositionY + Mathf.PingPong(Time.time, _pingPongValue),
+            transform.position.z);
+    }
+
     private void ToggleParticleSystem(bool isActive)
     {
         if (_particleSystemObject != null)
