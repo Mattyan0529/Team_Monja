@@ -12,12 +12,10 @@ public class DeathSpwanSoul_TH : MonoBehaviour
     private GameObject _player;
     private EnemyTriggerManager_MT _enemyTriggerManager;
     private CharacterDeadDecision_MT characterDeadDecision;
-    private ClosestEnemyFinder_MT _closestEnemyFinder;
     private MeshRenderer meshRenderer;
 
     void Start()
     {
-        meshRenderer = GetComponent<MeshRenderer>();
         // 親オブジェクトから取得
         characterDeadDecision = GetComponentInParent<CharacterDeadDecision_MT>();
         _closestEnemyFinder = GameObject.FindWithTag("PlayerManager").GetComponent<ClosestEnemyFinder_MT>();
@@ -56,19 +54,19 @@ public class DeathSpwanSoul_TH : MonoBehaviour
         }
         else
         {
-
+            meshRenderer.enabled = false;
             ToggleParticleSystem(false); // 生存状態でパーティクルシステムを非表示
         }
     }
 
   
 
-    private void ToggleParticleSystem(bool isActive)
-    {
-        if (_particleSystemObject != null)
-        {
-            _particleSystemObject.SetActive(isActive);
-        }
+        // 自動で回転
+        transform.Rotate(0, 0, _rotateSpeed);
+        // 上下にふわふわ浮く処理
+        transform.position = new Vector3(transform.position.x,
+            _nowPositionY + Mathf.PingPong(Time.time, _pingPongValue),
+            transform.position.z);
     }
 
     // 再帰的にタグを持つ最初のオブジェクトを検索するメソッド
@@ -82,6 +80,22 @@ public class DeathSpwanSoul_TH : MonoBehaviour
             {
                 return child.gameObject;
             }
+
+            // 子オブジェクトの子も再帰的に検索
+            GameObject foundObject = FindFirstObjectWithTag(child, tag);
+            if (foundObject != null)
+            {
+                return foundObject;
+            }
+        }
+
+        // タグを持つオブジェクトが見つからない場合
+        return null;
+    }
+
+    public void SetPlayer(GameObject player)
+    {
+        _player = player;
 
             // 子オブジェクトの子も再帰的に検索
             GameObject foundObject = FindFirstObjectWithTag(child, tag);
