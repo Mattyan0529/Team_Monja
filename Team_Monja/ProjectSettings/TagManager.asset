@@ -22,6 +22,8 @@ TagManager:
   - NormalHit
   - HeartHit
   - ThunderHit
+  - SlashHit
+  - TutorialUI
   layers:
   - Default
   - TransparentFX
