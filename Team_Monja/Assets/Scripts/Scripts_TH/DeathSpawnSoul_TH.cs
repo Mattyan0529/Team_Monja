@@ -10,11 +10,9 @@ public class DeathSpwanSoul_TH : MonoBehaviour
     private float _nowPositionY = default;
 
     private CharacterDeadDecision_MT characterDeadDecision;
-    private MeshRenderer meshRenderer;
 
     void Start()
     {
-        meshRenderer = GetComponent<MeshRenderer>();
         // 親オブジェクトから取得
         characterDeadDecision = GetComponentInParent<CharacterDeadDecision_MT>();
 
@@ -33,14 +31,12 @@ public class DeathSpwanSoul_TH : MonoBehaviour
         {
             if (!CompareTag("Player"))
             {
-                meshRenderer.enabled = true;
                 MoveArrow();
                 ToggleParticleSystem(true);  // 死亡状態でパーティクルシステムを表示
             }
         }
         else
         {
-            meshRenderer.enabled = false;
             ToggleParticleSystem(false); // 生存状態でパーティクルシステムを非表示
         }
     }
