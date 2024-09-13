@@ -19,7 +19,7 @@ public class DeathSpwanSoul_TH : MonoBehaviour
     {
         meshRenderer = GetComponent<MeshRenderer>();
         // 親オブジェクトから取得
-        characterDeadDecision = GetComponentInParent<CharacterDeadDecision_MT>();
+        characterDeadDecision = GetComponent<CharacterDeadDecision_MT>();
         _closestEnemyFinder = GameObject.FindWithTag("PlayerManager").GetComponent<ClosestEnemyFinder_MT>();
         _enemyTriggerManager = GameObject.FindWithTag("NearTrigger").GetComponent<EnemyTriggerManager_MT>();
 
@@ -41,7 +41,7 @@ public class DeathSpwanSoul_TH : MonoBehaviour
                 GameObject foundObject = FindFirstObjectWithTag(transform, _targetTag);
                 Debug.Log(foundObject);
                 //プレイヤーから一番近い場合
-                if (_enemyTriggerManager.objectsInTrigger != null &&
+                if (_enemyTriggerManager.objectsInTrigger != null && _player != null &&
                     (this.gameObject == _closestEnemyFinder.GetClosestObject(_enemyTriggerManager.objectsInTrigger, _player.transform).gameObject))
                 {
                     foundObject.SetActive(true);
