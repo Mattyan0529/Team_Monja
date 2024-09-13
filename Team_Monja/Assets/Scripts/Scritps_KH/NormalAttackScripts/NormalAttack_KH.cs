@@ -8,9 +8,6 @@ public class NormalAttack_KH : MonoBehaviour
     [SerializeField]
     GameObject _coolTimeUIObj = default;
 
-    [SerializeField]
-    private EffectManager _effectManager; // EffectManager‚ÌQÆ‚ğ’Ç‰Á
-
 
     private float _deleteTime = 0.2f;
     private float _elapsedTime = 0f;

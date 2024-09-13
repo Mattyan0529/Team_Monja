@@ -13,14 +13,14 @@ public class EnemyHP_MT : MonoBehaviour
     private EnemyTriggerManager_MT _enemyTriggerManager;
     private TextMeshProUGUI  _text;
 
-    private List<Transform> _childObjects = new List<Transform>();
-
+    [SerializeField]
+    private GameObject _name;  
+    [SerializeField]
+    private GameObject _hpBar;
     private void Awake()
-    {//エラーが出るからしかたないね
-        GetAllChild();
+    {
         _moveSlider = GetComponentInChildren<MoveSlider_MT>();
-        _text = GetComponentInChildren<TextMeshProUGUI>();
-        
+        _text = GetComponentInChildren<TextMeshProUGUI>();      
     }
     void Start()
     {
@@ -63,21 +63,11 @@ public class EnemyHP_MT : MonoBehaviour
 
         if (!this.transform.parent.CompareTag("Enemy"))
         {
-            foreach (Transform child in _childObjects)
-            {
-                child.gameObject.SetActive(false);
-            }
+            _hpBar.SetActive(false);
+            _name.SetActive(true);
         }
     }
 
-    //子オブジェクトをすべて検索する
-    private void GetAllChild()
-    {
-        foreach (Transform child in transform)
-        {
-            _childObjects.Add(child);
-        }
-    }
 
     // Canvasをメインカメラの方向に向ける
     private void LookCamera()
@@ -99,19 +89,13 @@ public class EnemyHP_MT : MonoBehaviour
         {
             if (_enemyTriggerManager.objectsInTrigger.Contains(_collider))
             {
-                foreach (Transform child in _childObjects)
-                {
-                    child.gameObject.SetActive(true);
-                }
-                
+                _name.SetActive(true);
+                _hpBar.SetActive(true);
             }
             else
             {
-                foreach (Transform child in _childObjects)
-                {
-                   child.gameObject.SetActive(false);
-                }
-                
+                _name.SetActive(false);
+                _hpBar.SetActive(false);
             }
         }
     }

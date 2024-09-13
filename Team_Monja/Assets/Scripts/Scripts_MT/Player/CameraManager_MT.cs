@@ -27,7 +27,7 @@ public class CameraManager_MT : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         cameraPos = playerObj.transform.position;
-        Debug.Log(cameraPos);
+
     }
 
     // Update is called once per frame
