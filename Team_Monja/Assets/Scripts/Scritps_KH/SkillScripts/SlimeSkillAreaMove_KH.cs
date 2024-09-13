@@ -10,7 +10,10 @@ public class SlimeSkillAreaMove_KH : MonoBehaviour
     private void Start()
     {
         _slimeLuncer = transform.parent.GetComponent<SlimeLuncer>();
-        _slimeSphere = GameObject.FindGameObjectWithTag("SlimeSphere");
+        if (GameObject.FindGameObjectWithTag("SlimeSphere") != null)
+        {
+            _slimeSphere = GameObject.FindGameObjectWithTag("SlimeSphere");
+        }
 
         if (_slimeSphere == null)
         {
