@@ -25,10 +25,16 @@ public class WriteHitPoint_KH : MonoBehaviour
     /// <param name="afterAttackedHitPoint">攻撃された後のHP</param>
     public void UpdateHitPoint(StatusManager_MT attackedStatus, int afterAttackedHitPoint)
     {
+        _audioSource = attackedStatus.gameObject.GetComponent<AudioSource>();
+
+        _soundEffectManagement.PlayDamageSound(_audioSource);
+
+        if (attackedStatus.HP <= 0) return;
+
         //ダメージを受けたのがプレイヤーなら
         if (attackedStatus.gameObject.CompareTag("Player"))
         {
-            _vibration.VibrateController(1f,1f,0.75f);
+            _vibration.VibrateController(1f, 1f, 0.75f);
         }
         //ダメージを受けたのが敵なら
         else
@@ -39,13 +45,9 @@ public class WriteHitPoint_KH : MonoBehaviour
 
         _characterAnim = attackedStatus.gameObject.GetComponent<CharacterAnim_MT>();
 
-        _audioSource = attackedStatus.gameObject.GetComponent<AudioSource>();
-
         //ステータスを更新
         attackedStatus.HP = afterAttackedHitPoint;
         //ダメージくらったときのアニメ    
         _characterAnim.NowAnim = "GotDamage";
-
-        _soundEffectManagement.PlayDamageSound(_audioSource);
     }
 }

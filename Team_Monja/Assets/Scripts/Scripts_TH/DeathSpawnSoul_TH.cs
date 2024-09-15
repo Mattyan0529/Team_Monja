@@ -41,14 +41,13 @@ public class DeathSpwanSoul_TH : MonoBehaviour
         {
             if (!CompareTag("Player"))
             {
-              
                 //プレイヤーから一番近い場合
                 if (_enemyTriggerManager.objectsInTrigger != null && _player != null &&
-                    (this.gameObject == _closestEnemyFinder.GetClosestObject(_enemyTriggerManager.objectsInTrigger, _player.transform).gameObject))
+                    (this.gameObject == _closestEnemyFinder.GetClosestObject(_enemyTriggerManager.objectsInTrigger, _player.transform)))
                 {
                     _tutorialObj.SetActive(true);
                 }
-           
+
                 ToggleParticleSystem(true);  // 死亡状態でパーティクルシステムを表示
             }
         }
