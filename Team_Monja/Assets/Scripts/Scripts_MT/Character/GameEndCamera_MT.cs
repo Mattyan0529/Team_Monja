@@ -14,7 +14,8 @@ public class GameEndCamera_MT : MonoBehaviour
     [SerializeField] private GameObject _canvasPlayer = default;
     //ゲームオーバーのキャンバス
     [SerializeField] private GameObject _gameOverCanvas = default;
-    [SerializeField] private GameObject _gameOverImage = default;
+    //bossのキャンバス
+    [SerializeField] private GameObject _bossCanvas = default;
 
 
 
@@ -76,6 +77,8 @@ public class GameEndCamera_MT : MonoBehaviour
         _cameraManager.enabled = false;
         Debug.Log("Camera disabled");
 
+        _bossCanvas.SetActive(false);
+
         if (_canvasPlayer != null)
         {
             foreach (Transform child in _canvasPlayer.transform)
@@ -98,7 +101,6 @@ public class GameEndCamera_MT : MonoBehaviour
         Debug.Log("Time scale set to 0");
 
         _gameOverCanvas.SetActive(true);
-        _gameOverImage.SetActive(true);
         Debug.Log("Game over image activated");
 
 
@@ -118,6 +120,8 @@ public class GameEndCamera_MT : MonoBehaviour
         //カメラ操作をできなくする
         _cameraManager.enabled = false;
 
+        _bossCanvas.SetActive(false);
+
         // 親オブジェクトが設定されているか確認
         if (_canvasPlayer != null)
         {
@@ -127,6 +131,7 @@ public class GameEndCamera_MT : MonoBehaviour
                 // 子オブジェクトを非アクティブにする
                 child.gameObject.SetActive(false);
             }
+
         }
 
         //スローモーション開始

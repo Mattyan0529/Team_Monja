@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PauseDirector_KH : MonoBehaviour
 {
-    [SerializeField] private GameObject pauseCanvas; // ポーズ時に表示するキャンバスの参照
+    [SerializeField] private GameObject _pauseCanvas; // ポーズ時に表示するキャンバスの参照
+    [SerializeField] private GameObject _playerCanvas; // プレイヤーキャンバスの参照
     private bool _isPause = false;
 
     void Update()
@@ -17,13 +18,13 @@ public class PauseDirector_KH : MonoBehaviour
     /// </summary>
     private void PauseManagement()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        // EscapeキーまたはコントローラーのPauseボタンでポーズ状態を切り替える
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("MenuButton"))
         {
             // ポーズ状態へ
             if (!_isPause)
             {
                 Pause();
-
             }
             // ポーズ状態解除
             else if (_isPause)
@@ -33,14 +34,18 @@ public class PauseDirector_KH : MonoBehaviour
         }
     }
 
-
     private void Pause()
     {
         Time.timeScale = 0f;
         _isPause = true;
-        if (pauseCanvas != null)
+        if (_pauseCanvas != null)
         {
-            pauseCanvas.SetActive(true); // ポーズキャンバスを表示
+            _pauseCanvas.SetActive(true); // ポーズキャンバスを表示
+        }
+
+        if (_playerCanvas != null)
+        {
+            _playerCanvas.SetActive(false); // プレイヤーキャンバスを非表示
         }
     }
 
@@ -48,9 +53,14 @@ public class PauseDirector_KH : MonoBehaviour
     {
         Time.timeScale = 1f;
         _isPause = false;
-        if (pauseCanvas != null)
+        if (_pauseCanvas != null)
         {
-            pauseCanvas.SetActive(false); // ポーズキャンバスを非表示
+            _pauseCanvas.SetActive(false); // ポーズキャンバスを非表示
+        }
+
+        if (_playerCanvas != null)
+        {
+            _playerCanvas.SetActive(true); // プレイヤーキャンバスを表示
         }
     }
 }
