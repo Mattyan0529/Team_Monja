@@ -9582,6 +9582,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioObj: {fileID: 894444425}
+  _defaultButtons: []
 --- !u!114 &390213844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53817,6 +53818,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: OptionCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1950187684770881959, guid: 1b42cac29d05a4e468deb1d123847f55, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3138336748719187782, guid: 1b42cac29d05a4e468deb1d123847f55, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -53841,6 +53846,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5848520884232205998, guid: 1b42cac29d05a4e468deb1d123847f55, type: 3}
+      propertyPath: m_text
+      value: "\u632F\u52D5"
+      objectReference: {fileID: 0}
     - target: {fileID: 5851508642278035761, guid: 1b42cac29d05a4e468deb1d123847f55, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -53860,6 +53869,10 @@ PrefabInstance:
     - target: {fileID: 7937314490474804616, guid: 1b42cac29d05a4e468deb1d123847f55, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600411924344595176, guid: 1b42cac29d05a4e468deb1d123847f55, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -71
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
