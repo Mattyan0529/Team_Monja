@@ -12,6 +12,7 @@ public class BossGate_MT : MonoBehaviour
     [SerializeField] private GameObject _pressF = default;
     [SerializeField] private VideoPlayerController_MT _bossVideo;
 
+
     [SerializeField] private DragPlayerToBoss_KH _damonHand;
     // 追記：北
     private TimeManager_KH _timeManager = default;
@@ -21,7 +22,7 @@ public class BossGate_MT : MonoBehaviour
 
     private bool isClosed = false;
 
-    private Vector3 _moveForBoss = new Vector3(0, 0, 5);
+    private Vector3 _moveForBoss = new Vector3(0, 0, 10);
 
 
     private void Start()
@@ -47,7 +48,7 @@ public class BossGate_MT : MonoBehaviour
     public void OpenGate()
     {
         _collider.isTrigger = true;
-
+        isClosed = true;
         _pressF.SetActive(false);
 
         // 追記：北
@@ -80,13 +81,14 @@ public class BossGate_MT : MonoBehaviour
     //ボス部屋に入った
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player")　|| isClosed)
         {
             _timeManager.IsInCastle = true;
             _collider.isTrigger = false;
             _pressF.SetActive(false);
             _canvasBoss.enabled = true;
-
+            //カメラをボスの方向に向ける
+            Camera.main.transform.parent.rotation = Quaternion.Euler(0,0,0);
         }
 
     }
