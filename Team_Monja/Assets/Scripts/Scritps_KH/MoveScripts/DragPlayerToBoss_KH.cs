@@ -18,6 +18,8 @@ public class DragPlayerToBoss_KH : MonoBehaviour
     private TimeManager_KH _timeManager;
     [SerializeField]
     private BossGate_MT _bossGate;
+    [SerializeField]
+    private VideoPlayerController_MT _video;
 
     private float _speed = 100f;
     private float _followStopDistance = 0.1f;
@@ -112,9 +114,7 @@ public class DragPlayerToBoss_KH : MonoBehaviour
             _isdrag = false;
             _targetWayPoint.SetActive(false);
 
-            _bossGate.OpenGate();
-           
-
+            _video.PlayVideo();
 
             return;
         }
