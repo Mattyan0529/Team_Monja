@@ -26,7 +26,9 @@ public class TagJudge_MT : MonoBehaviour
     private GameObject _compassCenter;
     [SerializeField]
     private GameObject _invisibleWall;
-   
+    [Header("NearPlayerAraの子オブジェクトのPinを入れる")]
+    [SerializeField]
+    private GameObject _pin;
 
 
     [SerializeField,Header("シーン内の全キャラクター")]
@@ -110,6 +112,8 @@ public class TagJudge_MT : MonoBehaviour
         _compassCenter.GetComponent<MoveCompass_KH>().SetPlayer(_playerObj);
 
         _invisibleWall.GetComponent<PlayerEnterWallJudge_KH>().SetPlayer(_playerObj);
+
+        _pin.GetComponent<MiniMapPlayerIcon_KH>().SetPlayer(_playerObj);
 
         //キャラクター全員に対して行う
         foreach (GameObject character in _characters)

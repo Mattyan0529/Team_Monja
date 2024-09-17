@@ -41,10 +41,9 @@ public class MoveCompass_KH : MonoBehaviour
 
         if (direction == Vector3.zero) return;        // 動いていないときは処理をしない（_differenceが0だったらエラーになる）
 
-        // Y軸の回転をZ軸の回転として反映する(プレイヤーの向いている方向も考慮する)
+        // Y軸の回転をZ軸の回転として反映する
         Quaternion newDirection = Quaternion.LookRotation(direction, Vector3.up);
-
-        float angle =_player.transform.rotation.eulerAngles.y - newDirection.eulerAngles.y;
+        float angle = newDirection.eulerAngles.y;
         gameObject.transform.rotation = Quaternion.Euler(0f, 0f, angle);
     }
 }
