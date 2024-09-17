@@ -3,7 +3,7 @@ using UnityEngine.Video;
 
 public class VideoPlayerController_MT : MonoBehaviour
 {
-    public RenderTexture videoRenderTexture;
+    [SerializeField]private RenderTexture videoRenderTexture;
     private VideoPlayer _videoPlayer;
 
     void Start()

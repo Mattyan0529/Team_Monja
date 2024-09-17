@@ -10,7 +10,7 @@ public class BossGate_MT : MonoBehaviour
     [SerializeField] private GameObject _canvasObjPlayer = default;
     [SerializeField] private GameObject _gateObj = default;
     [SerializeField] private GameObject _pressF = default;
-    [SerializeField] private VideoPlayerController_MT _video;
+    [SerializeField] private VideoPlayerController_MT _Bossvideo;
 
     [SerializeField] private DragPlayerToBoss_KH _damonHand;
     // ’Ç‹LF–k
@@ -68,7 +68,7 @@ public class BossGate_MT : MonoBehaviour
             _pressF.SetActive(true);
             if (Input.GetKeyDown(KeyCode.F) || Input.GetAxis("Submit") > 0)
             {//“®‰æ‚ğÄ¶
-                _video.PlayVideo();
+                _Bossvideo.PlayVideo();
                 OpenGate();
             }
         }
