@@ -10,7 +10,7 @@ public class BossGate_MT : MonoBehaviour
     [SerializeField] private GameObject _canvasObjPlayer = default;
     [SerializeField] private GameObject _gateObj = default;
     [SerializeField] private GameObject _pressF = default;
-    [SerializeField] private VideoPlayerController_MT _Bossvideo;
+    [SerializeField] private VideoPlayerController_MT _bossVideo;
 
     [SerializeField] private DragPlayerToBoss_KH _damonHand;
     // 追記：北
@@ -20,6 +20,8 @@ public class BossGate_MT : MonoBehaviour
     private Collider _collider;
 
     private bool isClosed = false;
+
+    private Vector3 _moveForBoss = new Vector3(0, 0, 5);
 
 
     private void Start()
@@ -68,7 +70,9 @@ public class BossGate_MT : MonoBehaviour
             _pressF.SetActive(true);
             if (Input.GetKeyDown(KeyCode.F) || Input.GetAxis("Submit") > 0)
             {//動画を再生
-                _Bossvideo.PlayVideo();
+                _bossVideo.PlayVideo();
+                //ボス部屋と逆方向に進むのを防止
+                this.transform.position += _moveForBoss;
                 OpenGate();
             }
         }
