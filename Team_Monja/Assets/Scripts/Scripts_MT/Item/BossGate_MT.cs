@@ -10,8 +10,9 @@ public class BossGate_MT : MonoBehaviour
     [SerializeField] private GameObject _canvasObjPlayer = default;
     [SerializeField] private GameObject _gateObj = default;
     [SerializeField] private GameObject _pressF = default;
+    [SerializeField] private VideoPlayerController_MT _Bossvideo;
 
-    [SerializeField] private DragPlayerToBoss_KH _DamonHand;
+    [SerializeField] private DragPlayerToBoss_KH _damonHand;
     // 追記：北
     private TimeManager_KH _timeManager = default;
 
@@ -32,7 +33,7 @@ public class BossGate_MT : MonoBehaviour
 
     private void Update()
     {
-        if (_DamonHand.Isdrag  ||!isClosed)
+        if (_damonHand.Isdrag  ||!isClosed)
         {
             CloseGate();
         }
@@ -62,22 +63,27 @@ public class BossGate_MT : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
 
-        if ((other.gameObject.CompareTag("Player") || !_timeManager.IsInCastle ) && !_DamonHand.Isdrag)
+        if ((other.gameObject.CompareTag("Player") && !_timeManager.IsInCastle ) && !_damonHand.Isdrag)
         {
             _pressF.SetActive(true);
             if (Input.GetKeyDown(KeyCode.F) || Input.GetAxis("Submit") > 0)
-            {
+            {//動画を再生
+                _Bossvideo.PlayVideo();
                 OpenGate();
             }
         }
     }
-
+    //ボス部屋に入った
     private void OnTriggerExit(Collider other)
     {
-        _timeManager.IsInCastle = true;
-        _collider.isTrigger = false;
-        _pressF.SetActive(false);
-        _canvasBoss.enabled = true;
+        if (other.CompareTag("Player"))
+        {
+            _timeManager.IsInCastle = true;
+            _collider.isTrigger = false;
+            _pressF.SetActive(false);
+            _canvasBoss.enabled = true;
+
+        }
 
     }
 
