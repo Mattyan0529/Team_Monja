@@ -44,7 +44,6 @@ public class BossGate_MT : MonoBehaviour
     public void OpenGate()
     {
         _collider.isTrigger = true;
-        _canvasBoss.enabled = true;
 
         _pressF.SetActive(false);
 
@@ -75,8 +74,11 @@ public class BossGate_MT : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        _timeManager.IsInCastle = true;
         _collider.isTrigger = false;
         _pressF.SetActive(false);
+        _canvasBoss.enabled = true;
+
     }
 
 
