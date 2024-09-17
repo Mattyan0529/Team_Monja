@@ -42,12 +42,12 @@ public class DeathSpwanSoul_TH : MonoBehaviour
             if (!CompareTag("Player"))
             {
                 //プレイヤーから一番近い場合
-                if (_enemyTriggerManager.objectsInTrigger != null && _player != null &&
-                    (this.gameObject == _closestEnemyFinder.GetClosestObject(_enemyTriggerManager.objectsInTrigger, _player.transform)))
+                if (this.gameObject == _closestEnemyFinder.GetClosestObject(_enemyTriggerManager.objectsInTrigger, _player.transform).gameObject)
                 {
+                    Debug.Log("ちんこ");
                     _tutorialObj.SetActive(true);
                 }
-
+                Debug.Log(_closestEnemyFinder.GetClosestObject(_enemyTriggerManager.objectsInTrigger, _player.transform));
                 ToggleParticleSystem(true);  // 死亡状態でパーティクルシステムを表示
             }
         }
@@ -76,7 +76,7 @@ public class DeathSpwanSoul_TH : MonoBehaviour
         {
             // タグが一致する場合、オブジェクトを返す
             if (child.CompareTag(tag))
-            {
+            {Debug.Log(child.gameObject);
                 return child.gameObject;
             }
 
@@ -89,6 +89,7 @@ public class DeathSpwanSoul_TH : MonoBehaviour
         }
 
         // タグを持つオブジェクトが見つからない場合
+    
         return null;
     }
 
