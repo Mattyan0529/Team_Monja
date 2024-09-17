@@ -113,7 +113,7 @@ public class DragPlayerToBoss_KH : MonoBehaviour
             _targetWayPoint.SetActive(false);
 
             _bossGate.OpenGate();
-           _timeManager.IsInCastle = true;
+           
 
 
             return;

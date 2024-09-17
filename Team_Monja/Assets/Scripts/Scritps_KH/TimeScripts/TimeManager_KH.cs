@@ -13,7 +13,7 @@ public class TimeManager_KH : MonoBehaviour
     // 表示された言葉が非表示になるまでの時間
     private float _timeHideWord = 10f;
     // プレイヤーを引きずり始める時間
-    private float _timeDragPlayer = 180f;
+    private float _timeDragPlayer = 1f;
 
     private Animator _handAnimator = default;
     private WordDisplay_KH _wordDisplay = default;
