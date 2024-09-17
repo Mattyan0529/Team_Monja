@@ -53,6 +53,11 @@ public class CharacterDeadDecision_MT : MonoBehaviour
                 StartCoroutine(_gameEndCamera.GameOverCoroutine());
                 _coroutineSwitch = false;
             }
+            else if (CompareTag("Boss") && _coroutineSwitch)
+            {
+                StartCoroutine(_gameEndCamera.GameClearCoroutine());
+                _coroutineSwitch = false;
+            }
             if (_isAlive)
             {
                 EnemyStop();
