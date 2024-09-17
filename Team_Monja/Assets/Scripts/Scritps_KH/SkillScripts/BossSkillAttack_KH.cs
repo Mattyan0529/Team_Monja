@@ -99,6 +99,10 @@ public class BossSkillAttack_KH : MonoBehaviour, IDamagable_KH
         _nearPlayerPillar.SetActive(false);
         _farPlayerPillar.SetActive(false);
 
+        _attackRangeImage[0].SetActive(false);
+        _attackRangeImage[1].SetActive(false);
+        _attackRangeImage[2].SetActive(false);
+
         #endregion
 
         #region HitAttack
