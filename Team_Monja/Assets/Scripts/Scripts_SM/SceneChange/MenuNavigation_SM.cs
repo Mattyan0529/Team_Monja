@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System.Collections.Generic; // リストを使うために追加
 
 public class MenuNavigation_SM : MonoBehaviour
 {
@@ -11,7 +12,10 @@ public class MenuNavigation_SM : MonoBehaviour
 
     private EventSystem _eventSystem;   // EventSystemを格納するための変数
     private GameObject _selectedObject; // 現在選択されているオブジェクトを格納するための変数
-    private GameObject _previousSelectedObject; // 追加：前回選択されていたオブジェクト
+    private GameObject _previousSelectedObject; // 前回選択されていたオブジェクト
+
+    [SerializeField]
+    private List<GameObject> _defaultButtons; // 追加：複数のデフォルトボタンを保持するリスト
 
     void Start()
     {
@@ -20,8 +24,8 @@ public class MenuNavigation_SM : MonoBehaviour
         _audioSource = _audioObj.GetComponents<AudioSource>();
 
         _eventSystem = EventSystem.current; // 現在のEventSystemを取得
-        _selectedObject = _eventSystem.firstSelectedGameObject; // 最初に選択されるゲームオブジェクトを取得
-        _previousSelectedObject = _selectedObject; // 追加：初期化時に前回の選択も同じに設定
+
+        SetDefaultButton(); // 最初のボタンを設定
 
         // 最初のボタンを明示的に選択状態にする
         _eventSystem.SetSelectedGameObject(_selectedObject);
@@ -36,6 +40,8 @@ public class MenuNavigation_SM : MonoBehaviour
         // 入力があった場合に処理を行う
         if (Mathf.Abs(horizontal) > 0.1f || Mathf.Abs(vertical) > 0.1f)
         {
+            SetDefaultButton(); // 入力時にキャンバスの状態に応じてデフォルトボタンを設定
+
             // 現在選択されているオブジェクトがnullの場合
             if (_eventSystem.currentSelectedGameObject == null)
             {
@@ -63,6 +69,19 @@ public class MenuNavigation_SM : MonoBehaviour
             if (HoverSelectable_SM._currentHoveredObject == _selectedObject)
             {
                 HoverSelectable_SM._currentHoveredObject = null;
+            }
+        }
+    }
+
+    private void SetDefaultButton()
+    {
+        // リストの中からアクティブなボタンを探してセット
+        foreach (GameObject button in _defaultButtons)
+        {
+            if (button.activeInHierarchy)
+            {
+                _selectedObject = button;
+                break; // 最初に見つかったアクティブなボタンを使用
             }
         }
     }
