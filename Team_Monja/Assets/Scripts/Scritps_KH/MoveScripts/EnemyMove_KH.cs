@@ -202,6 +202,11 @@ public class EnemyMove_KH : MonoBehaviour
     /// </summary>
     private void FreeFollowUp()
     {
+        if (_changeEnemyMoveType.NowState == ChangeEnemyMoveType_KH.EnemyMoveState.InRandomMove)
+        {
+            _changeEnemyMoveType.NowState = ChangeEnemyMoveType_KH.EnemyMoveState.InFollow;
+        }
+
         Vector3 nowPos = new Vector3(transform.position.x, 0f, transform.position.z);
         Vector3 playerPos = new Vector3(_player.transform.position.x, 0f, _player.transform.position.z);
 
