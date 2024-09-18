@@ -23,6 +23,10 @@ public class PlayerSkill_KH : MonoBehaviour
     private bool _canUseSkill = true;
     private bool _isUseSkill = false;
 
+    private float _attackLockTime = 0;
+    private float _attackLockDuration = 0.25f;  //çUåÇÇÃÇ†Ç∆Ç±ÇÃïbêîçUåÇÇ≈Ç´Ç»Ç≠Ç∑ÇÈ
+
+
     public bool IsUseSkill
     {
         get { return _isUseSkill; }
@@ -60,16 +64,19 @@ public class PlayerSkill_KH : MonoBehaviour
 
     void Update()
     {
-   
-        if (_canUseSkill && (Input.GetMouseButtonDown(0) || Input.GetButtonDown("Cancel")))
+        if (_attackLockTime > 0)
         {
-            _isUseSkill = true;
+            _attackLockTime -= Time.deltaTime;
         }
-
-        if (_isUseSkill)
+        else
         {
-            _isUseSkill = false;
-            CallSkill();
+            SkillInput();
+            if (_isUseSkill)
+            {
+                _attackLockTime = _attackLockDuration;
+            
+                CallSkill();
+            }
         }
 
 
@@ -78,6 +85,16 @@ public class PlayerSkill_KH : MonoBehaviour
             UpdateTime();
         }
     }
+
+    private void SkillInput()
+    {
+        if (_canUseSkill && (Input.GetMouseButtonDown(0) || Input.GetButtonDown("Cancel")))
+        {
+            _isUseSkill = true;
+        }
+
+    }
+
 
     /// <summary>
     /// énÇ‹Ç¡ÇΩéûì_Ç≈EnemyÇæÇ¡ÇΩÇÁé©ìÆÇ≈EnemyèÛë‘Ç…Ç∑ÇÈ
@@ -108,7 +125,8 @@ public class PlayerSkill_KH : MonoBehaviour
     /// </summary>
     private void CallSkill()
     {
-            _canUseSkill = false;
+        _isUseSkill = false;
+        _canUseSkill = false;
             _coolTimeUI.StartCoolTime();
 
             if (_playerMove != null)

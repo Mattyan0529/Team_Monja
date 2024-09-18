@@ -10,6 +10,8 @@ public class CharacterAnim_MT : MonoBehaviour
     private string _nowAnim = default;
     private string _currentAnim = default;
 
+    private bool _isAttacking = false;
+
     public string NowAnim { get { return _nowAnim; } set { _nowAnim = value; } }
 
 
@@ -25,7 +27,7 @@ public class CharacterAnim_MT : MonoBehaviour
 
         AnimSwitch();
 
-
+        _isAttacking = false;
 
         _currentAnim = NowAnim;
     }
@@ -45,8 +47,11 @@ public class CharacterAnim_MT : MonoBehaviour
                 NowAnim = null;
                 break;
             case "Attack":
-                animator.SetTrigger("Attack");
-
+                if (!_isAttacking)
+                {
+                    animator.SetTrigger("Attack");
+                    _isAttacking = true;
+                }
                 break;
             case "Attack2":
                 animator.SetTrigger("Attack2");
