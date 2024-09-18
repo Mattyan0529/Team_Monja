@@ -74,6 +74,14 @@ public class SuccubusSkillAttack_KH : MonoBehaviour, IDamagable_KH
         _attackArea.SetActive(true);
     }
 
+    private void SuccubusDeleteAttackArea()
+    {
+        _attackArea.SetActive(false);
+        _elapsedTime = 0f;
+        _changeEnemyMoveType.IsMove = true;
+        _isAttack = false;
+        _playerSkill.IsUseSkill = false;
+    }
 
     public void HitDecision(GameObject hitObj)
     {
@@ -119,11 +127,6 @@ public class SuccubusSkillAttack_KH : MonoBehaviour, IDamagable_KH
 
     private void ResetStatus()
     {
-        if (_statEachSkillTimes == null)
-        {
-            return;
-        }
-
         if (_statEachSkillTimes.Count == 0) return;
         List<StatusManager_MT> list = new List<StatusManager_MT>(_statEachSkillTimes[0]);
 
@@ -169,6 +172,11 @@ public class SuccubusSkillAttack_KH : MonoBehaviour, IDamagable_KH
     private void OnDisable()
     {
         List<List<StatusManager_MT>> list = _statEachSkillTimes;
+
+        if (_statEachSkillTimes == null)
+        {
+            return;
+        }
 
         for (int i = 0; i < list.Count; i++)
         {

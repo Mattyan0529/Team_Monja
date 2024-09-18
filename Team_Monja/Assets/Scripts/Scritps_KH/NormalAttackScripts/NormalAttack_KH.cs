@@ -18,7 +18,11 @@ public class NormalAttack_KH : MonoBehaviour
     [SerializeField]
     private GameObject _attackArea;
     private int _attackCount = default;
+
     private bool _isAttackInput = false;//“ü—Í‚Ìd•¡–hŽ~
+    private float _attackLockTime = 0;
+    private float _attackLockDuration = 0.25f;  //UŒ‚‚Ì‚ ‚Æ‚±‚Ì•b”UŒ‚‚Å‚«‚È‚­‚·‚é
+
     private bool _isAttack = false;
     private bool _canUseNormalAttack = true;
 
@@ -47,14 +51,24 @@ public class NormalAttack_KH : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(_attackCount);
+        
         UpdateTime();
         UpdateCoolTime();
-        AttackInputManager();
-        if (_isAttackInput)
+
+        if(_attackLockTime > 0)
         {
-            DoAttack();
+            _attackLockTime -= Time.deltaTime;
         }
+        else
+        {
+            AttackInputManager();
+            if (_isAttackInput)
+            {
+                _attackLockTime = _attackLockDuration;
+                DoAttack();
+            }
+        }
+
     }
 
     private void AttackInputManager()

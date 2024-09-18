@@ -4,83 +4,113 @@ using UnityEngine;
 
 public class CharacterAnim_MT : MonoBehaviour
 {
-    Animator animator;
-
+    private Animator _animator;
 
     private string _nowAnim = default;
     private string _currentAnim = default;
+    private bool _isAttacking = false;
 
+    // プロパティでアニメーションの現在状態を管理
     public string NowAnim { get { return _nowAnim; } set { _nowAnim = value; } }
 
-
-    // Start is called before the first frame update
+    // 初期化処理
     private void Start()
     {
-        animator = GetComponent<Animator>();
-        NowAnim = "Idle";
+        _animator = GetComponent<Animator>();
+        NowAnim = "Idle"; // 初期アニメーション
     }
 
+    // 毎フレームの処理
     private void LateUpdate()
     {
+        AnimSwitch(); // アニメーションの切り替え
 
-        AnimSwitch();
+        // 攻撃が終わったらリセット
+        if (_isAttacking && NowAnim != "Attack")
+        {
+            _isAttacking = false;
+        }
 
-
-
+        // 現在のアニメーションを保存
         _currentAnim = NowAnim;
     }
 
+    // アニメーションの切り替えロジック
     private void AnimSwitch()
     {
         switch (NowAnim)
         {
             case "Idle":
-                animator.SetBool("Idle", true);
-                animator.SetBool("Move", false);
-                NowAnim = null;
+                _animator.SetBool("Idle", true);
+                _animator.SetBool("Move", false);
+                ResetAnimTrigger();
                 break;
+
             case "Move":
-                animator.SetBool("Move", true);
-                animator.SetBool("Idle", false);
-                NowAnim = null;
+                _animator.SetBool("Move", true);
+                _animator.SetBool("Idle", false);
+                ResetAnimTrigger();
                 break;
+
             case "Attack":
-                animator.SetTrigger("Attack");
-
+                if (!_isAttacking) // 攻撃中かどうかチェック
+                {
+                    _animator.SetTrigger("Attack");
+                    _isAttacking = true;
+                }
                 break;
+
             case "Attack2":
-                animator.SetTrigger("Attack2");
-
+                _animator.SetTrigger("Attack2");
                 break;
+
             case "Skill":
-                animator.SetTrigger("Skill");
-
+                _animator.SetTrigger("Skill");
                 break;
+
             case "GotDamage":
-                animator.SetTrigger("GotDamage");
+                _animator.SetTrigger("GotDamage");
+                break;
 
-                break;
             case "Die":
-                animator.SetTrigger("Die");
-                animator.SetBool("Die", true);
-                animator.SetBool("Idle", false);
-                animator.SetBool("Move", false);
-                NowAnim = null;
+                _animator.SetTrigger("Die");
+                _animator.SetBool("Die", true);
+                _animator.SetBool("Idle", false);
+                _animator.SetBool("Move", false);
+                ResetAnimTrigger();
                 break;
+
             case "Revive":
-                animator.SetTrigger("Revive");
-                animator.SetBool("Idle", false);
-                animator.SetBool("Move", false);
-                animator.SetBool("Die", false);
-                NowAnim = null;
+                _animator.SetTrigger("Revive");
+                _animator.SetBool("Idle", false);
+                _animator.SetBool("Move", false);
+                _animator.SetBool("Die", false);
+                ResetAnimTrigger();
                 break;
+
             case "Eat":
-                animator.SetTrigger("Eat");
+                _animator.SetTrigger("Eat");
                 break;
+
             case null:
+                // アニメーションなし
                 break;
         }
     }
 
+    // アニメーションフラグのリセット用メソッド
+    private void ResetAnimTrigger()
+    {
+        // 単発アニメーションのトリガーをリセット
+        _animator.ResetTrigger("Attack");
+        _animator.ResetTrigger("Attack2");
+        _animator.ResetTrigger("Skill");
+        _animator.ResetTrigger("GotDamage");
+        _animator.ResetTrigger("Die");
+        _animator.ResetTrigger("Revive");
+        _animator.ResetTrigger("Eat");
 
+        // NowAnimをリセット
+        NowAnim = null;
+    }
 }

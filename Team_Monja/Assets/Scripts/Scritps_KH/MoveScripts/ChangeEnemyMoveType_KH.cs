@@ -102,11 +102,6 @@ public class ChangeEnemyMoveType_KH : MonoBehaviour
         _myStatusManager = GetComponent<StatusManager_MT>();
     }
 
-    private void Update()
-    {
-        Debug.Log(NowState);
-    }
-
     /// <summary>
     /// ƒvƒŒƒCƒ„[‚ğİ’è
     /// </summary>
