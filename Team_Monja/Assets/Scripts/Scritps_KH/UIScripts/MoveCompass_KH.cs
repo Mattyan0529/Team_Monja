@@ -1,4 +1,3 @@
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,7 +14,8 @@ public class MoveCompass_KH : MonoBehaviour
     [SerializeField]
     private Toggle _rotationMapToggle;
 
-    private bool _isRotation = false;
+    [SerializeField]
+    private Scriptableobject_SM _settingsData; // ScriptableObjectの参照
 
     private GameObject _player;
 
@@ -23,10 +23,15 @@ public class MoveCompass_KH : MonoBehaviour
     {
         if (_rotationMapToggle != null)
         {
+            // トグルの初期状態をScriptableObjectの値で設定
+            _rotationMapToggle.isOn = _settingsData.isMapRotationEnabled;
+
             // トグルの状態が変更されたときに呼び出されるメソッドを登録
             _rotationMapToggle.onValueChanged.AddListener(OnToggleValueChanged);
-            _isRotation = _rotationMapToggle.isOn; // トグルの初期状態をフラグに設定
         }
+
+        // ScriptableObjectの値をローカル変数に反映
+        OnToggleValueChanged(_settingsData.isMapRotationEnabled);
     }
 
     void Update()
@@ -40,15 +45,14 @@ public class MoveCompass_KH : MonoBehaviour
     /// <param name="isOn"></param>
     private void OnToggleValueChanged(bool isOn)
     {
-        _isRotation = isOn;
+        _settingsData.isMapRotationEnabled = isOn; // ScriptableObjectの値を更新
 
-        if (!_isRotation)
+        if (!isOn)
         {
             gameObject.transform.localRotation = Quaternion.Euler(Vector3.zero);
             _CompassImage.transform.localRotation = Quaternion.Euler(Vector3.zero);
         }
     }
-
 
     public void SetPlayer(GameObject player)
     {
@@ -66,11 +70,11 @@ public class MoveCompass_KH : MonoBehaviour
         Vector3 target = _destinationObj.transform.position;
 
         // 方位磁石を向ける角度
-        Vector3 direction = target-myPos;
+        Vector3 direction = target - myPos;
 
         direction.y = 0f;
 
-        if (direction == Vector3.zero) return;        // 動いていないときは処理をしない（_differenceが0だったらエラーになる）
+        if (direction == Vector3.zero) return; // 動いていないときは処理をしない
 
         // Y軸の回転をZ軸の回転として反映する
         Quaternion newDirection = Quaternion.LookRotation(direction, Vector3.up);
@@ -78,7 +82,7 @@ public class MoveCompass_KH : MonoBehaviour
         float angle;
 
         // プレイヤーの視点に依存して回転するか
-        if (_isRotation)
+        if (_settingsData.isMapRotationEnabled)
         {
             angle = _player.transform.rotation.eulerAngles.y - newDirection.eulerAngles.y;
             _CompassImage.transform.parent = gameObject.transform;
