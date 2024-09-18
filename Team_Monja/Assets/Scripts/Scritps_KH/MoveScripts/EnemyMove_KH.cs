@@ -70,6 +70,8 @@ public class EnemyMove_KH : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(_nowEnemyState);
+
         if (_nowEnemyState == EnemyState.InMove && _changeEnemyMoveType.IsMove == true)
         {
             MoveToTargetWayPoint();
@@ -87,7 +89,6 @@ public class EnemyMove_KH : MonoBehaviour
             _characterAnim.NowAnim = "Idle";
             NextWayPointSearch();
         }
-
 
         // MiniWayPointの高さを対応するキャラクターの高さにする
         _miniWayPoint.transform.position = new Vector3(_miniWayPoint.transform.position.x, transform.position.y, 
