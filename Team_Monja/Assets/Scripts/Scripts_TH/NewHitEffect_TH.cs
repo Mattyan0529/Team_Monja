@@ -20,45 +20,51 @@ public class HitEffect2_TH : MonoBehaviour
     {
         //子オブジェクトにつければ解決するかも
 
-        if ((other.CompareTag("NormalHit") || other.CompareTag("SlashHit") || other.CompareTag("HeartHit") || other.CompareTag("ThunderHit")) && _StatusManager.HP > 0)
+        if ((other.CompareTag("NormalHit") || other.CompareTag("SlashHit") || other.CompareTag("HeartHit") || other.CompareTag("ThunderHit")) && _StatusManager.HP > 0 )
         {
-            Debug.Log(gameObject.name + other.name);
-
-            // エフェクトを選択
-            if (other.CompareTag("NormalHit"))
+            if (gameObject.CompareTag("Enemy") && other.gameObject.transform.parent.CompareTag("Enemy"))
             {
-                _currentObjectToActivate = _HitEffects[0]; // NormalHit用のエフェクト
-            }
-            else if (other.CompareTag("SlashHit"))
-            {
-                _currentObjectToActivate = _HitEffects[1]; // SlashHit用のエフェクト
-            }
-            else if (other.CompareTag("HeartHit"))
-            {
-                _currentObjectToActivate = _HitEffects[2]; // HeartHit用のエフェクト
-            }
-            else if (other.CompareTag("ThunderHit"))
-            {
-                _currentObjectToActivate = _HitEffects[3]; // ThunderHit用のエフェクト
-            }
-
-            // 親オブジェクトを取得し、CapsuleCollider上の最も近い位置にエフェクトをアクティブ化
-            Transform parentTransform = other.transform.parent;
-            if (parentTransform != null)
-            {
-                _debugClosestPoint = GetClosestPointOnSideOfCapsule(parentTransform.position);
-                if (_debugClosestPoint != Vector3.zero)
-                {
-                    ActivateObjectAtPosition(_debugClosestPoint);
-                    StartCoroutine(DeactivateAfterDelay(_activationDuration));
-                }
+                return;
             }
             else
             {
-                Debug.Log("親オブジェクトがありません");
+                Debug.Log(gameObject.name + other.name);
+
+                // エフェクトを選択
+                if (other.CompareTag("NormalHit"))
+                {
+                    _currentObjectToActivate = _HitEffects[0]; // NormalHit用のエフェクト
+                }
+                else if (other.CompareTag("SlashHit"))
+                {
+                    _currentObjectToActivate = _HitEffects[1]; // SlashHit用のエフェクト
+                }
+                else if (other.CompareTag("HeartHit"))
+                {
+                    _currentObjectToActivate = _HitEffects[2]; // HeartHit用のエフェクト
+                }
+                else if (other.CompareTag("ThunderHit"))
+                {
+                    _currentObjectToActivate = _HitEffects[3]; // ThunderHit用のエフェクト
+                }
+
+                // 親オブジェクトを取得し、CapsuleCollider上の最も近い位置にエフェクトをアクティブ化
+                Transform parentTransform = other.transform.parent;
+                if (parentTransform != null)
+                {
+                    _debugClosestPoint = GetClosestPointOnSideOfCapsule(parentTransform.position);
+                    if (_debugClosestPoint != Vector3.zero)
+                    {
+                        ActivateObjectAtPosition(_debugClosestPoint);
+                        StartCoroutine(DeactivateAfterDelay(_activationDuration));
+                    }
+                }
+                else
+                {
+                    Debug.Log("親オブジェクトがありません");
+                }
             }
         }
-
     }
 
     private Vector3 GetClosestPointOnSideOfCapsule(Vector3 targetPosition)
@@ -107,15 +113,6 @@ public class HitEffect2_TH : MonoBehaviour
         if (_currentObjectToActivate != null)
         {
             _currentObjectToActivate.SetActive(false);
-        }
-    }
-
-    void OnDrawGizmos()
-    {
-        if (_debugClosestPoint != Vector3.zero)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawSphere(_debugClosestPoint, 0.1f);
         }
     }
 }
