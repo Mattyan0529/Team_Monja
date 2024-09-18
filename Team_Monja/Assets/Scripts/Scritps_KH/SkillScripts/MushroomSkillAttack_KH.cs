@@ -67,7 +67,10 @@ public class MushroomSkillAttack_KH : MonoBehaviour, IDamagable_KH
         _attackArea.SetActive(true);
     }
 
-    private void DeleteAttackArea()
+    /// <summary>
+    /// アニメーションから呼び出す攻撃範囲生成
+    /// </summary>
+    private void MushroomDeleteAttackArea()
     {
         _attackArea.SetActive(false);
         _elapsedTime = 0f;
