@@ -68,15 +68,11 @@ public class MushroomSkillAttack_KH : MonoBehaviour, IDamagable_KH
     }
 
     /// <summary>
-    /// アニメーションから呼び出す攻撃範囲生成
+    /// アニメーションから呼び出す死んだときに攻撃範囲を消すメソッド
     /// </summary>
     private void MushroomDeleteAttackArea()
     {
         _attackArea.SetActive(false);
-        _elapsedTime = 0f;
-        _changeEnemyMoveType.IsMove = true;
-        _isAttack = false;
-        _playerSkill.IsUseSkill = false;
     }
 
     /// <summary>

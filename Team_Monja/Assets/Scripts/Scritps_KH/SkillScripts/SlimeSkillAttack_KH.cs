@@ -67,7 +67,7 @@ public class SlimeSkillAttack_KH : MonoBehaviour, IDamagable_KH
         _attackArea.SetActive(true);
     }
 
-    private void DeleteAttackArea()
+    private void SlimeDeleteAttackArea()
     {
         _attackArea.SetActive(false);
         _elapsedTime = 0f;

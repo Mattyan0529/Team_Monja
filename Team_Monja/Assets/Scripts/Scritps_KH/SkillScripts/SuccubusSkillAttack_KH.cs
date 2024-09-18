@@ -74,7 +74,7 @@ public class SuccubusSkillAttack_KH : MonoBehaviour, IDamagable_KH
         _attackArea.SetActive(true);
     }
 
-    private void DeleteAttackArea()
+    private void SuccubusDeleteAttackArea()
     {
         _attackArea.SetActive(false);
         _elapsedTime = 0f;
