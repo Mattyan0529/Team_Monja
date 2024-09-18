@@ -74,6 +74,14 @@ public class SuccubusSkillAttack_KH : MonoBehaviour, IDamagable_KH
         _attackArea.SetActive(true);
     }
 
+    private void DeleteAttackArea()
+    {
+        _attackArea.SetActive(false);
+        _elapsedTime = 0f;
+        _changeEnemyMoveType.IsMove = true;
+        _isAttack = false;
+        _playerSkill.IsUseSkill = false;
+    }
 
     public void HitDecision(GameObject hitObj)
     {

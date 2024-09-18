@@ -10,7 +10,7 @@ public class EatOrChangeController_MT : MonoBehaviour
     private LockOn lockOn;
     private CharacterAnim_MT characterAnim;
     [SerializeField]
-    private float _activationDuration = 1f;
+    private float _activationDuration = 0.5f;
 
 
     private GameObject _player;
