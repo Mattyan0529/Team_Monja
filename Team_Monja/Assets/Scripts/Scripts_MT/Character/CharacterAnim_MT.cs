@@ -77,7 +77,6 @@ public class CharacterAnim_MT : MonoBehaviour
                 _animator.SetBool("Die", true);
                 _animator.SetBool("Idle", false);
                 _animator.SetBool("Move", false);
-                ResetAnimTrigger();
                 break;
 
             case "Revive":
@@ -85,7 +84,6 @@ public class CharacterAnim_MT : MonoBehaviour
                 _animator.SetBool("Idle", false);
                 _animator.SetBool("Move", false);
                 _animator.SetBool("Die", false);
-                ResetAnimTrigger();
                 break;
 
             case "Eat":
