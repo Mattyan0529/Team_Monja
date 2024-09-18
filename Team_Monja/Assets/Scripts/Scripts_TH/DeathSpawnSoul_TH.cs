@@ -43,6 +43,7 @@ public class DeathSpwanSoul_TH : MonoBehaviour
             {
                 //ƒvƒŒƒCƒ„[‚©‚çˆê”Ô‹ß‚¢ê‡
                 if (_enemyTriggerManager.objectsInTrigger != null &&
+                    _closestEnemyFinder.GetClosestObject(_enemyTriggerManager.objectsInTrigger, _player.transform) != null &&
                     (this.gameObject == _closestEnemyFinder.GetClosestObject(_enemyTriggerManager.objectsInTrigger, _player.transform).gameObject))
                 {
                     _tutorialObj.SetActive(true);
