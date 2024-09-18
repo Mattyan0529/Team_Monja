@@ -4,33 +4,52 @@ using UnityEngine;
 
 public class TagJudge_MT : MonoBehaviour
 {
+    [Header("PlayerManager")]
     [SerializeField]
-    private GameObject _playerManager;
+    private PlayerMove_MT _playerMove; 
     [SerializeField]
-    private GameObject _cameraObj;
+    private EatEnemy_MT _eatEnemy; 
     [SerializeField]
-    private GameObject _closeObjectArea;
+    private ChangeCharacter_MT _changeCharacter;
     [SerializeField]
-    private GameObject _MiniMapIcon;
+    private EatOrChangeController_MT _eatOrChange;
+    [Header("Camera")]
     [SerializeField]
-    private GameObject _damonHand;
+    private CameraManager_MT _cameraManager;
     [SerializeField]
-    private GameObject _atkBar;
+    private GameEndCamera_MT _gameEnd;
+    [Header("ClosestObjectArea")]
     [SerializeField]
-    private GameObject _defBar;
+    private EnemyTriggerManager_MT _enemyTrigger;
+    [Header("DamonHand")]
     [SerializeField]
-    private GameObject _nearPlayerArea;
+    private DamonHandPos _damonHand;
     [SerializeField]
-    private GameObject _miniMapCamera;
+    private DragPlayerToBoss_KH _dragPlayer;
+    [Header("StrengthBar")]
     [SerializeField]
-    private GameObject _compassCenter;
+    private StatusBar_MT _atkBar;
+    [Header("DefenseBar")]
     [SerializeField]
-    private GameObject _invisibleWall;
+    private StatusBar_MT _defBar;
+    [Header("NearPlayerArea")]
     [SerializeField]
-    private GameObject _videoController;
+    private NearPlayerWayPointManager_KH _nearPlayer;
+    [Header("MiniMapCamera")]
+    [SerializeField]
+    private MiniMapCameraMove_KH _miniMapCamera;
+    [Header("CompassCenter")]
+    [SerializeField]
+    private MoveCompass_KH _moveCompass;
+    [Header("InvisibleWall")]
+    [SerializeField]
+    private PlayerEnterWallJudge_KH _wallJudge;
+    [Header("BossVideo")]
+    [SerializeField]
+    private VideoPlayerController_MT _videoController;
     [Header("NearPlayerAraの子オブジェクトのPinを入れる")]
     [SerializeField]
-    private GameObject _pin;
+    private MiniMapPlayerIcon_KH _pin;
     
 
 
@@ -81,46 +100,44 @@ public class TagJudge_MT : MonoBehaviour
     public void SetPlayer()
     {
         _playerObj = GameObject.FindWithTag("Player");
-        _bossObj = GameObject.FindGameObjectWithTag("Boss");
-
-        _playerManager.GetComponent<PlayerMove_MT>().SetPlayer();
-        _playerManager.GetComponent<EatEnemy_MT>().SetPlayer();
-        _playerManager.GetComponent<ChangeCharacter_MT>().SetPlayer();
-        _playerManager.GetComponent<EatOrChangeController_MT>().SetPlayer(_playerObj);
-
-        _cameraObj.GetComponent<GameEndCamera_MT>().SetPlayer(_playerObj);
-        _cameraObj.GetComponent<CameraManager_MT>().FindPlayer(_playerObj);
-        _closeObjectArea.GetComponent<EnemyTriggerManager_MT>().SetToPlayer(_playerObj);
-
-
+        
         _playerObj.GetComponent<StatusManager_MT>().ApplyMultipliers();
         _playerObj.GetComponent<StatusManager_MT>().HealHP(999999);
         _playerObj.GetComponentInChildren<EnemyHP_MT>().TagCheck();
         _playerObj.GetComponentInChildren<EnemyHP_MT>().SetPlayerArea();
 
+        _playerMove.SetPlayer();
+        _eatEnemy.SetPlayer();
+        _changeCharacter.SetPlayer();
+        _eatOrChange.SetPlayer(_playerObj);
+
+        _gameEnd.SetPlayer(_playerObj);
+        _cameraManager.FindPlayer(_playerObj);
+
+        _enemyTrigger.SetToPlayer(_playerObj);
+
+        _bossObj = GameObject.FindWithTag("Boss");
+        
         _bossObj.GetComponent<BossSkillAttack_KH>().SetPlayer(_playerObj);
 
-        _MiniMapIcon.GetComponent<PlayerMinimapIconSet>().SetPlayer(_playerObj);
+        _damonHand.SetPlayer(_playerObj);
+        _damonHand.SetPlayer(_playerObj);
 
-        _damonHand.GetComponent<DamonHandPos>().SetPlayer(_playerObj);
-        _damonHand.GetComponent<DragPlayerToBoss_KH>().SetPlayer(_playerObj);
+        _atkBar.SetPlayer(_playerObj);
+        _defBar.SetPlayer(_playerObj);
 
-        _atkBar.GetComponent<StatusBar_MT>().SetPlayer(_playerObj);
-        _defBar.GetComponent<StatusBar_MT>().SetPlayer(_playerObj);
+        _nearPlayer.SetPlayer(_playerObj);
 
-        _nearPlayerArea.GetComponent<NearPlayerWayPointManager_KH>().SetPlayer(_playerObj);
+        _miniMapCamera.SetPlayer(_playerObj);
 
-        _miniMapCamera.GetComponent<MiniMapCameraMove_KH>().SetPlayer(_playerObj);
+        _moveCompass.SetPlayer(_playerObj);
 
-        _compassCenter.GetComponent<MoveCompass_KH>().SetPlayer(_playerObj);
+        _wallJudge.SetPlayer(_playerObj);
 
-        _invisibleWall.GetComponent<PlayerEnterWallJudge_KH>().SetPlayer(_playerObj);
+        _videoController.SetPlayer(_playerObj);
 
-        _videoController.GetComponent<VideoPlayerController_MT>().SetPlayer(_playerObj);
+        _pin.SetPlayer(_playerObj);
 
-        _pin.GetComponent<MiniMapPlayerIcon_KH>().SetPlayer(_playerObj);
-
-        //キャラクター全員に対して行う
         foreach (GameObject character in _characters)
         {
             character.GetComponent<ChangeEnemyMoveType_KH>().SetPlayer(_playerObj);
@@ -128,13 +145,20 @@ public class TagJudge_MT : MonoBehaviour
             character.GetComponent<EnemyMove_KH>().SetPlayer(_playerObj);
             character.GetComponent<FollowPlayer_KH>().SetPlayer(_playerObj);
 
+            if (CompareTag("Boss")) return;
 
-            //ボスにはないやつこの下
-            if (character.CompareTag("Boss")) return;
-
-
-            character.GetComponent<DeathSpwanSoul_TH>().SetPlayer(_playerObj);
+            // DeathSpwanSoul_TH のコンポーネントがあるかチェック
+            DeathSpwanSoul_TH deathSpwanSoul = character.GetComponent<DeathSpwanSoul_TH>();
+            if (deathSpwanSoul != null)
+            {
+                deathSpwanSoul.SetPlayer(_playerObj);
+            }
+            else
+            {
+                Debug.LogWarning(character.name + " に DeathSpwanSoul_TH コンポーネントがありません。");
+            }
         }
+
     }
 
 }

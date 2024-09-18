@@ -64,10 +64,6 @@ public class LizardWarriorSkillAttack_KH : MonoBehaviour, IDamagable_KH
     private void LizardDeleteAttackArea()
     {
         _attackArea.SetActive(false);
-        _elapsedTime = 0f;
-        _changeEnemyMoveType.IsMove = true;
-        _isAttack = false;
-        _playerSkill.IsUseSkill = false;
     }
 
     /// <summary>

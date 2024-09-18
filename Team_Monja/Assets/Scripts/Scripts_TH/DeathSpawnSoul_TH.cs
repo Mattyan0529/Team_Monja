@@ -14,50 +14,124 @@ public class DeathSpwanSoul_TH : MonoBehaviour
     private EnemyTriggerManager_MT _enemyTriggerManager;
     private CharacterDeadDecision_MT characterDeadDecision;
     private ClosestEnemyFinder_MT _closestEnemyFinder;
-    private MeshRenderer meshRenderer;
 
     void Start()
     {
-        meshRenderer = GetComponent<MeshRenderer>();
+      
+
         // 親オブジェクトから取得
         characterDeadDecision = GetComponent<CharacterDeadDecision_MT>();
-        _closestEnemyFinder = GameObject.FindWithTag("PlayerManager").GetComponent<ClosestEnemyFinder_MT>();
-        _enemyTriggerManager = GameObject.FindWithTag("NearTrigger").GetComponent<EnemyTriggerManager_MT>();
+        if (characterDeadDecision == null)
+        {
+            Debug.LogError("CharacterDeadDecision_MT component not found on this GameObject.");
+        }
+
+        // プレイヤーマネージャーから最も近い敵を探すスクリプトを取得
+        GameObject playerManager = GameObject.FindWithTag("PlayerManager");
+        if (playerManager != null)
+        {
+            _closestEnemyFinder = playerManager.GetComponent<ClosestEnemyFinder_MT>();
+            if (_closestEnemyFinder == null)
+            {
+                Debug.LogError("ClosestEnemyFinder_MT component not found on PlayerManager.");
+            }
+        }
+        else
+        {
+            Debug.LogError("PlayerManager with tag 'PlayerManager' not found.");
+        }
+
+        // 近くのトリガーから敵のトリガーマネージャーを取得
+        GameObject nearTrigger = GameObject.FindWithTag("NearTrigger");
+        if (nearTrigger != null)
+        {
+            _enemyTriggerManager = nearTrigger.GetComponent<EnemyTriggerManager_MT>();
+            if (_enemyTriggerManager == null)
+            {
+                Debug.LogError("EnemyTriggerManager_MT component not found on NearTrigger.");
+            }
+        }
+        else
+        {
+            Debug.LogError("NearTrigger with tag 'NearTrigger' not found.");
+        }
 
         _nowPositionY = transform.position.y;
         // タグを持つ最初の子オブジェクトを検索する
         _tutorialObj = FindFirstObjectWithTag(transform, _targetTag);
+
+        // _tutorialObjが見つからない場合の警告
+        if (_tutorialObj == null)
+        {
+            Debug.LogWarning("Tag 'TutorialUI' not found in child objects.");
+        }
 
         // 初期状態でパーティクルシステムを非表示にしておく
         if (_particleSystemObject != null)
         {
             _particleSystemObject.SetActive(false);
         }
+        else
+        {
+            Debug.LogWarning("_particleSystemObject is not assigned.");
+        }
+    }
+
+    public void SetPlayer(GameObject player)
+    {
+        _player = player;
     }
 
     void Update()
     {
-        if (characterDeadDecision.IsDeadDecision())
+        if (characterDeadDecision != null && characterDeadDecision.IsDeadDecision())
         {
             if (!CompareTag("Player"))
             {
-                //プレイヤーから一番近い場合
-                if (_enemyTriggerManager.objectsInTrigger[0] != null &&
-                    (this.gameObject == _closestEnemyFinder.GetClosestObject(_enemyTriggerManager.objectsInTrigger, _player.transform).gameObject))
+                Debug.Log("Player: " + _player);
+                Debug.Log("ClosestEnemyFinder: " + _closestEnemyFinder);
+                Debug.Log("EnemyTriggerManager: " + _enemyTriggerManager);
+
+                if (_player != null && _closestEnemyFinder != null && _enemyTriggerManager != null)
                 {
-                    _tutorialObj.SetActive(true);
+                    var closestObject = _closestEnemyFinder.GetClosestObject(_enemyTriggerManager.objectsInTrigger, _player.transform);
+
+                    if (closestObject != null)
+                    {
+                        Debug.Log("ClosestObject: " + closestObject.gameObject);
+                        if (this.gameObject == closestObject.gameObject)
+                        {
+                            if (_tutorialObj != null)
+                            {
+                                _tutorialObj.SetActive(true);
+                            }
+                            else
+                            {
+                                Debug.LogWarning("_tutorialObj is null.");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Debug.LogWarning("ClosestObject is null.");
+                    }
                 }
-                Debug.Log(_closestEnemyFinder.GetClosestObject(_enemyTriggerManager.objectsInTrigger, _player.transform));
+                else
+                {
+                    Debug.LogWarning("One of the required components is null.");
+                }
                 ToggleParticleSystem(true);  // 死亡状態でパーティクルシステムを表示
             }
         }
         else
         {
-            _tutorialObj.SetActive(false);
+            if (_tutorialObj != null)
+            {
+                _tutorialObj.SetActive(false);
+            }
             ToggleParticleSystem(false); // 生存状態でパーティクルシステムを非表示
         }
     }
-
 
 
     private void ToggleParticleSystem(bool isActive)
@@ -76,7 +150,8 @@ public class DeathSpwanSoul_TH : MonoBehaviour
         {
             // タグが一致する場合、オブジェクトを返す
             if (child.CompareTag(tag))
-            {Debug.Log(child.gameObject);
+            {
+                Debug.Log(child.gameObject);
                 return child.gameObject;
             }
 
@@ -89,12 +164,6 @@ public class DeathSpwanSoul_TH : MonoBehaviour
         }
 
         // タグを持つオブジェクトが見つからない場合
-    
         return null;
-    }
-
-    public void SetPlayer(GameObject player)
-    {
-        _player = player;
     }
 }

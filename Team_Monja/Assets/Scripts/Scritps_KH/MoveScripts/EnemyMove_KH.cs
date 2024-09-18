@@ -70,8 +70,6 @@ public class EnemyMove_KH : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(_nowEnemyState);
-
         if (_nowEnemyState == EnemyState.InMove && _changeEnemyMoveType.IsMove == true)
         {
             MoveToTargetWayPoint();
