@@ -13,6 +13,11 @@ public class CameraManager_MT : MonoBehaviour
     private Vector3 shakeOffset = Vector3.zero; // 揺れのオフセット
     private Vector3 cameraPos;//カメラの初期位置
 
+
+    [SerializeField] private GameObject _sourceObject;
+    [SerializeField] private GameObject _targetObject;
+    [SerializeField] private float _rayDistance = 10f; // レイの長さ
+    [SerializeField] private LayerMask _layerMask; // レイヤーマスク
     private void Awake()
     {
         FindPlayer(GameObject.FindWithTag("Player"));
@@ -33,8 +38,9 @@ public class CameraManager_MT : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CastRayFromSourceToTarget();
         CameraMove();
-        CameraTransparent();
+        //CameraTransparent();
 
         cameraPos = playerObj.transform.position;
 
@@ -58,6 +64,36 @@ public class CameraManager_MT : MonoBehaviour
         if (playerObj != null)
         {
             playerTransform = playerObj.transform;
+        }
+    }
+
+    // ソースオブジェクトからターゲットオブジェクト方向にレイを飛ばすメソッド
+    private void CastRayFromSourceToTarget()
+    {
+        if (_sourceObject == null || _targetObject == null)
+        {
+            Debug.LogError("Source Object or Target Object is not assigned.");
+            return;
+        }
+
+        // ソースオブジェクトとターゲットオブジェクトのTransformを取得
+        Transform sourceTransform = _sourceObject.transform;
+        Transform targetTransform = _targetObject.transform;
+
+        // ソースオブジェクトの位置からターゲットオブジェクトの方向に向かってレイを飛ばす
+        Vector3 direction = (targetTransform.position - sourceTransform.position).normalized;
+        Ray ray = new Ray(sourceTransform.position, direction);
+        RaycastHit hit;
+
+        // レイが指定した距離内に、指定したレイヤーに属するオブジェクトに当たったかチェック
+        if (Physics.Raycast(ray, out hit, _rayDistance, _layerMask))
+        {
+            // ヒットしたオブジェクトのポジションにカメラを移動
+          Camera.main.transform.position = hit.point;
+        }
+        else
+        {
+            Debug.Log("Missed.");
         }
     }
 
