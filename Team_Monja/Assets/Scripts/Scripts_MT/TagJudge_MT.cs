@@ -26,10 +26,10 @@ public class TagJudge_MT : MonoBehaviour
     private DamonHandPos _damonHand;
     [SerializeField]
     private DragPlayerToBoss_KH _dragPlayer;
-    [Header("AtkBar")]
+    [Header("StrengthBar")]
     [SerializeField]
     private StatusBar_MT _atkBar;
-    [Header("DefBar")]
+    [Header("DefenseBar")]
     [SerializeField]
     private StatusBar_MT _defBar;
     [Header("NearPlayerArea")]
