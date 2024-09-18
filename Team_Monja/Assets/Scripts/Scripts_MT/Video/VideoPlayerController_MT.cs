@@ -4,7 +4,9 @@ using UnityEngine.Video;
 public class VideoPlayerController_MT : MonoBehaviour
 {
     [SerializeField]private RenderTexture videoRenderTexture;
+    [SerializeField] private GameObject _bossBattlePos;
     private VideoPlayer _videoPlayer;
+    private GameObject _player;
 
     void Start()
     {
@@ -25,8 +27,10 @@ public class VideoPlayerController_MT : MonoBehaviour
 
     private void OnVideoEnd(VideoPlayer source)
     {
-        Debug.Log("Video has ended!");
+        
         Time.timeScale = 1;
+        //プレイヤーをボス戦用の場所に移動
+        _player.transform.position = _bossBattlePos.transform.position;
         //オブジェクトを隠す
         this.gameObject.SetActive(false);
     }
@@ -37,5 +41,10 @@ public class VideoPlayerController_MT : MonoBehaviour
         RenderTexture.active = videoRenderTexture;
         GL.Clear(true, true, Color.clear);
         RenderTexture.active = null;
+    }
+
+    public void SetPlayer(GameObject player)
+    {
+        _player = player;
     }
 }

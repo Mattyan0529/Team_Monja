@@ -42,9 +42,9 @@ public class DeathSpwanSoul_TH : MonoBehaviour
             if (!CompareTag("Player"))
             {
                 //ÉvÉåÉCÉÑÅ[Ç©ÇÁàÍî‘ãﬂÇ¢èÍçá
-                if (this.gameObject == _closestEnemyFinder.GetClosestObject(_enemyTriggerManager.objectsInTrigger, _player.transform).gameObject)
+                if (_enemyTriggerManager.objectsInTrigger[0] != null &&
+                    (this.gameObject == _closestEnemyFinder.GetClosestObject(_enemyTriggerManager.objectsInTrigger, _player.transform).gameObject))
                 {
-                    Debug.Log("ÇøÇÒÇ±");
                     _tutorialObj.SetActive(true);
                 }
                 Debug.Log(_closestEnemyFinder.GetClosestObject(_enemyTriggerManager.objectsInTrigger, _player.transform));
