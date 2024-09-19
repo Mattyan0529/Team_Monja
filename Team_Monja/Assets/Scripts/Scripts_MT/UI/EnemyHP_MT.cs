@@ -85,7 +85,7 @@ public class EnemyHP_MT : MonoBehaviour
     // “G‚ª‹ß‚­‚É‚¢‚½‚çHPƒo[‚ğ•\¦‚·‚é
     private void NearEnemyCheck()
     {
-        if (this.transform.parent.CompareTag("Enemy") || _enemyTriggerManager != null)
+        if (this.transform.parent.CompareTag("Enemy") && _enemyTriggerManager != null)
         {
             if (_statusManager.MaxHP == _statusManager.HP)
             {
