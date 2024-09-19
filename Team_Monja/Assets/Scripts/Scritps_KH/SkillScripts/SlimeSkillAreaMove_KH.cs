@@ -6,6 +6,7 @@ public class SlimeSkillAreaMove_KH : MonoBehaviour
 {
     private GameObject _slimeSphere = default;
     private SlimeLuncer _slimeLuncer = default;
+    private Vector3 _initialPosition = new Vector3(0f, 2.11f, 2.53f);
 
     private void Start()
     {
@@ -40,5 +41,10 @@ public class SlimeSkillAreaMove_KH : MonoBehaviour
     private void OnEnable()
     {
         _slimeSphere = GameObject.FindGameObjectWithTag("SlimeSphere");
+    }
+
+    private void OnDisable()
+    {
+        gameObject.transform.position = _initialPosition;
     }
 }
