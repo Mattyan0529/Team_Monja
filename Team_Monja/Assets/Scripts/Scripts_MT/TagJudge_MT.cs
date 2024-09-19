@@ -121,7 +121,7 @@ public class TagJudge_MT : MonoBehaviour
         _bossObj.GetComponent<BossSkillAttack_KH>().SetPlayer(_playerObj);
 
         _damonHand.SetPlayer(_playerObj);
-        _damonHand.SetPlayer(_playerObj);
+        _dragPlayer.SetPlayer(_playerObj);
 
         _atkBar.SetPlayer(_playerObj);
         _defBar.SetPlayer(_playerObj);

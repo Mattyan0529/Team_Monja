@@ -54,8 +54,6 @@ public class MushroomSkillAttack_KH : MonoBehaviour, IDamagable_KH
         _characterAnim.NowAnim = "Skill";
 
         _changeEnemyMoveType.IsMove = false;
-
-        _soundEffectManagement.PlayStrongPunchSound(_audioSource);
     }
 
     /// <summary>
@@ -65,6 +63,8 @@ public class MushroomSkillAttack_KH : MonoBehaviour, IDamagable_KH
     {
         _isAttack = true;
         _attackArea.SetActive(true);
+
+        _soundEffectManagement.PlayStrongPunchSound(_audioSource);
     }
 
     /// <summary>

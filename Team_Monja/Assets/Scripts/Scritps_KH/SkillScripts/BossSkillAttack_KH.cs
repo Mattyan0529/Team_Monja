@@ -1,7 +1,4 @@
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class BossSkillAttack_KH : MonoBehaviour, IDamagable_KH
 {

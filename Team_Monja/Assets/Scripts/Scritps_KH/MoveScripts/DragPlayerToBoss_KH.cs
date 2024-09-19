@@ -21,7 +21,7 @@ public class DragPlayerToBoss_KH : MonoBehaviour
     [SerializeField]
     private VideoPlayerController_MT _bossVideo;
 
-    private float _speed = 100f;
+    private float _speed = 60f;
     private float _followStopDistance = 0.1f;
     private float _shortestDistance = default;
 

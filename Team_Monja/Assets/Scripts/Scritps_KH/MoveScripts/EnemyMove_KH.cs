@@ -82,9 +82,9 @@ public class EnemyMove_KH : MonoBehaviour
             _characterAnim.NowAnim = "Move";
             JudgeShortDistance();
         }
-        else
+        else if(_nowEnemyState == EnemyState.InSearch)
         {
-            _characterAnim.NowAnim = "Idle";
+            //_characterAnim.NowAnim = "Idle";
             NextWayPointSearch();
         }
 
