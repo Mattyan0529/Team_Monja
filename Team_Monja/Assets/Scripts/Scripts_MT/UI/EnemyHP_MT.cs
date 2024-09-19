@@ -100,7 +100,7 @@ public class EnemyHP_MT : MonoBehaviour
                     _hpBar.SetActive(false);
                 }
             }
-            else
+            else if( !CompareTag("Player"))
             {
                 _name.SetActive(true);
                 _hpBar.SetActive(true);
