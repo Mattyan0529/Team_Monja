@@ -64,7 +64,7 @@ public class EnemyHP_MT : MonoBehaviour
         if (!this.transform.parent.CompareTag("Enemy"))
         {
             _hpBar.SetActive(false);
-            _name.SetActive(true);
+            _name.SetActive(false);
         }
     }
 
