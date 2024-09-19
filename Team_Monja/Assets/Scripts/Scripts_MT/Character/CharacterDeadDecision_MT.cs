@@ -9,21 +9,19 @@ public class CharacterDeadDecision_MT : MonoBehaviour
     private GameEndCamera_MT _gameEndCamera;
     private LockOn _lockOn;
 
-    // 追記：北
     [SerializeField]
     private GameObject _whisperingWords = default;
-    private MonsterSkill_KH _monsterSkill = default;
-    private PlayerSkill_KH _playerSkill = default;
-    private NormalAttack_KH _normalAttack = default;
-    private PlayerGuard_KH _playerGuard = default;
-    private EnemyMove_KH _enemyMove = default;
-    private GameObject _tagJudgeObj = default;
-    private TagJudge_MT _tagJudge = default;
-    private DisplayWordInEvent_KH _displayWordInEvent = default;
+    private MonsterSkill_KH _monsterSkill;
+    private PlayerSkill_KH _playerSkill;
+    private NormalAttack_KH _normalAttack;
+    private PlayerGuard_KH _playerGuard;
+    private EnemyMove_KH _enemyMove;
+    private GameObject _tagJudgeObj;
+    private TagJudge_MT _tagJudge;
+    private DisplayWordInEvent_KH _displayWordInEvent;
 
     private bool _isAlive = true;
     private bool _coroutineSwitch = true;
-
 
     void Start()
     {
@@ -31,7 +29,7 @@ public class CharacterDeadDecision_MT : MonoBehaviour
         _characterAnim = GetComponent<CharacterAnim_MT>();
         _gameEndCamera = GameObject.FindWithTag("CameraPos").GetComponent<GameEndCamera_MT>();
         _lockOn = GameObject.FindWithTag("CameraPos").GetComponent<LockOn>();
-        // 追記：北
+
         _monsterSkill = GetComponent<MonsterSkill_KH>();
         _playerSkill = GetComponent<PlayerSkill_KH>();
         _normalAttack = GetComponent<NormalAttack_KH>();
@@ -40,14 +38,12 @@ public class CharacterDeadDecision_MT : MonoBehaviour
         _tagJudgeObj = GameObject.FindGameObjectWithTag("TagJudge");
         _tagJudge = _tagJudgeObj.GetComponent<TagJudge_MT>();
         _displayWordInEvent = _whisperingWords.GetComponent<DisplayWordInEvent_KH>();
-
     }
 
     void LateUpdate()
     {
         if (IsDeadDecision())
         {
-            //プレイヤーなら死んだときにスローモーションにする
             if (CompareTag("Player") && _coroutineSwitch)
             {
                 StartCoroutine(_gameEndCamera.GameOverCoroutine());
@@ -64,31 +60,22 @@ public class CharacterDeadDecision_MT : MonoBehaviour
             }
         }
 
-        //ゲームオーバーになったら全キャラクターの動きを止める
         if (_gameEndCamera.IsGameOver)
         {
-            Debug.Log(123123123);
+            Debug.Log("ゲームオーバー処理が実行されました");
             EnemyStop();
-            //ロックオンを解除
             _lockOn.CancelLockOn();
         }
     }
 
-    /// <summary>
-    /// 死んでいるか
-    /// </summary>
-    /// <returns></returns>
     public bool IsDeadDecision()
     {
         _tagJudge.ChangeTagJudge();
 
         if (_statusManager.HP <= 0)
         {
-            // 追記：北
             _displayWordInEvent.KillEnemyForFirstTime();
-
             return true;
-
         }
         else
         {
@@ -97,34 +84,20 @@ public class CharacterDeadDecision_MT : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 食べられたモンスターとプレイヤーの動きを止める　追記：北
-    /// </summary>
     private void EnemyStop()
     {
-        _enemyMove.enabled = false;
-        _monsterSkill.enabled = false;
-        _playerSkill.enabled = false;
+        if (_enemyMove != null) _enemyMove.enabled = false;
+        if (_monsterSkill != null) _monsterSkill.enabled = false;
+        if (_playerSkill != null) _playerSkill.enabled = false;
         if (_normalAttack != null)
         {
             _normalAttack.enabled = false;
             _normalAttack.FinishNormalAttack();
         }
-        if (_playerGuard != null)
-        {
-            _playerGuard.enabled = false;
-        }
-        if (IsDeadDecision())
-        {
-            _characterAnim.NowAnim = "Die";
-        }
-        else
-        {
-            _characterAnim.NowAnim = "Idle";
-        }
+        if (_playerGuard != null) _playerGuard.enabled = false;
+
+        _characterAnim.NowAnim = "Die";
 
         _isAlive = false;
     }
-
-
 }

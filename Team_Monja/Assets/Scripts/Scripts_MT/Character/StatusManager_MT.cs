@@ -77,7 +77,7 @@ public class StatusManager_MT : MonoBehaviour
         _moveSliderBoss = canvasObjBoss.GetComponentInChildren<MoveSlider_MT>();
         //CameraPosから取得
         _cameraManager = Camera.main.GetComponentInParent<CameraManager_MT>();
-        Debug.Log(_cameraManager);
+
 
         // プレイヤー以外だったら倍率を適用（別のところで設定するため
         if (!CompareTag("Player"))
@@ -114,7 +114,6 @@ public class StatusManager_MT : MonoBehaviour
             //画面に表示するステータス
             _strengthStatusUI.ChangeText(Strength);
             _defenseStatusUI.ChangeText(Defense);
-            Debug.Log(_hpStatusUI);
             _hpStatusUI.ChangeText(HP, MaxHP);
             _moveSliderPlayer.SetMaxHP(MaxHP);
             _moveSliderPlayer.SetCurrentHP(HP);
