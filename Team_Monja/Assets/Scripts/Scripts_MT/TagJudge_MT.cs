@@ -46,7 +46,10 @@ public class TagJudge_MT : MonoBehaviour
     private PlayerEnterWallJudge_KH _wallJudge;
     [Header("BossVideo")]
     [SerializeField]
-    private VideoPlayerController_MT _videoController;
+    private VideoPlayerController_MT _videoControllerBoss;
+    [Header("HandComingVideo")]
+    [SerializeField]
+    private VideoPlayerController_MT _videoControllerHand;
     [Header("NearPlayerAraの子オブジェクトのPinを入れる")]
     [SerializeField]
     private MiniMapPlayerIcon_KH _pin;
@@ -134,7 +137,8 @@ public class TagJudge_MT : MonoBehaviour
 
         _wallJudge.SetPlayer(_playerObj);
 
-        _videoController.SetPlayer(_playerObj);
+        _videoControllerBoss.SetPlayer(_playerObj);
+        _videoControllerHand.SetPlayer(_playerObj);
 
         _pin.SetPlayer(_playerObj);
 

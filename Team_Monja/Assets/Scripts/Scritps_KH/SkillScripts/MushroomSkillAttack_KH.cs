@@ -64,7 +64,7 @@ public class MushroomSkillAttack_KH : MonoBehaviour, IDamagable_KH
         _isAttack = true;
         _attackArea.SetActive(true);
 
-        _soundEffectManagement.PlayStrongPunchSound(_audioSource);
+        _soundEffectManagement.PlayWindSound(_audioSource);
     }
 
     /// <summary>

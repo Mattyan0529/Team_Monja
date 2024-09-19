@@ -47,6 +47,9 @@ public class WriteHitPoint_KH : MonoBehaviour
 
         //ステータスを更新
         attackedStatus.HP = afterAttackedHitPoint;
+
+        if (attackedStatus.HP <= 0) return;
+
         //ダメージくらったときのアニメ    
         _characterAnim.NowAnim = "GotDamage";
     }

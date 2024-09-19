@@ -95,8 +95,15 @@ public class CharacterDeadDecision_MT : MonoBehaviour
             _normalAttack.FinishNormalAttack();
         }
         if (_playerGuard != null) _playerGuard.enabled = false;
-
-        _characterAnim.NowAnim = "Die";
+        if (IsDeadDecision())
+        {
+            _characterAnim.NowAnim = "Die";
+        }
+        else
+        {
+            _characterAnim.NowAnim = "Idle";
+        }
+   
 
         _isAlive = false;
     }

@@ -22,8 +22,7 @@ public class BossGate_MT : MonoBehaviour
 
     private bool isClosed = false;
 
-    private Vector3 _moveForBoss = new Vector3(0, 0, 10);
-
+    public bool IsClosed { get => isClosed; set => isClosed = value; }
 
     private void Start()
     {
@@ -34,13 +33,7 @@ public class BossGate_MT : MonoBehaviour
         _timeManager = _canvasObjPlayer.GetComponentInChildren<TimeManager_KH>();
     }
 
-    private void Update()
-    {
-        if (_damonHand.Isdrag  ||!isClosed)
-        {
-            CloseGate();
-        }
-    }
+    
 
     /// <summary>
     /// ボス部屋に入れるようになる
@@ -55,7 +48,7 @@ public class BossGate_MT : MonoBehaviour
         _timeManager.IsInCastle = true;
     }
 
-    private void CloseGate()
+    public void CloseGate()
     {
         isClosed = true;
         _collider.isTrigger = false;
@@ -70,11 +63,12 @@ public class BossGate_MT : MonoBehaviour
         {
             _pressF.SetActive(true);
             if (Input.GetKeyDown(KeyCode.F) || Input.GetAxis("Submit") > 0)
-            {//動画を再生
-                _bossVideo.PlayVideo();
-                //ボス部屋と逆方向に進むのを防止
-                this.transform.position += _moveForBoss;
+            {
+
                 OpenGate();
+                //動画を再生
+                _bossVideo.PlayVideo();
+             
             }
         }
     }
