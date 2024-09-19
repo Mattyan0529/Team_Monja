@@ -11,16 +11,16 @@ public class EnemyHP_MT : MonoBehaviour
     private MoveSlider_MT _moveSlider;
     private StatusManager_MT _statusManager;
     private EnemyTriggerManager_MT _enemyTriggerManager;
-    private TextMeshProUGUI  _text;
+    private TextMeshProUGUI _text;
 
     [SerializeField]
-    private GameObject _name;  
+    private GameObject _name;
     [SerializeField]
     private GameObject _hpBar;
     private void Awake()
     {
         _moveSlider = GetComponentInChildren<MoveSlider_MT>();
-        _text = GetComponentInChildren<TextMeshProUGUI>();      
+        _text = GetComponentInChildren<TextMeshProUGUI>();
     }
     void Start()
     {
@@ -31,13 +31,13 @@ public class EnemyHP_MT : MonoBehaviour
         _text.text = this.transform.parent.name;
 
         SetPlayerArea();
-        TagCheck(); 
+        TagCheck();
     }
 
 
     void Update()
     {
-        LookCamera(); 
+        LookCamera();
         SetSlider();
         NearEnemyCheck();
     }
@@ -87,16 +87,25 @@ public class EnemyHP_MT : MonoBehaviour
     {
         if (this.transform.parent.CompareTag("Enemy") || _enemyTriggerManager != null)
         {
-            if (_enemyTriggerManager.objectsInTrigger.Contains(_collider))
+            if (_statusManager.MaxHP == _statusManager.HP)
+            {
+                if (_enemyTriggerManager.objectsInTrigger.Contains(_collider))
+                {
+                    _name.SetActive(true);
+                    _hpBar.SetActive(true);
+                }
+                else
+                {
+                    _name.SetActive(false);
+                    _hpBar.SetActive(false);
+                }
+            }
+            else
             {
                 _name.SetActive(true);
                 _hpBar.SetActive(true);
             }
-            else
-            {
-                _name.SetActive(false);
-                _hpBar.SetActive(false);
-            }
+
         }
     }
 }
