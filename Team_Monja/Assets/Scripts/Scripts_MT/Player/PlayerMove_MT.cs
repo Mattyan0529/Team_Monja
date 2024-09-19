@@ -49,8 +49,6 @@ public class PlayerMove_MT : MonoBehaviour
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
-        if (CompareTag("Player"))
-        {
             // アニメーション
             if ((moveHorizontal + moveVertical) != 0)
             {
@@ -62,7 +60,6 @@ public class PlayerMove_MT : MonoBehaviour
                 _characterAnim.NowAnim = "Idle";
 
             }
-        }
 
         // カメラの方向から見たキャラクターの前方ベクトルを計算
         Vector3 cameraForward = Camera.main.transform.forward;

@@ -81,7 +81,7 @@ public class BossGate_MT : MonoBehaviour
     //ボス部屋に入った
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player")　|| isClosed)
+        if ((other.CompareTag("Player")　|| isClosed) && other.isTrigger == false)
         {
             _timeManager.IsInCastle = true;
             _collider.isTrigger = false;

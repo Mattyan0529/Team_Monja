@@ -12,7 +12,7 @@ public class CameraManager_MT : MonoBehaviour
     private bool _InWall = false; // カメラが壁の中に入っているか
     private Vector3 shakeOffset = Vector3.zero; // 揺れのオフセット
     private Vector3 cameraPos;//カメラの初期位置
-
+    private Vector3 cameraOffset = new Vector3(0,6,-9);
 
     [SerializeField] private GameObject _sourceObject;
     [SerializeField] private GameObject _targetObject;
@@ -38,9 +38,9 @@ public class CameraManager_MT : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CastRayFromSourceToTarget();
+       
         CameraMove();
-        //CameraTransparent();
+
 
         cameraPos = playerObj.transform.position;
 
@@ -49,8 +49,7 @@ public class CameraManager_MT : MonoBehaviour
 
     private void LateUpdate()
     {
-        PlayerFollowing();
-
+        CastRayFromSourceToTarget();
     }
 
     /// <summary>
@@ -93,7 +92,7 @@ public class CameraManager_MT : MonoBehaviour
         }
         else
         {
-            Debug.Log("Missed.");
+            PlayerFollowing();
         }
     }
 
@@ -106,6 +105,7 @@ public class CameraManager_MT : MonoBehaviour
         {
             // プレイヤーに追従
             transform.position = playerTransform.position;
+            Camera.main.transform.localPosition = cameraOffset;
             // 追従後、揺れのオフセットを適用
             transform.position += shakeOffset;
         }
