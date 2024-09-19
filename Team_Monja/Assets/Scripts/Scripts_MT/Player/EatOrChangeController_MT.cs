@@ -82,6 +82,7 @@ public class EatOrChangeController_MT : MonoBehaviour
     public void SetPlayer(GameObject player)
     {
         _player = player;
+        characterAnim = player.GetComponent<CharacterAnim_MT>();
     }
 
 }
