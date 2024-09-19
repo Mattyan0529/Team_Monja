@@ -13,7 +13,7 @@ public class TimeManager_KH : MonoBehaviour
     // 表示された言葉が非表示になるまでの時間
     private float _timeHideWord = 10f;
     // プレイヤーを引きずり始める時間
-    private float _timeDragPlayer = 180f;
+    private float _timeDragPlayer = 1f;
 
     private Animator _handAnimator = default;
     private WordDisplay_KH _wordDisplay = default;
@@ -23,9 +23,13 @@ public class TimeManager_KH : MonoBehaviour
 
     [SerializeField]
     private GameObject _damonHand = default;
+    [SerializeField]
+    private VideoPlayerController_MT _HandComingVideo;
+    [SerializeField]
+    private BossGate_MT _bossGate;
     private bool _isInCastle = false;
 
-    private int _wordNumber = 0; 
+    private int _wordNumber = 0;
 
     public bool IsInCastle
     {
@@ -54,13 +58,15 @@ public class TimeManager_KH : MonoBehaviour
         _elapsedTimeTotalGame += Time.deltaTime;
 
         // プレイヤーを引きずる場合
-        if(_elapsedTimeTotalGame > _timeDragPlayer)
+        if (_elapsedTimeTotalGame > _timeDragPlayer)
         {
-            PullPlayer();
+           
+            _damonHand.GetComponent<DragPlayerToBoss_KH>().Isdrag = true;
+            _HandComingVideo.PlayVideo();
         }
 
         // 言葉を変更して表示する場合
-         else if (_elapsedTime > _timeStageProgress && !_wordDisplay.IsWordDisplay)
+        else if (_elapsedTime > _timeStageProgress && !_wordDisplay.IsWordDisplay)
         {
             DisplayWord();
             _elapsedTime = 0f;
@@ -80,12 +86,12 @@ public class TimeManager_KH : MonoBehaviour
         _wordNumber++;
     }
 
-    private void PullPlayer()
+    public void PullPlayer()
     {
         if (!_isInCastle)
         {
             _damonHand.SetActive(true);
-         
+
         }
         this.enabled = false;
     }

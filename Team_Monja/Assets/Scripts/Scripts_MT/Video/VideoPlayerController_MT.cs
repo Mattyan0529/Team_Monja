@@ -4,7 +4,12 @@ using UnityEngine.Video;
 public class VideoPlayerController_MT : MonoBehaviour
 {
     [SerializeField]private RenderTexture videoRenderTexture;
-    [SerializeField] private GameObject _bossBattlePos;
+    [SerializeField] private GameObject _nextPos;
+
+    [SerializeField, Header("HandComingだけ")]
+    private TimeManager_KH _timeManager;
+    [SerializeField, Header("HandComingだけ")]
+    private BossGate_MT _bossGate;
     private VideoPlayer _videoPlayer;
     private GameObject _player;
 
@@ -29,11 +34,17 @@ public class VideoPlayerController_MT : MonoBehaviour
     {
         
         Time.timeScale = 1;
-        //プレイヤーをボス戦用の場所に移動
-        _player.transform.position = _bossBattlePos.transform.position;
+        //プレイヤーを次のの場所に移動
+        _player.transform.position = _nextPos.transform.position;
+        if(_timeManager != null)
+        {
+            _timeManager.PullPlayer();
+            _bossGate.OpenGate();
+        }
         //オブジェクトを隠す
         this.gameObject.SetActive(false);
     }
+
 
     // RenderTextureをクリアするメソッド
     private void ClearRenderTexture()
