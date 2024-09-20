@@ -64,7 +64,6 @@ public class CharacterDeadDecision_MT : MonoBehaviour
 
         if (_gameEndCamera.IsGameOver)
         {
-            Debug.Log("ゲームオーバー処理が実行されました");
             EnemyStop();
             _lockOn.CancelLockOn();
         }

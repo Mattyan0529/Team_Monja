@@ -54,7 +54,6 @@ public class GameEndCamera_MT : MonoBehaviour
         StopCoroutine(GameOverCoroutine());
         _cameraManager.enabled = true;
         Time.timeScale = 1;
-        Debug.Log("resetgameover" + this.gameObject);
     }
 
     public void SetPlayer(GameObject player)
@@ -64,7 +63,6 @@ public class GameEndCamera_MT : MonoBehaviour
 
     public IEnumerator GameOverCoroutine()
     {
-        Debug.Log("GameOverCoroutine started");
         _isCoroutineActive = true;
 
         _isGameOver = true;
@@ -75,7 +73,6 @@ public class GameEndCamera_MT : MonoBehaviour
         _deadCameraRotation = new Vector3(90, 180, 0);
 
         _cameraManager.enabled = false;
-        Debug.Log("Camera disabled");
 
         _bossCanvas.SetActive(false);
 
@@ -84,28 +81,22 @@ public class GameEndCamera_MT : MonoBehaviour
             foreach (Transform child in _canvasPlayer.transform)
             {
                 child.gameObject.SetActive(false);
-                Debug.Log("Child " + child.name + " deactivated");
             }
         }
 
         Time.timeScale = _slowTimeScale;
-        Debug.Log("Time scale set to " + Time.timeScale);
 
         yield return new WaitForSeconds(slowTime);
 
         Camera.main.transform.localPosition = _deadCameraPosition;
         Camera.main.transform.localRotation = Quaternion.Euler(_deadCameraRotation);
-        Debug.Log("Camera position and rotation set");
 
         Time.timeScale = 0.0001f;
-        Debug.Log("Time scale set to 0");
 
         _gameOverCanvas.SetActive(true);
-        Debug.Log("Game over image activated");
 
 
         _isCoroutineActive = false;
-        Debug.Log("GameOverCoroutine finished");
     }
 
     public IEnumerator GameClearCoroutine()

@@ -88,9 +88,6 @@ public class DeathSpwanSoul_TH : MonoBehaviour
         {
             if (!CompareTag("Player"))
             {
-                Debug.Log("Player: " + _player);
-                Debug.Log("ClosestEnemyFinder: " + _closestEnemyFinder);
-                Debug.Log("EnemyTriggerManager: " + _enemyTriggerManager);
 
                 if (_player != null && _closestEnemyFinder != null && _enemyTriggerManager != null)
                 {
@@ -98,7 +95,6 @@ public class DeathSpwanSoul_TH : MonoBehaviour
 
                     if (closestObject != null)
                     {
-                        Debug.Log("ClosestObject: " + closestObject.gameObject);
                         if (this.gameObject == closestObject.gameObject)
                         {
                             if (_tutorialObj != null)
@@ -151,7 +147,6 @@ public class DeathSpwanSoul_TH : MonoBehaviour
             // タグが一致する場合、オブジェクトを返す
             if (child.CompareTag(tag))
             {
-                Debug.Log(child.gameObject);
                 return child.gameObject;
             }
 

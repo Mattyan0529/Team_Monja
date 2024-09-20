@@ -40,7 +40,6 @@ public class TimeManager_KH : MonoBehaviour
     {
         _wordDisplay = GetComponent<WordDisplay_KH>();
         _handAnimator = _damonHand.GetComponent<Animator>();
-        Debug.Log(_handAnimator);
     }
 
     void LateUpdate()
