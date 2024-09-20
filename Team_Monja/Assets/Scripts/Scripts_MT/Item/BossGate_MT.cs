@@ -11,7 +11,8 @@ public class BossGate_MT : MonoBehaviour
     [SerializeField] private GameObject _gateObj = default;
     [SerializeField] private GameObject _pressF = default;
     [SerializeField] private VideoPlayerController_MT _bossVideo;
-
+    // スカイボックス用のマテリアル
+    [SerializeField] private Material _afterSkyboxMaterial;
 
     [SerializeField] private DragPlayerToBoss_KH _damonHand;
     // 追記：北
@@ -46,6 +47,8 @@ public class BossGate_MT : MonoBehaviour
 
         // 追記：北
         _timeManager.IsInCastle = true;
+
+
     }
 
     public void CloseGate()
@@ -77,16 +80,30 @@ public class BossGate_MT : MonoBehaviour
     {
         if ((other.CompareTag("Player")　|| isClosed) && other.isTrigger == false)
         {
+            
             _timeManager.IsInCastle = true;
             _collider.isTrigger = false;
             _pressF.SetActive(false);
             _canvasBoss.enabled = true;
+            ChangeSkybox(_afterSkyboxMaterial);
             //カメラをボスの方向に向ける
             Camera.main.transform.parent.rotation = Quaternion.Euler(0,0,0);
         }
 
     }
-
-
+    // スカイボックスを変更するメソッド
+    private void ChangeSkybox(Material newMaterial)
+    {
+        if (newMaterial != null)
+        {
+            RenderSettings.skybox = newMaterial;
+            // もし環境の反射も更新したい場合は以下の行を追加
+            DynamicGI.UpdateEnvironment();
+        }
+        else
+        {
+            Debug.LogWarning("新しいスカイボックスのマテリアルが指定されていません！");
+        }
+    }
 
 }
