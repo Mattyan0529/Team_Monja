@@ -47,11 +47,11 @@ public class EvillMageSkillAttack_KH : MonoBehaviour, IDamagable_KH
         _characterAnim.NowAnim = "Skill";
 
         _changeEnemyMoveType.IsMove = false;
-        _soundEffectManagement.PlaySlimeSound(_audioSource);
     }
 
     private void CreateAttackArea()
     {
+        _soundEffectManagement.PlayMagicSound(_audioSource);
         _isAttack = true;
         _attackArea.SetActive(true);
     }
