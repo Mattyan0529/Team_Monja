@@ -13,7 +13,7 @@ public class TimeManager_KH : MonoBehaviour
     // 表示された言葉が非表示になるまでの時間
     private float _timeHideWord = 10f;
     // プレイヤーを引きずり始める時間
-    private float _timeDragPlayer = 180f;
+    private float _timeDragPlayer = 30f;
 
     private Animator _handAnimator = default;
     private WordDisplay_KH _wordDisplay = default;
@@ -28,18 +28,19 @@ public class TimeManager_KH : MonoBehaviour
 
     private bool _isInCastle = false;
 
+    private bool _isTimeOver = false;
+
     private int _wordNumber = 0;
 
-    public bool IsInCastle
-    {
-        get { return _isInCastle; }
-        set { _isInCastle = value; }
-    }
+
+    public bool IsTimeOver { get => _isTimeOver; set => _isTimeOver = value; }
+    public bool IsInCastle { get => _isInCastle; set => _isInCastle = value; }
 
     void Start()
     {
         _wordDisplay = GetComponent<WordDisplay_KH>();
         _handAnimator = _damonHand.GetComponent<Animator>();
+        Debug.Log(_handAnimator);
     }
 
     void LateUpdate()
@@ -58,7 +59,7 @@ public class TimeManager_KH : MonoBehaviour
         // プレイヤーを引きずる場合
         if (_elapsedTimeTotalGame > _timeDragPlayer)
         {
-           
+            IsTimeOver = true;
             _damonHand.GetComponent<DragPlayerToBoss_KH>().Isdrag = true;
             _HandComingVideo.PlayVideo();
         }

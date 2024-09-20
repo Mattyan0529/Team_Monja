@@ -8,7 +8,7 @@ public class DamonHandPos : MonoBehaviour
 
     private CapsuleCollider _playerCollider;
 
-    private float _offset = -1.15f;
+    private float _offset = -2f;
   
     // Update is called once per frame
     void Update()
@@ -31,7 +31,7 @@ public class DamonHandPos : MonoBehaviour
 
         yPos = playerOffset.y + colliderHeight + _player.transform.position.y + _offset;
 
-        this.transform.position = new Vector3(_player.transform.position.x,yPos,_player.transform.position.z + 4f);
+        this.transform.position = new Vector3(_player.transform.position.x,yPos,_player.transform.position.z -1.75f);
     }
 
 }

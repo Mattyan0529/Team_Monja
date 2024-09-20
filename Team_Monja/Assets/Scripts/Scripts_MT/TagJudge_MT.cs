@@ -43,18 +43,13 @@ public class TagJudge_MT : MonoBehaviour
     private MoveCompass_KH _moveCompass;
     [Header("InvisibleWall")]
     [SerializeField]
-    private PlayerEnterWallJudge_KH _wallJudge;
-    [Header("BossVideo")]
-    [SerializeField]
-    private VideoPlayerController_MT _videoControllerBoss;
-    [Header("HandComingVideo")]
-    [SerializeField]
-    private VideoPlayerController_MT _videoControllerHand;
+    private PlayerEnterWallJudge_KH _wallJudge; 
     [Header("NearPlayerAraの子オブジェクトのPinを入れる")]
     [SerializeField]
     private MiniMapPlayerIcon_KH _pin;
-    
-
+    [Header("VideoCanvasの中身")]
+    [SerializeField]
+    private VideoPlayerController_MT[] _videoControllers;
 
     [SerializeField,Header("シーン内の全キャラクター")]
     private GameObject[] _characters;
@@ -137,10 +132,13 @@ public class TagJudge_MT : MonoBehaviour
 
         _wallJudge.SetPlayer(_playerObj);
 
-        _videoControllerBoss.SetPlayer(_playerObj);
-        _videoControllerHand.SetPlayer(_playerObj);
-
         _pin.SetPlayer(_playerObj);
+
+        //全動画に対して
+        foreach (VideoPlayerController_MT video in _videoControllers)
+        {
+            video.SetPlayer(_playerObj);
+        }
 
         foreach (GameObject character in _characters)
         {
