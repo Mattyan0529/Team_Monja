@@ -10,7 +10,17 @@ public class MiniMapPlayerIcon_KH : MonoBehaviour
     /// <param name="player"></param>
     public void SetPlayer(GameObject player)
     {
+        if(_player != null)
+        {
+            _player.transform.Find("EnemyPin").gameObject.SetActive(true);
+        }
+
         _player = player;
+
+        if(_player != null)
+        {
+            _player.transform.Find("EnemyPin").gameObject.SetActive(false);
+        }
     }
 
     void FixedUpdate()
