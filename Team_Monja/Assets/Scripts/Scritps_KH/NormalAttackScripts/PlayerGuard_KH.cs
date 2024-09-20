@@ -10,7 +10,7 @@ public class PlayerGuard_KH : MonoBehaviour
     private bool _isGuarded = false;//“ü—Í‚Ìd•¡–h~
     private bool _canUseGuard = true;
 
-    private float _deleteTime = 0.8f;
+    private float _deleteTime = 6f;
     private float _elapsedTime = 0f;
 
     private float _coolTime = 1f;
@@ -33,8 +33,13 @@ public class PlayerGuard_KH : MonoBehaviour
     void Update()
     {
         GuardManagement();
-        UpdateTime();
         UpdateCoolTime();
+
+        if (_isGuard)
+        {
+            UpdateTime();
+        }
+
         _isGuarded = false;
     }
 
@@ -47,7 +52,6 @@ public class PlayerGuard_KH : MonoBehaviour
         {
             if (!_canUseGuard) return;
 
-            _isGuard = true;
             _isGuarded = true;
 
             if (_guardCount > 0)
@@ -89,6 +93,17 @@ public class PlayerGuard_KH : MonoBehaviour
         _coolTimeUI.StartCoolTime();
         _guardCount = 0;//UŒ‚‚Ì“ü—Í‰ñ”‚ğƒŠƒZƒbƒg
         _canUseGuard = false;
+    }
+
+    private void StartGuard()
+    {
+        _isGuard = true;
+    }
+
+    private void StopGuard()
+    {
+        _isGuard = false;
+        _elapsedTime = 0f;
     }
 
     /// <summary>
