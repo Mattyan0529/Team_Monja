@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ChangeCharacter_MT : MonoBehaviour
 {
+    [SerializeField] private ResultCounter _resultCounter;
     [SerializeField] private GameObject _residentScript = default;
     private AudioSource _audioSource = default;
     private SoundEffectManagement_KH _soundEffectManagement = default;
@@ -65,7 +66,8 @@ public class ChangeCharacter_MT : MonoBehaviour
                 _playerObj.tag = "Enemy";
                 //このキャラクターを殺す
                 statusManagerPlayer.HP = 0;
-
+                //減らす予定地
+                
 
                 _monsterSkill.GameobjectTagJudge();
                 _playerSkill.GameObjectTagJudge();

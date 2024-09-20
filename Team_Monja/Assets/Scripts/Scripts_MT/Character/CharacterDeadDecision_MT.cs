@@ -10,6 +10,8 @@ public class CharacterDeadDecision_MT : MonoBehaviour
     private LockOn _lockOn;
 
     [SerializeField]
+    private ResultCounter _resultCounter;
+    [SerializeField]
     private GameObject _whisperingWords = default;
     private MonsterSkill_KH _monsterSkill;
     private PlayerSkill_KH _playerSkill;
@@ -103,8 +105,9 @@ public class CharacterDeadDecision_MT : MonoBehaviour
         {
             _characterAnim.NowAnim = "Idle";
         }
-   
 
+        //増やすスクリプト予定地
+        
         _isAlive = false;
     }
 }
