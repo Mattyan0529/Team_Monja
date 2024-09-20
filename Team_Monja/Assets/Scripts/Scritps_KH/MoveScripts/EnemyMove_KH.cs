@@ -15,7 +15,7 @@ public class EnemyMove_KH : MonoBehaviour
 
     private float _shortestDistance = default;
     private float _followStopDistance = 2f;
-    private float _followShortDistance = 12f;
+    private float _followShortDistance = 15f;
 
     private ChangeEnemyMoveType_KH _changeEnemyMoveType = default;
     
@@ -84,7 +84,7 @@ public class EnemyMove_KH : MonoBehaviour
         }
         else if(_nowEnemyState == EnemyState.InSearch)
         {
-            //_characterAnim.NowAnim = "Idle";
+            _characterAnim.NowAnim = "Idle";
             NextWayPointSearch();
         }
 
