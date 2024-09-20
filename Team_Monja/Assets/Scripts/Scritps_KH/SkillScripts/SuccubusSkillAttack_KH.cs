@@ -25,11 +25,13 @@ public class SuccubusSkillAttack_KH : MonoBehaviour, IDamagable_KH
     private ChangeEnemyMoveType_KH _changeEnemyMoveType = default;
 
     // スキルで減少させているステータス
-    private List<StatusManager_MT> _reducedStatus;
+    private List<GameObject> _reducedStatus;
     // ステータスリストのリスト（減少リセットまでの間に複数回スキルを使う可能性があるため）
-    private List<List<StatusManager_MT>> _statEachSkillTimes;
+    private List<List<GameObject>> _statEachSkillTimes;
 
     private bool _isAttack = false;
+    private bool _isMoveCoroutine = false;
+    private bool _isSkipReset = true;     // リセットを飛ばしているときはtrue
 
     //松本
     private CharacterAnim_MT _characterAnim = default;
@@ -49,13 +51,22 @@ public class SuccubusSkillAttack_KH : MonoBehaviour, IDamagable_KH
         _attackArea.SetActive(false);
 
         // リストを初期化
-        _reducedStatus = new List<StatusManager_MT>();
-        _statEachSkillTimes = new List<List<StatusManager_MT>>();
+        _reducedStatus = new List<GameObject>();
+        _statEachSkillTimes = new List<List<GameObject>>();
     }
 
     void Update()
     {
         UpdateTime();
+
+        // スキップしたリセット処理を行う
+        if(_isSkipReset && !_isMoveCoroutine)
+        {
+            // ステータスリセットの予約
+            StartCoroutine(CountSecondsWaitReset());
+
+            _isSkipReset = false;
+        }
     }
 
     public void SpecialAttack()
@@ -64,7 +75,17 @@ public class SuccubusSkillAttack_KH : MonoBehaviour, IDamagable_KH
 
         _changeEnemyMoveType.IsMove = false;
         _soundEffectManagement.PlaySlimeSound(_audioSource);
-        Invoke("ResetStatus", _skillResetTime);
+
+        if (!_isMoveCoroutine)
+        {
+            // ステータスリセットの予約
+            StartCoroutine(CountSecondsWaitReset());
+        }
+        else
+        {
+            // すでにコルーチンが動いているので一旦スキップ
+            _isSkipReset = true;
+        }
     }
 
 
@@ -92,7 +113,7 @@ public class SuccubusSkillAttack_KH : MonoBehaviour, IDamagable_KH
         targetStatusManager.Defense = (int)defence;
 
         // 減少させているステータスリストに追加
-        _reducedStatus.Add(targetStatusManager);
+        _reducedStatus.Add(targetStatusManager.gameObject);
 
         HitPointCalculation(myStatusManager, targetStatusManager);
     }
@@ -124,15 +145,20 @@ public class SuccubusSkillAttack_KH : MonoBehaviour, IDamagable_KH
     private void ResetStatus()
     {
         if (_statEachSkillTimes.Count == 0) return;
-        List<StatusManager_MT> list = new List<StatusManager_MT>(_statEachSkillTimes[0]);
+
+        List<GameObject> list = new List<GameObject>(_statEachSkillTimes[0]);
 
         for (int i = 0; i < list.Count; i++)
         {
-            float strength = list[i].Strength / _statDecreaseRate;
-            list[i].Strength = (int)strength;
+            if (list[i] == null) continue;
 
-            float defence = list[i].Defense / _statDecreaseRate;
-            list[i].Defense = (int)defence;
+            StatusManager_MT status = list[i].GetComponent<StatusManager_MT>();
+
+            float strength = status.Strength / _statDecreaseRate;
+            status.Strength = Mathf.CeilToInt(strength);
+
+            float defence = status.Defense / _statDecreaseRate;
+            status.Defense = Mathf.CeilToInt(defence);
         }
         _statEachSkillTimes.Remove(_statEachSkillTimes[0]);
     }
@@ -151,7 +177,7 @@ public class SuccubusSkillAttack_KH : MonoBehaviour, IDamagable_KH
         if (_elapsedTime > _deleteTime)
         {
             // リストへの追加がここで締め切りなので、リストをリストへ追加する
-            List<StatusManager_MT> list = new List<StatusManager_MT>(_reducedStatus);
+            List<GameObject> list = new List<GameObject>(_reducedStatus);
             _statEachSkillTimes.Add(list);
             _reducedStatus.Clear();
 
@@ -165,18 +191,25 @@ public class SuccubusSkillAttack_KH : MonoBehaviour, IDamagable_KH
         }
     }
 
-    private void OnDisable()
+    // 減らしたステータスを数秒後にリセットする
+    private IEnumerator CountSecondsWaitReset()
     {
-        List<List<StatusManager_MT>> list = _statEachSkillTimes;
+        _isMoveCoroutine = true;
 
-        if (_statEachSkillTimes == null)
-        {
-            return;
-        }
+        yield return new WaitForSeconds(_skillResetTime);
+
+        _isMoveCoroutine = false;
+
+        List<List<GameObject>> list = _statEachSkillTimes;
 
         for (int i = 0; i < list.Count; i++)
         {
             ResetStatus();
         }
+    }
+
+    private void OnDisable()
+    {
+        ResetStatus();
     }
 }
