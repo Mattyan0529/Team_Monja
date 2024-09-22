@@ -9,7 +9,7 @@ public class SoundEffectManagement_KH : MonoBehaviour
     {
         SmallSelectionSound,
         BigSelectionSound,
-        ExplosionAttackSound,
+        SuccubusAttackSound,
         SlashAttackSound,
         LongDistanceAttackSound,
         EatSound,
@@ -42,11 +42,11 @@ public class SoundEffectManagement_KH : MonoBehaviour
     }
 
     /// <summary>
-    /// 爆発の攻撃音を再生
+    /// サキュバスの攻撃音を再生
     /// </summary>
-    public void PlayExplosionAttackSound(AudioSource audioSource)
+    public void PlaySuccubusAttackSound(AudioSource audioSource)
     {
-        audioSource.PlayOneShot(_soundEffects[(int)SoundEffectSubscript.ExplosionAttackSound]);
+        audioSource.PlayOneShot(_soundEffects[(int)SoundEffectSubscript.SuccubusAttackSound]);
     }
 
     /// <summary>
