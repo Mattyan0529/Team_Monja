@@ -42,6 +42,8 @@ public class TimeManager_KH : MonoBehaviour
         _wordDisplay = GetComponent<WordDisplay_KH>();
         _handAnimator = _damonHand.GetComponent<Animator>();
         _backGround = transform.Find("WordsBackGround").gameObject;
+        _backGround.SetActive(false);
+
     }
 
     void LateUpdate()
