@@ -18,7 +18,7 @@ public class BossSkillAttack_KH : MonoBehaviour, IDamagable_KH
     private CharacterAnim_MT _characterAnim = default;
 
     private float _sphereDeleteTime = 1f;
-    private float _hitAttackDeleteTime = 0.5f;
+    private float _hitAttackDeleteTime = 0.1f;
     private float _timeFromPredictionToAttack = 1.5f;
     private float _elapsedTime = 0f;
 
