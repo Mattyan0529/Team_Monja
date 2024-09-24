@@ -76,4 +76,12 @@ public class BackGroundMusicManagement_KH : MonoBehaviour
         _audioSource.clip = _BackGroundMusics[(int)BackGroundMusicSubscript.GameOver];
         _audioSource.Play();
     }
+
+    /// <summary>
+    /// ‘S‚Ä‚ÌBGM‚ð’âŽ~
+    /// </summary>
+    public void StopMusic()
+    {
+        _audioSource.Stop();
+    }
 }
