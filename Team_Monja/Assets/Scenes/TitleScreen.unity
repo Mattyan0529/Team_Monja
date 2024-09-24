@@ -4920,7 +4920,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f87b59472d83e442b4b315a092445fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _toVideoTime: 5
+  _toVideoTime: 45
   _titleVideo: {fileID: 461445109}
 --- !u!4 &945054793
 Transform:

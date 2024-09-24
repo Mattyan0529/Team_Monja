@@ -1512,7 +1512,6 @@ GameObject:
   - component: {fileID: 4112762888060978538}
   - component: {fileID: 4048558671520668015}
   - component: {fileID: 9088486028392079576}
-  - component: {fileID: 1653374024224284474}
   m_Layer: 5
   m_Name: GameSceneOptionCanvas
   m_TagString: Untagged
@@ -1611,18 +1610,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &1653374024224284474
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4454777849826059506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5730355ea5059ad46bea40f461a8bec2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4849587139234170233
 GameObject:
   m_ObjectHideFlags: 0

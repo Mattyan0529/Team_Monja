@@ -72,7 +72,7 @@ MonoBehaviour:
   _soundEffects:
   - {fileID: 8300000, guid: dae61f8caf841854fb3bb82c01f973be, type: 3}
   - {fileID: 8300000, guid: b33dd62119ba875448aa06a96b510958, type: 3}
-  - {fileID: 8300000, guid: f8fb259feaf05ee438b3c1a3d3fe2b03, type: 3}
+  - {fileID: 8300000, guid: 5b6ab238904006e4890c6991cea23263, type: 3}
   - {fileID: 8300000, guid: f701eddf7e33c304aa4016d6636c9bab, type: 3}
   - {fileID: 8300000, guid: 1c7acb388bea62e42955adc41a4dd8f6, type: 3}
   - {fileID: 8300000, guid: 2e16923f3a9f1e44e8e81ab967530bff, type: 3}
@@ -83,7 +83,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 949d8cade816239459e9d3b4afa740eb, type: 3}
   - {fileID: 8300000, guid: c4fedd785f3fa454999198a7e409355c, type: 3}
   - {fileID: 8300000, guid: 8184ce134a4c43f48bd67b45dc1f7415, type: 3}
-  - {fileID: 8300000, guid: faaf3dce2dd68094886c1c65e9f0414a, type: 3}
+  - {fileID: 8300000, guid: 4e7dce8f2205fc34db9706f7f3282caf, type: 3}
 --- !u!114 &3151356549173752883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,7 +109,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a2d8de0ef1ac0441a132171945f3aaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseCanvas: {fileID: 0}
+  _pauseCanvas: {fileID: 0}
+  _playerCanvas: {fileID: 0}
 --- !u!82 &6419586911959911152
 AudioSource:
   m_ObjectHideFlags: 0
@@ -231,3 +232,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e1a1a59ba40a1a44963d77bd4638251, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _vibrationToggle: {fileID: 0}
+  _settingsData: {fileID: 11400000, guid: 01d98374858949e46ae11e09de00d134, type: 2}
