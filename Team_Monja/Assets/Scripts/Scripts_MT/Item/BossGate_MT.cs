@@ -17,6 +17,7 @@ public class BossGate_MT : MonoBehaviour
     [SerializeField] private DragPlayerToBoss_KH _damonHand;
     // 追記：北
     private TimeManager_KH _timeManager = default;
+    private BackGroundMusicManagement_KH _backGroundMusicManagement = default;
 
     private Canvas _canvasBoss;
     private Collider _collider;
@@ -32,6 +33,7 @@ public class BossGate_MT : MonoBehaviour
 
         // 追記：北
         _timeManager = _canvasObjPlayer.GetComponentInChildren<TimeManager_KH>();
+        _backGroundMusicManagement = GameObject.FindGameObjectWithTag("ResidentScripts").GetComponent<BackGroundMusicManagement_KH>();
     }
 
     
@@ -80,7 +82,7 @@ public class BossGate_MT : MonoBehaviour
     {
         if ((other.CompareTag("Player")　|| isClosed) && other.isTrigger == false)
         {
-            
+            _backGroundMusicManagement.PlayBossMusic();
             _timeManager.IsInCastle = true;
             _collider.isTrigger = false;
             _pressF.SetActive(false);
