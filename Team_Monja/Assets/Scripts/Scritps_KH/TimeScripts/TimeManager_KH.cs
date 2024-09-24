@@ -17,6 +17,7 @@ public class TimeManager_KH : MonoBehaviour
 
     private Animator _handAnimator = default;
     private WordDisplay_KH _wordDisplay = default;
+    private GameObject _backGround = default;
 
     [SerializeField]
     private WordScriptableObject_KH[] _wordScriptableObject = default;
@@ -40,7 +41,7 @@ public class TimeManager_KH : MonoBehaviour
     {
         _wordDisplay = GetComponent<WordDisplay_KH>();
         _handAnimator = _damonHand.GetComponent<Animator>();
-        Debug.Log(_handAnimator);
+        _backGround = transform.Find("WordsBackGround").gameObject;
     }
 
     void LateUpdate()
@@ -67,6 +68,7 @@ public class TimeManager_KH : MonoBehaviour
         // 言葉を変更して表示する場合
         else if (_elapsedTime > _timeStageProgress && !_wordDisplay.IsWordDisplay)
         {
+            _backGround.SetActive(true);
             DisplayWord();
             _elapsedTime = 0f;
         }
@@ -74,6 +76,7 @@ public class TimeManager_KH : MonoBehaviour
         // 言葉を非表示にする場合
         else if (_elapsedTime > _timeHideWord)
         {
+            _backGround.SetActive(false);
             _wordDisplay.EraseText();
         }
     }
