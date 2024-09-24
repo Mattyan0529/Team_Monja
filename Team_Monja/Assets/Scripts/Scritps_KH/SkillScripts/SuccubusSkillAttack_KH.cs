@@ -74,7 +74,6 @@ public class SuccubusSkillAttack_KH : MonoBehaviour, IDamagable_KH
         _characterAnim.NowAnim = "Skill";
 
         _changeEnemyMoveType.IsMove = false;
-        _soundEffectManagement.PlaySlimeSound(_audioSource);
 
         if (!_isMoveCoroutine)
         {
@@ -93,6 +92,7 @@ public class SuccubusSkillAttack_KH : MonoBehaviour, IDamagable_KH
     {
         _isAttack = true;
         _attackArea.SetActive(true);
+        _soundEffectManagement.PlaySuccubusAttackSound(_audioSource);
     }
 
     private void SuccubusDeleteAttackArea()

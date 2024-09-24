@@ -51,12 +51,11 @@ public class LizardWarriorSkillAttack_KH : MonoBehaviour, IDamagable_KH
         _characterAnim.NowAnim = "Skill";
 
         _changeEnemyMoveType.IsMove = false;
-
-        _soundEffectManagement.PlayStrongPunchSound(_audioSource);
     }
 
     private void CreateAttackArea()
     {
+        _soundEffectManagement.PlayStrongPunchSound(_audioSource);
         _isAttack = true;
         _attackArea.SetActive(true);
     }
