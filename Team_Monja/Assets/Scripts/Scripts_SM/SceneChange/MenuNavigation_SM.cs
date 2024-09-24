@@ -4,7 +4,6 @@ using System.Collections.Generic; // リストを使うために追加
 
 public class MenuNavigation_SM : MonoBehaviour
 {
-    // 追記：北
     [SerializeField]
     private GameObject _audioObj = default;
     private SoundEffectManagement_KH _soundEffectManagement = default;
@@ -15,11 +14,15 @@ public class MenuNavigation_SM : MonoBehaviour
     private GameObject _previousSelectedObject; // 前回選択されていたオブジェクト
 
     [SerializeField]
-    private List<GameObject> _defaultButtons; // 追加：複数のデフォルトボタンを保持するリスト
+    private List<GameObject> _defaultButtons; // 複数のデフォルトボタンを保持するリスト
+
+    [SerializeField]
+    private GameObject _canvas; // キャンバスの状態を監視するための変数
+
+    private bool _isCanvasActive; // キャンバスのアクティブ状態を保持する変数
 
     void Start()
     {
-        // 追記：北
         _soundEffectManagement = _audioObj.GetComponent<SoundEffectManagement_KH>();
         _audioSource = _audioObj.GetComponents<AudioSource>();
 
@@ -29,10 +32,24 @@ public class MenuNavigation_SM : MonoBehaviour
 
         // 最初のボタンを明示的に選択状態にする
         _eventSystem.SetSelectedGameObject(_selectedObject);
+
+        _isCanvasActive = _canvas.activeInHierarchy; // キャンバスの初期状態を取得
     }
 
     void Update()
     {
+        // キャンバスのアクティブ状態が変化したとき
+        if (_isCanvasActive != _canvas.activeInHierarchy)
+        {
+            _isCanvasActive = _canvas.activeInHierarchy;
+
+            // キャンバスが非表示になったらデフォルトボタンをリセット
+            if (!_isCanvasActive)
+            {
+                ResetDefaultButton();
+            }
+        }
+
         // GetAxisを使って入力をチェック（ゲームパッド対応）：北
         float horizontal = Input.GetAxis("Horizontal"); // 水平方向の入力を取得
         float vertical = Input.GetAxis("Vertical");     // 垂直方向の入力を取得
@@ -84,5 +101,15 @@ public class MenuNavigation_SM : MonoBehaviour
                 break; // 最初に見つかったアクティブなボタンを使用
             }
         }
+    }
+
+    private void ResetDefaultButton()
+    {
+        // 前回選択されたオブジェクトをクリア
+        _previousSelectedObject = null;
+        _selectedObject = null;
+
+        // EventSystemの選択オブジェクトをクリア
+        _eventSystem.SetSelectedGameObject(null);
     }
 }
