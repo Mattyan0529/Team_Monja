@@ -64,14 +64,13 @@ public class MoveCompass_KH : MonoBehaviour
     /// </summary>
     private void UpdateOrientation()
     {
-        // 自分の位置
+        // プレイヤーの位置（カメラの回転には影響しないので位置のみ使用）
         Vector3 myPos = _player.transform.position;
         // 目的地
         Vector3 target = _destinationObj.transform.position;
 
         // 方位磁石を向ける角度
         Vector3 direction = target - myPos;
-
         direction.y = 0f;
 
         if (direction == Vector3.zero) return; // 動いていないときは処理をしない
@@ -81,14 +80,16 @@ public class MoveCompass_KH : MonoBehaviour
 
         float angle;
 
-        // プレイヤーの視点に依存して回転するか
+        // カメラの回転を基準にするかどうか
         if (_settingsData.isMapRotationEnabled)
         {
-            angle = _player.transform.rotation.eulerAngles.y - newDirection.eulerAngles.y;
+            // カメラのY軸の回転を使用してコンパスを回転させる
+            angle = Camera.main.transform.rotation.eulerAngles.y - newDirection.eulerAngles.y;
             _CompassImage.transform.parent = gameObject.transform;
         }
         else
         {
+            // プレイヤーの視点に依存しない場合の角度計算
             angle = newDirection.eulerAngles.y;
             _CompassImage.transform.parent = gameObject.transform.parent;
         }
