@@ -1,28 +1,30 @@
 using UnityEngine;
-using UnityEngine.UI; // Toggleのために追加
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 public class ControllerVibration_MT : MonoBehaviour
 {
-    [SerializeField] private Toggle _vibrationToggle; // UIのトグルをアサインするためのフィールド
-    private bool _isVibrationEnabled = true; // 振動のオンオフを管理するフラグ
+    [SerializeField] private Toggle _vibrationToggle; // UIのトグル
+    [SerializeField] private Scriptableobject_SM _settingsData; // ScriptableObjectを参照
 
     private void Start()
     {
         if (_vibrationToggle != null)
         {
+            // トグルの初期状態をScriptableObjectの値で設定
+            _vibrationToggle.isOn = _settingsData.isVibrationEnabled;
+
             // トグルの状態が変更されたときに呼び出されるメソッドを登録
             _vibrationToggle.onValueChanged.AddListener(OnToggleValueChanged);
-            _isVibrationEnabled = _vibrationToggle.isOn; // トグルの初期状態をフラグに設定
         }
     }
 
     // トグルの状態が変更されたときに呼ばれるメソッド
     private void OnToggleValueChanged(bool isOn)
     {
-        _isVibrationEnabled = isOn;
+        _settingsData.isVibrationEnabled = isOn; // ScriptableObjectの値を更新
 
-        if (!_isVibrationEnabled)
+        if (!isOn)
         {
             StopVibration(); // 振動をオフにしたらすぐに振動を止める
         }
@@ -31,7 +33,7 @@ public class ControllerVibration_MT : MonoBehaviour
     // コントローラーの振動を開始
     public void VibrateController(float lowFrequency, float highFrequency, float duration)
     {
-        if (_isVibrationEnabled && Gamepad.current != null)
+        if (_settingsData.isVibrationEnabled && Gamepad.current != null)
         {
             // コントローラーを振動させる
             Gamepad.current.SetMotorSpeeds(lowFrequency, highFrequency);

@@ -7,6 +7,9 @@ public class BackGroundMusicManagement_KH : MonoBehaviour
     [SerializeField]
     private AudioClip[] _BackGroundMusics;
 
+    [SerializeField]
+    private AudioClip _firstMusic = default;
+
     enum BackGroundMusicSubscript
     {
         Title,
@@ -20,7 +23,9 @@ public class BackGroundMusicManagement_KH : MonoBehaviour
     void Start()
     {
         _audioSource = GetComponent<AudioSource>();
-        PlayGameMusic();
+
+        _audioSource.clip = _firstMusic;
+        _audioSource.Play();
     }
 
     /// <summary>
