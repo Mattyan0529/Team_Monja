@@ -18,6 +18,7 @@ public class MoveCompass_KH : MonoBehaviour
     private Scriptableobject_SM _settingsData; // ScriptableObjectの参照
 
     private GameObject _player;
+    private Quaternion _initialPlayerRotation; // プレイヤーの初期回転
 
     private void Start()
     {
@@ -32,6 +33,11 @@ public class MoveCompass_KH : MonoBehaviour
 
         // ScriptableObjectの値をローカル変数に反映
         OnToggleValueChanged(_settingsData.isMapRotationEnabled);
+
+        if (_player != null)
+        {
+            _initialPlayerRotation = _player.transform.rotation; // プレイヤーの初期回転を保存
+        }
     }
 
     void Update()
@@ -57,6 +63,7 @@ public class MoveCompass_KH : MonoBehaviour
     public void SetPlayer(GameObject player)
     {
         _player = player;
+        _initialPlayerRotation = _player.transform.rotation; // プレイヤーが変更された時に初期回転を更新
     }
 
     /// <summary>
@@ -64,7 +71,9 @@ public class MoveCompass_KH : MonoBehaviour
     /// </summary>
     private void UpdateOrientation()
     {
-        // プレイヤーの位置（カメラの回転には影響しないので位置のみ使用）
+        if (_player == null || _destinationObj == null) return;
+
+        // プレイヤーの位置
         Vector3 myPos = _player.transform.position;
         // 目的地
         Vector3 target = _destinationObj.transform.position;
@@ -83,13 +92,13 @@ public class MoveCompass_KH : MonoBehaviour
         // カメラの回転を基準にするかどうか
         if (_settingsData.isMapRotationEnabled)
         {
-            // カメラのY軸の回転を使用してコンパスを回転させる
-            angle = Camera.main.transform.rotation.eulerAngles.y - newDirection.eulerAngles.y;
+            // プレイヤーの初期回転を基準にカメラのY軸の回転を調整
+            angle = Camera.main.transform.rotation.eulerAngles.y - _initialPlayerRotation.eulerAngles.y - newDirection.eulerAngles.y;
             _CompassImage.transform.parent = gameObject.transform;
         }
         else
         {
-            // プレイヤーの視点に依存しない場合の角度計算
+            // カメラの回転を考慮しない場合
             angle = newDirection.eulerAngles.y;
             _CompassImage.transform.parent = gameObject.transform.parent;
         }
