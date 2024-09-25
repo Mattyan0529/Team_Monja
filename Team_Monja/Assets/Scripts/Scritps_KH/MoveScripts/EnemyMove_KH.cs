@@ -82,6 +82,16 @@ public class EnemyMove_KH : MonoBehaviour
             _characterAnim.NowAnim = "Move";
             JudgeShortDistance();
         }
+        else if (_nowEnemyState == EnemyState.InShortDistanceFollowUp && _changeEnemyMoveType.IsMove == false)
+        {
+            // ñ⁄ìIínÇÃï˚å¸Ç…å¸Ç≠ÇÊÇ§Ç…èCê≥(âÒì]ÇÕYé≤ÇÃÇ›)
+            Vector3 directionVector = _player.transform.position - gameObject.transform.position;
+            Quaternion directionQuaternion = Quaternion.LookRotation(directionVector, Vector3.up);
+            directionQuaternion = Quaternion.Slerp(transform.rotation, directionQuaternion, Time.deltaTime * _changeEnemyMoveType.NowRotationSpeed);
+            gameObject.transform.rotation = Quaternion.Euler(0f, directionQuaternion.eulerAngles.y, 0f);
+
+            JudgeShortDistance();
+        }
         else if(_nowEnemyState == EnemyState.InSearch)
         {
             _characterAnim.NowAnim = "Idle";
