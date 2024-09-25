@@ -61,7 +61,7 @@ public class TimeManager_KH : MonoBehaviour
         _elapsedTimeTotalGame += Time.deltaTime;
 
         // ƒvƒŒƒCƒ„[‚ðˆø‚«‚¸‚éê‡
-        if (_elapsedTimeTotalGame > _timeDragPlayer)
+        if (_elapsedTimeTotalGame > _timeDragPlayer && !    IsInCastle)
         {
             IsTimeOver = true;
             _damonHand.GetComponent<DragPlayerToBoss_KH>().Isdrag = true;
