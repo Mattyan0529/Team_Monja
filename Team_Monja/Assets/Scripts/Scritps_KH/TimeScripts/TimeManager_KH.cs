@@ -15,9 +15,10 @@ public class TimeManager_KH : MonoBehaviour
     // プレイヤーを引きずり始める時間
     private float _timeDragPlayer = 180f;
 
-    private Animator _handAnimator = default;
     private WordDisplay_KH _wordDisplay = default;
     private GameObject _backGround = default;
+    private SoundEffectManagement_KH _soundEffectManagement = default;
+    private AudioSource _audioSource = default;
 
     [SerializeField]
     private WordScriptableObject_KH[] _wordScriptableObject = default;
@@ -40,10 +41,10 @@ public class TimeManager_KH : MonoBehaviour
     void Start()
     {
         _wordDisplay = GetComponent<WordDisplay_KH>();
-        _handAnimator = _damonHand.GetComponent<Animator>();
-        _backGround = transform.Find("WordsBackGround").gameObject;
+        _backGround = transform.parent.Find("WordsBackGround").gameObject;
         _backGround.SetActive(false);
-
+        _soundEffectManagement = GameObject.FindGameObjectWithTag("ResidentScripts").GetComponent<SoundEffectManagement_KH>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     void LateUpdate()
@@ -70,16 +71,17 @@ public class TimeManager_KH : MonoBehaviour
         // 言葉を変更して表示する場合
         else if (_elapsedTime > _timeStageProgress && !_wordDisplay.IsWordDisplay)
         {
+            /*_soundEffectManagement.PlayPonPonSound(_audioSource);
             _backGround.SetActive(true);
-            DisplayWord();
+            DisplayWord();*/
             _elapsedTime = 0f;
         }
 
         // 言葉を非表示にする場合
         else if (_elapsedTime > _timeHideWord)
         {
-            _backGround.SetActive(false);
-            _wordDisplay.EraseText();
+            /*_backGround.SetActive(false);
+            _wordDisplay.EraseText();*/
         }
     }
 

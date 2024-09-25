@@ -144,6 +144,7 @@ public class SuccubusSkillAttack_KH : MonoBehaviour, IDamagable_KH
 
     private void ResetStatus()
     {
+        if (_statEachSkillTimes == null) return;
         if (_statEachSkillTimes.Count == 0) return;
 
         List<GameObject> list = new List<GameObject>(_statEachSkillTimes[0]);

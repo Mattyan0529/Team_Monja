@@ -98,9 +98,9 @@ public class SoundEffectManagement_KH : MonoBehaviour
     }
 
     /// <summary>
-    /// ‚Ù‚Ë‚Ù‚ËŒN‚Ì‰¹‚ğÄ¶
+    /// ‹­‚¢‚â‚Â‚ª‚µ‚á‚×‚é‰¹‚ğÄ¶
     /// </summary>
-    public void PlayBoneSound(AudioSource audioSource)
+    public void PlayPonPonSound(AudioSource audioSource)
     {
         audioSource.PlayOneShot(_soundEffects[(int)SoundEffectSubscript.BoneSound]);
     }

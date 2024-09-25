@@ -80,7 +80,7 @@ public class BossGate_MT : MonoBehaviour
     //ボス部屋に入った
     private void OnTriggerExit(Collider other)
     {
-        if ((other.CompareTag("Player")　|| isClosed) && other.isTrigger == false)
+        if ((other.CompareTag("Player")　&& isClosed) && other.isTrigger == false)
         {
             _backGroundMusicManagement.PlayBossMusic();
             _timeManager.IsInCastle = true;
