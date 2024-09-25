@@ -105,7 +105,7 @@ public class TagJudge_MT : MonoBehaviour
         _playerObj.GetComponentInChildren<EnemyHP_MT>().SetPlayerArea();
 
         _playerMove.SetPlayer();
-        _eatEnemy.SetPlayer();
+        _eatEnemy.SetPlayer(_playerObj);
         _changeCharacter.SetPlayer();
         _eatOrChange.SetPlayer(_playerObj);
 

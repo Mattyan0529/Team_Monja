@@ -9,16 +9,14 @@ public class EatEnemy_MT : MonoBehaviour
     private GameObject _residentScript = default;
     private AudioSource _audioSource = default;
     private SoundEffectManagement_KH _soundEffectManagement = default;
-
+    private CharacterAnim_MT characterAnim;
     StatusManager_MT statusManagerEnemy;
     StatusManager_MT statusManagerPlayer;
     ClosestEnemyFinder_MT closestEnemyFinder;
-
+    GameObject _player;
 
     private void Start()
     {
-        SetPlayer();
-
         closestEnemyFinder = GameObject.FindWithTag("PlayerManager").GetComponent<ClosestEnemyFinder_MT>();
         _soundEffectManagement = _residentScript.GetComponent<SoundEffectManagement_KH>();
     }
@@ -44,6 +42,7 @@ public class EatEnemy_MT : MonoBehaviour
             statusManagerEnemy = closestObject.GetComponent<StatusManager_MT>();
             if (statusManagerEnemy != null && statusManagerEnemy.HP <= 0 )
             {
+                characterAnim.NowAnim = "Eat";
                 //Œ»ÝMaxHP‚ð‹L˜^
                 int currentMaxHP = statusManagerPlayer.MaxHP;
 
@@ -72,9 +71,10 @@ public class EatEnemy_MT : MonoBehaviour
             }
         }
     }
-    public void SetPlayer()
+    public void SetPlayer(GameObject player)
     {
-        statusManagerPlayer = GameObject.FindWithTag("Player").GetComponent<StatusManager_MT>();
-        _audioSource = GameObject.FindWithTag("Player").GetComponent<AudioSource>();
+        statusManagerPlayer = player.GetComponent<StatusManager_MT>();
+        _audioSource = player.GetComponent<AudioSource>();
+        characterAnim = player.GetComponent<CharacterAnim_MT>();
     }
 }

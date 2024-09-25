@@ -8,7 +8,7 @@ public class EatOrChangeController_MT : MonoBehaviour
     private ChangeCharacter_MT changeCharacter;
     private EnemyTriggerManager_MT enemyTriggerManager;
     private LockOn lockOn;
-    private CharacterAnim_MT characterAnim;
+
     [SerializeField]
     private float _activationDuration = 0.5f;
 
@@ -20,14 +20,14 @@ public class EatOrChangeController_MT : MonoBehaviour
         changeCharacter = GetComponent<ChangeCharacter_MT>();
         enemyTriggerManager = GameObject.FindWithTag("NearTrigger").GetComponent<EnemyTriggerManager_MT>();
         lockOn = Camera.main.GetComponentInParent<LockOn>();
-        characterAnim = GameObject.FindWithTag("Player").GetComponent<CharacterAnim_MT>();
+
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("eat"))
         {
-            characterAnim.NowAnim = "Eat";
+           
             StartCoroutine(DeadManDelay(_activationDuration));
             //RemoveClosestObject();
         }
@@ -52,6 +52,7 @@ public class EatOrChangeController_MT : MonoBehaviour
         {
             if (enemyTriggerManager.objectsInTrigger != null)
             {
+                
                 eatEnemy.RemoveClosestObject(enemyTriggerManager.objectsInTrigger, _player.transform);
             }
 
@@ -82,7 +83,7 @@ public class EatOrChangeController_MT : MonoBehaviour
     public void SetPlayer(GameObject player)
     {
         _player = player;
-        characterAnim = player.GetComponent<CharacterAnim_MT>();
+
     }
 
 }
