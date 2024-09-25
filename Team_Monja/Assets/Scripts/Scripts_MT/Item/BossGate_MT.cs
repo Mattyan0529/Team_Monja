@@ -18,11 +18,13 @@ public class BossGate_MT : MonoBehaviour
     // 追記：北
     private TimeManager_KH _timeManager = default;
     private BackGroundMusicManagement_KH _backGroundMusicManagement = default;
+    private GameObject[] _enemies = default;
 
     private Canvas _canvasBoss;
     private Collider _collider;
 
     private bool isClosed = false;
+    private bool isDeleteEnemy = false;
 
     public bool IsClosed { get => isClosed; set => isClosed = value; }
 
@@ -31,12 +33,26 @@ public class BossGate_MT : MonoBehaviour
         _canvasBoss = _canvasObjBoss.GetComponent<Canvas>();
         _collider = _gateObj.GetComponent<Collider>();
 
+        _enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
         // 追記：北
         _timeManager = _canvasObjPlayer.GetComponentInChildren<TimeManager_KH>();
         _backGroundMusicManagement = GameObject.FindGameObjectWithTag("ResidentScripts").GetComponent<BackGroundMusicManagement_KH>();
     }
 
-    
+    private void Update()
+    {
+        if (isDeleteEnemy)
+        {
+            for(int i = 0; i < _enemies.Length; i++)
+            {
+                _enemies[i].gameObject.SetActive(false);
+            }
+
+            isDeleteEnemy = false;
+        }
+    }
+
 
     /// <summary>
     /// ボス部屋に入れるようになる
@@ -49,8 +65,6 @@ public class BossGate_MT : MonoBehaviour
 
         // 追記：北
         _timeManager.IsInCastle = true;
-
-
     }
 
     public void CloseGate()
@@ -72,9 +86,10 @@ public class BossGate_MT : MonoBehaviour
 
                 OpenGate();
                 _backGroundMusicManagement.PlayBossMusic();
+
+                isDeleteEnemy = true;
                 //動画を再生
                 _bossVideo.PlayVideo();
-             
             }
         }
     }
