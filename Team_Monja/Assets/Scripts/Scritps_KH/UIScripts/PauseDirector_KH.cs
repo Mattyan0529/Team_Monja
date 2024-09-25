@@ -8,6 +8,12 @@ public class PauseDirector_KH : MonoBehaviour
     [SerializeField] private GameObject _playerCanvas; // プレイヤーキャンバスの参照
     private bool _isPause = false;
 
+    private ControllerVibration_MT _vibration;
+
+    private void Start()
+    {
+        _vibration = GameObject.FindWithTag("ResidentScripts").GetComponent<ControllerVibration_MT>();
+    }
     void Update()
     {
         PauseManagement();
@@ -25,6 +31,7 @@ public class PauseDirector_KH : MonoBehaviour
             if (!_isPause)
             {
                 Pause();
+                _vibration.StopVibration();
             }
             // ポーズ状態解除
             else if (_isPause)

@@ -19,6 +19,7 @@ public class ControllerVibration_MT : MonoBehaviour
         }
     }
 
+
     // トグルの状態が変更されたときに呼ばれるメソッド
     private void OnToggleValueChanged(bool isOn)
     {
@@ -44,7 +45,7 @@ public class ControllerVibration_MT : MonoBehaviour
     }
 
     // 振動を止めるメソッド
-    private void StopVibration()
+    public void StopVibration()
     {
         if (Gamepad.current != null)
         {
