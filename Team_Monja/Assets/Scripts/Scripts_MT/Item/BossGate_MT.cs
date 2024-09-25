@@ -71,6 +71,7 @@ public class BossGate_MT : MonoBehaviour
             {
 
                 OpenGate();
+                _backGroundMusicManagement.PlayBossMusic();
                 //“®‰æ‚ğÄ¶
                 _bossVideo.PlayVideo();
              
@@ -82,7 +83,6 @@ public class BossGate_MT : MonoBehaviour
     {
         if ((other.CompareTag("Player")@&& isClosed) && other.isTrigger == false)
         {
-            _backGroundMusicManagement.PlayBossMusic();
             _timeManager.IsInCastle = true;
             _collider.isTrigger = false;
             _pressF.SetActive(false);

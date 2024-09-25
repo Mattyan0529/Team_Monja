@@ -11,6 +11,7 @@ public class DragPlayerToBoss_KH : MonoBehaviour
     private int[,] _nextWayPointTable = default;
     private Transform _nextWayPoint = default;
     private Transform _currentWayPoint = default;
+    private BackGroundMusicManagement_KH _backGroundMusicManagement = default;
 
     private SearchWayPointTwoDimensionalArray_KH _searchWayPointTwoDimensionalArray = default;
     private EnemyMove_KH _enemyMove;
@@ -39,6 +40,7 @@ public class DragPlayerToBoss_KH : MonoBehaviour
         _nearPlayerArea = GameObject.FindGameObjectWithTag("NearPlayerArea");
         _searchWayPointTwoDimensionalArray =
             _nearPlayerArea.gameObject.GetComponent<SearchWayPointTwoDimensionalArray_KH>();
+        _backGroundMusicManagement = GameObject.FindGameObjectWithTag("ResidentScripts").GetComponent<BackGroundMusicManagement_KH>();
     }
 
     private void Update()
@@ -115,6 +117,7 @@ public class DragPlayerToBoss_KH : MonoBehaviour
             _targetWayPoint.SetActive(false);
 
             _bossGate.CloseGate();
+            _backGroundMusicManagement.PlayBossMusic();
             _bossVideo.PlayVideo();
 
             return;

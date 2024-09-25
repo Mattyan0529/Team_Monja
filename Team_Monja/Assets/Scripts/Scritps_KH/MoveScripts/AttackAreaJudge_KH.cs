@@ -5,7 +5,6 @@ public class AttackAreaJudge_KH : MonoBehaviour
     private ChangeEnemyMoveType_KH _changeEnemyMoveType = default;
 
     private GameObject _player = default;
-    private GameObject _residentScript = default;
 
     [SerializeField]
     private float _rangeHaveAttackArea = 3f;
@@ -13,13 +12,10 @@ public class AttackAreaJudge_KH : MonoBehaviour
     void Start()
     {
         _changeEnemyMoveType = gameObject.GetComponentInParent<ChangeEnemyMoveType_KH>();
-        _residentScript = GameObject.Find("ResidentScripts");
-
     }
 
     private void Update()
     {
-
         PlayerInAttackAreaJudge();
     }
 
@@ -44,6 +40,10 @@ public class AttackAreaJudge_KH : MonoBehaviour
         if (Vector3.SqrMagnitude(playerPos - myPos) < Mathf.Pow(_rangeHaveAttackArea, 2) &&
             _changeEnemyMoveType.NowState == ChangeEnemyMoveType_KH.EnemyMoveState.InFollow)
         {
+            // プレイヤーが敵の前にいなければ攻撃しない
+            float dotProduct = Vector3.Dot(transform.forward, playerPos - myPos);
+            if (dotProduct <= 0) return;
+
             _changeEnemyMoveType.NowState = ChangeEnemyMoveType_KH.EnemyMoveState.InAttack;
         }
         // プレイヤーが既定値外で、攻撃状態の時

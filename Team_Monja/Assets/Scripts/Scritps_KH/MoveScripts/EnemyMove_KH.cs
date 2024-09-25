@@ -14,7 +14,7 @@ public class EnemyMove_KH : MonoBehaviour
     private GameObject _player = default;
 
     private float _shortestDistance = default;
-    private float _followStopDistance = 2f;
+    private float _followStopDistance = 3f;
     private float _followShortDistance = 15f;
 
     private ChangeEnemyMoveType_KH _changeEnemyMoveType = default;
