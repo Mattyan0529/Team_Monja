@@ -15,7 +15,10 @@ public class SceneSwitcher_SM : MonoBehaviour
     private ControllerVibration_MT _vibration;
 
     void Start()
-    { _vibration = GameObject.FindWithTag("ResidentScripts").GetComponent<ControllerVibration_MT>();
+    { if(GameObject.FindWithTag("ResidentScripts") != null)
+        {
+            _vibration = GameObject.FindWithTag("ResidentScripts").GetComponent<ControllerVibration_MT>();
+        }
         SetupButtonListener();
     }
 
@@ -64,13 +67,19 @@ public class SceneSwitcher_SM : MonoBehaviour
 
         if (useLeghtMouse && (Input.GetMouseButtonDown(0) || Input.GetAxis("Submit") > 0 && getAxisSubmitZero))
         {
-            _vibration.StopVibration();
+            if (_vibration != null)
+            {
+                _vibration.StopVibration();
+            }
             LoadScene();
         }
 
         if (useBackspaceKey && (Input.GetKeyDown(KeyCode.Backspace) || Input.GetAxis("Cancel") > 0 && getAxisCancelZero))
         {
-            _vibration.StopVibration();
+            if (_vibration != null)
+            {
+                _vibration.StopVibration();
+            }
             LoadScene();
         }
 
