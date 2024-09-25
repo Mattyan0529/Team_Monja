@@ -33,8 +33,6 @@ public class BossGate_MT : MonoBehaviour
         _canvasBoss = _canvasObjBoss.GetComponent<Canvas>();
         _collider = _gateObj.GetComponent<Collider>();
 
-        _enemies = GameObject.FindGameObjectsWithTag("Enemy");
-
         // í«ãLÅFñk
         _timeManager = _canvasObjPlayer.GetComponentInChildren<TimeManager_KH>();
         _backGroundMusicManagement = GameObject.FindGameObjectWithTag("ResidentScripts").GetComponent<BackGroundMusicManagement_KH>();
@@ -44,7 +42,9 @@ public class BossGate_MT : MonoBehaviour
     {
         if (isDeleteEnemy)
         {
-            for(int i = 0; i < _enemies.Length; i++)
+            _enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+            for (int i = 0; i < _enemies.Length; i++)
             {
                 _enemies[i].gameObject.SetActive(false);
             }
