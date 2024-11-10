@@ -65,6 +65,7 @@ public class BossGate_MT : MonoBehaviour
 
         // ’Ç‹LF–k
         _timeManager.IsInCastle = true;
+        isDeleteEnemy = true;
     }
 
     public void CloseGate()
@@ -87,7 +88,6 @@ public class BossGate_MT : MonoBehaviour
                 OpenGate();
                 _backGroundMusicManagement.PlayBossMusic();
 
-                isDeleteEnemy = true;
                 //“®‰æ‚ğÄ¶
                 _bossVideo.PlayVideo();
             }
