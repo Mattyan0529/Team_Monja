@@ -15,6 +15,9 @@ public class SuccubusSkillAttack_KH : MonoBehaviour, IDamagable_KH
     // 相手のステータスを何倍にするか（１未満に設定してね）
     private const float _statDecreaseRate = 0.9f;
 
+    private int _attackRate = 2;
+    private int _defenseRate = 4;
+
     private GameObject _attackArea;
 
     private WriteHitPoint_KH _writeHitPoint = default;
@@ -127,7 +130,7 @@ public class SuccubusSkillAttack_KH : MonoBehaviour, IDamagable_KH
         int targetDefensePower = targetStatus.Defense;        // 相手の防御力をgetしてくる
         int targetHitPoint = targetStatus.HP;        // 相手のHPをgetしてくる
 
-        int damage = myAttackPower - targetDefensePower;
+        int damage = myAttackPower / _attackRate - targetDefensePower / _defenseRate;
 
         if (myAttackPower <= targetDefensePower)
         {

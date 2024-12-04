@@ -8,7 +8,6 @@ public class NormalAttack_KH : MonoBehaviour
     [SerializeField]
     GameObject _coolTimeUIObj = default;
 
-
     private float _deleteTime = 0.2f;
     private float _elapsedTime = 0f;
 
@@ -25,6 +24,9 @@ public class NormalAttack_KH : MonoBehaviour
 
     private bool _isAttack = false;
     private bool _canUseNormalAttack = true;
+
+    private int _attackRate = 2;
+    private int _defenseRate = 4;
 
     private WriteHitPoint_KH _writeHitPoint = default;
     private CoolTimeUI_KH _coolTimeUI = default;
@@ -175,7 +177,7 @@ public class NormalAttack_KH : MonoBehaviour
         int targetDefensePower = targetStatus.Defense;        // ‘ŠŽè‚Ì–hŒä—Í‚ðget‚µ‚Ä‚­‚é
         int targetHitPoint = targetStatus.HP;        // ‘ŠŽè‚ÌHP‚ðget‚µ‚Ä‚­‚é
 
-        int damage = myAttackPower - targetDefensePower;
+        int damage = myAttackPower / _attackRate - targetDefensePower / _defenseRate;
 
         if (myAttackPower <= targetDefensePower)
         {

@@ -24,6 +24,9 @@ public class BossSkillAttack_KH : MonoBehaviour, IDamagable_KH
 
     private float _imagePositionY = 18.34f;
 
+    private int _attackRate = 2;
+    private int _defenseRate = 4;
+
     private AudioSource _audioSource = default;
     private SoundEffectManagement_KH _soundEffectManagement = default;
     private WriteHitPoint_KH _writeHitPoint = default;
@@ -281,7 +284,7 @@ public class BossSkillAttack_KH : MonoBehaviour, IDamagable_KH
         int targetDefensePower = targetStatus.Defense;        // ‘ŠŽè‚Ì–hŒä—Í‚ðget‚µ‚Ä‚­‚é
         int targetHitPoint = targetStatus.HP;        // ‘ŠŽè‚ÌHP‚ðget‚µ‚Ä‚­‚é
 
-        int damage = myAttackPower - targetDefensePower;
+        int damage = myAttackPower / _attackRate - targetDefensePower / _defenseRate;
 
         if (myAttackPower < targetDefensePower)
         {

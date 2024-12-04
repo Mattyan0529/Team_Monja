@@ -8,6 +8,9 @@ public class OrcSkillAttack_KH : MonoBehaviour, IDamagable_KH
     private float _deleteTime = 0.5f;
     private float _elapsedTime = 0f;
 
+    private int _attackRate = 2;
+    private int _defenseRate = 4;
+
     private GameObject _attackArea;
 
     private WriteHitPoint_KH _writeHitPoint = default;
@@ -88,7 +91,7 @@ public class OrcSkillAttack_KH : MonoBehaviour, IDamagable_KH
         int targetDefensePower = targetStatus.Defense;        // ‘ŠŽè‚Ì–hŒä—Í‚ðget‚µ‚Ä‚­‚é
         int targetHitPoint = targetStatus.HP;        // ‘ŠŽè‚ÌHP‚ðget‚µ‚Ä‚­‚é
 
-        int damage = myAttackPower - targetDefensePower;
+        int damage = myAttackPower / _attackRate - targetDefensePower / _defenseRate;
 
         if (myAttackPower <= targetDefensePower)
         {
