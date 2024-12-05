@@ -47,10 +47,6 @@ public class TagJudge_MT : MonoBehaviour
     [Header("NearPlayerAraの子オブジェクトのPinを入れる")]
     [SerializeField]
     private MiniMapPlayerIcon_KH _pin;
-    [Header("VideoCanvasの中身")]
-    [SerializeField]
-    private VideoPlayerController_MT[] _videoControllers;
-
     [SerializeField,Header("シーン内の全キャラクター")]
     private GameObject[] _characters;
  
@@ -117,10 +113,7 @@ public class TagJudge_MT : MonoBehaviour
         _bossObj = GameObject.FindWithTag("Boss");
         
         _bossObj.GetComponent<BossSkillAttack_KH>().SetPlayer(_playerObj);
-
-        _damonHand.SetPlayer(_playerObj);
-        _dragPlayer.SetPlayer(_playerObj);
-
+        
         _atkBar.SetPlayer(_playerObj);
         _defBar.SetPlayer(_playerObj);
 
@@ -133,12 +126,6 @@ public class TagJudge_MT : MonoBehaviour
         _wallJudge.SetPlayer(_playerObj);
 
         _pin.SetPlayer(_playerObj);
-
-        //全動画に対して
-        foreach (VideoPlayerController_MT video in _videoControllers)
-        {
-            video.SetPlayer(_playerObj);
-        }
 
         foreach (GameObject character in _characters)
         {
