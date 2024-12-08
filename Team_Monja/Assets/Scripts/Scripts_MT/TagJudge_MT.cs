@@ -21,9 +21,6 @@ public class TagJudge_MT : MonoBehaviour
     [Header("ClosestObjectArea")]
     [SerializeField]
     private EnemyTriggerManager_MT _enemyTrigger;
-    [Header("DamonHand")]
-    [SerializeField]
-    private DamonHandPos _damonHand;
     [SerializeField]
     private DragPlayerToBoss_KH _dragPlayer;
     [Header("StrengthBar")]
