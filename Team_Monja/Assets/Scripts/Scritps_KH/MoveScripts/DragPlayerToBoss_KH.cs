@@ -11,7 +11,6 @@ public class DragPlayerToBoss_KH : MonoBehaviour
     private int[,] _nextWayPointTable = default;
     private Transform _nextWayPoint = default;
     private Transform _currentWayPoint = default;
-    private BackGroundMusicManagement_KH _backGroundMusicManagement = default;
 
     private SearchWayPointTwoDimensionalArray_KH _searchWayPointTwoDimensionalArray = default;
     private EnemyMove_KH _enemyMove;
@@ -19,6 +18,8 @@ public class DragPlayerToBoss_KH : MonoBehaviour
     private TimeManager_KH _timeManager;
     [SerializeField]
     private BossGate_MT _bossGate;
+    [SerializeField]
+    private VideoPlayerController_MT _bossVideo;
 
     private float _speed = 45f;
     private float _followStopDistance = 0.1f;
@@ -38,7 +39,6 @@ public class DragPlayerToBoss_KH : MonoBehaviour
         _nearPlayerArea = GameObject.FindGameObjectWithTag("NearPlayerArea");
         _searchWayPointTwoDimensionalArray =
             _nearPlayerArea.gameObject.GetComponent<SearchWayPointTwoDimensionalArray_KH>();
-        _backGroundMusicManagement = GameObject.FindGameObjectWithTag("ResidentScripts").GetComponent<BackGroundMusicManagement_KH>();
     }
 
     private void Update()
@@ -78,7 +78,7 @@ public class DragPlayerToBoss_KH : MonoBehaviour
     {
         SearchNearMainWayPoint();
 
-        if(_nextWayPoint == default)
+        if (_nextWayPoint == default)
         {
             return;
         }
@@ -108,14 +108,14 @@ public class DragPlayerToBoss_KH : MonoBehaviour
     private void SearchTargetWayPoint(Transform myWayPoint)
     {
         // すでに目的地に到着していた場合
-        if(_targetWayPoint.name == myWayPoint.name)
+        if (_targetWayPoint.name == myWayPoint.name)
         {
             StartCoroutine(DeactivateAfterOneSecond());
             _isdrag = false;
             _targetWayPoint.SetActive(false);
 
             _bossGate.CloseGate();
-            _backGroundMusicManagement.PlayBossMusic();
+            _bossVideo.PlayVideo();
 
             return;
         }
@@ -223,6 +223,6 @@ public class DragPlayerToBoss_KH : MonoBehaviour
 
         // オブジェクトを非アクティブにする
         this.gameObject.SetActive(false);
-        
+
     }
 }
