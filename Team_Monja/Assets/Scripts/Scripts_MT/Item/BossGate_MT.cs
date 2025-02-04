@@ -10,10 +10,11 @@ public class BossGate_MT : MonoBehaviour
     [SerializeField] private GameObject _canvasObjPlayer = default;
     [SerializeField] private GameObject _gateObj = default;
     [SerializeField] private GameObject _pressF = default;
-    [SerializeField] private VideoPlayerController_MT _bossVideo;
+
     // スカイボックス用のマテリアル
     [SerializeField] private Material _afterSkyboxMaterial;
 
+    [SerializeField] private DragPlayerToBoss_KH _damonHand;
     // 追記：北
     private TimeManager_KH _timeManager = default;
     private BackGroundMusicManagement_KH _backGroundMusicManagement = default;
@@ -78,7 +79,7 @@ public class BossGate_MT : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
 
-        if ((other.gameObject.CompareTag("Player") && !_timeManager.IsInCastle ) )
+        if ((other.gameObject.CompareTag("Player") && !_timeManager.IsInCastle) && !_damonHand.Isdrag)
         {
             _pressF.SetActive(true);
             if (Input.GetKeyDown(KeyCode.F) || Input.GetAxis("Submit") > 0)
@@ -86,16 +87,13 @@ public class BossGate_MT : MonoBehaviour
 
                 OpenGate();
                 _backGroundMusicManagement.PlayBossMusic();
-
-                //動画を再生
-                _bossVideo.PlayVideo();
             }
         }
     }
     //ボス部屋に入った
     private void OnTriggerExit(Collider other)
     {
-        if ((other.CompareTag("Player")　&& isClosed) && other.isTrigger == false)
+        if ((other.CompareTag("Player") && isClosed) && other.isTrigger == false)
         {
             _timeManager.IsInCastle = true;
             _collider.isTrigger = false;
@@ -103,7 +101,7 @@ public class BossGate_MT : MonoBehaviour
             _canvasBoss.enabled = true;
             ChangeSkybox(_afterSkyboxMaterial);
             //カメラをボスの方向に向ける
-            Camera.main.transform.parent.rotation = Quaternion.Euler(0,0,0);
+            Camera.main.transform.parent.rotation = Quaternion.Euler(0, 0, 0);
         }
 
     }
