@@ -10,7 +10,7 @@ public class BossGate_MT : MonoBehaviour
     [SerializeField] private GameObject _canvasObjPlayer = default;
     [SerializeField] private GameObject _gateObj = default;
     [SerializeField] private GameObject _pressF = default;
-
+    [SerializeField] private VideoPlayerController_MT _bossVideo;
     // スカイボックス用のマテリアル
     [SerializeField] private Material _afterSkyboxMaterial;
 
@@ -86,6 +86,9 @@ public class BossGate_MT : MonoBehaviour
 
                 OpenGate();
                 _backGroundMusicManagement.PlayBossMusic();
+
+                //動画を再生
+                _bossVideo.PlayVideo();
             }
         }
     }
