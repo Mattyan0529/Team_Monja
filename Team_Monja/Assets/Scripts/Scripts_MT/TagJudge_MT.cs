@@ -21,8 +21,6 @@ public class TagJudge_MT : MonoBehaviour
     [Header("ClosestObjectArea")]
     [SerializeField]
     private EnemyTriggerManager_MT _enemyTrigger;
-    [SerializeField]
-    private DragPlayerToBoss_KH _dragPlayer;
     [Header("StrengthBar")]
     [SerializeField]
     private StatusBar_MT _atkBar;

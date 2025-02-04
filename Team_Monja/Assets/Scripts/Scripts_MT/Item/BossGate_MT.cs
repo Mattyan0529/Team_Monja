@@ -14,7 +14,6 @@ public class BossGate_MT : MonoBehaviour
     // スカイボックス用のマテリアル
     [SerializeField] private Material _afterSkyboxMaterial;
 
-    [SerializeField] private DragPlayerToBoss_KH _damonHand;
     // 追記：北
     private TimeManager_KH _timeManager = default;
     private BackGroundMusicManagement_KH _backGroundMusicManagement = default;
@@ -79,7 +78,7 @@ public class BossGate_MT : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
 
-        if ((other.gameObject.CompareTag("Player") && !_timeManager.IsInCastle ) && !_damonHand.Isdrag)
+        if ((other.gameObject.CompareTag("Player") && !_timeManager.IsInCastle ) )
         {
             _pressF.SetActive(true);
             if (Input.GetKeyDown(KeyCode.F) || Input.GetAxis("Submit") > 0)
