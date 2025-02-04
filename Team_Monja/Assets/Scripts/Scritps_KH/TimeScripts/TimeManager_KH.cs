@@ -12,6 +12,8 @@ public class TimeManager_KH : MonoBehaviour
     private float _timeStageProgress = 15f;
     // 表示された言葉が非表示になるまでの時間
     private float _timeHideWord = 10f;
+    // プレイヤーを引きずり始める時間
+    private float _timeDragPlayer = 180f;
 
     private WordDisplay_KH _wordDisplay = default;
     private GameObject _backGround = default;
@@ -20,6 +22,11 @@ public class TimeManager_KH : MonoBehaviour
 
     [SerializeField]
     private WordScriptableObject_KH[] _wordScriptableObject = default;
+
+    [SerializeField]
+    private GameObject _damonHand = default;
+    [SerializeField]
+    private VideoPlayerController_MT _HandComingVideo;
 
     private bool _isInCastle = false;
 
@@ -53,8 +60,16 @@ public class TimeManager_KH : MonoBehaviour
         _elapsedTime += Time.deltaTime;
         _elapsedTimeTotalGame += Time.deltaTime;
 
+        // プレイヤーを引きずる場合
+        if (_elapsedTimeTotalGame > _timeDragPlayer && !    IsInCastle)
+        {
+            IsTimeOver = true;
+            _damonHand.GetComponent<DragPlayerToBoss_KH>().Isdrag = true;
+            _HandComingVideo.PlayVideo();
+        }
+
         // 言葉を変更して表示する場合
-        if (_elapsedTime > _timeStageProgress && !_wordDisplay.IsWordDisplay)
+        else if (_elapsedTime > _timeStageProgress && !_wordDisplay.IsWordDisplay)
         {
             /*_soundEffectManagement.PlayPonPonSound(_audioSource);
             _backGround.SetActive(true);
@@ -75,5 +90,15 @@ public class TimeManager_KH : MonoBehaviour
         if (_wordNumber > _wordScriptableObject.Length - 1) return;
         _wordDisplay.WriteText(_wordScriptableObject[_wordNumber].Word);
         _wordNumber++;
+    }
+
+    public void PullPlayer()
+    {
+        if (!_isInCastle)
+        {
+            _damonHand.SetActive(true);
+
+        }
+        this.enabled = false;
     }
 }
