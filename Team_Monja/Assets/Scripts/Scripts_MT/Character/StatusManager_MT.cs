@@ -5,20 +5,24 @@ using UnityEngine.UI;
 public class StatusManager_MT : MonoBehaviour
 {
     //キャラクターのスピード
+    [Header("足のはやさ")]
     [SerializeField] private float _speedMultiplier = 1.0f;//デフォルトでは１
 
 
     // 基礎値
+    [Header("ベースのステータス")]
     [SerializeField] private int _baseHP = 10; // インスペクターで設定可能
     [SerializeField] private int _baseStrength = 5; // インスペクターで設定可能
     [SerializeField] private int _baseDefense = 3; // インスペクターで設定可能
 
     // 倍率
+    [Header("ステータス倍率")]
     [SerializeField] private float healthMultiplier = 1.0f;  // インスペクターで設定可能
     [SerializeField] private float strengthMultiplier = 1.0f;  // インスペクターで設定可能
     [SerializeField] private float defenseMultiplier = 1.0f;  // インスペクターで設定可能
 
     // プラスの値
+    [Header("加算ステータス")]
     [SerializeField] private int _plusStatHP = 0; // インスペクターで設定可能
     [SerializeField] private int _plusStatStrength = 0; // インスペクターで設定可能
     [SerializeField] private int _plusStatDefense = 0; // インスペクターで設定可能
